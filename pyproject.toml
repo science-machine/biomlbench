@@ -47,6 +47,9 @@ dependencies = [
     "polaris",
     "kaggle>=1.7.4.5",
     "ipdb>=0.13.13",
+    # Fix SQLAlchemy version for Polaris compatibility
+    "sqlalchemy>=1.4.0,<2.0.0",
+    "polaris-lib>=0.12.1",
 ]
 
 [project.optional-dependencies]

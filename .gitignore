@@ -8,3 +8,4 @@ baseline_submissions
 *.json
 *.jsonl
 *.csv
+cache
