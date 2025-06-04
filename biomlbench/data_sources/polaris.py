@@ -13,7 +13,7 @@ from typing import Any, Dict, Optional
 import pandas as pd
 
 from biomlbench.utils import get_logger
-from .base import DataSource, DataSourceError, DataSourceConfigError
+from biomlbench.data_sources.base import DataSource, DataSourceError
 from .factory import register_data_source
 
 logger = get_logger(__name__)

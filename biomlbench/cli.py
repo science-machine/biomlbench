@@ -2,7 +2,7 @@ import argparse
 import json
 from pathlib import Path
 
-from biomlbench.data import download_and_prepare_dataset, ensure_leaderboard_exists
+from biomlbench.data import download_and_prepare_dataset, ensure_leaderboard_exists, prepare_human_baselines
 from biomlbench.grade import grade_csv, grade_jsonl
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger
@@ -166,6 +166,29 @@ def main():
         action="store_true",
     )
 
+    # Set up 'prepare-human-baselines' under 'dev'
+    parser_human_baselines = dev_subparsers.add_parser(
+        "prepare-human-baselines",
+        help="Prepare human baseline data for tasks.",
+    )
+    parser_human_baselines.add_argument(
+        "-t",
+        "--task-id",
+        help=f"Name of the task to prepare human baselines for. Valid options: {registry.list_task_ids()}",
+        type=str,
+        required=False,
+    )
+    parser_human_baselines.add_argument(
+        "--all",
+        help="Prepare human baselines for all tasks.",
+        action="store_true",
+    )
+    parser_human_baselines.add_argument(
+        "--force",
+        help="Force re-extraction of human baselines, even if they already exist.",
+        action="store_true",
+    )
+
     # Run baseline sub-parser
     parser_baseline = subparsers.add_parser(
         name="run-baseline",
@@ -269,6 +292,19 @@ def main():
                 ensure_leaderboard_exists(task, force=args.force)
             else:
                 parser_download_leaderboard.error(
+                    "Either --all or --task-id must be specified."
+                )
+        
+        elif args.dev_command == "prepare-human-baselines":
+            if args.all:
+                for task_id in registry.list_task_ids():
+                    task = registry.get_task(task_id)
+                    prepare_human_baselines(task, force=args.force)
+            elif args.task_id:
+                task = registry.get_task(args.task_id)
+                prepare_human_baselines(task, force=args.force)
+            else:
+                parser_human_baselines.error(
                     "Either --all or --task-id must be specified."
                 )
 

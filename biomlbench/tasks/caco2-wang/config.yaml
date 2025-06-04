@@ -34,10 +34,8 @@ biomedical_metadata:
     - "limited_training_data"
     - "admet_prediction_uncertainty"
   
-# Human baselines (expert medicinal chemists)
-human_baselines:
-  medicinal_chemist_expert: null  # To be populated with expert predictions
-  computational_chemist: null     # To be populated if available
+# Human baselines are now extracted dynamically from leaderboard data
+# via the data source (Polaris Hub publications, Kaggle leaderboards, etc.)
 
 # Computational requirements  
 compute_requirements:

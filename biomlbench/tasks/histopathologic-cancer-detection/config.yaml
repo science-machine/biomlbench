@@ -33,11 +33,9 @@ biomedical_metadata:
     - "subtle_morphological_features"
     - "class_imbalance"
 
-# Human baseline performance (to be populated)
-human_baselines:
-  expert_pathologist: null  # To be added when available
-  resident_pathologist: null  # To be added when available
-  
+# Human baselines are now extracted dynamically from Kaggle public leaderboard
+# Expert pathologists and medical students participate in Kaggle competitions
+
 # Computational requirements
 compute_requirements:
   recommended_gpu_memory_gb: 8

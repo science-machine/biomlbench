@@ -154,6 +154,9 @@ def download_and_prepare_dataset(
     with open(task.public_dir / "description.md", "w") as f:
         f.write(task.description)
 
+    # Prepare human baselines
+    prepare_human_baselines(task, force=overwrite_checksums)
+
     # Generate final checksums
     if overwrite_checksums or not skip_verification:
         logger.info(f"Generating checksums for files in `{task_dir}`...")
@@ -411,3 +414,59 @@ def get_leaderboard(task: Task) -> pd.DataFrame:
     ), f"Leaderboard not found locally for task `{task.id}`."
     leaderboard_df = pd.read_csv(leaderboard_path)
     return leaderboard_df
+
+
+def prepare_human_baselines(task: Task, force: bool = False) -> Optional[Path]:
+    """
+    Prepare human baseline data for a task.
+    
+    Args:
+        task: Task to prepare human baselines for
+        force: Whether to force re-download of human baselines
+        
+    Returns:
+        Path to human baselines CSV file, or None if not available
+    """
+    human_baselines_path = task.public_dir / "human_baselines.csv"
+    
+    # Skip if already exists and not forcing
+    if human_baselines_path.exists() and not force:
+        logger.info(f"Human baselines already exist for task '{task.id}'")
+        return human_baselines_path
+    
+    # Get data source configuration
+    source_config = getattr(task, 'data_source', None)
+    if source_config is None:
+        logger.debug(f"No data source configuration for task '{task.id}', skipping human baselines")
+        return None
+    
+    # Create appropriate data source
+    source_type = source_config.get('type', 'kaggle')
+    try:
+        data_source = DataSourceFactory.create(source_type)
+    except Exception as e:
+        logger.warning(f"Failed to create data source '{source_type}' for human baselines: {e}")
+        return None
+    
+    # Check if data source supports human baselines
+    if not data_source.supports_human_baselines():
+        logger.debug(f"Data source '{source_type}' does not support human baselines")
+        return None
+    
+    # Extract human baselines
+    try:
+        human_baselines_df = data_source.get_human_baselines(source_config)
+        
+        if human_baselines_df is None or human_baselines_df.empty:
+            logger.info(f"No human baselines available for task '{task.id}'")
+            return None
+        
+        # Save human baselines
+        human_baselines_df.to_csv(human_baselines_path, index=False)
+        
+        logger.info(f"Saved {len(human_baselines_df)} human baseline entries for task '{task.id}'")
+        return human_baselines_path
+        
+    except Exception as e:
+        logger.warning(f"Failed to extract human baselines for task '{task.id}': {e}")
+        return None

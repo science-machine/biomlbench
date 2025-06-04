@@ -45,6 +45,8 @@ dependencies = [
     "flask>=2.3.0",
     "requests>=2.31.0",
     "polaris",
+    "kaggle>=1.7.4.5",
+    "ipdb>=0.13.13",
 ]
 
 [project.optional-dependencies]

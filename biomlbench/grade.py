@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 
 from tqdm import tqdm
+import pandas as pd
 
 from biomlbench.data import get_leaderboard, is_dataset_prepared
 from biomlbench.grade_helpers import TaskReport
@@ -78,9 +79,18 @@ def grade_csv(path_to_submission: Path, task: Task) -> TaskReport:
     # Check human baselines if available
     beats_human = None
     human_percentile = None
-    if task.human_baselines and score is not None:
-        # TODO: Implement human baseline comparison logic
-        pass
+    if score is not None:
+        human_baselines_path = task.public_dir / "human_baselines.csv"
+        if human_baselines_path.exists():
+            try:
+                human_df = pd.read_csv(human_baselines_path)
+                if not human_df.empty and 'score' in human_df.columns:
+                    beats_human, human_percentile = calculate_human_performance_metrics(
+                        score, human_df, task.grader.is_lower_better(task_leaderboard)
+                    )
+                    logger.debug(f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}")
+            except Exception as e:
+                logger.warning(f"Failed to load human baselines for task '{task.id}': {e}")
 
     return TaskReport(
         task_id=task.id,
@@ -160,3 +170,37 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
     }
 
     return summary_report
+
+
+def calculate_human_performance_metrics(agent_score: float, human_df: pd.DataFrame, is_lower_better: bool) -> tuple[bool, float]:
+    """
+    Calculate how an agent's performance compares to human baselines.
+    
+    Args:
+        agent_score: The agent's score to compare
+        human_df: DataFrame with human baseline scores (must have 'score' column)
+        is_lower_better: Whether lower scores are better for this metric
+        
+    Returns:
+        Tuple of (beats_human, human_percentile) where:
+        - beats_human: True if agent beats median human performance
+        - human_percentile: Percentile of human performance that agent achieves (0-100)
+    """
+    human_scores = human_df['score'].astype(float)
+    
+    if human_scores.empty:
+        return None, None
+    
+    # Calculate median human performance for beats_human
+    median_human = human_scores.median()
+    
+    if is_lower_better:
+        beats_human = agent_score < median_human
+        # For lower-is-better: percentile = % of humans with score >= agent_score
+        human_percentile = (human_scores >= agent_score).mean() * 100
+    else:
+        beats_human = agent_score > median_human
+        # For higher-is-better: percentile = % of humans with score <= agent_score  
+        human_percentile = (human_scores <= agent_score).mean() * 100
+    
+    return beats_human, round(human_percentile, 1)
