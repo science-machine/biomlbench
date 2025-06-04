@@ -1,0 +1,45 @@
+id: histopathologic-cancer-detection
+name: Histopathologic Cancer Detection
+task_type: medical_imaging
+domain: oncology
+difficulty: medium
+awards_medals: true
+prizes: null
+description: biomlbench/tasks/histopathologic-cancer-detection/description.md
+
+# Data source configuration
+data_source:
+  type: kaggle
+  competition_id: histopathologic-cancer-detection
+
+dataset:
+  answers: histopathologic-cancer-detection/prepared/private/answers.csv
+  sample_submission: histopathologic-cancer-detection/prepared/public/sample_submission.csv
+
+grader:
+  name: auc-roc
+  grade_fn: biomlbench.tasks.histopathologic-cancer-detection.grade:grade
+
+preparer: biomlbench.tasks.histopathologic-cancer-detection.prepare:prepare
+
+# Biomedical-specific metadata
+biomedical_metadata:
+  modality: "histopathology"
+  organ_system: "breast"
+  data_type: "image_classification"
+  clinical_relevance: "cancer_detection"
+  difficulty_factors:
+    - "small_patch_size"
+    - "subtle_morphological_features"
+    - "class_imbalance"
+
+# Human baseline performance (to be populated)
+human_baselines:
+  expert_pathologist: null  # To be added when available
+  resident_pathologist: null  # To be added when available
+  
+# Computational requirements
+compute_requirements:
+  recommended_gpu_memory_gb: 8
+  estimated_runtime_minutes: 30
+  max_dataset_size_gb: 8
