@@ -74,18 +74,10 @@ def download_and_prepare_dataset(
     # Get data source configuration
     source_config = getattr(task, 'data_source', None)
     if source_config is None:
-        # Fallback: assume Kaggle for backward compatibility
-        logger.warning(
-            f"No data_source configuration found for task '{task.id}'. "
-            f"Assuming Kaggle competition with competition_id='{task.id}'"
-        )
-        source_config = {
-            'type': 'kaggle',
-            'competition_id': task.id
-        }
+        raise ValueError(f"No data_source configuration found for task '{task.id}'.")
 
     # Create appropriate data source
-    source_type = source_config.get('type', 'kaggle')
+    source_type = source_config.get('type')
     try:
         data_source = DataSourceFactory.create(source_type)
     except Exception as e:
@@ -441,7 +433,7 @@ def prepare_human_baselines(task: Task, force: bool = False) -> Optional[Path]:
         return None
     
     # Create appropriate data source
-    source_type = source_config.get('type', 'kaggle')
+    source_type = source_config.get('type')
     try:
         data_source = DataSourceFactory.create(source_type)
     except Exception as e:

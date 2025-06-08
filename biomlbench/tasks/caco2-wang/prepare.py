@@ -48,11 +48,9 @@ def prepare(raw: Path, public: Path, private: Path) -> None:
     sample_submission.to_csv(public / 'sample_submission.csv', index=False)
     
     # Create private answers file for evaluation
-    # Note: In real Polaris benchmarks, we don't have test labels
-    # This is a limitation - we'll need to use Polaris evaluation API
     answers = pd.DataFrame({
         'id': range(len(test_features)),
-        'caco2_permeability': [0.0] * len(test_features)  # Placeholder
+        'caco2_permeability': test_df['Y'].values  # Use actual test labels
     })
     answers.to_csv(private / 'answers.csv', index=False)
     

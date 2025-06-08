@@ -45,14 +45,14 @@ class PolarisDataSource(DataSource):
             DataSourceConfigError: If configuration is invalid
         """
         if 'benchmark_id' not in source_config:
-            raise DataSourceConfigError(
+            raise ValueError(
                 "Polaris data source requires 'benchmark_id' in configuration",
                 source_type="polaris"
             )
         
         benchmark_id = source_config['benchmark_id']
         if not isinstance(benchmark_id, str) or not benchmark_id.strip():
-            raise DataSourceConfigError(
+            raise ValueError(
                 "Polaris 'benchmark_id' must be a non-empty string",
                 source_type="polaris"
             )
@@ -127,7 +127,9 @@ from pathlib import Path
 try:
     # Load benchmark from Polaris Hub
     benchmark = po.load_benchmark('{benchmark_id}')
-    train, test = benchmark.get_train_test_split()
+    train, _ = benchmark.get_train_test_split()
+    # Grab the test set with the targets included
+    test = benchmark._get_test_sets(hide_targets=False)['test']
 
     # Convert to dataframes
     df_train = train.as_dataframe()

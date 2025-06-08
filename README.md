@@ -6,6 +6,28 @@
 
 BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) and provides a comprehensive framework for benchmarking AI agents on biomedical machine learning (BioML) tasks including protein engineering, drug discovery, medical imaging, and clinical biomarkers.
 
+~~Development TODOs (unordered)~~
+
+- [ ] Add `experiments/splits` which will contain files like `medical-imaging.txt` that contain a list of task ids for only a given domain, or type of benchmarking run (e.g., lite, all).
+- [ ] Decide if we want to have `experiments/familiarity` like the original MLE-bench. This would involve measuring the relationship between model performance and the "familiarity" of the model for the task description. This tries to assess if the model is "cheating" by already understanding the task.
+- [ ] Need to decide if we can add human baselines in for Polaris. We would probably have to manually scrape the leaderboard (possibly with playwright) and then we would need to add a `supports_human_baselines` method to the `PolarisDataSource` class which returns `True`. And we would need to add a `get_human_baselines` method to the `PolarisDataSource` class which returns a pandas dataframe with the human baselines.
+- [ ] Need an automated pipeline for scraping all the polaris and kaggle tasks and creating tasks/ directories for them.
+- [ ] 
+
+
+## How to wrap a new benchmark database
+
+Example: Polaris.
+
+To wrap polaris, we needed to:
+
+1. Understand the data source. In this case, Polaris has a high-level API that can be used to automatically download and split data.
+2. Create a new data source module in `biomlbench/data_sources/`. In the case of Polaris, we created `biomlbench/data_sources/polaris.py`.
+3. Implement the `XYZDataSource` class. This class must implement the `download` and `get_leaderboard` methods.
+4. 
+
+
+
 ## 🧬 Features
 
 - **Diverse Biomedical Tasks**: Protein engineering, drug discovery, medical imaging, clinical biomarkers
