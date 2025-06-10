@@ -7,6 +7,7 @@ from biomlbench.grade import grade_csv, grade_jsonl
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger
 from biomlbench.baselines import run_baseline
+from biomlbench.agents import run_agent
 
 logger = get_logger(__name__)
 
@@ -224,6 +225,65 @@ def main():
         default=42,
     )
 
+    # Run agent sub-parser
+    parser_run_agent = subparsers.add_parser(
+        name="run-agent",
+        help="Run an AI agent on biomedical tasks",
+    )
+    parser_run_agent.add_argument(
+        "--agent",
+        help="Agent ID to run (e.g., dummy, aide, aide/dev)",
+        type=str,
+        required=True,
+    )
+    parser_run_agent.add_argument(
+        "--task-id",
+        help=f"Single task ID to run. Valid options: {registry.list_task_ids()}",
+        type=str,
+        required=False,
+    )
+    parser_run_agent.add_argument(
+        "--task-list",
+        help="Path to text file with task IDs (one per line) for multi-task runs",
+        type=str,
+        required=False,
+    )
+    parser_run_agent.add_argument(
+        "--n-workers",
+        help="Number of parallel workers for multi-task runs",
+        type=int,
+        default=1,
+    )
+    parser_run_agent.add_argument(
+        "--n-seeds",
+        help="Number of random seeds to run per task",
+        type=int,
+        default=1,
+    )
+    parser_run_agent.add_argument(
+        "--container-config",
+        help="Path to JSON file with Docker container configuration",
+        type=str,
+        required=False,
+    )
+    parser_run_agent.add_argument(
+        "--retain-container",
+        help="Keep container after run for debugging",
+        action="store_true",
+    )
+    parser_run_agent.add_argument(
+        "--data-dir",
+        help="Path to the directory where task data is stored",
+        type=str,
+        default=registry.get_data_dir(),
+    )
+    parser_run_agent.add_argument(
+        "--output-dir",
+        help="Directory to save agent run outputs",
+        type=str,
+        default="runs",
+    )
+
     args = parser.parse_args()
 
     if args.command == "prepare":
@@ -319,6 +379,15 @@ def main():
             output_dir=output_dir,
             seed=args.seed
         )
+
+    if args.command == "run-agent":
+        # Validate that either task-id or task-list is provided
+        if not args.task_id and not args.task_list:
+            parser_run_agent.error("Either --task-id or --task-list must be specified.")
+        if args.task_id and args.task_list:
+            parser_run_agent.error("Cannot specify both --task-id and --task-list.")
+            
+        run_agent(args)
 
 
 if __name__ == "__main__":

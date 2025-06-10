@@ -99,29 +99,29 @@ def get_repo_dir() -> Path:
     return get_module_dir().parent
 
 
-def generate_run_id(competition_id: str, agent_id: str, run_group: Optional[str] = None) -> str:
-    """Creates a unique run ID for a specific competition and agent combo"""
+def generate_run_id(task_id: str, agent_id: str, run_group: Optional[str] = None) -> str:
+    """Creates a unique run ID for a specific task and agent combo"""
 
     timestamp = get_timestamp()
     long_id = str(uuid.uuid4())
     short_id = long_id[:8]
 
     if run_group:  # the timestamp and agent are already included in the run group name
-        return f"{competition_id}_{long_id}"
+        return f"{task_id}_{long_id}"
 
-    return f"{timestamp}_{competition_id}_{agent_id}_{short_id}"
+    return f"{timestamp}_{task_id}_{agent_id}_{short_id}"
 
 
 def create_run_dir(
-    competition_id: Optional[str] = None,
+    task_id: Optional[str] = None,
     agent_id: Optional[str] = None,
     run_group: Optional[str] = None,
 ) -> Path:
     """Creates a directory for the run."""
 
-    assert competition_id is None or isinstance(
-        competition_id, str
-    ), f"Expected a string or None, but got `{type(competition_id).__name__}`."
+    assert task_id is None or isinstance(
+        task_id, str
+    ), f"Expected a string or None, but got `{type(task_id).__name__}`."
 
     assert agent_id is None or isinstance(
         agent_id, str
@@ -133,8 +133,8 @@ def create_run_dir(
 
     run_id = str(uuid.uuid4())
 
-    if competition_id and agent_id:
-        run_id = generate_run_id(competition_id, agent_id, run_group)
+    if task_id and agent_id:
+        run_id = generate_run_id(task_id, agent_id, run_group)
 
     run_dir = get_runs_dir() / run_id
 
@@ -320,6 +320,64 @@ def get_timestamp() -> str:
     """Returns the current timestamp in the format `YYYY-MM-DDTHH-MM-SS-Z`."""
 
     return time.strftime("%Y-%m-%dT%H-%M-%S-%Z", time.gmtime())
+
+
+def generate_submission_from_metadata(
+    metadata_path: Path,
+    output_path: Optional[Path] = None,
+    rel_log_path: Path = Path("logs/agent.log"),
+    rel_code_path: Path = Path("code/train.py"),
+) -> Path:
+    """
+    Generate a submission.jsonl file from agent run metadata.
+    
+    This function reads the metadata.json file created by run_agent_async()
+    and creates a JSONL file mapping task IDs to their submission file paths,
+    which can be used directly with the `biomlbench grade` command.
+    
+    Args:
+        metadata_path: Path to the metadata.json file
+        output_path: Path for the output submission.jsonl file (defaults to same directory as metadata)
+        rel_log_path: Path to logfile relative to run directory
+        rel_code_path: Path to code file relative to run directory
+        
+    Returns:
+        Path to the generated submission.jsonl file
+    """
+    if output_path is None:
+        output_path = metadata_path.parent / "submission.jsonl"
+    
+    submission_lines = []
+    
+    with open(metadata_path, "r") as f:
+        metadata = json.load(f)
+    
+    for run_id in metadata["runs"]:
+        run_dir = metadata_path.parent / run_id
+        # run_id is something like f"{task_id}_bfa0c73d"
+        task_id = run_id.split("_")[0]
+        
+        log_path = run_dir / rel_log_path
+        has_log = log_path.exists()
+        code_path = run_dir / rel_code_path
+        has_code = code_path.exists()
+        submission_path = run_dir / "submission" / "submission.csv"
+        submitted = submission_path.exists()
+        
+        submission_lines.append({
+            "task_id": task_id,
+            "submission_path": submission_path.as_posix() if submitted else None,
+            "logs_path": log_path.as_posix() if has_log else None,
+            "code_path": code_path.as_posix() if has_code else None,
+        })
+    
+    # Create submission.jsonl
+    with open(output_path, "w") as f:
+        for line in submission_lines:
+            f.write(f"{json.dumps(line)}\n")
+    
+    logger.info(f"Generated submission file: {output_path}")
+    return output_path
 
 
 logger = get_logger(__name__)

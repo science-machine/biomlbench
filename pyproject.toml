@@ -44,7 +44,7 @@ dependencies = [
     # Web and utilities
     "flask>=2.3.0",
     "requests>=2.31.0",
-    "polaris",
+    "docker>=6.0.0",
     "kaggle>=1.7.4.5",
     "ipdb>=0.13.13",
     # Fix SQLAlchemy version for Polaris compatibility

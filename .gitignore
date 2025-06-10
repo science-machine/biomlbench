@@ -9,3 +9,5 @@ baseline_submissions
 *.jsonl
 *.csv
 cache
+.env
+runs

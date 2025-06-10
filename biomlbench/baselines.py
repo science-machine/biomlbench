@@ -65,6 +65,7 @@ class SimpleBaselineAgent(BaselineAgent):
         train_df = pd.read_csv(task.public_dir / "train.csv")
         
         # Get target column (assume last column that's not 'id')
+        # TODO: Revisit this logic as we add more data sources.
         target_cols = [col for col in train_df.columns if col.lower() != 'id']
         if len(target_cols) < 2:  # Need at least features + target
             raise ValueError("Could not identify target column in training data")
