@@ -1,6 +1,6 @@
 vars:
-  step_count: &step_count 500
-  time_limit: &time_limit 86400 # 24 hrs
+  step_count: &step_count 10
+  time_limit: &time_limit 7200 # total time limit
 
 defaults: &defaults
   start: aide/start.sh
@@ -12,14 +12,14 @@ defaults: &defaults
 
 kwargs_common: &kwargs_common
   agent.steps: *step_count
-  exec.timeout: 32400 # 9 hours limit _per step_, to match max of kaggle.com
+  exec.timeout: 1800 # time limit per step
 
 aide:
   <<: *defaults
   kwargs:
     <<: *kwargs_common
-    agent.code.model: gpt-4o-2024-08-06
-    agent.feedback.model: gpt-4o-2024-08-06
+    agent.code.model: gpt-4.1-2025-04-14
+    agent.feedback.model: gpt-4.1-2025-04-14
     agent.steps: *step_count
   env_vars:
     <<: *env_vars
@@ -29,8 +29,8 @@ aide/dev:
   <<: *defaults
   kwargs:
     <<: *kwargs_common
-    agent.code.model: gpt-4o-2024-08-06
-    agent.feedback.model: gpt-4o-2024-08-06
+    agent.code.model: gpt-4.1-2025-04-14
+    agent.feedback.model: gpt-4.1-2025-04-14
     agent.steps: 8
   env_vars:
     <<: *env_vars
@@ -41,40 +41,19 @@ aide/o1-preview:
   kwargs:
     <<: *kwargs_common
     agent.code.model: o1-preview
-    agent.feedback.model: gpt-4o-2024-08-06
+    agent.feedback.model: gpt-4.1-2025-04-14
     agent.steps: *step_count
   env_vars:
     <<: *env_vars
     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-aide/gpt-4-turbo:
-  <<: *defaults
-  kwargs:
-    <<: *kwargs_common
-    agent.code.model: gpt-4-turbo-2024-04-09
-    agent.feedback.model: gpt-4-turbo-2024-04-09
-    agent.steps: *step_count
-  env_vars:
-    <<: *env_vars
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
-aide/gpt-4-turbo-dev:
-  <<: *defaults
-  kwargs:
-    <<: *kwargs_common
-    agent.code.model: gpt-4-turbo-2024-04-09
-    agent.feedback.model: gpt-4-turbo-2024-04-09
-    agent.steps: 8
-  env_vars:
-    <<: *env_vars
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 aide/claude-3-5-sonnet:
   <<: *defaults
   kwargs:
     <<: *kwargs_common
     agent.code.model: claude-3-5-sonnet-20240620
-    agent.feedback.model: gpt-4o-2024-08-06
+    agent.feedback.model: gpt-4.1-2025-04-14
     agent.steps: *step_count
   env_vars:
     <<: *env_vars
@@ -85,7 +64,7 @@ aide/gemini-1.5-pro:
   kwargs:
     <<: *kwargs_common
     agent.code.model: gemini-1.5-pro-002
-    agent.feedback.model: gpt-4o-2024-08-06
+    agent.feedback.model: gpt-4.1-2025-04-14
     agent.steps: *step_count
   env_vars:
     <<: *env_vars

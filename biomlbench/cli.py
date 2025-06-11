@@ -320,7 +320,7 @@ def main():
 
         for task in tasks:
             download_and_prepare_dataset(
-                competition=task,  # Keep compatibility for now
+                task=task,
                 keep_raw=args.keep_raw,
                 overwrite_checksums=args.overwrite_checksums,
                 overwrite_leaderboard=args.overwrite_leaderboard,

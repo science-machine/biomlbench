@@ -41,7 +41,7 @@ def create_prepared_dir(task: Task) -> None:
 
 
 def download_and_prepare_dataset(
-    competition: Task,  # Backward compatibility parameter name
+    task: Task,
     keep_raw: bool = True,
     overwrite_checksums: bool = False,
     overwrite_leaderboard: bool = False,
@@ -51,14 +51,12 @@ def download_and_prepare_dataset(
     Download and prepare a dataset using the appropriate data source.
     
     Args:
-        competition: Task to prepare (parameter name kept for backward compatibility)
+        task: Task to prepare
         keep_raw: Whether to keep raw downloaded data
         overwrite_checksums: Whether to overwrite existing checksums
         overwrite_leaderboard: Whether to overwrite existing leaderboard
         skip_verification: Whether to skip checksum verification
     """
-    # Use the parameter as task internally
-    task = competition
 
     assert is_valid_prepare_fn(
         task.prepare_fn

@@ -6,7 +6,7 @@
 
 BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) and provides a comprehensive framework for benchmarking AI agents on biomedical machine learning (BioML) tasks including protein engineering, drug discovery, medical imaging, and clinical biomarkers.
 
-~~Development TODOs (unordered)~~
+## Development TODOs (unordered)
 
 - [ ] Add `experiments/splits` which will contain files like `medical-imaging.txt` that contain a list of task ids for only a given domain, or type of benchmarking run (e.g., lite, all).
 - [ ] Decide if we want to have `experiments/familiarity` like the original MLE-bench. This would involve measuring the relationship between model performance and the "familiarity" of the model for the task description. This tries to assess if the model is "cheating" by already understanding the task.
@@ -15,6 +15,7 @@ BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) 
 - [ ] Revisit the `generate_submission` method. It currently assumes that the targets in train.csv are the last column. It also requires data in CSV format...
 - [ ] Update the models used by the AIDE agent.
 - [ ] Find a way to provide task-specific Docker containers for agents.
+- [ ] Figure out what they did in [the MLE-bench version of aideml](https://github.com/WecoAI/aideml/compare/main...thesofakillers:aideml:main) and see if we should implemnt that.
 
 
 ## How to wrap a new benchmark database

@@ -30,7 +30,7 @@ def grade_jsonl(
 
     for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
         submission_path = Path(str(submission["submission_path"]))
-        task_id = submission.get("task_id") or submission.get("competition_id")  # Backward compatibility
+        task_id = submission.get("task_id")
         task = registry.get_task(task_id)
         single_report = grade_csv(submission_path, task)
         task_reports.append(single_report)

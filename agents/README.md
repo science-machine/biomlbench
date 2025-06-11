@@ -34,13 +34,7 @@ The `biomlbench run-agent` command allows you to run agents locally on a given s
 biomlbench run-agent --agent dummy --task-list experiments/splits/caco2-wang.txt
 ```
 
-Running `biomlbench run-agent` will creates a "run group" directory in the `runs/` directory. The run group directory will contain a subdirectory for each task that the agent was evaluated on, containing the agent's logs, code, and submission. A `metadata.json` file will be created on finish within the run group directory, summarizing the results of the runs. You can then grade this run using the `metadata.json` file. For example, to grade the run group `<run-group>`, you can first use `experiments/make_submission.py` to generate a submission JSONL file:
-
-```bash
-python experiments/make_submission.py --metadata runs/<run-group>/metadata.json --output runs/<run-group>/submission.jsonl
-```
-
-You can then use the `biomlbench grade` command to grade this submission:
+Running `biomlbench run-agent` creates a "run group" directory in the `runs/` directory. The run group directory will contain a subdirectory for each task that the agent was evaluated on, containing the agent's logs, code, and submission. A `metadata.json` file and `submission.jsonl` file are automatically created when the run finishes. You can then grade this run directly:
 
 ```bash
 biomlbench grade --submission runs/<run-group>/submission.jsonl --output-dir runs/<run-group>

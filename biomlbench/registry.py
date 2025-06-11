@@ -198,14 +198,7 @@ class Registry:
         task_ids = [f.parent.stem for f in sorted(task_configs)]
         return task_ids
 
-    # Backward compatibility aliases
-    def get_competition(self, task_id: str) -> Task:
-        """Backward compatibility alias for get_task."""
-        return self.get_task(task_id)
-    
-    def list_competition_ids(self) -> list[str]:
-        """Backward compatibility alias for list_task_ids."""
-        return self.list_task_ids()
+
 
 
 registry = Registry()

@@ -237,8 +237,7 @@ class TaskReport:
         return cls(**typed_data)
 
 
-# Backward compatibility alias
-CompetitionReport = TaskReport
+
 
 
 class InvalidSubmissionError(Exception):
