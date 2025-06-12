@@ -14,8 +14,10 @@ BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) 
 - [ ] Need an automated pipeline for scraping all the polaris and kaggle tasks and creating tasks/ directories for them.
 - [ ] Revisit the `generate_submission` method. It currently assumes that the targets in train.csv are the last column. It also requires data in CSV format...
 - [ ] Update the models used by the AIDE agent.
-- [ ] Find a way to provide task-specific Docker containers for agents.
+- [ ] Find a way to provide task-specific Docker containers for agents. Additionally, need to figure out whether we can enable more flexible base environment container (not hardcoding pytorch version, etc.)
 - [ ] Figure out what they did in [the MLE-bench version of aideml](https://github.com/WecoAI/aideml/compare/main...thesofakillers:aideml:main) and see if we should implemnt that.
+- [ ] Need to figure out what to do when no human baselines are available. How would scoring work? Also can we realistically combine scores across databases of benchmarks?
+- [ ] Need to decide whether we want to incude obfuscated instructions/descriptions for tasks. This would probably take a lot of work but would be useful for benchmarking.
 
 
 ## How to wrap a new benchmark database
@@ -32,7 +34,6 @@ To wrap polaris, we needed to:
 
 - **Diverse Biomedical Tasks**: Protein engineering, drug discovery, medical imaging, clinical biomarkers
 - **Agent-Agnostic Evaluation**: Any agent that can produce CSV outputs can be evaluated
-- **Standardized Metrics**: Domain-specific evaluation metrics (RMSD, TM-score, AUC-ROC, etc.)
 - **Human Baselines**: Built-in human performance benchmarks for comparison
 - **Secure Evaluation**: Containerized execution with no data leakage
 - **Extensible Framework**: Easy to add new biomedical tasks
@@ -49,7 +50,7 @@ BioML-bench uses [uv](https://github.com/astral-sh/uv) for dependency management
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone the repository
-git clone https://github.com/science-machine-learning/biomlbench.git
+git clone https://github.com/science-machine/biomlbench.git
 cd biomlbench
 
 # Install dependencies
@@ -84,7 +85,7 @@ biomlbench grade --submission submission.jsonl --output-dir results/
 3. **Run an agent on a task:**
 
 ```bash
-biomlbench run-agent --agent aide --task-id caco2-wang # Change "aide" to the agent you want to run
+biomlbench run-agent --agent dummy --task-id caco2-wang 
 # The submission file is automatically generated in the run directory
 biomlbench grade --submission <run-group-directory>/submission.jsonl --output-dir results/
 ```

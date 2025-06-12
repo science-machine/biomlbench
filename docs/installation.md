@@ -49,8 +49,8 @@ Docker is required for secure agent execution:
 
 ```bash
 # Clone the repository
-git clone https://github.com/bioml-bench/bioml-bench.git
-cd bioml-bench
+git clone https://github.com/science-machine/biomlbench.git
+cd biomlbench
 
 # Install dependencies with uv
 uv sync
@@ -70,8 +70,8 @@ For contributing to BioML-bench:
 
 ```bash
 # Clone and install in development mode
-git clone https://github.com/bioml-bench/bioml-bench.git
-cd bioml-bench
+git clone https://github.com/science-machine/biomlbench.git
+cd biomlbench
 
 # Install with development dependencies
 uv sync --extra dev
@@ -193,4 +193,4 @@ kaggle competitions list
 
 - Check the [FAQ](faq.md)
 - Review [Common Issues](troubleshooting.md)
-- Open an issue on [GitHub](https://github.com/bioml-bench/bioml-bench/issues) 
+- Open an issue on [GitHub](https://github.com/science-machine/biomlbench/issues) 

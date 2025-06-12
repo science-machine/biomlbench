@@ -58,41 +58,47 @@ Each task requires a `config.yaml` file:
 
 ```yaml
 id: caco2-wang
-name: "Caco-2 Permeability Prediction"
+name: "Caco-2 Cell Permeability Prediction"
 task_type: drug_discovery
-domain: pharmacokinetics
+domain: admet
 difficulty: medium
+awards_medals: true
+prizes: null
 description: biomlbench/tasks/caco2-wang/description.md
 
+# Data source configuration
 data_source:
   type: polaris
-  dataset_id: "Caco2_Wang"
+  benchmark_id: tdcommons/caco2-wang
 
 dataset:
   answers: caco2-wang/prepared/private/answers.csv
   sample_submission: caco2-wang/prepared/public/sample_submission.csv
 
 grader:
-  name: rmse
+  name: mean-absolute-error
   grade_fn: biomlbench.tasks.caco2-wang.grade:grade
 
 preparer: biomlbench.tasks.caco2-wang.prepare:prepare
 
 # Biomedical-specific metadata
 biomedical_metadata:
-  modality: "molecular_properties"
-  organ_system: "intestine"
-  data_type: "regression"
+  modality: "molecular"
+  data_type: "smiles_regression"
   clinical_relevance: "drug_absorption"
+  target_property: "caco2_permeability"
+  original_source: "polaris_hub"
+  difficulty_factors:
+    - "molecular_complexity"
+    - "limited_training_data"
+    - "admet_prediction_uncertainty"
 
-# Human performance baselines
-human_baselines:
-  expert_medicinal_chemist: 0.45
-  computational_model: 0.52
+# Human baselines are extracted dynamically from leaderboard data
+# via the data source (Polaris Hub publications, Kaggle leaderboards, etc.)
 
-# Computational requirements
+# Computational requirements  
 compute_requirements:
-  recommended_gpu_memory_gb: 2
+  recommended_gpu_memory_gb: 4
   estimated_runtime_minutes: 15
   max_dataset_size_gb: 1
 ```
@@ -201,8 +207,8 @@ if task.data_source:
         comp_id = task.data_source['competition_id']
         print(f"Kaggle competition: {comp_id}")
     elif source_type == "polaris":
-        dataset_id = task.data_source['dataset_id']
-        print(f"Polaris dataset: {dataset_id}")
+        benchmark_id = task.data_source['benchmark_id']
+        print(f"Polaris benchmark: {benchmark_id}")
 ```
 
 ## File Path Resolution

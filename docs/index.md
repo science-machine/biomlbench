@@ -1,14 +1,15 @@
 # BioML-bench
 
-A benchmark suite for evaluating machine learning agents on biomedical tasks.
+A benchmark suite for evaluating LLM agents on biomedical machine learning tasks.
 
-BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) and provides a comprehensive framework for benchmarking AI agents on biomedical machine learning (BioML) tasks including protein engineering, drug discovery, medical imaging, and clinical biomarkers.
+BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) and provides a comprehensive framework for benchmarking LLM agents on biomedical machine learning (BioML) tasks including protein engineering, drug discovery, medical imaging, and clinical biomarkers.
+
+Agents autonomously read task descriptions, analyze biomedical data, design appropriate ML approaches, and implement complete solutions from scratch.
 
 ## 🧬 Features
 
 - **Diverse Biomedical Tasks**: Protein engineering, drug discovery, medical imaging, clinical biomarkers
-- **Agent-Agnostic Evaluation**: Any agent that can produce CSV outputs can be evaluated
-- **Standardized Metrics**: Domain-specific evaluation metrics (RMSD, TM-score, AUC-ROC, etc.)
+- **Agent-Agnostic Evaluation**: Any LLM agent that can read task descriptions and produce CSV submissions can be evaluated
 - **Human Baselines**: Built-in human performance benchmarks for comparison
 - **Secure Evaluation**: Containerized execution with no data leakage
 - **Extensible Framework**: Easy to add new biomedical tasks
@@ -16,16 +17,22 @@ BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) 
 
 ## 🚀 Quick Start
 
+Install the package (requires [uv](https://docs.astral.sh/uv/)):
+
 ```bash
 # Install with uv
-git clone https://github.com/bioml-bench/bioml-bench.git
-cd bioml-bench
+git clone https://github.com/science-machine/biomlbench.git
+cd biomlbench
 uv sync
+```
 
+Build and run a benchmark with an agent:
+
+```bash
 # Prepare a task
 biomlbench prepare -t caco2-wang
 
-# Run an agent
+# Run an agent (in this case, a dummy agent that returns null predictions)
 biomlbench run-agent --agent dummy --task-id caco2-wang
 
 # Grade results (submission.jsonl is auto-generated)

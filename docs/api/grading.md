@@ -108,13 +108,29 @@ print(f"Agent percentile vs humans: {percentile}%")
 
 ## Medal System
 
-BioML-bench uses a Kaggle-style medal system:
+BioML-bench uses a Kaggle-style medal system that varies based on leaderboard size:
 
+**For small leaderboards (1-99 teams):**
 - **🥇 Gold**: Top 10% of submissions
+- **🥈 Silver**: Top 20% (but not gold)  
+- **🥉 Bronze**: Top 40% (but not silver/gold)
+
+**For medium leaderboards (100-249 teams):**
+- **🥇 Gold**: Top 10 positions (fixed)
 - **🥈 Silver**: Top 20% (but not gold)
 - **🥉 Bronze**: Top 40% (but not silver/gold)
 
-Medal thresholds are calculated based on the task leaderboard.
+**For large leaderboards (250-999 teams):**
+- **🥇 Gold**: Top (10 + 0.2% of teams) positions
+- **🥈 Silver**: Top 50 positions (fixed)
+- **🥉 Bronze**: Top 100 positions (fixed)
+
+**For very large leaderboards (1000+ teams):**
+- **🥇 Gold**: Top (10 + 0.2% of teams) positions
+- **🥈 Silver**: Top 5% of submissions
+- **🥉 Bronze**: Top 10% of submissions
+
+Medal thresholds follow the official Kaggle competition progression system.
 
 ## Submission Validation
 

@@ -47,10 +47,10 @@ biomlbench prepare -t caco2-wang --data-dir /custom/path
 # Single task
 biomlbench run-agent --agent dummy --task-id caco2-wang
 
-# Multiple tasks with parallelization
+# Multiple tasks with parallelization (example with available split)
 biomlbench run-agent \
     --agent aide \
-    --task-list experiments/splits/all.txt \
+    --task-list experiments/splits/caco2-wang.txt \
     --n-workers 4 \
     --n-seeds 2
 
@@ -136,17 +136,12 @@ For `grade-sample` command:
 
 BioML-bench respects these environment variables:
 
-### Data Storage
-- **`BIOMLBENCH_DATA_DIR`** - Default data directory
-- **`BIOMLBENCH_CACHE_DIR`** - Cache directory for downloads
-
 ### Agent Configuration  
 - **`OPENAI_API_KEY`** - For AIDE agent
-- **`I_ACCEPT_RUNNING_PRIVILEGED_CONTAINERS`** - Allow privileged containers
+- **`I_ACCEPT_RUNNING_PRIVILEGED_CONTAINERS`** - Allow privileged containers (set to "true")
 
 ### Kaggle API
-- **`KAGGLE_USERNAME`** - Kaggle username
-- **`KAGGLE_KEY`** - Kaggle API key
+Kaggle authentication uses the standard Kaggle API configuration file (`~/.kaggle/kaggle.json`). See the [Kaggle API documentation](https://github.com/Kaggle/kaggle-api) for setup instructions.
 
 ## Configuration Files
 

@@ -9,6 +9,9 @@ import asyncio
 import json
 import logging
 import os
+
+# Import from agents directory
+import sys
 import tempfile
 import time
 import traceback
@@ -20,13 +23,19 @@ import docker
 
 from biomlbench.data import is_dataset_prepared
 from biomlbench.registry import Task, registry
-from biomlbench.utils import create_run_dir, get_logger, get_runs_dir, get_timestamp, generate_submission_from_metadata
+from biomlbench.utils import (
+    create_run_dir,
+    generate_submission_from_metadata,
+    get_logger,
+    get_runs_dir,
+    get_timestamp,
+)
 
-# Import from agents directory
-import sys
 sys.path.append(str(Path(__file__).parent.parent / "agents"))
-from registry import Agent, registry as agent_registry
+from registry import Agent
+from registry import registry as agent_registry
 from run import run_in_container
+
 from environment.defaults import DEFAULT_CONTAINER_CONFIG_PATH
 
 logger = get_logger(__name__)
@@ -35,6 +44,7 @@ logger = get_logger(__name__)
 @dataclass(frozen=True)
 class AgentTask:
     """Represents a single agent-task execution."""
+
     run_id: str
     seed: int
     image: str
@@ -59,9 +69,7 @@ async def worker(
         # Create logger for the run
         run_logger = get_logger(str(agent_task.path_to_run))
         log_file_handler = logging.FileHandler(agent_task.path_to_run / "run.log")
-        log_file_handler.setFormatter(
-            logging.getLogger().handlers[0].formatter
-        )
+        log_file_handler.setFormatter(logging.getLogger().handlers[0].formatter)
         run_logger.addHandler(log_file_handler)
         run_logger.propagate = False
 
@@ -103,8 +111,8 @@ async def worker(
 
 def create_task_list_file(task_id: str) -> str:
     """Create a temporary task list file for single task execution."""
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
-        f.write(task_id + '\n')
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as f:
+        f.write(task_id + "\n")
         return f.name
 
 
@@ -130,12 +138,12 @@ async def run_agent_async(
 ) -> Tuple[str, Path]:
     """
     Run an agent on multiple tasks asynchronously.
-    
+
     Returns:
         Tuple[str, Path]: The run group ID and path to the generated submission file
     """
     client = docker.from_env()
-    
+
     # Set up registry with data directory
     if data_dir:
         task_registry = registry.set_data_dir(Path(data_dir))
@@ -144,7 +152,7 @@ async def run_agent_async(
 
     # Get agent
     agent = agent_registry.get_agent(agent_id)
-    
+
     # Check for privileged container requirements
     if agent.privileged and not (
         os.environ.get("I_ACCEPT_RUNNING_PRIVILEGED_CONTAINERS", "False").lower()
@@ -172,7 +180,7 @@ async def run_agent_async(
     # Load container configuration
     if container_config_path is None:
         container_config_path = DEFAULT_CONTAINER_CONFIG_PATH
-    
+
     with open(container_config_path, "r") as f:
         container_config = json.load(f)
 
@@ -202,13 +210,11 @@ async def run_agent_async(
     queue = asyncio.Queue()
     for agent_task in agent_tasks:
         queue.put_nowait(agent_task)
-    
+
     workers = []
     tasks_outputs = {}
     for idx in range(n_workers):
-        w = asyncio.create_task(
-            worker(idx, queue, client, tasks_outputs, retain_container)
-        )
+        w = asyncio.create_task(worker(idx, queue, client, tasks_outputs, retain_container))
         workers.append(w)
 
     # Wait for completion
@@ -231,37 +237,40 @@ async def run_agent_async(
         "n_seeds": n_seeds,
         "n_workers": n_workers,
     }
-    
+
     run_group_dir = get_runs_dir() / run_group
     metadata_path = run_group_dir / "metadata.json"
     with open(metadata_path, "w") as f:
         json.dump(metadata, f, indent=4, sort_keys=False, default=str)
-    
+
     # Auto-generate submission file for grading
     submission_path = generate_submission_from_metadata(metadata_path)
-    
+
     logger.info(f"{n_workers} workers ran for {time_taken:.2f} seconds in total")
     logger.info(f"Results saved to: {run_group_dir}")
     logger.info(f"Submission file ready for grading: {submission_path}")
-    
+    logger.info(
+        f"To grade results, run: biomlbench grade --submission {submission_path} --output-dir results/"
+    )
+
     return run_group, submission_path
 
 
 def run_agent(args) -> str:
     """
     Main entry point for running agents from the CLI.
-    
+
     Args:
         args: Parsed command line arguments
-        
+
     Returns:
         str: The run group ID for this execution
     """
     # Get task IDs
     task_ids = get_task_ids(args.task_id, args.task_list)
-    
+
     logger.info(f"Running agent '{args.agent}' on tasks: {task_ids}")
-    
+
     # Run the agent
     run_group, submission_path = asyncio.run(
         run_agent_async(
@@ -274,5 +283,5 @@ def run_agent(args) -> str:
             data_dir=args.data_dir,
         )
     )
-    
+
     return run_group

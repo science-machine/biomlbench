@@ -1,5 +1,9 @@
 # Agents
 
+**See documentation on [creating agents](../docs/developer/creating_agents.md)**
+
+MLE-Bench original documentation:
+
 We evaluated three open-source agents. We slightly modified each agent to elicit better capabilities. We also developed a "dummy" agent, used to check that the environment is configured correctly. Each agent, alongside the link to our fork, is listed below. Each agent has an associated ID which we use to identify it within our repo.
 
 Agent | ID | Fork

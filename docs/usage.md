@@ -38,7 +38,7 @@ biomlbench prepare --domain oncology
 biomlbench prepare --task-type medical_imaging
 
 # Prepare from a list
-biomlbench prepare --list experiments/splits/drug-discovery.txt
+biomlbench prepare --list experiments/splits/caco2-wang.txt
 
 # Prepare all tasks
 biomlbench prepare --all
@@ -47,9 +47,11 @@ biomlbench prepare --all
 ### Available Task Filters
 
 - **`--lite`**: Low difficulty tasks for quick testing
-- **`--domain`**: Filter by biomedical domain (oncology, cardiology, etc.)
+- **`--domain`**: Filter by biomedical domain (admet, oncology, etc.)
 - **`--task-type`**: Filter by task type (medical_imaging, drug_discovery, etc.)
 - **`--list`**: Use a custom task list file
+
+**Note**: Currently only `experiments/splits/caco2-wang.txt` exists. Additional split files for domains and task types are planned for future releases.
 
 ## Running Agents
 
@@ -82,15 +84,15 @@ biomlbench run-agent \
 ### Multi-Task Execution
 
 ```bash
-# Run on multiple tasks from a list
-biomlbench run-agent --agent dummy --task-list experiments/splits/all.txt
+# Run on multiple tasks from a list (example with available split)
+biomlbench run-agent --agent dummy --task-list experiments/splits/caco2-wang.txt
 
-# Parallel execution
-biomlbench run-agent \
-    --agent dummy \
-    --task-list experiments/splits/medical-imaging.txt \
-    --n-workers 4 \
-    --n-seeds 2
+# Parallel execution (future: when more split files are available)
+# biomlbench run-agent \
+#     --agent dummy \
+#     --task-list experiments/splits/medical-imaging.txt \
+#     --n-workers 4 \
+#     --n-seeds 2
 ```
 
 ### Agent Execution Options
@@ -167,19 +169,35 @@ biomlbench grade --submission baseline_submissions/submission.jsonl --output-dir
 
 ### Understanding Scores
 
-Each task uses domain-specific metrics:
+Each task uses task/domain-specific metrics.
 
-- **Medical Imaging**: AUC-ROC, Precision, Recall
-- **Drug Discovery**: RMSE, R², Spearman correlation  
-- **Protein Engineering**: RMSD, TM-score
+E.g., Caco2-Wang uses MAE, while Histopathologic Cancer Detection uses AUC-ROC.
 
 ### Medal System
 
-BioML-bench uses a Kaggle-style medal system based on leaderboard percentiles:
+BioML-bench uses a Kaggle-style medal system that varies based on leaderboard size:
 
-- **🥇 Gold**: Top 10% or top 10 submissions
+**For small leaderboards (1-99 teams):**
+- **🥇 Gold**: Top 10% of submissions
 - **🥈 Silver**: Top 20% (but not gold)
 - **🥉 Bronze**: Top 40% (but not silver/gold)
+
+**For medium leaderboards (100-249 teams):**
+- **🥇 Gold**: Top 10 positions (fixed)
+- **🥈 Silver**: Top 20% (but not gold)
+- **🥉 Bronze**: Top 40% (but not silver/gold)
+
+**For large leaderboards (250-999 teams):**
+- **🥇 Gold**: Top (10 + 0.2% of teams) positions
+- **🥈 Silver**: Top 50 positions (fixed)
+- **🥉 Bronze**: Top 100 positions (fixed)
+
+**For very large leaderboards (1000+ teams):**
+- **🥇 Gold**: Top (10 + 0.2% of teams) positions
+- **🥈 Silver**: Top 5% of submissions
+- **🥉 Bronze**: Top 10% of submissions
+
+This follows the official Kaggle competition progression system.
 
 ### Human Baseline Comparison
 
@@ -282,9 +300,14 @@ biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 ### Full Evaluation
 
 ```bash
-# Comprehensive evaluation
-biomlbench prepare --all
-biomlbench run-agent --agent my-agent --task-list experiments/splits/all.txt --n-workers 4
+# Comprehensive evaluation (when more tasks are available)
+# biomlbench prepare --all
+# biomlbench run-agent --agent my-agent --task-list experiments/splits/all.txt --n-workers 4
+# biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
+
+# Current example with available tasks
+biomlbench prepare -t caco2-wang -t histopathologic-cancer-detection
+biomlbench run-agent --agent my-agent --task-id caco2-wang
 biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 ```
 
