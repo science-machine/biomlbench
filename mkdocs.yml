@@ -1,0 +1,91 @@
+site_name: BioML-bench Documentation
+site_description: A benchmark suite for evaluating machine learning agents on biomedical tasks
+site_url: https://science-machine.github.io/biomlbench
+repo_url: https://github.com/science-machine/biomlbench
+repo_name: biomlbench
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.highlight
+    - search.share
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: purple
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: numpy
+            show_source: false
+            members_order: source
+            separate_signature: true
+            filters: ["!^_"]
+            merge_init_into_class: true
+
+nav:
+  - Home: index.md
+  - Quick Start:
+    - Installation: installation.md
+    - Basic Usage: usage.md
+  - API Reference:
+    - Overview: api/overview.md
+    - CLI: api/cli.md
+    - Registry: api/registry.md
+    - Tasks: api/tasks.md
+    - Agents: api/agents.md
+    - Data Sources: api/data_sources.md
+    - Grading: api/grading.md
+    - Utilities: api/utils.md
+  - Components:
+    - Environment: components/environment.md
+    - Scripts: components/scripts.md
+    - Agents: components/agents.md
+    - Task Development: components/task_development.md
+  - Developer Guide:
+    - Contributing: developer/contributing.md
+    - Adding Tasks: developer/adding_tasks.md
+    - Creating Agents: developer/creating_agents.md
+    - Architecture: developer/architecture.md 

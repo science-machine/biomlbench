@@ -1,0 +1,122 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bioml-bench"
+version = "0.1.0"
+description = "A benchmark suite for evaluating machine learning agents on biomedical tasks"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "BioML-bench Team"}
+]
+keywords = ["machine learning", "biomedical", "benchmark", "evaluation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+dependencies = [
+    # Core framework dependencies (from MLE-bench)
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.11.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.65.0",
+    "diskcache>=5.6.0",
+    "tenacity>=8.2.0",
+    "appdirs>=1.4.4",
+    "py7zr>=0.20.0",
+    # Basic biomedical dependencies
+    "biopython>=1.83",
+    # Image processing
+    "pillow>=10.0.0",
+    "imageio>=2.31.0",
+    # Web and utilities
+    "flask>=2.3.0",
+    "requests>=2.31.0",
+    "docker>=6.0.0",
+    "kaggle>=1.7.4.5",
+    "ipdb>=0.13.13",
+    # Fix SQLAlchemy version for Polaris compatibility
+    "sqlalchemy>=1.4.0,<2.0.0",
+    "polaris-lib>=0.12.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pre-commit>=3.4.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+    "ruff>=0.0.287",
+]
+
+[project.urls]
+Homepage = "https://github.com/bioml-bench/bioml-bench"
+Repository = "https://github.com/bioml-bench/bioml-bench"
+Documentation = "https://bioml-bench.readthedocs.io"
+"Bug Tracker" = "https://github.com/bioml-bench/bioml-bench/issues"
+
+[project.scripts]
+biomlbench = "biomlbench.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["biomlbench"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pre-commit>=3.4.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+    "ruff>=0.0.287",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "W", "C90", "I", "N", "UP", "YTT", "S", "BLE", "B", "A", "COM", "C4", "DTZ", "T10", "DJ", "EM", "EXE", "FA", "ISC", "ICN", "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", "ERA", "PD", "PGH", "PL", "TRY", "FLY", "NPY", "AIR", "PERF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=biomlbench --cov-report=html --cov-report=term-missing" 
+
+[dependency-groups]
+dev = [
+    "ipython>=9.3.0",
+]
+docs = [
+    "mkdocs-material>=9.6.14",
+    "mkdocstrings[python]>=0.29.1",
+]

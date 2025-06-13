@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.db
+ref
+.venv
+baseline_submissions
+*.json
+*.jsonl
+*.csv
+cache
+.env
+runs
+site
