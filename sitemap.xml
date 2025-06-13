@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/installation/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/installation/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/usage/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/usage/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/agents/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/agents/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/cli/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/cli/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/data_sources/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/data_sources/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/grading/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/grading/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/overview/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/overview/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/registry/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/registry/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/tasks/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/tasks/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/api/utils/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/api/utils/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/components/agents/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/components/agents/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/components/environment/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/components/environment/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/components/scripts/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/components/scripts/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/components/task_development/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/components/task_development/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/developer/adding_tasks/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/developer/adding_tasks/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/developer/architecture/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/developer/architecture/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/developer/contributing/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/developer/contributing/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
     <url>
-         <loc>https://bioml-bench.github.io/bioml-bench/developer/creating_agents/</loc>
-         <lastmod>2025-06-12</lastmod>
+         <loc>https://science-machine.github.io/biomlbench/developer/creating_agents/</loc>
+         <lastmod>2025-06-13</lastmod>
     </url>
 </urlset>
