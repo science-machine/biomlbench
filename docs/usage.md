@@ -25,33 +25,10 @@ biomlbench prepare -t caco2-wang
 biomlbench prepare -t histopathologic-cancer-detection --keep-raw
 ```
 
-### Prepare Multiple Tasks
+### Prepare Multiple Tasks / filtered tasks
 
-```bash
-# Prepare by difficulty
-biomlbench prepare --lite  # Easy/medium tasks only
+**Not implemented yet.**
 
-# Prepare by domain
-biomlbench prepare --domain oncology
-
-# Prepare by task type  
-biomlbench prepare --task-type medical_imaging
-
-# Prepare from a list
-biomlbench prepare --list experiments/splits/caco2-wang.txt
-
-# Prepare all tasks
-biomlbench prepare --all
-```
-
-### Available Task Filters
-
-- **`--lite`**: Low difficulty tasks for quick testing
-- **`--domain`**: Filter by biomedical domain (admet, oncology, etc.)
-- **`--task-type`**: Filter by task type (medical_imaging, drug_discovery, etc.)
-- **`--list`**: Use a custom task list file
-
-**Note**: Currently only `experiments/splits/caco2-wang.txt` exists. Additional split files for domains and task types are planned for future releases.
 
 ## Running Agents
 
@@ -81,7 +58,7 @@ biomlbench run-agent \
     --retain-container
 ```
 
-### Multi-Task Execution
+### Multi-Task Execution (NOT TESTED)
 
 ```bash
 # Run on multiple tasks from a list (example with available split)
@@ -151,6 +128,8 @@ biomlbench grade-sample submission.csv caco2-wang
 ```
 
 ### Baseline Comparisons
+
+**These baselines don't really work yet.**
 
 Run baselines to establish performance benchmarks:
 
@@ -235,20 +214,10 @@ biomlbench run-agent \
     --container-config custom_config.json
 ```
 
-### Custom Data Directory
-
-Use a different data storage location:
-
-```bash
-biomlbench prepare -t caco2-wang --data-dir /custom/data/path
-
-biomlbench run-agent \
-    --agent dummy \
-    --task-id caco2-wang \
-    --data-dir /custom/data/path
-```
 
 ### Task Development Workflow
+
+For full details, see [developer/adding_tasks.md](../docs/developer/adding_tasks.md)
 
 ```bash
 # 1. Create new task structure
@@ -310,12 +279,3 @@ biomlbench prepare -t caco2-wang -t histopathologic-cancer-detection
 biomlbench run-agent --agent my-agent --task-id caco2-wang
 biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 ```
-
-### Development Cycle
-
-```bash
-# Iterative development
-biomlbench prepare -t my-task
-biomlbench run-agent --agent my-agent --task-id my-task --retain-container
-# Debug containers, fix issues, repeat
-``` 

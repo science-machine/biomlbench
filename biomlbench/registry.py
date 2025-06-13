@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Dict, Any, Optional
+from typing import Any, Callable, Dict, Optional
 
 from appdirs import user_cache_dir
 
@@ -17,9 +17,10 @@ DEFAULT_DATA_DIR = (Path(user_cache_dir()) / "bioml-bench" / "data").resolve()
 class Task:
     """
     Represents a biomedical ML task in the BioML-bench framework.
-    
+
     Extended from MLE-bench Competition class with biomedical-specific metadata.
     """
+
     id: str
     name: str
     description: str
@@ -28,15 +29,15 @@ class Task:
     gold_submission: Path
     sample_submission: Path
     task_type: str  # e.g., 'medical_imaging', 'protein_engineering'
-    domain: str     # e.g., 'oncology', 'drug_discovery'
-    difficulty: str # e.g., 'easy', 'medium', 'hard'
+    domain: str  # e.g., 'oncology', 'drug_discovery'
+    difficulty: str  # e.g., 'easy', 'medium', 'hard'
     prepare_fn: Callable[[Path, Path, Path], Path]
     raw_dir: Path
     private_dir: Path
     public_dir: Path
     checksums: Path
     leaderboard: Path
-    
+
     # Biomedical-specific fields
     biomedical_metadata: Optional[Dict[str, Any]] = None
     human_baselines: Optional[Dict[str, Any]] = None
@@ -148,24 +149,15 @@ class Registry:
 
     def get_tasks_by_domain(self, domain: str) -> list[str]:
         """List all task IDs for a specific biomedical domain."""
-        task_ids = []
-        for task_id in self.list_task_ids():
-            task = self.get_task(task_id)
-            if task.domain == domain:
-                task_ids.append(task_id)
-        return task_ids
+        raise NotImplementedError("Domain filtering not implemented yet.")
 
     def get_tasks_by_type(self, task_type: str) -> list[str]:
         """List all task IDs for a specific task type."""
-        task_ids = []
-        for task_id in self.list_task_ids():
-            task = self.get_task(task_id)
-            if task.task_type == task_type:
-                task_ids.append(task_id)
-        return task_ids
+        raise NotImplementedError("Task type filtering not implemented yet.")
 
     def get_lite_task_ids(self) -> list[str]:
         """List all task IDs for the lite version (low difficulty tasks)."""
+        raise NotImplementedError("Lite version not implemented yet.")
         lite_tasks_file = self.get_splits_dir() / "lite.txt"
         if lite_tasks_file.exists():
             with open(lite_tasks_file, "r") as f:
@@ -173,10 +165,11 @@ class Registry:
             return task_ids
         else:
             # Fallback: return easy/medium difficulty tasks
-            return self.get_tasks_by_difficulty("easy") + self.get_tasks_by_difficulty("medium")
+            raise NotImplementedError("Lite version not implemented yet.")
 
     def get_tasks_by_difficulty(self, difficulty: str) -> list[str]:
         """List all task IDs for a specific difficulty level."""
+        raise NotImplementedError("Difficulty filtering not implemented yet.")
         task_ids = []
         for task_id in self.list_task_ids():
             task = self.get_task(task_id)
@@ -197,8 +190,6 @@ class Registry:
         task_configs = self.get_tasks_dir().rglob("config.yaml")
         task_ids = [f.parent.stem for f in sorted(task_configs)]
         return task_ids
-
-
 
 
 registry = Registry()

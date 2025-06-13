@@ -63,17 +63,6 @@ dev = [
     "ruff>=0.0.287",
 ]
 
-heavy = [
-    # Optional heavy dependencies for specific tasks
-    "rdkit>=2023.9.1",
-    "mdanalysis>=2.6.0",
-    "biotite>=0.39.0",
-    "torch>=2.1.0",
-    "transformers>=4.35.0",
-    "opencv-python>=4.8.0",
-    "py3dmol>=2.0.0",
-]
-
 [project.urls]
 Homepage = "https://github.com/bioml-bench/bioml-bench"
 Repository = "https://github.com/bioml-bench/bioml-bench"
@@ -124,6 +113,9 @@ python_functions = ["test_*"]
 addopts = "--cov=biomlbench --cov-report=html --cov-report=term-missing" 
 
 [dependency-groups]
+dev = [
+    "ipython>=9.3.0",
+]
 docs = [
     "mkdocs-material>=9.6.14",
     "mkdocstrings[python]>=0.29.1",

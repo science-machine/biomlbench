@@ -94,41 +94,20 @@ Before running agents, build the base Docker environment with biomedical librari
 ./scripts/test_environment.sh
 ```
 
-### Optional: Install Heavy Dependencies
-
-For tasks requiring additional biomedical libraries:
-
-```bash
-# Install heavy dependencies (RDKit, BioPython, etc.)
-uv sync --extra heavy
-```
-
-### GPU Support (Optional)
-
-For GPU-accelerated tasks, install NVIDIA Container Toolkit:
-
-```bash
-# Ubuntu/Debian
-curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
-curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
-  sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
-  sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-
-sudo apt update
-sudo apt install nvidia-container-toolkit
-sudo systemctl restart docker
-```
 
 ## Configuration
+
+### Polaris API (for polaris-based tasks)
+
+```bash
+polaris login --overwrite
+```
 
 ### Kaggle API (For Kaggle-based Tasks)
 
 Some tasks require Kaggle data. Set up Kaggle API credentials:
 
 ```bash
-# Install Kaggle API
-pip install kaggle
-
 # Download API credentials from https://www.kaggle.com/account
 # Place in ~/.kaggle/kaggle.json (Linux/macOS) or %USERPROFILE%\.kaggle\kaggle.json (Windows)
 
@@ -142,7 +121,9 @@ For agents that require API access (e.g., AIDE):
 
 ```bash
 # Create environment file
-echo "OPENAI_API_KEY=your-key-here" > .env
+echo "OPENAI_API_KEY=your-key-here" >> .env
+echo "ANTHROPIC_API_KEY=your-key-here" >> .env
+echo "GEMINI_API_KEY=your-key-here" >> .env
 ```
 
 ## Verification
@@ -161,36 +142,7 @@ biomlbench prepare -t caco2-wang
 biomlbench run-agent --agent dummy --task-id caco2-wang
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-**Docker permission denied:**
-```bash
-sudo usermod -aG docker $USER
-# Log out and back in
-```
-
-**uv not found:**
-```bash
-# Restart shell or source your shell profile
-source ~/.bashrc  # or ~/.zshrc
-```
-
-**Agent build fails:**
-```bash
-# Ensure base environment is built first
-./scripts/build_base_env.sh
-```
-
-**Task preparation fails:**
-```bash
-# Check Kaggle API credentials
-kaggle competitions list
-```
 
 ### Getting Help
 
-- Check the [FAQ](faq.md)
-- Review [Common Issues](troubleshooting.md)
 - Open an issue on [GitHub](https://github.com/science-machine/biomlbench/issues) 

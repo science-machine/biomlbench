@@ -31,7 +31,7 @@ Shared utility functions for file operations, logging, and data processing.
 Represents a biomedical benchmark task with metadata, data paths, and evaluation configuration.
 
 ```python
-from biomlbench.registry import Task
+from biomlbench import registry
 
 task = registry.get_task("caco2-wang")
 print(f"Task: {task.name}")
@@ -48,11 +48,11 @@ from biomlbench.registry import registry
 # List all available tasks
 tasks = registry.list_task_ids()
 
-# Get tasks by domain
-oncology_tasks = registry.get_tasks_by_domain("oncology")
+# Get tasks by domain (not implemented yet)
+# oncology_tasks = registry.get_tasks_by_domain("oncology")
 
-# Get tasks by type
-imaging_tasks = registry.get_tasks_by_type("medical_imaging")
+# Get tasks by type (not implemented yet)
+# imaging_tasks = registry.get_tasks_by_type("medical_imaging")
 ```
 
 ### Agent  
@@ -67,12 +67,14 @@ print(f"Privileged: {agent.privileged}")
 ```
 
 ### Grader
-Handles task-specific evaluation metrics and scoring logic.
+Handles task-specific evaluation metrics and scoring logic. 
+
+**Note:** This works but we don't really use it anywhere yet. Possibly remove unless we really have some more complex metrics needed across tasks. (TODO)
 
 ```python
 from biomlbench.grade_helpers import Grader
 
-grader = Grader(name="auc-roc", grade_fn="biomlbench.metrics.auc_roc")
+grader = Grader(name="auc-roc", grade_fn="biomlbench.metrics:average_precision_at_k")
 score = grader(submission_df, answers_df)
 ```
 
@@ -81,15 +83,20 @@ score = grader(submission_df, answers_df)
 BioML-bench uses a pluggable data source system:
 
 ```python
-from biomlbench.data_sources import get_data_source
+from biomlbench.data_sources import create_data_source, list_available_sources
+from pathlib import Path
 
-# Get Kaggle data source
-kaggle_source = get_data_source("kaggle")
+# List available data source types
+available_sources = list_available_sources()
+print(f"Available sources: {available_sources}")
+
+# Create Kaggle data source
+kaggle_source = create_data_source("kaggle")
 
 # Download task data
 kaggle_source.download(
     source_config={"competition_id": "histopathologic-cancer-detection"},
-    data_dir=Path("/data")
+    data_dir=Path("test/")
 )
 
 # Get leaderboard
@@ -171,6 +178,8 @@ class MyDataSource(DataSource):
         pass
 ```
 
+See examples for kaggle: `biomlbench/data_sources/kaggle.py` and polaris: `biomlbench/data_sources/polaris.py`.
+
 ### Adding Metrics
 
 Implement grading functions:
@@ -184,15 +193,11 @@ def my_metric(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
 
 ### Adding Tasks
 
-Create task directory with required files:
+See the documentation on [adding tasks](../../docs/developer/adding_tasks.md).
 
-```
-biomlbench/tasks/my-task/
-├── config.yaml
-├── prepare.py  
-├── grade.py
-└── description.md
-```
+### Adding Agents
+
+See the documentation on [creating agents](../../docs/developer/creating_agents.md).
 
 ## Type Hints
 
