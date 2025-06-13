@@ -193,11 +193,11 @@ def my_metric(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
 
 ### Adding Tasks
 
-See the documentation on [adding tasks](../../docs/developer/adding_tasks.md).
+See the documentation on [adding tasks](../../developer/adding_tasks/).
 
 ### Adding Agents
 
-See the documentation on [creating agents](../../docs/developer/creating_agents.md).
+See the documentation on [creating agents](../../developer/creating_agents/).
 
 ## Type Hints
 

@@ -23,11 +23,13 @@ agents/my-agent/
 ├── config.yaml         # Agent configuration
 ├── start.sh            # Execution entry point
 ├── requirements.txt    # Python dependencies
-└── src/                # Agent source code
+└── src/                # Agent source code (if needed)
     └── agent.py
 ```
 
 ## Configuration (`config.yaml`)
+
+See example `agents/aide/config.yaml`.
 
 ```yaml
 my-agent:
@@ -39,6 +41,8 @@ my-agent:
 ```
 
 ## Docker Setup (`Dockerfile`)
+
+See example `agents/aide/Dockerfile`.
 
 ```dockerfile
 FROM biomlbench-env
@@ -98,15 +102,20 @@ if __name__ == "__main__":
 
 ### Agent Input Data
 
+All agent input data is mounted at `/home/data/` in the container:
+
 - **`description.md`**: Complete task description including:
-  - Task type (regression, classification, segmentation)
-  - Data format and features
-  - Evaluation metric
-  - Baseline approaches and references
+  - Biomedical background and clinical relevance
+  - Task type (regression, classification, segmentation) and evaluation metric
+  - Dataset information (sample counts, features, targets)
+  - Data format specifications and file descriptions
+  - Baseline approaches and molecular representation strategies
+  - Scientific references and original benchmark links
   
-- **`train.csv`**: Training data with features and targets
-- **`test_features.csv`**: Test features (no targets)
-- **`sample_submission.csv`**: Expected submission format
+- **`train.csv`**: Training data with molecular features and targets
+- **`test_features.csv`**: Test features with unique IDs (no target labels)
+- **`sample_submission.csv`**: Expected submission format with dummy predictions
+- **`human_baselines.csv`**: Human performance baselines (when available)
 
 ## Building and Testing
 

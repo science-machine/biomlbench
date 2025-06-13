@@ -18,6 +18,8 @@ See the docs here: [docs/index.md](docs/index.md)
 - [ ] Need to figure out what to do when no human baselines are available. How would scoring work? Also can we realistically combine scores across databases of benchmarks?
 - [ ] Need to decide whether we want to incude obfuscated instructions/descriptions for tasks. This would probably take a lot of work but would be useful for benchmarking.
 - [ ] Need to implement filtering for tasks by domain, type, complexity (e.g., only ADMET tasks, only imaging tasks, only lite tasks)
+- [ ] Improve documentation of built-in agents.
+- [ ] Decide if we're going to add in unit tests.
 
 
 ## How to wrap a new benchmark database

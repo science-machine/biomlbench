@@ -1,14 +1,16 @@
 # Adding Tasks
 
-Detailed guide for adding new biomedical benchmark tasks to BioML-bench.
+Guide for adding new biomedical benchmark tasks to BioML-bench.
 
 ## Task Requirements
 
 Every task needs:
-- Biomedical relevance and scientific validity
+
+- Pre-split data for training and testing
 - Clear evaluation metrics
-- Sufficient data for training and testing
-- Proper train/test splits to prevent data leakage
+- A description of the task
+
+**Note:** If adding a benchmarks from a new database, you'll also need to add a new data source module in `biomlbench/data_sources/`. See examples in `biomlbench/data_sources/kaggle.py` and `biomlbench/data_sources/polaris.py`.
 
 ## Implementation Steps
 
@@ -18,6 +20,25 @@ Every task needs:
 4. **Define evaluation logic**
 5. **Write task description**
 6. **Test and validate**
+
+## Structure of task directory
+
+```
+tasks/
+├── my-biomedical-task/           # Task directory
+│   ├── config.yaml              # Task configuration
+│   ├── description.md           # Task description
+│   ├── prepare.py               # Data preparation script
+│   ├── grade.py                 # Evaluation logic
+│   └── prepared/                # Generated during preparation
+│       ├── public/              # Public data
+│       │   ├── train.csv       # Training data
+│       │   ├── test_features.csv # Test features
+│       │   └── sample_submission.csv # Example submission
+│       └── private/             # Private data
+│           └── answers.csv      # Test set answers
+
+```
 
 ## Task Configuration (`config.yaml`)
 
@@ -51,6 +72,8 @@ biomedical_metadata:
 
 ## Data Preparation (`prepare.py`)
 
+See example `biomlbench/tasks/caco2-wang/prepare.py`.
+
 ```python
 from pathlib import Path
 import pandas as pd
@@ -67,6 +90,8 @@ def prepare(task_dir: Path, raw_dir: Path, public_dir: Path, private_dir: Path) 
 
 ## Evaluation Logic (`grade.py`)
 
+See example `biomlbench/tasks/caco2-wang/grade.py`.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -74,8 +99,8 @@ import numpy as np
 def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
     """Calculate task-specific metric."""
     
-    y_true = answers['target'].values
-    y_pred = submission['prediction'].values
+    y_true = answers['label'].values
+    y_pred = submission['label'].values
     
     # Implement domain-specific metric
     return np.sqrt(np.mean((y_true - y_pred) ** 2))
@@ -91,5 +116,5 @@ biomlbench prepare -t my-task
 biomlbench run-agent --agent dummy --task-id my-task
 
 # Validate submission
-biomlbench grade-sample submission.csv my-task
+biomlbench grade --submission /path/to/submission.jsonl --output-dir /path/to/output/dir
 ``` 

@@ -18,7 +18,7 @@ We welcome contributions to BioML-bench! This guide covers how to contribute eff
 
 - **New biomedical tasks** - Add tasks from your domain expertise
 - **Agent implementations** - Contribute new AI agents
-- **Data source integrations** - Support new biomedical databases
+- **Data source integrations** - Support new biomedical benchmark databases
 - **Documentation improvements** - Help improve this documentation
 - **Bug fixes and optimizations** - Code quality improvements
 
@@ -35,8 +35,35 @@ We welcome contributions to BioML-bench! This guide covers how to contribute eff
 - Follow PEP 8 style guidelines
 - Add comprehensive docstrings
 - Include type hints
-- Write tests for new functionality
 - Update documentation for user-facing changes
+
+## Documentation
+
+### Building Documentation
+
+BioML-bench uses MkDocs with auto-generated API documentation. When contributing:
+
+**Build and serve docs locally:**
+```bash
+# Build static docs
+./scripts/build_docs.sh
+
+# Build and serve docs locally
+./scripts/serve_docs.sh
+```
+
+**Documentation is automatically generated from:**
+
+- **Docstrings** - All API documentation comes from code docstrings
+- **CLI help** - CLI documentation is extracted from argparse definitions
+- **Manual content** - User guides, tutorials, and conceptual documentation
+
+**When to update documentation:**
+
+- Add docstrings to new functions/classes
+- Update docstrings when changing function signatures
+- Add examples to docstrings for complex functionality
+- Manual docs are rarely needed for API changes
 
 ## Testing
 

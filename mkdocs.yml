@@ -1,8 +1,8 @@
 site_name: BioML-bench Documentation
 site_description: A benchmark suite for evaluating machine learning agents on biomedical tasks
-site_url: https://bioml-bench.github.io/bioml-bench
-repo_url: https://github.com/bioml-bench/bioml-bench
-repo_name: bioml-bench/bioml-bench
+site_url: https://science-machine.github.io/biomlbench
+repo_url: https://github.com/science-machine/biomlbench
+repo_name: biomlbench
 
 theme:
   name: material
@@ -20,14 +20,14 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
+      primary: purple
       accent: teal
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
+      primary: purple
       accent: teal
       toggle:
         icon: material/brightness-4
