@@ -2,12 +2,16 @@ import argparse
 import json
 from pathlib import Path
 
-from biomlbench.data import download_and_prepare_dataset, ensure_leaderboard_exists, prepare_human_baselines
+from biomlbench.agents import run_agent
+from biomlbench.baselines import run_baseline
+from biomlbench.data import (
+    download_and_prepare_dataset,
+    ensure_leaderboard_exists,
+    prepare_human_baselines,
+)
 from biomlbench.grade import grade_csv, grade_jsonl
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger
-from biomlbench.baselines import run_baseline
-from biomlbench.agents import run_agent
 
 logger = get_logger(__name__)
 
@@ -24,7 +28,7 @@ def main():
     parser_prepare.add_argument(
         "-t",
         "--task-id",
-        help=f"ID of the task to prepare. Valid options: {registry.list_task_ids()}",
+        help=f"ID of the task to prepare in 'folder/task' format. Examples: manual/caco2-wang, polarishub/tdcommons-admet",
         type=str,
         required=False,
     )
@@ -130,7 +134,7 @@ def main():
     )
     parser_grade_sample.add_argument(
         "task_id",
-        help=f"ID of the task to grade. Valid options: {registry.list_task_ids()}",
+        help=f"ID of the task to grade in 'folder/task' format. Examples: manual/caco2-wang",
         type=str,
     )
     parser_grade_sample.add_argument(
@@ -290,21 +294,13 @@ def main():
         new_registry = registry.set_data_dir(Path(args.data_dir))
 
         if args.lite:
-            tasks = [
-                new_registry.get_task(task_id)
-                for task_id in new_registry.get_lite_task_ids()
-            ]
+            tasks = [new_registry.get_task(task_id) for task_id in new_registry.get_lite_task_ids()]
         elif args.all:
-            tasks = [
-                new_registry.get_task(task_id)
-                for task_id in registry.list_task_ids()
-            ]
+            tasks = [new_registry.get_task(task_id) for task_id in registry.list_task_ids()]
         elif args.list:
             with open(args.list, "r") as f:
                 task_ids = f.read().splitlines()
-            tasks = [
-                new_registry.get_task(task_id) for task_id in task_ids
-            ]
+            tasks = [new_registry.get_task(task_id) for task_id in task_ids]
         elif args.domain:
             task_ids = new_registry.get_tasks_by_domain(args.domain)
             tasks = [new_registry.get_task(task_id) for task_id in task_ids]
@@ -326,13 +322,13 @@ def main():
                 overwrite_leaderboard=args.overwrite_leaderboard,
                 skip_verification=args.skip_verification,
             )
-    
+
     if args.command == "grade":
         new_registry = registry.set_data_dir(Path(args.data_dir))
         submission = Path(args.submission)
         output_dir = Path(args.output_dir)
         grade_jsonl(submission, output_dir, new_registry)
-    
+
     if args.command == "grade-sample":
         new_registry = registry.set_data_dir(Path(args.data_dir))
         task = new_registry.get_task(args.task_id)
@@ -340,7 +336,7 @@ def main():
         report = grade_csv(submission, task)
         logger.info("Task report:")
         logger.info(json.dumps(report.to_dict(), indent=4))
-    
+
     if args.command == "dev":
         if args.dev_command == "download-leaderboard":
             if args.all:
@@ -351,10 +347,8 @@ def main():
                 task = registry.get_task(args.task_id)
                 ensure_leaderboard_exists(task, force=args.force)
             else:
-                parser_download_leaderboard.error(
-                    "Either --all or --task-id must be specified."
-                )
-        
+                parser_download_leaderboard.error("Either --all or --task-id must be specified.")
+
         elif args.dev_command == "prepare-human-baselines":
             if args.all:
                 for task_id in registry.list_task_ids():
@@ -364,21 +358,14 @@ def main():
                 task = registry.get_task(args.task_id)
                 prepare_human_baselines(task, force=args.force)
             else:
-                parser_human_baselines.error(
-                    "Either --all or --task-id must be specified."
-                )
+                parser_human_baselines.error("Either --all or --task-id must be specified.")
 
     if args.command == "run-baseline":
         new_registry = registry.set_data_dir(Path(args.data_dir))
         task = new_registry.get_task(args.task_id)
         output_dir = Path(args.output_dir)
-        
-        run_baseline(
-            task=task,
-            baseline_type=args.baseline,
-            output_dir=output_dir,
-            seed=args.seed
-        )
+
+        run_baseline(task=task, baseline_type=args.baseline, output_dir=output_dir, seed=args.seed)
 
     if args.command == "run-agent":
         # Validate that either task-id or task-list is provided
@@ -386,7 +373,7 @@ def main():
             parser_run_agent.error("Either --task-id or --task-list must be specified.")
         if args.task_id and args.task_list:
             parser_run_agent.error("Cannot specify both --task-id and --task-list.")
-            
+
         run_agent(args)
 
 

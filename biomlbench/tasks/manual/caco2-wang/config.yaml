@@ -1,0 +1,44 @@
+id: caco2-wang
+name: "Caco-2 Cell Permeability Prediction"
+task_type: drug_discovery
+domain: admet
+difficulty: medium
+awards_medals: true
+prizes: null
+description: biomlbench/tasks/caco2-wang/description.md
+
+# Data source configuration
+data_source:
+  type: polaris
+  benchmark_id: tdcommons/caco2-wang
+
+dataset:
+  answers: caco2-wang/prepared/private/answers.csv
+  sample_submission: caco2-wang/prepared/public/sample_submission.csv
+
+grader:
+  name: mean-absolute-error
+  grade_fn: biomlbench.tasks.manual.caco2-wang.grade:grade
+
+preparer: biomlbench.tasks.manual.caco2-wang.prepare:prepare
+
+# Biomedical-specific metadata
+biomedical_metadata:
+  modality: "molecular"
+  data_type: "smiles_regression"
+  clinical_relevance: "drug_absorption"
+  target_property: "caco2_permeability"
+  original_source: "polaris_hub"
+  difficulty_factors:
+    - "molecular_complexity"
+    - "limited_training_data"
+    - "admet_prediction_uncertainty"
+  
+# Human baselines are now extracted dynamically from leaderboard data
+# via the data source (Polaris Hub publications, Kaggle leaderboards, etc.)
+
+# Computational requirements  
+compute_requirements:
+  recommended_gpu_memory_gb: 4
+  estimated_runtime_minutes: 15
+  max_dataset_size_gb: 1 

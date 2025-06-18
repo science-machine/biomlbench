@@ -12,3 +12,4 @@ cache
 .env
 runs
 site
+.vercel
