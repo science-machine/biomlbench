@@ -73,8 +73,8 @@ Test your changes with:
 ./scripts/test_environment.sh
 
 # Test specific agent
-biomlbench run-agent --agent dummy --task-id caco2-wang
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # Validate new tasks
-biomlbench prepare -t my-new-task
+biomlbench prepare -t my-source/my-new-task
 ``` 

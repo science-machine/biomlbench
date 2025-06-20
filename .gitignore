@@ -7,7 +7,6 @@ ref
 baseline_submissions
 *.json
 *.jsonl
-*.csv
 cache
 .env
 runs

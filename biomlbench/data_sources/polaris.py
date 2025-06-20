@@ -276,7 +276,6 @@ except Exception as e:
                 return None
 
             # Extract and process the table
-            breakpoint()
             return self._extract_table_data(table, benchmark_id)
 
         except Exception as e:

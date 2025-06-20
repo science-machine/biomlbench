@@ -1,0 +1,11 @@
+teamName,score,submissionDate
+1B_MPNN_MolGPS-ens_LargeMix,0.931,2024-01-01
+1B_MPNN_LargeMix-and-Phenomics,0.938,2024-01-01
+TabPFNv2-rdkit,0.917,2024-01-01
+fastprop,0.924,2024-01-01
+pkis2-egfr-wt-c-1_fcfp4_RandomForestClassifier,0.924,2024-01-01
+MHNfs,0.208,2024-01-01
+pkis2-egfr-wt-c-1_pattern_RandomForestClassifier,0.917,2024-01-01
+pkis2-egfr-wt-c-1_DGLGraphTransformer_PNAModel,0.257,2024-01-01
+pkis2-egfr-wt-c-1_rdkit_FCModel,0.118,2024-01-01
+pkis2-egfr-wt-c-1_DGLGraphTransformer_MPNNModel,0.111,2024-01-01

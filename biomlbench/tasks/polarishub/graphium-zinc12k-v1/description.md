@@ -30,7 +30,7 @@ References:
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'SA', 'logp', 'score'}` (first target if multiple available)
+- Target column: `{'logp', 'score', 'SA'}` (first target if multiple available)
 
 ## Files
 

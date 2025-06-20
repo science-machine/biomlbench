@@ -15,7 +15,7 @@ class TaskTimeoutError(Exception):
     pass
 
 
-def create_polaris_task(benchmark_id: str, output_dir: Path):
+def create_polaris_task(benchmark_id: str, output_dir: Path, prepare_data: bool = True):
     """Create a single Polaris task using PolarisDataSource."""
 
     # Generate task name
@@ -199,21 +199,17 @@ def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
     # Return main metric score
     main_metric = "{main_metric}"
     
-    # If main_metric is available in results, use it
     if hasattr(results, 'results') and not results.results.empty:
         # Try to find main_metric in results
-        if main_metric in results.results.columns:
-            score = float(results.results[main_metric].iloc[0])
-        else:
-            # Fallback to first score column
-            score_cols = [col for col in results.results.columns if col != 'metric']
-            if score_cols:
-                score = float(results.results[score_cols[0]].iloc[0])
+        if "Metric" in results.results.columns:
+            if results.results["Metric"].iloc[0] == main_metric:
+                score = float(results.results["Score"].iloc[0])
             else:
-                score = float(results.results.iloc[0, 0])
+                raise ValueError("This should never happen")
+        else:
+            raise ValueError("This should never happen")
     else:
-        # Fallback for older Polaris versions
-        score = float(results.results.iloc[0]['score'])
+        raise ValueError("This should never happen")
     
     return score
 '''
@@ -262,11 +258,25 @@ Auto-generated from [Polaris Hub](https://polarishub.io/).
 
     print(f"✅ Created polarishub/{task_name}")
 
+    # Optionally prepare the data immediately
+    if prepare_data:
+        try:
+            from biomlbench.data import download_and_prepare_dataset
+            from biomlbench.registry import registry
+
+            print(f"🔄 Preparing data for polarishub/{task_name}...")
+            task = registry.get_task(f"polarishub/{task_name}")
+            download_and_prepare_dataset(task)
+            print(f"✅ Prepared data for polarishub/{task_name}")
+        except Exception as e:
+            print(f"❌ Failed to prepare {task_name}: {e}")
+            # Don't raise - let the task creation succeed even if preparation fails
+
 
 def create_polaris_task_wrapper(args):
     """Wrapper for create_polaris_task to handle tuple unpacking for multiprocessing."""
-    benchmark_id, output_dir = args
-    return create_polaris_task(benchmark_id, output_dir)
+    benchmark_id, output_dir, prepare_data = args
+    return create_polaris_task(benchmark_id, output_dir, prepare_data)
 
 
 def main():
@@ -277,6 +287,18 @@ def main():
     parser = argparse.ArgumentParser(description="Ingest Polaris tasks")
     parser.add_argument(
         "--workers", type=int, default=4, help="Number of workers to use for parallel processing"
+    )
+    parser.add_argument(
+        "--prepare",
+        action="store_true",
+        default=True,
+        help="Also prepare datasets after creating tasks (default: True)",
+    )
+    parser.add_argument(
+        "--no-prepare",
+        dest="prepare",
+        action="store_false",
+        help="Skip dataset preparation (only create task structure)",
     )
     args = parser.parse_args()
 
@@ -296,10 +318,15 @@ def main():
             benchmarks.extend(result)
 
     print(f"📊 Found {len(benchmarks)} benchmarks on Polaris Hub")
+    if args.prepare:
+        print("🔄 Will also prepare datasets after creating tasks")
+    else:
+        print("⏭️  Will skip dataset preparation")
 
     # Create argument tuples for parallel processing
     # benchmarks = ['tdcommons/caco2-wang']
-    task_args = [(benchmark_id, output_dir) for benchmark_id in benchmarks]
+    # benchmarks = ['molecularml/moleculeace-chembl4203-ki']
+    task_args = [(benchmark_id, output_dir, args.prepare) for benchmark_id in benchmarks]
 
     # Use ProcessPoolExecutor for parallel processing
     with ProcessPoolExecutor(max_workers=args.workers) as executor:
@@ -314,7 +341,8 @@ def main():
             try:
                 # Set 10-minute timeout for each individual task
                 future.result(timeout=600)  # 10 minutes per task
-                print(f"✅ Created polarishub/{benchmark_id.replace('/', '-').lower()}")
+                status = "✅ Created and prepared" if args.prepare else "✅ Created"
+                print(f"{status} polarishub/{benchmark_id.replace('/', '-').lower()}")
             except FuturesTimeoutError:
                 print(f"⏰ Task timed out after 10 minutes: {benchmark_id}")
             except Exception as e:

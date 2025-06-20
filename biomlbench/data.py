@@ -458,5 +458,5 @@ def prepare_human_baselines(task: Task, force: bool = False) -> Optional[Path]:
         return human_baselines_path
 
     except Exception as e:
-        logger.warning(f"Failed to extract human baselines for task '{task.id}': {e}")
-        return None
+        logger.error(f"Failed to extract human baselines for task '{task.id}': {e}")
+        raise e

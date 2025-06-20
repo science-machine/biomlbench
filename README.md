@@ -21,7 +21,7 @@ See the docs here: [docs/index.md](docs/index.md)
 - [ ] Need to implement filtering for tasks by domain, type, complexity (e.g., only ADMET tasks, only imaging tasks, only lite tasks)
 - [ ] Improve documentation of built-in agents.
 - [ ] Decide if we're going to add in unit tests.
-- [ ] Decide if we want to both scraping subsequent polarihub leaderboard pages (not a lot of examples with more than one page).
+- [ ] Decide if we want to bother scraping subsequent polarihub leaderboard pages (not a lot of examples with more than one page).
 
 
 ## How to wrap a new benchmark database

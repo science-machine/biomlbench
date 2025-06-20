@@ -30,10 +30,10 @@ Build and run a benchmark with an agent:
 
 ```bash
 # Prepare a task
-biomlbench prepare -t caco2-wang
+biomlbench prepare -t polarishub/tdcommons-caco2-wang
 
 # Run an agent (in this case, a dummy agent that returns null predictions)
-biomlbench run-agent --agent dummy --task-id caco2-wang
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # Grade results (submission.jsonl is auto-generated)
 biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir results/
@@ -42,10 +42,11 @@ biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir resu
 ## 📊 Available Tasks
 
 ### Medical Imaging
-- **histopathologic-cancer-detection**: Cancer detection in histopathology patches
+- **manual/histopathologic-cancer-detection**: Cancer detection in histopathology patches
 
 ### Drug Discovery  
-- **caco2-wang**: Molecular property prediction (intestinal permeability)
+- **polarishub/tdcommons-caco2-wang**: Molecular property prediction (intestinal permeability)
+- **polarishub/*** : 80+ drug discovery and molecular property prediction tasks from Polaris
 
 ## 🏗️ Architecture
 

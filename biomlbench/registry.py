@@ -103,7 +103,11 @@ class Registry:
         """Fetch the task from the registry using folder/task format."""
 
         # New format: folder/task
-        folder, task_name = task_id.split("/", 1)
+        try:
+            folder, task_name = task_id.split("/", 1)
+        except ValueError:
+            raise ValueError(f"Invalid task ID: {task_id}. Expected format: folder/task")
+
         config_path = self.get_tasks_dir() / folder / task_name / "config.yaml"
         checksums_path = self.get_tasks_dir() / folder / task_name / "checksums.yaml"
         leaderboard_path = self.get_tasks_dir() / folder / task_name / "leaderboard.csv"

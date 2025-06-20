@@ -19,7 +19,7 @@ As this is a zero-shot task, we used the cosine distance in embedding space betw
 
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
-- Molecule column: `sequence_var`
+- Molecule column: `sequence_wt`
 - Target column: `{'label'}` (first target if multiple available)
 
 ## Files

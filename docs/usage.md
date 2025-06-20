@@ -19,10 +19,10 @@ Before running agents, you need to prepare task datasets:
 
 ```bash
 # Prepare a specific task
-biomlbench prepare -t caco2-wang
+biomlbench prepare -t polarishub/tdcommons-caco2-wang
 
 # Prepare with options
-biomlbench prepare -t histopathologic-cancer-detection --keep-raw
+biomlbench prepare -t manual/histopathologic-cancer-detection --keep-raw
 ```
 
 ### Prepare Multiple Tasks / filtered tasks
@@ -38,22 +38,22 @@ BioML-bench includes several reference agents:
 
 ```bash
 # Dummy agent (for testing)
-biomlbench run-agent --agent dummy --task-id caco2-wang
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # AIDE agent (requires OpenAI API key)
-biomlbench run-agent --agent aide --task-id caco2-wang
+biomlbench run-agent --agent aide --task-id polarishub/tdcommons-caco2-wang
 ```
 
 ### Single Task Execution
 
 ```bash
 # Run agent on one task
-biomlbench run-agent --agent dummy --task-id caco2-wang
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # With custom settings
 biomlbench run-agent \
     --agent dummy \
-    --task-id caco2-wang \
+    --task-id polarishub/tdcommons-caco2-wang \
     --n-seeds 3 \
     --retain-container
 ```
@@ -89,13 +89,13 @@ runs/
 └── 2024-01-15T10-30-00-GMT_run-group_dummy/
     ├── metadata.json              # Run summary
     ├── submission.jsonl           # Auto-generated submission file
-    ├── caco2-wang_abc123/         # Individual task run
-    │   ├── submission/
-    │   │   └── submission.csv     # Agent predictions
-    │   ├── logs/
-    │   │   └── run.log           # Execution logs
-    │   └── code/                 # Agent code (if available)
-    └── task2_def456/             # Additional task runs...
+    └── polarishub/
+        └── tdcommons-caco2-wang_abc123/  # Individual task run
+            ├── submission/
+            │   └── submission.csv        # Agent predictions
+            ├── logs/
+            │   └── run.log              # Execution logs
+            └── code/                    # Agent code (if available)
 ```
 
 ### Key Files
@@ -124,7 +124,7 @@ For testing or external submissions:
 
 ```bash
 # Grade a single CSV file
-biomlbench grade-sample submission.csv caco2-wang
+biomlbench grade-sample submission.csv polarishub/tdcommons-caco2-wang
 ```
 
 ### Baseline Comparisons
@@ -135,10 +135,10 @@ Run baselines to establish performance benchmarks:
 
 ```bash
 # Run specific baseline
-biomlbench run-baseline caco2-wang --baseline linear
+biomlbench run-baseline polarishub/tdcommons-caco2-wang --baseline linear
 
 # Run all available baselines
-biomlbench run-baseline caco2-wang --baseline all
+biomlbench run-baseline polarishub/tdcommons-caco2-wang --baseline all
 
 # Grade baseline results
 biomlbench grade --submission baseline_submissions/submission.jsonl --output-dir results/
@@ -184,7 +184,7 @@ Many tasks include human expert performance for context:
 
 ```json
 {
-  "task_id": "histopathologic-cancer-detection",
+  "task_id": "manual/histopathologic-cancer-detection",
   "score": 0.89,
   "beats_human": true,
   "human_percentile": 85.5
@@ -210,7 +210,7 @@ Override Docker settings for specific requirements:
 ```bash
 biomlbench run-agent \
     --agent my-agent \
-    --task-id caco2-wang \
+    --task-id polarishub/tdcommons-caco2-wang \
     --container-config custom_config.json
 ```
 
@@ -221,16 +221,16 @@ For full details, see [developer/adding_tasks.md](../docs/developer/adding_tasks
 
 ```bash
 # 1. Create new task structure
-mkdir -p biomlbench/tasks/my-new-task
+mkdir -p biomlbench/tasks/my-source/my-new-task
 
 # 2. Test task preparation
-biomlbench prepare -t my-new-task
+biomlbench prepare -t my-source/my-new-task
 
 # 3. Test with dummy agent
-biomlbench run-agent --agent dummy --task-id my-new-task
+biomlbench run-agent --agent dummy --task-id my-source/my-new-task
 
 # 4. Grade test submission
-biomlbench grade-sample runs/dummy/my-new-task/submission.csv my-new-task
+biomlbench grade-sample runs/dummy/my-source/my-new-task/submission.csv my-source/my-new-task
 ```
 
 ## CLI Reference
@@ -261,8 +261,8 @@ biomlbench grade --help
 
 ```bash
 # Fast workflow for testing
-biomlbench prepare -t caco2-wang
-biomlbench run-agent --agent dummy --task-id caco2-wang
+biomlbench prepare -t polarishub/tdcommons-caco2-wang
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 ```
 
@@ -275,7 +275,7 @@ biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 # biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 
 # Current example with available tasks
-biomlbench prepare -t caco2-wang -t histopathologic-cancer-detection
-biomlbench run-agent --agent my-agent --task-id caco2-wang
+biomlbench prepare -t polarishub/tdcommons-caco2-wang -t manual/histopathologic-cancer-detection
+biomlbench run-agent --agent my-agent --task-id polarishub/tdcommons-caco2-wang
 biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 ```

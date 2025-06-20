@@ -1,8 +1,8 @@
 # hello-world-benchmark
 
-## Overview
+This benchmark is for testing purpose.
 
-Single task regression for solibility
+---
 
 **Source:** [Polaris Hub - polaris/hello-world-benchmark](https://polarishub.io)  
 **Task Type:** single_task  

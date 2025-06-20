@@ -1,8 +1,8 @@
 # rna-expression-prediction-dataset-task
 
-## Overview
 
-RNA expression benchmark task with decile-based splits for balanced training and test datasets
+
+---
 
 **Source:** [Polaris Hub - vishrut64/rna-expression-prediction-dataset-task](https://polarishub.io)  
 **Task Type:** single_task  

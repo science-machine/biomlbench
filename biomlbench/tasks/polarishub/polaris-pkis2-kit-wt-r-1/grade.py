@@ -15,20 +15,16 @@ def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
     # Return main metric score
     main_metric = "mean_squared_error"
     
-    # If main_metric is available in results, use it
     if hasattr(results, 'results') and not results.results.empty:
         # Try to find main_metric in results
-        if main_metric in results.results.columns:
-            score = float(results.results[main_metric].iloc[0])
-        else:
-            # Fallback to first score column
-            score_cols = [col for col in results.results.columns if col != 'metric']
-            if score_cols:
-                score = float(results.results[score_cols[0]].iloc[0])
+        if "Metric" in results.results.columns:
+            if results.results["Metric"].iloc[0] == main_metric:
+                score = float(results.results["Score"].iloc[0])
             else:
-                score = float(results.results.iloc[0, 0])
+                raise ValueError("This should never happen")
+        else:
+            raise ValueError("This should never happen")
     else:
-        # Fallback for older Polaris versions
-        score = float(results.results.iloc[0]['score'])
+        raise ValueError("This should never happen")
     
     return score
