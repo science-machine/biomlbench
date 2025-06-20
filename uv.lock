@@ -186,11 +186,25 @@ wheels = [
 ]
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.13.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "soupsieve" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d8/e4/0c4c39e18fd76d6a628d4dd8da40543d136ce2d1752bd6eeeab0791f4d6b/beautifulsoup4-4.13.4.tar.gz", hash = "sha256:dbb3c4e1ceae6aefebdaf2423247260cd062430a410e38c66f2baa50a8437195", size = 621067 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/50/cd/30110dc0ffcf3b131156077b90e9f60ed75711223f306da4db08eff8403b/beautifulsoup4-4.13.4-py3-none-any.whl", hash = "sha256:9bbbb14bfde9d79f38b8cd5f8c7c85f4b8f2523190ebed90e950a8dea4cb1c4b", size = 187285 },
+]
+
+[[package]]
 name = "bioml-bench"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "appdirs" },
+    { name = "beautifulsoup4" },
     { name = "biopython" },
     { name = "diskcache" },
     { name = "docker" },
@@ -209,6 +223,7 @@ dependencies = [
     { name = "scipy" },
     { name = "sqlalchemy" },
     { name = "tenacity" },
+    { name = "timeout" },
     { name = "tqdm" },
 ]
 
@@ -242,6 +257,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "appdirs", specifier = ">=1.4.4" },
+    { name = "beautifulsoup4", specifier = ">=4.13.4" },
     { name = "biopython", specifier = ">=1.83" },
     { name = "black", marker = "extra == 'dev'", specifier = ">=23.7.0" },
     { name = "diskcache", specifier = ">=5.6.0" },
@@ -267,6 +283,7 @@ requires-dist = [
     { name = "scipy", specifier = ">=1.11.0" },
     { name = "sqlalchemy", specifier = ">=1.4.0,<2.0.0" },
     { name = "tenacity", specifier = ">=8.2.0" },
+    { name = "timeout", specifier = ">=0.1.2" },
     { name = "tqdm", specifier = ">=4.65.0" },
 ]
 provides-extras = ["dev"]
@@ -3124,6 +3141,15 @@ wheels = [
 ]
 
 [[package]]
+name = "soupsieve"
+version = "2.7"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/3f/f4/4a80cd6ef364b2e8b65b15816a843c0980f7a5a2b4dc701fc574952aa19f/soupsieve-2.7.tar.gz", hash = "sha256:ad282f9b6926286d2ead4750552c8a6142bc4c783fd66b0293547c8fe6ae126a", size = 103418 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e7/9c/0e6afc12c269578be5c0c1c9f4b49a8d32770a080260c333ac04cc1c832d/soupsieve-2.7-py3-none-any.whl", hash = "sha256:6e60cc5c1ffaf1cebcc12e8188320b72071e922c2e897f737cadce79ad5d30c4", size = 36677 },
+]
+
+[[package]]
 name = "sqlalchemy"
 version = "1.4.54"
 source = { registry = "https://pypi.org/simple" }
@@ -3193,6 +3219,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/b7/4d/08c89e34946fce2ae
 wheels = [
     { url = "https://files.pythonhosted.org/packages/32/d5/f9a850d79b0851d1d4ef6456097579a9005b31fea68726a4ae5f2d82ddd9/threadpoolctl-3.6.0-py3-none-any.whl", hash = "sha256:43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb", size = 18638 },
 ]
+
+[[package]]
+name = "timeout"
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ec/ef/54e53f4b7772c0da8371dc168e186f84c53cd9403b923ddb7b022d5c4fc1/timeout-0.1.2.tar.gz", hash = "sha256:de24cd09024898f04779f7685150f47e1c67ba4e34a198d23b8412be21e13baa", size = 1422 }
 
 [[package]]
 name = "tomli"

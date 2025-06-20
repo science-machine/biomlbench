@@ -74,7 +74,7 @@ BioML-bench's command-line interface for managing biomedical benchmark tasks and
 
 ```bash
 # Prepare a specific task
-biomlbench prepare -t caco2-wang
+biomlbench prepare -t polarishub/tdcommons-caco2-wang
 
 # Prepare all tasks in a domain
 biomlbench prepare --domain admet
@@ -90,7 +90,7 @@ biomlbench prepare --lite
 
 ```bash
 # Run agent on single task
-biomlbench run-agent --agent dummy --task-id caco2-wang
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # Run agent on multiple tasks with parallel workers
 biomlbench run-agent \\
@@ -102,7 +102,7 @@ biomlbench run-agent \\
 # Run with custom container configuration
 biomlbench run-agent \\
     --agent aide \\
-    --task-id caco2-wang \\
+    --task-id polarishub/tdcommons-caco2-wang \\
     --container-config custom_config.json \\
     --retain-container
 ```
@@ -116,10 +116,10 @@ biomlbench grade \\
     --output-dir results/
 
 # Grade single task submission
-biomlbench grade-sample submission.csv caco2-wang
+biomlbench grade-sample submission.csv polarishub/tdcommons-caco2-wang
 
 # Run and grade baselines
-biomlbench run-baseline caco2-wang --baseline all
+biomlbench run-baseline polarishub/tdcommons-caco2-wang --baseline all
 biomlbench grade \\
     --submission baseline_submissions/submission.jsonl \\
     --output-dir baseline_results/
@@ -132,7 +132,7 @@ biomlbench grade \\
 biomlbench dev download-leaderboard --all
 
 # Prepare human baselines for a specific task
-biomlbench dev prepare-human-baselines -t caco2-wang --force
+biomlbench dev prepare-human-baselines -t polarishub/tdcommons-caco2-wang --force
 ```
 
 ## Environment Variables
@@ -155,7 +155,7 @@ Kaggle authentication uses the standard configuration file at `~/.kaggle/kaggle.
 biomlbench prepare --lite
 
 # 2. Run agent
-biomlbench run-agent --agent dummy --task-list experiments/splits/caco2-wang.txt
+biomlbench run-agent --agent dummy --task-list experiments/splits/polarishub-tdcommons-caco2-wang.txt
 
 # 3. Grade results (submission.jsonl is auto-generated)
 biomlbench grade \\
@@ -169,7 +169,7 @@ biomlbench grade \\
 # Run with container retention for debugging
 biomlbench run-agent \\
     --agent my-agent \\
-    --task-id caco2-wang \\
+    --task-id polarishub/tdcommons-caco2-wang \\
     --retain-container
 
 # Check logs in the run directory

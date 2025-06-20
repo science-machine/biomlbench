@@ -3,7 +3,8 @@ repos:
     rev: 22.8.0
     hooks:
       - id: black
-        args: [--line-length=100, --exclude=""]
+        args: [--line-length=100]
+        exclude: biomlbench/tasks/
 
   # this is not technically always safe but usually is
   # use comments `# isort: off` and `# isort: on` to disable/re-enable isort
@@ -12,3 +13,4 @@ repos:
     hooks:
       - id: isort
         args: [--line-length=100, --profile=black]
+        exclude: biomlbench/tasks/

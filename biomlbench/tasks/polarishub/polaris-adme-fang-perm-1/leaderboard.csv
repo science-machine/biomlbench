@@ -1,0 +1,11 @@
+teamName,score,submissionDate
+1B_MPNN_MolGPS-ens_LargeMix,0.238,2024-01-01
+1B_MPNN_LargeMix-and-Phenomics,0.249,2024-01-01
+TabPFNv2-rdkit,0.316,2024-01-01
+adme-fang-PERM-1-GIRAFFE-wae_s,0.33,2024-01-01
+chemlactica-1b-sft,0.398,2024-01-01
+optimized-random-forest-rdkit-descriptors,0.378,2024-01-01
+adme-fang-PERM-1_desc2D_RandomForestRegressor,0.39,2024-01-01
+chemlactica-125m-sft,0.413,2024-01-01
+chemma-2b-sft,0.423,2024-01-01
+adme-fang-PERM-1_maccs_RandomForestRegressor,0.428,2024-01-01

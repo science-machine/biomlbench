@@ -7,6 +7,7 @@ See the docs here: [docs/index.md](docs/index.md)
 
 ## biomlbench core TODOs (unordered)
 
+- [ ] Decide whether to enable multi-target problems in Polaris in the future (currently we just take the first target if more than one). 
 - [ ] Add `experiments/splits` which will contain files like `medical-imaging.txt` that contain a list of task ids for only a given domain, or type of benchmarking run (e.g., lite, all).
 - [ ] Decide if we want to have `experiments/familiarity` like the original MLE-bench. This would involve measuring the relationship between model performance and the "familiarity" of the model for the task description. This tries to assess if the model is "cheating" by already understanding the task.
 - [ ] Need to decide if we can add human baselines in for Polaris. We would probably have to manually scrape the leaderboard (possibly with playwright) and then we would need to add a `supports_human_baselines` method to the `PolarisDataSource` class which returns `True`. And we would need to add a `get_human_baselines` method to the `PolarisDataSource` class which returns a pandas dataframe with the human baselines.
@@ -20,6 +21,7 @@ See the docs here: [docs/index.md](docs/index.md)
 - [ ] Need to implement filtering for tasks by domain, type, complexity (e.g., only ADMET tasks, only imaging tasks, only lite tasks)
 - [ ] Improve documentation of built-in agents.
 - [ ] Decide if we're going to add in unit tests.
+- [ ] Decide if we want to bother scraping subsequent polarihub leaderboard pages (not a lot of examples with more than one page).
 
 
 ## How to wrap a new benchmark database

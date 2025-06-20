@@ -88,4 +88,5 @@ nav:
     - Contributing: developer/contributing.md
     - Adding Tasks: developer/adding_tasks.md
     - Creating Agents: developer/creating_agents.md
-    - Architecture: developer/architecture.md 
+    - Architecture: developer/architecture.md
+    - Deployment: deployment.md 

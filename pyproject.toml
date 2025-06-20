@@ -50,6 +50,8 @@ dependencies = [
     # Fix SQLAlchemy version for Polaris compatibility
     "sqlalchemy>=1.4.0,<2.0.0",
     "polaris-lib>=0.12.1",
+    "timeout>=0.1.2",
+    "beautifulsoup4>=4.13.4",
 ]
 
 [project.optional-dependencies]

@@ -143,7 +143,7 @@ def create_task_container(
 
     container = client.containers.create(
         image=container_image,
-        name=f"task-{task.id}-{timestamp}-{unique_id}",
+        name=f"task-{task.id.replace('/', '-')}-{timestamp}-{unique_id}",
         detach=True,
         **parse_container_config(container_config),
         volumes=volumes_config,

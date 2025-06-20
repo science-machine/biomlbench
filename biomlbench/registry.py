@@ -100,15 +100,20 @@ class Registry:
         self._data_dir = data_dir.resolve()
 
     def get_task(self, task_id: str) -> Task:
-        """Fetch the task from the registry."""
+        """Fetch the task from the registry using folder/task format."""
 
-        config_path = self.get_tasks_dir() / task_id / "config.yaml"
+        # New format: folder/task
+        try:
+            folder, task_name = task_id.split("/", 1)
+        except ValueError:
+            raise ValueError(f"Invalid task ID: {task_id}. Expected format: folder/task")
+
+        config_path = self.get_tasks_dir() / folder / task_name / "config.yaml"
+        checksums_path = self.get_tasks_dir() / folder / task_name / "checksums.yaml"
+        leaderboard_path = self.get_tasks_dir() / folder / task_name / "leaderboard.csv"
+        description_path = self.get_tasks_dir() / folder / task_name / "description.md"
+
         config = load_yaml(config_path)
-
-        checksums_path = self.get_tasks_dir() / task_id / "checksums.yaml"
-        leaderboard_path = self.get_tasks_dir() / task_id / "leaderboard.csv"
-
-        description_path = get_repo_dir() / config["description"]
         description = description_path.read_text()
 
         preparer_fn = import_fn(config["preparer"])
@@ -188,7 +193,23 @@ class Registry:
     def list_task_ids(self) -> list[str]:
         """List all task IDs available in the registry, sorted alphabetically."""
         task_configs = self.get_tasks_dir().rglob("config.yaml")
-        task_ids = [f.parent.stem for f in sorted(task_configs)]
+        task_ids = []
+
+        for config_path in sorted(task_configs):
+            # Check relative path from tasks directory
+            rel_path = config_path.relative_to(self.get_tasks_dir())
+            parts = rel_path.parts
+
+            if len(parts) == 3:  # folder/task/config.yaml
+                folder_name = parts[0]
+                task_name = parts[1]
+                if folder_name not in ["__pycache__"]:
+                    task_ids.append(f"{folder_name}/{task_name}")
+            elif len(parts) == 2:  # task/config.yaml (legacy)
+                task_name = parts[0]
+                if task_name not in ["__pycache__"]:
+                    task_ids.append(task_name)
+
         return task_ids
 
 

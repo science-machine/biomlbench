@@ -1,0 +1,33 @@
+id: polarishub/vishrut64-rna-expression-prediction-dataset-task
+name: "rna-expression-prediction-dataset-task"
+task_type: drug_discovery
+domain: molecular_properties
+difficulty: medium
+awards_medals: true
+prizes: null
+description: biomlbench/tasks/polarishub/vishrut64-rna-expression-prediction-dataset-task/description.md
+
+data_source:
+  type: polaris
+  benchmark_id: vishrut64/rna-expression-prediction-dataset-task
+
+dataset:
+  answers: polarishub/vishrut64-rna-expression-prediction-dataset-task/prepared/private/answers.csv
+  sample_submission: polarishub/vishrut64-rna-expression-prediction-dataset-task/prepared/public/sample_submission.csv
+
+grader:
+  name: polaris-metric
+  grade_fn: biomlbench.tasks.polarishub.vishrut64-rna-expression-prediction-dataset-task.grade:grade
+
+preparer: biomlbench.tasks.polarishub.vishrut64-rna-expression-prediction-dataset-task.prepare:prepare
+
+biomedical_metadata:
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "mean_absolute_error"
+
+compute_requirements:
+  recommended_gpu_memory_gb: 4
+  estimated_runtime_minutes: 15
+  max_dataset_size_gb: 2

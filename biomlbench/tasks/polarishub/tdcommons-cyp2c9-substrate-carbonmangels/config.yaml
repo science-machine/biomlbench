@@ -1,0 +1,33 @@
+id: polarishub/tdcommons-cyp2c9-substrate-carbonmangels
+name: "cyp2c9-substrate-carbonmangels"
+task_type: drug_discovery
+domain: molecular_properties
+difficulty: medium
+awards_medals: true
+prizes: null
+description: biomlbench/tasks/polarishub/tdcommons-cyp2c9-substrate-carbonmangels/description.md
+
+data_source:
+  type: polaris
+  benchmark_id: tdcommons/cyp2c9-substrate-carbonmangels
+
+dataset:
+  answers: polarishub/tdcommons-cyp2c9-substrate-carbonmangels/prepared/private/answers.csv
+  sample_submission: polarishub/tdcommons-cyp2c9-substrate-carbonmangels/prepared/public/sample_submission.csv
+
+grader:
+  name: polaris-metric
+  grade_fn: biomlbench.tasks.polarishub.tdcommons-cyp2c9-substrate-carbonmangels.grade:grade
+
+preparer: biomlbench.tasks.polarishub.tdcommons-cyp2c9-substrate-carbonmangels.prepare:prepare
+
+biomedical_metadata:
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "pr_auc"
+
+compute_requirements:
+  recommended_gpu_memory_gb: 4
+  estimated_runtime_minutes: 15
+  max_dataset_size_gb: 2

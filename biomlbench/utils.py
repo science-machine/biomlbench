@@ -325,57 +325,58 @@ def get_timestamp() -> str:
 def generate_submission_from_metadata(
     metadata_path: Path,
     output_path: Optional[Path] = None,
-    rel_log_path: Path = Path("logs/agent.log"),
-    rel_code_path: Path = Path("code/train.py"),
+    rel_log_path: Path = Path("logs/"),
+    rel_code_path: Path = Path("code/"),
 ) -> Path:
     """
     Generate a submission.jsonl file from agent run metadata.
-    
+
     This function reads the metadata.json file created by run_agent_async()
     and creates a JSONL file mapping task IDs to their submission file paths,
     which can be used directly with the `biomlbench grade` command.
-    
+
     Args:
         metadata_path: Path to the metadata.json file
         output_path: Path for the output submission.jsonl file (defaults to same directory as metadata)
         rel_log_path: Path to logfile relative to run directory
         rel_code_path: Path to code file relative to run directory
-        
+
     Returns:
         Path to the generated submission.jsonl file
     """
     if output_path is None:
         output_path = metadata_path.parent / "submission.jsonl"
-    
+
     submission_lines = []
-    
+
     with open(metadata_path, "r") as f:
         metadata = json.load(f)
-    
-    for run_id in metadata["runs"]:
+
+    for run_id, run_data in metadata["runs"].items():
         run_dir = metadata_path.parent / run_id
-        # run_id is something like f"{task_id}_bfa0c73d"
-        task_id = run_id.split("_")[0]
-        
+        task_id = run_data["task_id"]
+
         log_path = run_dir / rel_log_path
         has_log = log_path.exists()
         code_path = run_dir / rel_code_path
         has_code = code_path.exists()
         submission_path = run_dir / "submission" / "submission.csv"
         submitted = submission_path.exists()
-        
-        submission_lines.append({
-            "task_id": task_id,
-            "submission_path": submission_path.as_posix() if submitted else None,
-            "logs_path": log_path.as_posix() if has_log else None,
-            "code_path": code_path.as_posix() if has_code else None,
-        })
-    
+
+        submission_lines.append(
+            {
+                "task_id": task_id,
+                "submission_path": submission_path.as_posix() if submitted else None,
+                "logs_path": log_path.as_posix() if has_log else None,
+                "code_path": code_path.as_posix() if has_code else None,
+            }
+        )
+
     # Create submission.jsonl
     with open(output_path, "w") as f:
         for line in submission_lines:
             f.write(f"{json.dumps(line)}\n")
-    
+
     logger.info(f"Generated submission file: {output_path}")
     return output_path
 

@@ -77,7 +77,11 @@ async def worker(
             f"[Worker {idx}] Running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
         )
 
-        task_output = {}
+        task_output = {
+            "task_id": agent_task.task.id,
+            "agent_id": agent_task.agent.id,
+            "seed": agent_task.seed,
+        }
         try:
             await asyncio.to_thread(
                 run_in_container,
@@ -191,7 +195,9 @@ async def run_agent_async(
         for task_id in task_ids:
             task = task_registry.get_task(task_id)
             run_dir = create_run_dir(task.id, agent.id, run_group)
-            run_id = run_dir.stem
+            # Store relative path from run group directory for proper reconstruction
+            run_group_dir = get_runs_dir() / run_group
+            run_id = str(run_dir.relative_to(run_group_dir))
             agent_task = AgentTask(
                 run_id=run_id,
                 seed=seed,

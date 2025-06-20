@@ -25,25 +25,26 @@ Every task needs:
 
 ```
 tasks/
-├── my-biomedical-task/           # Task directory
-│   ├── config.yaml              # Task configuration
-│   ├── description.md           # Task description
-│   ├── prepare.py               # Data preparation script
-│   ├── grade.py                 # Evaluation logic
-│   └── prepared/                # Generated during preparation
-│       ├── public/              # Public data
-│       │   ├── train.csv       # Training data
-│       │   ├── test_features.csv # Test features
-│       │   └── sample_submission.csv # Example submission
-│       └── private/             # Private data
-│           └── answers.csv      # Test set answers
+├── my-source/                   # Data source folder (e.g., polarishub, manual)
+│   └── my-biomedical-task/      # Task directory
+│       ├── config.yaml          # Task configuration
+│       ├── description.md       # Task description
+│       ├── prepare.py           # Data preparation script
+│       ├── grade.py             # Evaluation logic
+│       └── prepared/            # Generated during preparation
+│           ├── public/          # Public data
+│           │   ├── train.csv   # Training data
+│           │   ├── test_features.csv # Test features
+│           │   └── sample_submission.csv # Example submission
+│           └── private/         # Private data
+│               └── answers.csv  # Test set answers
 
 ```
 
 ## Task Configuration (`config.yaml`)
 
 ```yaml
-id: my-biomedical-task
+id: my-source/my-biomedical-task
 name: "My Biomedical Task"
 task_type: drug_discovery  # or medical_imaging, protein_engineering
 domain: pharmacokinetics   # specific biomedical domain
@@ -54,14 +55,14 @@ data_source:
   competition_id: my-task
 
 dataset:
-  answers: my-task/prepared/private/answers.csv
-  sample_submission: my-task/prepared/public/sample_submission.csv
+  answers: my-source/my-biomedical-task/prepared/private/answers.csv
+  sample_submission: my-source/my-biomedical-task/prepared/public/sample_submission.csv
 
 grader:
   name: rmse
-  grade_fn: biomlbench.tasks.my-task.grade:grade
+  grade_fn: biomlbench.tasks.my-source.my-biomedical-task.grade:grade
 
-preparer: biomlbench.tasks.my-task.prepare:prepare
+preparer: biomlbench.tasks.my-source.my-biomedical-task.prepare:prepare
 
 biomedical_metadata:
   modality: "molecular_properties"
@@ -72,7 +73,7 @@ biomedical_metadata:
 
 ## Data Preparation (`prepare.py`)
 
-See example `biomlbench/tasks/caco2-wang/prepare.py`.
+See example `biomlbench/tasks/polarishub/tdcommons-caco2-wang/prepare.py`.
 
 ```python
 from pathlib import Path
@@ -90,7 +91,7 @@ def prepare(task_dir: Path, raw_dir: Path, public_dir: Path, private_dir: Path) 
 
 ## Evaluation Logic (`grade.py`)
 
-See example `biomlbench/tasks/caco2-wang/grade.py`.
+See example `biomlbench/tasks/polarishub/tdcommons-caco2-wang/grade.py`.
 
 ```python
 import pandas as pd
@@ -110,10 +111,10 @@ def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
 
 ```bash
 # Test preparation
-biomlbench prepare -t my-task
+biomlbench prepare -t my-source/my-task
 
 # Test with dummy agent
-biomlbench run-agent --agent dummy --task-id my-task
+biomlbench run-agent --agent dummy --task-id my-source/my-task
 
 # Validate submission
 biomlbench grade --submission /path/to/submission.jsonl --output-dir /path/to/output/dir

@@ -1,0 +1,7 @@
+teamName,score,submissionDate
+pkis1-egfr-wt-mut-r-1_DGLGraphTransformer_PNAModel,23.256,2024-01-01
+pkis1-egfr-wt-mut-r-1_estate_FCModel,18.671,2024-01-01
+pkis1-egfr-wt-mut-r-1_DGLGraphTransformer_GATModel,19.711,2024-01-01
+pkis1-egfr-wt-mut-r-1_DGLGraphTransformer_MPNNModel,25.334,2024-01-01
+pkis1-egfr-wt-mut-r-1_DGLGraphTransformer_AttentiveFPModel,20.053,2024-01-01
+pkis1-egfr-wt-mut-r-1_DGLGraphTransformer_GCNModel,20.346,2024-01-01
