@@ -12,7 +12,7 @@ def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
     # Use Polaris evaluation
     try:
         results = benchmark.evaluate(predictions)
-    except Exception as e:
+    except ValueError as e:
         if "Metric requires `y_prob` input" in str(e):
             results = benchmark.evaluate(y_prob=predictions)
         else:

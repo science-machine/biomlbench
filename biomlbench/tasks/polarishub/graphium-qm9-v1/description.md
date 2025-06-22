@@ -23,7 +23,7 @@ Reference: [Quantum chemistry structures and properties of 134 kilo molecules](h
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'u298_atom', 'h298_atom', 'cv', 'B', 'g298_atom', 'h298', 'alpha', 'gap', 'zpve', 'u298', 'mu', 'A', 'u0', 'u0_atom', 'g298', 'homo', 'lumo', 'r2', 'C'}` (first target if multiple available)
+- Target column: `{'u298', 'cv', 'B', 'u0', 'r2', 'gap', 'A', 'mu', 'u0_atom', 'g298', 'g298_atom', 'zpve', 'C', 'u298_atom', 'h298_atom', 'alpha', 'lumo', 'homo', 'h298'}` (first target if multiple available)
 
 ## Files
 

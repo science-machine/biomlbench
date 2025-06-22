@@ -10,7 +10,13 @@ def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
     predictions = submission[submission.columns[1]].tolist()
     
     # Use Polaris evaluation
-    results = benchmark.evaluate(predictions)
+    try:
+        results = benchmark.evaluate(predictions)
+    except ValueError as e:
+        if "Metric requires `y_prob` input" in str(e):
+            results = benchmark.evaluate(y_prob=predictions)
+        else:
+            raise e
     
     # Return main metric score
     main_metric = "roc_auc"

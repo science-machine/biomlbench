@@ -34,7 +34,7 @@ OpenPhenom-S/16is a foundation model that flexibly processes microscopy images i
 
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
-- Molecule column: `gene_symbol`
+- Molecule column: `treatment`
 - Target column: `{'active'}` (first target if multiple available)
 
 ## Files

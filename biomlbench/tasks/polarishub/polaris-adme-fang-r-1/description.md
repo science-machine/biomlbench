@@ -39,7 +39,7 @@ The full curation and creation process is documented -> [notebook](https://githu
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'LOG_RPPB', 'LOG_RLM_CLint', 'LOG_SOLUBILITY', 'LOG_HPPB', 'LOG_HLM_CLint', 'LOG_MDR1-MDCK_ER'}` (first target if multiple available)
+- Target column: `{'LOG_HPPB', 'LOG_RPPB', 'LOG_MDR1-MDCK_ER', 'LOG_RLM_CLint', 'LOG_HLM_CLint', 'LOG_SOLUBILITY'}` (first target if multiple available)
 
 ## Files
 
