@@ -32,7 +32,7 @@ def grade_jsonl(
         submission_path = Path(str(submission["submission_path"]))
         task_id = submission.get("task_id")
         task = registry.get_task(task_id)
-        single_report = grade_csv(submission_path, task)
+        single_report = grade_submission(submission_path, task)
         task_reports.append(single_report)
 
     aggregated_report = aggregate_reports(task_reports)
@@ -50,8 +50,8 @@ def grade_jsonl(
     logger.info(purple(f"Saved summary report to {save_path}"))
 
 
-def grade_csv(path_to_submission: Path, task: Task) -> TaskReport:
-    """Grades a submission CSV for the given task."""
+def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
+    """Grades a submission file (CSV or h5ad) for the given task."""
 
     if not is_dataset_prepared(task, grading_only=True):
         raise ValueError(
@@ -60,15 +60,31 @@ def grade_csv(path_to_submission: Path, task: Task) -> TaskReport:
         )
 
     score = None
-    submission_exists = path_to_submission.is_file() and path_to_submission.suffix.lower() == ".csv"
-
+    submission_exists = path_to_submission.is_file()
+    file_extension = path_to_submission.suffix.lower()
+    
     if submission_exists:
-        submission_df = read_csv(path_to_submission)
-        answers = load_answers(task.answers)
-        score = task.grader(submission_df, answers)
+        if file_extension == ".csv":
+            # Traditional CSV-based task
+            submission_df = read_csv(path_to_submission)
+            answers = load_answers(task.answers)
+            score = task.grader(submission_df, answers)
+        elif file_extension == ".h5ad":
+            # AnnData-based task (e.g., OpenProblems)
+            # Call grade_fn directly with Path arguments, bypassing Grader.__call__
+            answers_path = Path(task.answers)
+            try:
+                score = task.grader.grade_fn(path_to_submission, answers_path)
+                if score is not None:
+                    score = round(score, 5)  # Match the rounding from Grader.__call__
+            except Exception as e:
+                logger.error(f"Unexpected error during h5ad grading: {e}")
+                raise e
+        else:
+            logger.warning(f"Unsupported file format: {file_extension}. Expected .csv or .h5ad.")
     else:
         logger.warning(
-            f"Invalid submission file: {path_to_submission}. Please check that the file exists and it is a CSV."
+            f"Invalid submission file: {path_to_submission}. Please check that the file exists."
         )
 
     valid_submission = score is not None

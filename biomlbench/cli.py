@@ -9,7 +9,7 @@ from biomlbench.data import (
     ensure_leaderboard_exists,
     prepare_human_baselines,
 )
-from biomlbench.grade import grade_csv, grade_jsonl
+from biomlbench.grade import grade_submission, grade_jsonl
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger
 

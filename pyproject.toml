@@ -52,6 +52,10 @@ dependencies = [
     "polaris-lib>=0.12.1",
     "timeout>=0.1.2",
     "beautifulsoup4>=4.13.4",
+    "scib",
+    "scanpy>=1.11.2",
+    "anndata>=0.11.4",
+    "h5py>=3.14.0",
 ]
 
 [project.optional-dependencies]
@@ -87,6 +91,9 @@ dev-dependencies = [
     "mypy>=1.5.0",
     "ruff>=0.0.287",
 ]
+
+[tool.uv.sources]
+scib = { git = "https://github.com/theislab/scib.git" }
 
 [tool.black]
 line-length = 100
