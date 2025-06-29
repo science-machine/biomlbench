@@ -1,0 +1,4 @@
+id: cellxgene_census/mouse_pancreas_atlas/l1_sqrt
+output_dataset: !file dataset.h5ad
+output_solution: !file solution.h5ad
+

@@ -139,8 +139,11 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
     if not submission.is_file():
         return False, f"Submission invalid! Submission file {submission} does not exist."
 
-    if not submission.suffix.lower() == ".csv":
-        return False, "Submission invalid! Submission file must be a CSV file."
+    # Support multiple file formats: CSV, h5ad, and potentially others
+    supported_formats = [".csv", ".h5ad"]
+    file_extension = submission.suffix.lower()
+    if file_extension not in supported_formats:
+        return False, f"Submission invalid! Submission file must be one of {supported_formats}, got {file_extension}."
 
     if not is_dataset_prepared(task, grading_only=True):
         raise ValueError(
@@ -149,7 +152,15 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
         )
 
     try:
-        task.grader.grade_fn(read_csv(submission), read_csv(task.answers))
+        # Use the same logic as grade_submission for different file formats
+        if file_extension == ".csv":
+            task.grader.grade_fn(read_csv(submission), read_csv(task.answers))
+        elif file_extension == ".h5ad":
+            # For h5ad files, pass paths directly to grade_fn
+            task.grader.grade_fn(submission, Path(task.answers))
+        else:
+            # This shouldn't happen given our validation above, but handle it gracefully
+            raise ValueError(f"Unsupported file format for validation: {file_extension}")
     except Exception as e:
         return (
             False,

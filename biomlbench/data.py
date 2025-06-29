@@ -318,7 +318,7 @@ def generate_checksums(
     """
 
     if exts is None:
-        exts = ["csv", "json", "jsonl", "parquet", "bson"]
+        exts = ["csv", "json", "jsonl", "parquet", "bson", "h5ad"]
 
     if exclude is None:
         exclude = []
