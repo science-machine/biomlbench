@@ -25,12 +25,13 @@ def grade_jsonl(
     Saves the aggregated report as a JSON file.
     """
 
-    submissions = read_jsonl(path_to_submissions, skip_commented_out_lines=True)
+    submissions = read_jsonl(str(path_to_submissions), skip_commented_out_lines=True)
     task_reports = []
 
     for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
-        submission_path = Path(str(submission["submission_path"]))
-        task_id = submission.get("task_id")
+        # Resolve submission path relative to the JSONL file directory
+        submission_path = path_to_submissions.parent / submission["submission_path"]
+        task_id = submission["task_id"]
         task = registry.get_task(task_id)
         single_report = grade_submission(submission_path, task)
         task_reports.append(single_report)

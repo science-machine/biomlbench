@@ -33,90 +33,49 @@ def grade(submission_path: Path, answers_path: Path) -> float:
     # Ensure both datasets have required metadata
     if 'batch' not in adata_integrated.obs.columns:
         raise ValueError("Submission must contain 'batch' column in obs")
-    if 'celltype' not in adata_integrated.obs.columns:
-        raise ValueError("Submission must contain 'celltype' column in obs")
+    if 'cell_type' not in adata_integrated.obs.columns:
+        raise ValueError("Submission must contain 'cell_type' column in obs")
+
+    # Bio conservation metrics (higher is better)
+    logger.info("Computing bio conservation metrics...")
     
     # Calculate scIB metrics
     metrics = {}
-    
-    try:
-        # Bio conservation metrics (higher is better)
-        logger.info("Computing bio conservation metrics...")
+
+    if adata_integrated.X is None:
+        adata_integrated.X = adata_integrated.layers['normalized']
+    scib.pp.reduce_data(adata_integrated, n_top_genes=2000, batch_key='batch', pca=True)
+    adata_integrated = adata_integrated[:, adata_integrated.var['highly_variable']]
+    metrics['asw_label'] = scib.me.silhouette(
+        adata_integrated,
+        group_key='cell_type',
+        embed='X_pca'
+    )
+    metrics['graph_conn'] = scib.me.graph_connectivity(
+        adata_integrated, 
+        label_key='cell_type'
+    )
+    logger.info("Computing batch correction metrics...")
+    asw_batch_raw = scib.me.silhouette_batch(
+        adata_integrated,
+        batch_key='batch', 
+        group_key='cell_type',
+        embed='X_pca'
+    )
+
+    # Convert to 0-1 scale (higher = better batch mixing)
+    metrics['asw_batch'] = 1 - abs(asw_batch_raw)
         
-        # ASW (Average Silhouette Width) - cell type
-        if 'X_emb' in adata_integrated.obsm:
-            metrics['asw_label'] = scib.me.silhouette(
-                adata_integrated, 
-                group_key='celltype', 
-                embed='X_emb'
-            )
-        else:
-            # Use PC space if no embedding available
-            scib.pp.reduce_data(adata_integrated, n_top_genes=2000, batch_key='batch', pca=True)
-            metrics['asw_label'] = scib.me.silhouette(
-                adata_integrated,
-                group_key='celltype',
-                embed='X_pca'
-            )
-        
-        # Graph connectivity
-        metrics['graph_conn'] = scib.me.graph_connectivity(
-            adata_integrated, 
-            label_key='celltype'
-        )
-        
-    except Exception as e:
-        logger.warning(f"Bio conservation metrics failed: {e}")
-        metrics['asw_label'] = 0.0
-        metrics['graph_conn'] = 0.0
-    
-    try:
-        # Batch correction metrics (higher is better)  
-        logger.info("Computing batch correction metrics...")
-        
-        # ASW batch (higher is better - measures batch mixing)
-        if 'X_emb' in adata_integrated.obsm:
-            asw_batch_raw = scib.me.silhouette_batch(
-                adata_integrated,
-                batch_key='batch',
-                group_key='celltype', 
-                embed='X_emb'
-            )
-        else:
-            asw_batch_raw = scib.me.silhouette_batch(
-                adata_integrated,
-                batch_key='batch', 
-                group_key='celltype',
-                embed='X_pca'
-            )
-        
-        # Convert to 0-1 scale (higher = better batch mixing)
-        metrics['asw_batch'] = 1 - abs(asw_batch_raw)
-        
-        # KBET (k-nearest neighbor batch effect test)
-        try:
-            if 'X_emb' in adata_integrated.obsm:
-                metrics['kbet'] = scib.me.kBET(
-                    adata_integrated,
-                    batch_key='batch',
-                    label_key='celltype',
-                    embed='X_emb'
-                )
-            else:
-                metrics['kbet'] = scib.me.kBET(
-                    adata_integrated,
-                    batch_key='batch',
-                    label_key='celltype', 
-                    embed='X_pca'
-                )
-        except Exception as e:
-            logger.warning(f"KBET failed: {e}")
-            metrics['kbet'] = 0.0
-            
-    except Exception as e:
-        logger.warning(f"Batch correction metrics failed: {e}")
-        metrics['asw_batch'] = 0.0
-        metrics['kbet'] = 0.0
+
+    metrics['kbet'] = scib.me.kBET(
+        adata_integrated,
+        batch_key="batch",
+        label_key="cell_type",
+        type_="embed",
+        embed="X_pca",
+        scaled=True,
+        verbose=True,
+    )
     
     # Log individual metrics
     logger.info("Individual metrics:")
@@ -136,11 +95,4 @@ def grade(submission_path: Path, answers_path: Path) -> float:
     
     return float(overall_score)
 
-def grade_legacy(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
-    """
-    Legacy grading function for CSV compatibility.
-    This should not be called for h5ad tasks.
-    """
-    raise NotImplementedError(
-        "This task uses h5ad files. Use grade() function instead of grade_legacy()."
-    )
+
