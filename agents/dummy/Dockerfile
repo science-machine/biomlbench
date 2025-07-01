@@ -1,6 +1,6 @@
 FROM biomlbench-env
 
-# where to put submission.csv, will be extracted
+# where to put submission, will be extracted
 ARG SUBMISSION_DIR
 ENV SUBMISSION_DIR=${SUBMISSION_DIR}
 # where to put any logs, will be extracted

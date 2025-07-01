@@ -41,8 +41,6 @@ export TIME_LIMIT=$(format_time $TIME_LIMIT_SECS)
 ls /private  # Expect "permission denied"
 # Data should be mounted correctly
 ls /home/data  # Expect to see the data files
-# Confirm that validation tool works
-bash /home/validate_submission.sh /home/data/sample_submission.csv  # Expect "Submission is valid."
 
 # --------- Check that we can use the GPU in PyTorch and TensorFlow
 

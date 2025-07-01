@@ -3,6 +3,7 @@ site_description: A benchmark suite for evaluating machine learning agents on bi
 site_url: https://science-machine.github.io/biomlbench
 repo_url: https://github.com/science-machine/biomlbench
 repo_name: biomlbench
+use_directory_urls: true
 
 theme:
   name: material
@@ -89,4 +90,3 @@ nav:
     - Adding Tasks: developer/adding_tasks.md
     - Creating Agents: developer/creating_agents.md
     - Architecture: developer/architecture.md
-    - Deployment: deployment.md 

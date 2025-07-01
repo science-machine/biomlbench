@@ -115,8 +115,11 @@ biomlbench grade \\
     --submission runs/my-run-group/submission.jsonl \\
     --output-dir results/
 
-# Grade single task submission
+# Grade single task submission (CSV format)
 biomlbench grade-sample submission.csv polarishub/tdcommons-caco2-wang
+
+# Grade single task submission (H5AD format)
+biomlbench grade-sample submission.h5ad openproblems/cell_cell_communication
 
 # Run and grade baselines
 biomlbench run-baseline polarishub/tdcommons-caco2-wang --baseline all

@@ -1,7 +1,7 @@
 """
 A dummy agent for single-cell batch integration tasks.
 
-For CSV tasks: copies the sample_submission.csv from the workspace/data directory.
+For CSV tasks: copies the sample_submission.csv or dataset.h5ad from the workspace/data directory.
 For h5ad tasks: copies the input dataset.h5ad unchanged (no batch correction applied).
 """
 

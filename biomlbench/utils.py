@@ -361,6 +361,7 @@ def generate_submission_from_metadata(
         code_path = run_dir / rel_code_path
         has_code = code_path.exists()
         # Check for multiple submission file formats
+        # TODO: Add more submission file formats or make this more flexible (?)
         submission_formats = ["submission.csv", "submission.h5ad"]
         submission_path = None
         submitted = False

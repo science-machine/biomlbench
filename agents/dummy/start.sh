@@ -16,6 +16,3 @@ touch $CODE_DIR/code.py
 touch $LOGS_DIR/run.log
 touch $AGENT_DIR/agent_was_here.txt
 cat /home/instructions.txt
-
-# Use the environment-provided grading server to validate our submission
-bash /home/validate_submission.sh /home/submission/submission.csv

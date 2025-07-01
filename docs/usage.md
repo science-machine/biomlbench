@@ -90,9 +90,9 @@ runs/
     ├── metadata.json              # Run summary
     ├── submission.jsonl           # Auto-generated submission file
     └── polarishub/
-        └── tdcommons-caco2-wang_abc123/  # Individual task run
+        └── <task_id>_abc123/  # Individual task run
             ├── submission/
-            │   └── submission.csv        # Agent predictions
+            │   └── submission.<ext>        # Agent predictions (e.g., `submission.csv`, `submission.h5ad`)
             ├── logs/
             │   └── run.log              # Execution logs
             └── code/                    # Agent code (if available)
@@ -102,7 +102,7 @@ runs/
 
 - **`metadata.json`**: Run metadata and success status
 - **`submission.jsonl`**: Automatically generated submission index
-- **`submission.csv`**: Agent's predictions for each task
+- **`submission.<ext>`**: Agent's predictions for each task (e.g., `submission.csv`, `submission.h5ad`)
 - **`run.log`**: Detailed execution logs
 
 ## Grading and Evaluation
@@ -125,6 +125,10 @@ For testing or external submissions:
 ```bash
 # Grade a single CSV file
 biomlbench grade-sample submission.csv polarishub/tdcommons-caco2-wang
+
+# Grade a single H5AD file
+biomlbench grade-sample submission.h5ad openproblems/cell_cell_communication
+
 ```
 
 ### Baseline Comparisons
@@ -229,8 +233,10 @@ biomlbench prepare -t my-source/my-new-task
 # 3. Test with dummy agent
 biomlbench run-agent --agent dummy --task-id my-source/my-new-task
 
-# 4. Grade test submission
+# 4. Grade test submission (if CSV format)
 biomlbench grade-sample runs/dummy/my-source/my-new-task/submission.csv my-source/my-new-task
+# Grade test submission (if H5AD format)
+biomlbench grade-sample runs/dummy/my-source/my-new-task/submission.h5ad my-source/my-new-task
 ```
 
 ## CLI Reference
