@@ -669,7 +669,7 @@ biomlbench grade \
     --submission runs/my-run-group/submission.jsonl \
     --output-dir results/
 
-# Grade single task submission
+# Grade single task submission (CSV format)
 biomlbench grade-sample submission.csv polarishub/tdcommons-caco2-wang
 
 # Grade single task submission (H5AD format)

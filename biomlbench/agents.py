@@ -41,6 +41,73 @@ from environment.defaults import DEFAULT_CONTAINER_CONFIG_PATH
 logger = get_logger(__name__)
 
 
+async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool:
+    """
+    Check if an agent run actually succeeded by examining submission files and logs.
+    
+    This catches cases where agents fail internally but exit with success codes.
+    """
+    try:
+        # Check 1: Look for submission files
+        submission_dir = run_dir / "submission"
+        has_submission = False
+        
+        if submission_dir.exists():
+            # Check for common submission file formats
+            submission_formats = ["submission.csv", "submission.h5ad"]
+            for format_name in submission_formats:
+                submission_file = submission_dir / format_name
+                if submission_file.exists() and submission_file.stat().st_size > 0:
+                    has_submission = True
+                    break
+        
+        # Check 2: Examine logs for failure patterns
+        log_file = run_dir / "run.log"
+        has_critical_errors = False
+        
+        if log_file.exists():
+            try:
+                with open(log_file, 'r') as f:
+                    log_content = f.read().lower()
+                    
+                    # Critical error patterns that indicate failure
+                    error_patterns = [
+                        "authenticationerror",
+                        "invalid api key",
+                        "401",
+                        "traceback (most recent call last)",
+                        "error:",
+                        "exception:",
+                        "timeout"
+                    ]
+                    
+                    for pattern in error_patterns:
+                        if pattern in log_content:
+                            has_critical_errors = True
+                            run_logger.debug(f"Found error pattern '{pattern}' in logs")
+                            break
+            except Exception:
+                run_logger.warning("Could not read run log for failure analysis")
+        
+        # Decision logic: If we have critical errors, it's a failure
+        if has_critical_errors:
+            run_logger.error(f"Agent failed: Critical errors found in logs")
+            return False
+        
+        # If we have a valid submission file, it's likely a success
+        if has_submission:
+            run_logger.info(f"Agent succeeded: Valid submission file found")
+            return True
+        
+        # If no submission and no clear errors, treat as suspicious failure
+        run_logger.warning(f"Agent success unclear: No submission file found")
+        return False
+        
+    except Exception as e:
+        run_logger.error(f"Error during success check: {e}")
+        return False
+
+
 @dataclass(frozen=True)
 class AgentTask:
     """Represents a single agent-task execution."""
@@ -94,11 +161,19 @@ async def worker(
                 run_dir=agent_task.path_to_run,
                 logger=run_logger,
             )
-            task_output["success"] = True
+            
+            # ENHANCED: Check if the agent actually succeeded beyond just not throwing an exception
+            success = await check_agent_success(agent_task.path_to_run, run_logger)
+            task_output["success"] = success
 
-            run_logger.info(
-                f"[Worker {idx}] Finished running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
-            )
+            if success:
+                run_logger.info(
+                    f"[Worker {idx}] Finished running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
+                )
+            else:
+                run_logger.error(
+                    f"[Worker {idx}] Agent completed without exception but failed internally for seed {agent_task.seed}, task {agent_task.task.id}, agent {agent_task.agent.name}"
+                )
         except Exception as e:
             stack_trace = traceback.format_exc()
             run_logger.error(type(e))
@@ -252,12 +327,63 @@ async def run_agent_async(
     # Auto-generate submission file for grading
     submission_path = generate_submission_from_metadata(metadata_path)
 
+    # CRITICAL: Check for failures and report them to prevent silent failures
+    failed_runs = [run_id for run_id, output in tasks_outputs.items() if not output.get("success", False)]
+    total_runs = len(tasks_outputs)
+    successful_runs = total_runs - len(failed_runs)
+    
     logger.info(f"{n_workers} workers ran for {time_taken:.2f} seconds in total")
     logger.info(f"Results saved to: {run_group_dir}")
-    logger.info(f"Submission file ready for grading: {submission_path}")
-    logger.info(
-        f"To grade results, run: biomlbench grade --submission {submission_path} --output-dir results/"
-    )
+    
+    # Report success/failure statistics
+    if failed_runs:
+        logger.error(f"❌ {len(failed_runs)}/{total_runs} runs FAILED!")
+        logger.error(f"✅ {successful_runs}/{total_runs} runs succeeded")
+        
+        # Check for common failure patterns and provide specific guidance
+        first_failed_run = failed_runs[0]
+        first_run_log = run_group_dir / first_failed_run / "run.log"
+        
+        if first_run_log.exists():
+            try:
+                with open(first_run_log, 'r') as f:
+                    log_content = f.read().lower()
+                    
+                    if "docker.errors.imagenotfound" in log_content or "no such image" in log_content:
+                        logger.error(f"🐳 Docker image '{agent.name}:latest' not found!")
+                        logger.error(f"💡 To fix this, build the agent image first:")
+                        logger.error(f"   ./scripts/build_agent.sh {agent.name}")
+                        logger.error(f"   # OR build all agent images:")
+                        logger.error(f"   ./scripts/build_agent.sh --all")
+                    elif "environment variable" in log_content and "not set" in log_content:
+                        logger.error(f"🔑 Missing API key or environment variable!")
+                        logger.error(f"💡 To fix this, check your .env file in the project root")
+                        logger.error(f"   Example: OPENAI_API_KEY=your-key-here")
+                    else:
+                        logger.error(f"📋 Check detailed error logs:")
+                        logger.error(f"   cat {first_run_log}")
+            except Exception:
+                logger.error(f"📋 Check detailed error logs in: {run_group_dir}")
+        
+        logger.error(f"🚨 AGENT EXECUTION FAILED - See errors above")
+        
+        # If ALL runs failed, this is a critical error that should not be silent
+        if successful_runs == 0:
+            raise RuntimeError(
+                f"All {total_runs} agent runs failed! "
+                f"This indicates a systematic issue (missing Docker image, API keys, etc.). "
+                f"Check the error messages above and the detailed logs in: {run_group_dir}"
+            )
+    else:
+        logger.info(f"✅ All {total_runs} runs completed successfully!")
+    
+    if successful_runs > 0:
+        logger.info(f"Submission file ready for grading: {submission_path}")
+        logger.info(
+            f"To grade results, run: biomlbench grade --submission {submission_path} --output-dir results/"
+        )
+    else:
+        logger.warning("⚠️  No successful runs to grade - submission file contains no valid results")
 
     return run_group, submission_path
 
