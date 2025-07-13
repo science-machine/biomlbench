@@ -2,7 +2,7 @@
 Generic baseline framework for BioML-bench tasks.
 
 This module provides the abstract baseline infrastructure. Task-specific
-baselines should be implemented in each task directory (e.g., 
+baselines should be implemented in each task directory (e.g.,
 biomlbench/tasks/caco2-wang/baselines.py) and registered through the
 baseline factory.
 """

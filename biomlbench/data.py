@@ -35,9 +35,8 @@ cache = dc.Cache("cache", size_limit=2**26)  # 64 MB
 
 
 def create_prepared_dir(task: Task) -> None:
-    """Create public and private directories for a task."""
-    task.public_dir.mkdir(exist_ok=True, parents=True)
-    task.private_dir.mkdir(exist_ok=True, parents=True)
+    """Create the prepared directory for a task."""
+    task.prepared_dir.mkdir(exist_ok=True, parents=True)
 
 
 def download_and_prepare_dataset(
@@ -65,7 +64,7 @@ def download_and_prepare_dataset(
     # Ensure leaderboard exists
     ensure_leaderboard_exists(task, force=overwrite_leaderboard)
 
-    task_dir = task.raw_dir.parent
+    task_dir = task.prepared_dir
     task.raw_dir.mkdir(exist_ok=True, parents=True)
     create_prepared_dir(task)
 
@@ -118,13 +117,13 @@ def download_and_prepare_dataset(
                 logger.info(f"Checksum for `{downloaded_path}` matches the expected checksum.")
 
     # Run task-specific preparation
-    if not is_dataset_prepared(task) or overwrite_checksums:
-        if task.public_dir.parent.exists() and overwrite_checksums:
+    if not task.is_prepared() or overwrite_checksums:
+        if task.prepared_dir.exists() and overwrite_checksums:
             logger.info(
                 f"Removing the existing prepared data directory for `{task.id}` since "
                 "`overwrite_checksums` is set to `True`..."
             )
-            shutil.rmtree(task.public_dir.parent)
+            shutil.rmtree(task.prepared_dir)
             create_prepared_dir(task)
 
         logger.info(
@@ -134,14 +133,13 @@ def download_and_prepare_dataset(
 
         task.prepare_fn(
             raw=task.raw_dir,
-            public=task.public_dir,
-            private=task.private_dir,
+            prepared=task.prepared_dir,
         )
 
         logger.info(f"Data for task `{task.id}` prepared successfully.")
 
     # Save task description
-    with open(task.public_dir / "description.md", "w") as f:
+    with open(task.prepared_dir / "public" / "description.md", "w") as f:
         f.write(task.description)
 
     # Prepare human baselines
@@ -151,12 +149,14 @@ def download_and_prepare_dataset(
     if overwrite_checksums or not skip_verification:
         logger.info(f"Generating checksums for files in `{task_dir}`...")
 
-        actual_checksums.update(
-            {
-                "public": generate_checksums(task.public_dir),
-                "private": generate_checksums(task.private_dir),
-            }
-        )
+        # Generate checksums for public and private directories within prepared
+        for subdir in task.get_task_subdirs():
+            actual_checksums.update(
+                {
+                    f"public-{subdir.name}": generate_checksums(subdir / "public"),
+                    f"private-{subdir.name}": generate_checksums(subdir / "private"),
+                }
+            )
 
         if not task.checksums.is_file() or overwrite_checksums:
             with open(task.checksums, "w") as file:
@@ -190,49 +190,7 @@ def download_and_prepare_dataset(
             shutil.rmtree(downloaded_path)
 
     # Final validation
-    assert task.public_dir.is_dir(), f"Public data directory doesn't exist."
-    assert task.private_dir.is_dir(), f"Private data directory doesn't exist."
-    assert not is_empty(task.public_dir), f"Public data directory is empty!"
-    assert not is_empty(task.private_dir), f"Private data directory is empty!"
-
-
-def is_dataset_prepared(task: Task, grading_only: bool = False) -> bool:
-    """Checks if the task has non-empty `public` and `private` directories with the expected files."""
-
-    assert isinstance(task, Task), f"Expected input to be of type `Task` but got {type(task)}."
-
-    public = task.public_dir
-    private = task.private_dir
-
-    if not grading_only:
-        if not public.is_dir():
-            logger.warning("Public directory does not exist.")
-            return False
-        if is_empty(public):
-            logger.warning("Public directory is empty.")
-            return False
-
-    if not private.is_dir():
-        logger.warning("Private directory does not exist.")
-        return False
-    if is_empty(private):
-        logger.warning("Private directory is empty.")
-        return False
-
-    if not task.answers.is_file():
-        logger.warning("Answers file does not exist.")
-        return False
-
-    if not task.sample_submission.is_file() and not grading_only:
-        logger.warning("Sample submission file does not exist.")
-        return False
-
-    # Check for leaderboard - critical for grading and medal calculations
-    if not task.leaderboard.is_file():
-        logger.warning("Leaderboard file does not exist.")
-        return False
-
-    return True
+    assert task.is_prepared(), f"Task `{task.id}` is not prepared."
 
 
 def ensure_leaderboard_exists(task: Task, force: bool = False) -> Path:
@@ -285,7 +243,7 @@ def ensure_leaderboard_exists(task: Task, force: bool = False) -> Path:
 
 
 def is_valid_prepare_fn(preparer_fn: Any) -> bool:
-    """Checks if the `preparer_fn` takes three arguments: `raw`, `public` and `private`, in that order."""
+    """Checks if the `preparer_fn` takes two arguments: `raw` and `prepared`, in that order."""
 
     import inspect
 
@@ -295,7 +253,7 @@ def is_valid_prepare_fn(preparer_fn: Any) -> bool:
         return False
 
     actual_params = list(sig.parameters.keys())
-    expected_params = ["raw", "public", "private"]
+    expected_params = ["raw", "prepared"]
 
     return actual_params == expected_params
 

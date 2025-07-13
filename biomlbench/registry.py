@@ -5,7 +5,14 @@ from typing import Any, Callable, Dict, Optional
 from appdirs import user_cache_dir
 
 from biomlbench.grade_helpers import Grader
-from biomlbench.utils import get_logger, get_module_dir, get_repo_dir, import_fn, load_yaml
+from biomlbench.utils import (
+    get_logger,
+    get_module_dir,
+    get_repo_dir,
+    import_fn,
+    is_empty,
+    _oad_yaml,
+)
 
 logger = get_logger(__name__)
 
@@ -25,16 +32,12 @@ class Task:
     name: str
     description: str
     grader: Grader
-    answers: Path
-    gold_submission: Path
-    sample_submission: Path
     task_type: str  # e.g., 'medical_imaging', 'protein_engineering'
     domain: str  # e.g., 'oncology', 'drug_discovery'
     difficulty: str  # e.g., 'easy', 'medium', 'hard'
-    prepare_fn: Callable[[Path, Path, Path], Path]
+    prepare_fn: Callable[[Path, Path], None]
     raw_dir: Path
-    private_dir: Path
-    public_dir: Path
+    prepared_dir: Path
     checksums: Path
     leaderboard: Path
 
@@ -49,9 +52,6 @@ class Task:
         assert isinstance(self.name, str), "Task name must be a string."
         assert isinstance(self.description, str), "Task description must be a string."
         assert isinstance(self.grader, Grader), "Task grader must be of type Grader."
-        assert isinstance(self.answers, Path), "Task answers must be a Path."
-        assert isinstance(self.gold_submission, Path), "Gold submission must be a Path."
-        assert isinstance(self.sample_submission, Path), "Sample submission must be a Path."
         assert isinstance(self.task_type, str), "Task type must be a string."
         assert isinstance(self.domain, str), "Domain must be a string."
         assert isinstance(self.difficulty, str), "Difficulty must be a string."
@@ -74,16 +74,12 @@ class Task:
                 name=data["name"],
                 description=data["description"],
                 grader=grader,
-                answers=data["answers"],
-                sample_submission=data["sample_submission"],
-                gold_submission=data["gold_submission"],
                 task_type=data["task_type"],
                 domain=data["domain"],
                 difficulty=data["difficulty"],
                 prepare_fn=data["prepare_fn"],
                 raw_dir=data["raw_dir"],
-                public_dir=data["public_dir"],
-                private_dir=data["private_dir"],
+                prepared_dir=data["prepared_dir"],
                 checksums=data["checksums"],
                 leaderboard=data["leaderboard"],
                 biomedical_metadata=data.get("biomedical_metadata"),
@@ -93,6 +89,33 @@ class Task:
             )
         except KeyError as e:
             raise ValueError(f"Missing key {e} in task config!")
+
+    def get_task_subdirs(self) -> list[Path]:
+        """
+        Get the subdirectories of the task, which are the folders inside
+        the prepared directory that contain a public and private directory.
+        """
+        subdirs = []
+        for path in self.prepared_dir.iterdir():
+            public_dir = path / "public"
+            private_dir = path / "private"
+            if (
+                public_dir.is_dir()
+                and public_dir.exists()
+                and private_dir.is_dir()
+                and private_dir.exists()
+            ):
+                subdirs.append(path)
+
+        return subdirs
+
+    def is_prepared(self) -> bool:
+        """Checks if the task is prepared."""
+        for subdir in self.get_task_subdirs():
+            if is_empty(subdir / "public") or is_empty(subdir / "private"):
+                return False
+
+        return True
 
 
 class Registry:
@@ -118,27 +141,16 @@ class Registry:
 
         preparer_fn = import_fn(config["preparer"])
 
-        answers = self.get_data_dir() / config["dataset"]["answers"]
-        gold_submission = answers
-        if "gold_submission" in config["dataset"]:
-            gold_submission = self.get_data_dir() / config["dataset"]["gold_submission"]
-        sample_submission = self.get_data_dir() / config["dataset"]["sample_submission"]
-
         raw_dir = self.get_data_dir() / task_id / "raw"
-        private_dir = self.get_data_dir() / task_id / "prepared" / "private"
-        public_dir = self.get_data_dir() / task_id / "prepared" / "public"
+        prepared_dir = self.get_data_dir() / task_id / "prepared"
 
         return Task.from_dict(
             {
                 **config,
                 "description": description,
-                "answers": answers,
-                "sample_submission": sample_submission,
-                "gold_submission": gold_submission,
                 "prepare_fn": preparer_fn,
                 "raw_dir": raw_dir,
-                "private_dir": private_dir,
-                "public_dir": public_dir,
+                "prepared_dir": prepared_dir,
                 "checksums": checksums_path,
                 "leaderboard": leaderboard_path,
             }

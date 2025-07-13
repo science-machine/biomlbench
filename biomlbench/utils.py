@@ -355,19 +355,20 @@ def generate_submission_from_metadata(
     for run_id, run_data in metadata["runs"].items():
         run_dir = metadata_path.parent / run_id
         task_id = run_data["task_id"]
+        subdir = run_data["subdir"]
 
-        log_path = run_dir / rel_log_path
+        log_path = run_dir / subdir / rel_log_path
         has_log = log_path.exists()
-        code_path = run_dir / rel_code_path
+        code_path = run_dir / subdir / rel_code_path
         has_code = code_path.exists()
         # Check for multiple submission file formats
         # TODO: Add more submission file formats or make this more flexible (?)
         submission_formats = ["submission.csv", "submission.h5ad"]
         submission_path = None
         submitted = False
-        
+
         for format_name in submission_formats:
-            candidate_path = run_dir / "submission" / format_name
+            candidate_path = run_dir / subdir / "submission" / format_name
             if candidate_path.exists():
                 submission_path = candidate_path
                 submitted = True
@@ -376,7 +377,9 @@ def generate_submission_from_metadata(
         submission_lines.append(
             {
                 "task_id": task_id,
-                "submission_path": submission_path.as_posix() if submitted and submission_path else None,
+                "submission_path": (
+                    submission_path.as_posix() if submitted and submission_path else None
+                ),
                 "logs_path": log_path.as_posix() if has_log else None,
                 "code_path": code_path.as_posix() if has_code else None,
             }

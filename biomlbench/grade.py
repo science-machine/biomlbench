@@ -1,6 +1,8 @@
 """High-level grading functionality"""
+
 import json
 from datetime import datetime
+from statistics import mean
 from pathlib import Path
 
 from tqdm import tqdm
@@ -25,24 +27,29 @@ def grade_jsonl(
     Saves the aggregated report as a JSON file.
     """
 
-    submissions = read_jsonl(str(path_to_submissions), skip_commented_out_lines=True)
+    submissions = read_jsonl(path_to_submissions, skip_commented_out_lines=True)
+    submissions = pd.DataFrame(submissions)
     task_reports = []
 
-    for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
-        # Resolve submission path relative to the JSONL file directory
-        submission_path = path_to_submissions.parent / submission["submission_path"]
-        task_id = submission["task_id"]
-        task = registry.get_task(task_id)
-        single_report = grade_submission(submission_path, task)
+    for task_id, df in tqdm(
+        submissions.groupby("task_id"), desc="Grading submissions", unit="submission"
+    ):
+        submitted = False
+        scores = []
+        for submission_path, task_id in zip(df["submission_path"], df["task_id"]):
+            task = registry.get_task(task_id)
+            score, submission_exists = grade_csv(submission_path, task)
+            submitted = submitted or submission_exists
+            scores.append(score)
+        final_score = mean(scores)
+        single_report = generate_task_report(task, final_score, submitted)
         task_reports.append(single_report)
 
     aggregated_report = aggregate_reports(task_reports)
     timestamp = get_timestamp()
     save_path = output_dir / f"{timestamp}_grading_report.json"
     logger.info(
-        json.dumps(
-            {k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4
-        )
+        json.dumps({k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4)
     )
 
     output_dir.mkdir(exist_ok=True)
@@ -51,8 +58,8 @@ def grade_jsonl(
     logger.info(purple(f"Saved summary report to {save_path}"))
 
 
-def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
-    """Grades a submission file (CSV or h5ad) for the given task."""
+def grade_csv(path_to_submission: Path, task: Task) -> tuple[float | None, bool]:
+    """Grades a submission CSV for the given task."""
 
     if not is_dataset_prepared(task, grading_only=True):
         raise ValueError(
@@ -61,10 +68,12 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
         )
 
     score = None
-    submission_exists = path_to_submission.is_file()
-    file_extension = path_to_submission.suffix.lower()
-    
+    subdir = path_to_submission.parent.parent
+    answers_path = next((task.prepared_dir / subdir / "private").glob("answers*"), Path(""))
+    submission_exists = path_to_submission.is_file() and path_to_submission.suffix.lower() == ".csv"
+
     if submission_exists:
+        file_extension = answers_path.suffix.lower()
         if file_extension == ".csv":
             # Traditional CSV-based task
             submission_df = read_csv(path_to_submission)
@@ -88,11 +97,23 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
             f"Invalid submission file: {path_to_submission}. Please check that the file exists."
         )
 
+    return score, submission_exists
+
+
+def generate_task_report(task: Task, score: float | None, submission_exists: bool) -> TaskReport:
+    """Generates a task report for a given task with a given score."""
+
+    return score, submission_exists
+
+
+def generate_task_report(task: Task, score: float | None, submission_exists: bool) -> TaskReport:
+    """Generates a task report for a given task with a given score."""
+
     valid_submission = score is not None
     task_leaderboard = get_leaderboard(task)
     rank_info = task.grader.rank_score(score, task_leaderboard)
     is_lower_better = task.grader.is_lower_better(task_leaderboard)
-    
+
     # Check human baselines if available
     beats_human = None
     human_percentile = None
@@ -101,11 +122,13 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
         if human_baselines_path.exists():
             try:
                 human_df = pd.read_csv(human_baselines_path)
-                if not human_df.empty and 'score' in human_df.columns:
+                if not human_df.empty and "score" in human_df.columns:
                     beats_human, human_percentile = calculate_human_performance_metrics(
                         score, human_df, task.grader.is_lower_better(task_leaderboard)
                     )
-                    logger.debug(f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}")
+                    logger.debug(
+                        f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}"
+                    )
             except Exception as e:
                 logger.warning(f"Failed to load human baselines for task '{task.id}': {e}")
 
@@ -121,11 +144,10 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
         silver_medal=rank_info["silver_medal"],
         bronze_medal=rank_info["bronze_medal"],
         above_median=rank_info["above_median"],
-        submission_exists=submission_exists,
         valid_submission=valid_submission,
+        submission_exists=submission_exists,
         is_lower_better=is_lower_better,
         created_at=datetime.now(),
-        submission_path=str(path_to_submission),
         beats_human=beats_human,
         human_percentile=human_percentile,
     )
@@ -144,7 +166,10 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
     supported_formats = [".csv", ".h5ad"]
     file_extension = submission.suffix.lower()
     if file_extension not in supported_formats:
-        return False, f"Submission invalid! Submission file must be one of {supported_formats}, got {file_extension}."
+        return (
+            False,
+            f"Submission invalid! Submission file must be one of {supported_formats}, got {file_extension}.",
+        )
 
     if not is_dataset_prepared(task, grading_only=True):
         raise ValueError(
@@ -155,7 +180,7 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
     try:
         # Use the same logic as grade_submission for different file formats
         if file_extension == ".csv":
-            task.grader.grade_fn(read_csv(submission), read_csv(task.answers))
+            task.grader.grade_fn(read_csv(submission), read_csv(task.answers_path))
         elif file_extension == ".h5ad":
             # For h5ad files, pass paths directly to grade_fn
             task.grader.grade_fn(submission, Path(task.answers))
@@ -200,35 +225,37 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
     return summary_report
 
 
-def calculate_human_performance_metrics(agent_score: float, human_df: pd.DataFrame, is_lower_better: bool) -> tuple[bool, float]:
+def calculate_human_performance_metrics(
+    agent_score: float, human_df: pd.DataFrame, is_lower_better: bool
+) -> tuple[bool, float]:
     """
     Calculate how an agent's performance compares to human baselines.
-    
+
     Args:
         agent_score: The agent's score to compare
         human_df: DataFrame with human baseline scores (must have 'score' column)
         is_lower_better: Whether lower scores are better for this metric
-        
+
     Returns:
         Tuple of (beats_human, human_percentile) where:
         - beats_human: True if agent beats median human performance
         - human_percentile: Percentile of human performance that agent achieves (0-100)
     """
-    human_scores = human_df['score'].astype(float)
-    
+    human_scores = human_df["score"].astype(float)
+
     if human_scores.empty:
         return None, None
-    
+
     # Calculate median human performance for beats_human
     median_human = human_scores.median()
-    
+
     if is_lower_better:
         beats_human = agent_score < median_human
         # For lower-is-better: percentile = % of humans with score >= agent_score
         human_percentile = (human_scores >= agent_score).mean() * 100
     else:
         beats_human = agent_score > median_human
-        # For higher-is-better: percentile = % of humans with score <= agent_score  
+        # For higher-is-better: percentile = % of humans with score <= agent_score
         human_percentile = (human_scores <= agent_score).mean() * 100
-    
+
     return beats_human, round(human_percentile, 1)

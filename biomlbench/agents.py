@@ -44,14 +44,14 @@ logger = get_logger(__name__)
 async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool:
     """
     Check if an agent run actually succeeded by examining submission files and logs.
-    
+
     This catches cases where agents fail internally but exit with success codes.
     """
     try:
         # Check 1: Look for submission files
         submission_dir = run_dir / "submission"
         has_submission = False
-        
+
         if submission_dir.exists():
             # Check for common submission file formats
             submission_formats = ["submission.csv", "submission.h5ad"]
@@ -60,16 +60,16 @@ async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool
                 if submission_file.exists() and submission_file.stat().st_size > 0:
                     has_submission = True
                     break
-        
+
         # Check 2: Examine logs for failure patterns
         log_file = run_dir / "run.log"
         has_critical_errors = False
-        
+
         if log_file.exists():
             try:
-                with open(log_file, 'r') as f:
+                with open(log_file, "r") as f:
                     log_content = f.read().lower()
-                    
+
                     # Critical error patterns that indicate failure
                     error_patterns = [
                         "authenticationerror",
@@ -78,9 +78,9 @@ async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool
                         "traceback (most recent call last)",
                         "error:",
                         "exception:",
-                        "timeout"
+                        "timeout",
                     ]
-                    
+
                     for pattern in error_patterns:
                         if pattern in log_content:
                             has_critical_errors = True
@@ -88,21 +88,21 @@ async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool
                             break
             except Exception:
                 run_logger.warning("Could not read run log for failure analysis")
-        
+
         # Decision logic: If we have critical errors, it's a failure
         if has_critical_errors:
             run_logger.error(f"Agent failed: Critical errors found in logs")
             return False
-        
+
         # If we have a valid submission file, it's likely a success
         if has_submission:
             run_logger.info(f"Agent succeeded: Valid submission file found")
             return True
-        
+
         # If no submission and no clear errors, treat as suspicious failure
         run_logger.warning(f"Agent success unclear: No submission file found")
         return False
-        
+
     except Exception as e:
         run_logger.error(f"Error during success check: {e}")
         return False
@@ -119,6 +119,7 @@ class AgentTask:
     path_to_run: Path
     agent: Agent
     task: Task
+    subdir: Path
     container_config: dict[str, Any]
 
 
@@ -133,6 +134,9 @@ async def worker(
     while True:
         agent_task = await queue.get()
 
+        # Create the subdirectory-specific run directory
+        agent_task.path_to_run.mkdir(parents=True, exist_ok=True)
+
         # Create logger for the run
         run_logger = get_logger(str(agent_task.path_to_run))
         log_file_handler = logging.FileHandler(agent_task.path_to_run / "run.log")
@@ -141,19 +145,23 @@ async def worker(
         run_logger.propagate = False
 
         run_logger.info(
-            f"[Worker {idx}] Running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
+            f"[Worker {idx}] Running seed {agent_task.seed} for {agent_task.task.id} "
+            f"and agent {agent_task.agent.name} in subdir {agent_task.subdir}"
         )
 
         task_output = {
             "task_id": agent_task.task.id,
             "agent_id": agent_task.agent.id,
             "seed": agent_task.seed,
+            "subdir": agent_task.subdir,
         }
         try:
             await asyncio.to_thread(
                 run_in_container,
                 client=client,
-                task=agent_task.task,
+                task_id=agent_task.task.id,
+                public_dir=agent_task.subdir / "public",
+                private_dir=agent_task.subdir / "private",
                 agent=agent_task.agent,
                 image=agent_task.agent.name,
                 container_config=agent_task.container_config,
@@ -161,8 +169,6 @@ async def worker(
                 run_dir=agent_task.path_to_run,
                 logger=run_logger,
             )
-            
-            # ENHANCED: Check if the agent actually succeeded beyond just not throwing an exception
             success = await check_agent_success(agent_task.path_to_run, run_logger)
             task_output["success"] = success
 
@@ -174,17 +180,23 @@ async def worker(
                 run_logger.error(
                     f"[Worker {idx}] Agent completed without exception but failed internally for seed {agent_task.seed}, task {agent_task.task.id}, agent {agent_task.agent.name}"
                 )
+
+            run_logger.info(
+                f"[Worker {idx}] Finished running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
+            )
         except Exception as e:
             stack_trace = traceback.format_exc()
             run_logger.error(type(e))
             run_logger.error(stack_trace)
             run_logger.error(
                 f"Run failed for seed {agent_task.seed}, agent {agent_task.agent.id} and task "
-                f"{agent_task.task.id}"
+                f"{agent_task.task.id} subdir {agent_task.subdir}"
             )
             task_output["success"] = False
         finally:
-            tasks_outputs[agent_task.run_id] = task_output
+            # Use a composite key to track individual subdirectory results
+            subdir_run_id = f"{agent_task.run_id}-{agent_task.subdir}"
+            tasks_outputs[subdir_run_id] = task_output
             queue.task_done()
 
 
@@ -263,27 +275,34 @@ async def run_agent_async(
     with open(container_config_path, "r") as f:
         container_config = json.load(f)
 
-    # Create agent tasks for each (task × seed) combination
+    # Create agent tasks for each (task × seed × subdirectory) combination
     logger.info(f"Launching run group: {run_group}")
     agent_tasks = []
     for seed in range(n_seeds):
         for task_id in task_ids:
             task = task_registry.get_task(task_id)
+            subdirs = task.get_task_subdirs()
+
+            # Create one run directory per task (not per subdirectory)
             run_dir = create_run_dir(task.id, agent.id, run_group)
-            # Store relative path from run group directory for proper reconstruction
             run_group_dir = get_runs_dir() / run_group
             run_id = str(run_dir.relative_to(run_group_dir))
-            agent_task = AgentTask(
-                run_id=run_id,
-                seed=seed,
-                image=agent.name,
-                agent=agent,
-                task=task,
-                path_to_run_group=run_dir.parent,
-                path_to_run=run_dir,
-                container_config=container_config,
-            )
-            agent_tasks.append(agent_task)
+
+            for subdir in subdirs:
+                # Create subdirectory-specific run path within the task run directory
+                subdir_run_dir = run_dir / subdir.name
+                agent_task = AgentTask(
+                    run_id=run_id,
+                    seed=seed,
+                    image=agent.name,
+                    agent=agent,
+                    task=task,
+                    path_to_run_group=run_dir,
+                    path_to_run=subdir_run_dir,
+                    container_config=container_config,
+                    subdir=subdir,
+                )
+                agent_tasks.append(agent_task)
 
     logger.info(f"Creating {n_workers} workers to serve {len(agent_tasks)} tasks...")
 
@@ -312,11 +331,16 @@ async def run_agent_async(
     metadata = {
         "run_group": run_group,
         "created_at": get_timestamp(),
-        "runs": tasks_outputs,
+        "runs": tasks_outputs,  # Contains subdir-specific results
         "agent_id": agent_id,
         "task_ids": task_ids,
         "n_seeds": n_seeds,
         "n_workers": n_workers,
+        "task_structure": {
+            # Add information about how results are organized
+            "results_per_task": True,
+            "subdirectory_results": True,
+        },
     }
 
     run_group_dir = get_runs_dir() / run_group
@@ -328,28 +352,33 @@ async def run_agent_async(
     submission_path = generate_submission_from_metadata(metadata_path)
 
     # CRITICAL: Check for failures and report them to prevent silent failures
-    failed_runs = [run_id for run_id, output in tasks_outputs.items() if not output.get("success", False)]
+    failed_runs = [
+        run_id for run_id, output in tasks_outputs.items() if not output.get("success", False)
+    ]
     total_runs = len(tasks_outputs)
     successful_runs = total_runs - len(failed_runs)
-    
+
     logger.info(f"{n_workers} workers ran for {time_taken:.2f} seconds in total")
     logger.info(f"Results saved to: {run_group_dir}")
-    
+
     # Report success/failure statistics
     if failed_runs:
         logger.error(f"❌ {len(failed_runs)}/{total_runs} runs FAILED!")
         logger.error(f"✅ {successful_runs}/{total_runs} runs succeeded")
-        
+
         # Check for common failure patterns and provide specific guidance
         first_failed_run = failed_runs[0]
         first_run_log = run_group_dir / first_failed_run / "run.log"
-        
+
         if first_run_log.exists():
             try:
-                with open(first_run_log, 'r') as f:
+                with open(first_run_log, "r") as f:
                     log_content = f.read().lower()
-                    
-                    if "docker.errors.imagenotfound" in log_content or "no such image" in log_content:
+
+                    if (
+                        "docker.errors.imagenotfound" in log_content
+                        or "no such image" in log_content
+                    ):
                         logger.error(f"🐳 Docker image '{agent.name}:latest' not found!")
                         logger.error(f"💡 To fix this, build the agent image first:")
                         logger.error(f"   ./scripts/build_agent.sh {agent.name}")
@@ -364,9 +393,9 @@ async def run_agent_async(
                         logger.error(f"   cat {first_run_log}")
             except Exception:
                 logger.error(f"📋 Check detailed error logs in: {run_group_dir}")
-        
+
         logger.error(f"🚨 AGENT EXECUTION FAILED - See errors above")
-        
+
         # If ALL runs failed, this is a critical error that should not be silent
         if successful_runs == 0:
             raise RuntimeError(
@@ -376,7 +405,7 @@ async def run_agent_async(
             )
     else:
         logger.info(f"✅ All {total_runs} runs completed successfully!")
-    
+
     if successful_runs > 0:
         logger.info(f"Submission file ready for grading: {submission_path}")
         logger.info(

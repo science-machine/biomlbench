@@ -1,4 +1,5 @@
 """Helper classes related to grading"""
+
 import inspect
 from dataclasses import dataclass
 from datetime import datetime
@@ -164,6 +165,7 @@ class TaskReport:
     """
     Report for a single biomedical task evaluation.
 
+
     Extended from MLE-bench CompetitionReport with biomedical-specific fields.
     """
 
@@ -178,11 +180,10 @@ class TaskReport:
     silver_medal: bool
     bronze_medal: bool
     above_median: bool
-    submission_exists: bool
     valid_submission: bool
+    submission_exists: bool
     is_lower_better: bool
     created_at: datetime
-    submission_path: str
 
     # Biomedical-specific fields
     beats_human: bool = None
@@ -202,15 +203,14 @@ class TaskReport:
             "silver_medal": bool(self.silver_medal),
             "bronze_medal": bool(self.bronze_medal),
             "above_median": bool(self.above_median),
-            "submission_exists": bool(self.submission_exists),
             "valid_submission": bool(self.valid_submission),
+            "submission_exists": bool(self.submission_exists),
             "is_lower_better": bool(self.is_lower_better),
             "created_at": self.created_at.isoformat(),  # Serialize datetime
-            "submission_path": self.submission_path,
             "beats_human": bool(self.beats_human) if self.beats_human is not None else None,
-            "human_percentile": float(self.human_percentile)
-            if self.human_percentile is not None
-            else None,
+            "human_percentile": (
+                float(self.human_percentile) if self.human_percentile is not None else None
+            ),
         }
 
     @classmethod
@@ -232,13 +232,14 @@ class TaskReport:
             "valid_submission": bool(data["valid_submission"]),
             "is_lower_better": bool(data["is_lower_better"]),
             "created_at": datetime.fromisoformat(data["created_at"]),
-            "submission_path": data["submission_path"],
-            "beats_human": bool(data["beats_human"])
-            if data.get("beats_human") is not None
-            else None,
-            "human_percentile": float(data["human_percentile"])
-            if data.get("human_percentile") is not None
-            else None,
+            "beats_human": (
+                bool(data["beats_human"]) if data.get("beats_human") is not None else None
+            ),
+            "human_percentile": (
+                float(data["human_percentile"])
+                if data.get("human_percentile") is not None
+                else None
+            ),
         }
 
         return cls(**typed_data)
