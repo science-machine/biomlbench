@@ -1,31 +1,31 @@
 id: polarishub/tdcommons-half-life-obach
-name: "half-life-obach"
+name: half-life-obach
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-half-life-obach/description.md
+preparer: biomlbench.tasks.polarishub.tdcommons-half-life-obach.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: tdcommons/half-life-obach
 
-dataset:
-  answers: polarishub/tdcommons-half-life-obach/prepared/private/answers.csv
-  sample_submission: polarishub/tdcommons-half-life-obach/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.tdcommons-half-life-obach.grade:grade
 
-preparer: biomlbench.tasks.polarishub.tdcommons-half-life-obach.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "single_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "spearmanr"
+  modality: molecular
+  data_type: single_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: spearmanr
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

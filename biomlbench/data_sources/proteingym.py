@@ -1,9 +1,9 @@
-import requests
-import time
+import io
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
 
 import pandas as pd
+import requests
 
 from biomlbench.data_sources.base import DataSource, DataSourceError
 from biomlbench.data_sources.factory import register_data_source
@@ -18,10 +18,8 @@ class ProteinGymDMSDataSource(DataSource):
     Data source for the ProteinGym deep mutational scanning (DMS) dataset.
     """
 
-    DATASET_URL = (
-        "https://marks.hms.harvard.edu/proteingym/ProteinGym_v1.3/DMS_ProteinGym_substitutions.zip"
-    )
-    LEADERBOARD_URL = "https://raw.githubusercontent.com/OATML-Markslab/ProteinGym/main/benchmarks/DMS_supervised/substitutions/Spearman/DMS_substitutions_Spearman_DMS_level_fold_random_5.csv"
+    DATASET_URL = "https://marks.hms.harvard.edu/proteingym/ProteinGym_v1.3/cv_folds_singles_substitutions.zip"
+    LEADERBOARD_URL = "https://raw.githubusercontent.com/OATML-Markslab/ProteinGym/refs/heads/main/benchmarks/DMS_supervised/substitutions/Spearman/DMS_substitutions_Spearman_DMS_level.csv"
 
     def __init__(self):
         """Initialises the ProteinGym DMS data source without cached paths."""
@@ -42,14 +40,12 @@ class ProteinGymDMSDataSource(DataSource):
             ValueError: If configuration is invalid
         """
         # Optional dataset_name for indexing specific dataset in leaderboard
-        if "dataset_name" not in source_config:
-            raise ValueError("ProteinGym 'dataset_name' is required", source_type="proteingym")
+        if "benchmark_id" not in source_config:
+            raise ValueError("ProteinGym 'benchmark_id' is required")
 
-        dataset_name = source_config["dataset_name"]
+        dataset_name = source_config["benchmark_id"]
         if not isinstance(dataset_name, str) or not dataset_name.strip():
-            raise ValueError(
-                "ProteinGym 'dataset_name' must be a non-empty string", source_type="proteingym"
-            )
+            raise ValueError("ProteinGym 'benchmark_id' must be a non-empty string")
 
         return True
 
@@ -58,7 +54,7 @@ class ProteinGymDMSDataSource(DataSource):
         Download ProteinGym DMS substitutions data.
 
         Args:
-            source_config: Configuration for the data source, may contain 'dataset_name'
+            source_config: Configuration for the data source, must contain 'benchmark_id'
             data_dir: Directory to download data to
 
         Returns:
@@ -71,7 +67,7 @@ class ProteinGymDMSDataSource(DataSource):
         self.validate_config(source_config)
 
         # Define zip file path
-        zip_path = data_dir / "DMS_ProteinGym_substitutions.zip"
+        zip_path = data_dir / "cv_folds_singles_substitutions.zip"
 
         # Check class-level cache first
         if self._cached_zip_path and self._cached_zip_path.exists():
@@ -121,7 +117,7 @@ class ProteinGymDMSDataSource(DataSource):
         Get leaderboard from ProteinGym.
 
         Args:
-            source_config: Configuration for the data source, may contain 'dataset_name'
+            source_config: Configuration for the data source, must contain 'benchmark_id'
 
         Returns:
             DataFrame with columns: teamName, score, submissionDate
@@ -159,8 +155,8 @@ class ProteinGymDMSDataSource(DataSource):
                 return empty_leaderboard
 
         # If dataset_name is specified, filter to that specific dataset
-        dataset_name = source_config["dataset_name"]
-        if dataset_name in leaderboard_df.index:
+        dataset_name = source_config["benchmark_id"]
+        if dataset_name not in leaderboard_df.index:
             raise ValueError(f"Dataset {dataset_name} not found in leaderboard")
 
         # Extract the specific dataset row and convert to standard format
@@ -191,7 +187,7 @@ class ProteinGymDMSDataSource(DataSource):
 
             # Parse CSV content
             csv_content = response.text
-            df = pd.read_csv(pd.StringIO(csv_content))
+            df = pd.read_csv(io.StringIO(csv_content))
 
             logger.info(f"Successfully downloaded CSV with shape: {df.shape}")
             logger.debug(f"CSV columns: {list(df.columns)}")

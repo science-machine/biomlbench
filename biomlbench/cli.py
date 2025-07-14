@@ -8,11 +8,11 @@ from dotenv import load_dotenv
 from biomlbench.agents import run_agent
 from biomlbench.baselines import run_baseline
 from biomlbench.data import (
-    download_and_prepare_dataset,
+    download_and_prepare_datasets,
     ensure_leaderboard_exists,
     prepare_human_baselines,
 )
-from biomlbench.grade import grade_submission, grade_jsonl
+from biomlbench.grade import grade_file, grade_jsonl
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger, get_repo_dir
 
@@ -28,7 +28,7 @@ def main():
         logger.debug(f"Loaded environment variables from {dotenv_path}")
     else:
         logger.debug(f"No .env file found at {dotenv_path}")
-    
+
     parser = argparse.ArgumentParser(description="Runs agents on biomedical ML tasks.")
     subparsers = parser.add_subparsers(dest="command", help="Sub-command to run.")
 
@@ -41,6 +41,13 @@ def main():
         "-t",
         "--task-id",
         help=f"ID of the task to prepare in 'folder/task' format. Examples: manual/caco2-wang, polarishub/tdcommons-admet",
+        type=str,
+        required=False,
+    )
+    parser_prepare.add_argument(
+        "-d",
+        "--dataset-id",
+        help=f"ID of the dataset to prepare in 'folder/dataset' format. Examples: proteingym-dms/A0A247D711_LISMN_Stadelmann_2021",
         type=str,
         required=False,
     )
@@ -137,16 +144,21 @@ def main():
     # Grade sample sub-parser
     parser_grade_sample = subparsers.add_parser(
         name="grade-sample",
-        help="Grade a single sample (task) in the eval",
+        help="Grade a single sample (dataset) in the eval",
     )
     parser_grade_sample.add_argument(
         "submission",
-        help="Path to the submission CSV file.",
+        help="Path to the submission file.",
         type=str,
     )
     parser_grade_sample.add_argument(
         "task_id",
         help=f"ID of the task to grade in 'folder/task' format. Examples: manual/caco2-wang",
+        type=str,
+    )
+    parser_grade_sample.add_argument(
+        "dataset_id",
+        help=f"ID of the dataset to grade. Should be a folder in the task's directory.",
         type=str,
     )
     parser_grade_sample.add_argument(
@@ -327,7 +339,7 @@ def main():
             tasks = [new_registry.get_task(args.task_id)]
 
         for task in tasks:
-            download_and_prepare_dataset(
+            download_and_prepare_datasets(
                 task=task,
                 keep_raw=args.keep_raw,
                 overwrite_checksums=args.overwrite_checksums,
@@ -344,8 +356,9 @@ def main():
     if args.command == "grade-sample":
         new_registry = registry.set_data_dir(Path(args.data_dir))
         task = new_registry.get_task(args.task_id)
+        dataset = task.get_dataset(args.dataset_id)
         submission = Path(args.submission)
-        report = grade_submission(submission, task)
+        report = grade_file(submission, task, dataset)
         logger.info("Task report:")
         logger.info(json.dumps(report.to_dict(), indent=4))
 

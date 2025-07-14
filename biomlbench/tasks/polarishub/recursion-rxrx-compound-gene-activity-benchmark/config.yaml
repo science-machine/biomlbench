@@ -1,31 +1,31 @@
 id: polarishub/recursion-rxrx-compound-gene-activity-benchmark
-name: "RxRx-compound-gene-activity-benchmark"
+name: RxRx-compound-gene-activity-benchmark
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/recursion-rxrx-compound-gene-activity-benchmark/description.md
+preparer: biomlbench.tasks.polarishub.recursion-rxrx-compound-gene-activity-benchmark.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: recursion/rxrx-compound-gene-activity-benchmark
 
-dataset:
-  answers: polarishub/recursion-rxrx-compound-gene-activity-benchmark/prepared/private/answers.csv
-  sample_submission: polarishub/recursion-rxrx-compound-gene-activity-benchmark/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.recursion-rxrx-compound-gene-activity-benchmark.grade:grade
 
-preparer: biomlbench.tasks.polarishub.recursion-rxrx-compound-gene-activity-benchmark.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "single_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "pr_auc{"aggregation": "mean", "default": null, "group_by": "treatment", "on_error": "ignore"}"
+  modality: molecular
+  data_type: single_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: pr_auc
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

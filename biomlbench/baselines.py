@@ -9,19 +9,17 @@ baseline factory.
 
 import importlib.util
 import json
-import sys
 import uuid
 from abc import ABC, abstractmethod
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Type
+from typing import Any, Dict, List, Type
 
 import numpy as np
 import pandas as pd
 
-from biomlbench.data import is_dataset_prepared
-from biomlbench.registry import Task
-from biomlbench.utils import get_logger, get_module_dir, import_fn
+from biomlbench.registry import Dataset
+from biomlbench.utils import get_logger, get_module_dir
 
 logger = get_logger(__name__)
 
@@ -35,8 +33,8 @@ class BaselineAgent(ABC):
         np.random.seed(seed)
 
     @abstractmethod
-    def generate_submission(self, task: Task) -> pd.DataFrame:
-        """Generate a submission for the given task."""
+    def generate_submission(self, dataset: Dataset) -> pd.DataFrame:
+        """Generate a submission for the given dataset."""
         pass
 
     def get_metadata(self) -> Dict[str, Any]:
@@ -57,13 +55,13 @@ class SimpleBaselineAgent(BaselineAgent):
     def __init__(self, seed: int = 42):
         super().__init__("simple", seed)
 
-    def generate_submission(self, task: Task) -> pd.DataFrame:
+    def generate_submission(self, dataset: Dataset) -> pd.DataFrame:
         """Predict the mean of training data for all samples."""
         # Load sample submission to get format
-        sample_submission = pd.read_csv(task.sample_submission)
+        sample_submission = pd.read_csv(dataset.sample_submission)
 
         # Load training data
-        train_df = pd.read_csv(task.public_dir / "train.csv")
+        train_df = pd.read_csv(dataset.public_path / "train.csv")
 
         # Get target column (assume last column that's not 'id')
         # TODO: Revisit this logic as we add more data sources.
@@ -103,13 +101,13 @@ class RandomBaselineAgent(BaselineAgent):
     def __init__(self, seed: int = 42):
         super().__init__("random", seed)
 
-    def generate_submission(self, task: Task) -> pd.DataFrame:
+    def generate_submission(self, dataset: Dataset) -> pd.DataFrame:
         """Generate random predictions based on training data statistics."""
         # Load sample submission to get format
-        sample_submission = pd.read_csv(task.sample_submission)
+        sample_submission = pd.read_csv(dataset.sample_submission_path)
 
         # Load training data to get statistics
-        train_df = pd.read_csv(task.public_dir / "train.csv")
+        train_df = pd.read_csv(dataset.public_path / "train.csv")
 
         # Get target column (assume last column that's not 'id')
         target_cols = [col for col in train_df.columns if col.lower() != "id"]
@@ -153,34 +151,43 @@ class BaselineFactory:
 
     @classmethod
     def register_baseline(
-        cls, task_id: str, baseline_name: str, baseline_class: Type[BaselineAgent]
+        cls, task_id: str, dataset_id: str, baseline_name: str, baseline_class: Type[BaselineAgent]
     ):
         """Register a baseline for a specific task."""
         if task_id not in cls._registry:
             cls._registry[task_id] = {}
-        cls._registry[task_id][baseline_name] = baseline_class
-        logger.debug(f"Registered {baseline_name} baseline for task {task_id}")
+            cls._registry[task_id][dataset_id] = {}
+
+        if dataset_id not in cls._registry[task_id]:
+            cls._registry[task_id][dataset_id] = {}
+
+        cls._registry[task_id][dataset_id][baseline_name] = baseline_class
+        logger.debug(f"Registered {baseline_name} baseline for task {task_id} dataset {dataset_id}")
 
     @classmethod
-    def get_available_baselines(cls, task_id: str) -> List[str]:
+    def get_available_baselines(cls, task_id: str, dataset_id: str) -> List[str]:
         """Get list of available baselines for a task."""
         # Always include generic baselines
         baselines = ["simple", "random"]
 
         # Add task-specific baselines if available
-        if task_id in cls._registry:
-            baselines.extend(cls._registry[task_id].keys())
+        if task_id in cls._registry and dataset_id in cls._registry[task_id]:
+            baselines.extend(cls._registry[task_id][dataset_id].keys())
 
         return list(set(baselines))  # Remove duplicates
 
     @classmethod
     def create_baseline(
-        cls, task_id: str, baseline_type: str, seed: int = 42, **kwargs
+        cls, task_id: str, dataset_id: str, baseline_type: str, seed: int = 42, **kwargs
     ) -> BaselineAgent:
         """Create a baseline agent for the given task and type."""
         # Try task-specific baselines first
-        if task_id in cls._registry and baseline_type in cls._registry[task_id]:
-            baseline_class = cls._registry[task_id][baseline_type]
+        if (
+            task_id in cls._registry
+            and dataset_id in cls._registry[task_id]
+            and baseline_type in cls._registry[task_id][dataset_id]
+        ):
+            baseline_class = cls._registry[task_id][dataset_id][baseline_type]
             return baseline_class(seed=seed, **kwargs)
 
         # Fall back to generic baselines
@@ -189,23 +196,24 @@ class BaselineFactory:
         elif baseline_type == "random":
             return RandomBaselineAgent(seed=seed)
         else:
-            available = cls.get_available_baselines(task_id)
+            available = cls.get_available_baselines(task_id, dataset_id)
             raise ValueError(
-                f"Unknown baseline type '{baseline_type}' for task '{task_id}'. Available: {available}"
+                f"Unknown baseline type '{baseline_type}' for task '{task_id}' dataset '{dataset_id}'. Available: {available}"
             )
 
     @classmethod
-    def auto_discover_baselines(cls, task_id: str):
+    def auto_discover_baselines(cls, task_id: str, dataset_id: str):
         """Auto-discover baselines for a task by trying to import task-specific baseline module."""
         try:
             # Construct the path to the task's baselines module
-            task_dir = get_module_dir() / "tasks" / task_id
+            task_dir = get_module_dir() / "tasks" / task_id / dataset_id
             baselines_file = task_dir / "baselines.py"
 
             if baselines_file.exists():
                 # Create a module spec and load the module
                 spec = importlib.util.spec_from_file_location(
-                    f"task_{task_id.replace('/', '_').replace('-', '_')}_baselines", baselines_file
+                    f"task_{task_id.replace('/', '_').replace('-', '_')}_{dataset_id.replace('/', '_').replace('-', '_')}_baselines",
+                    baselines_file,
                 )
                 baseline_module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(baseline_module)
@@ -213,18 +221,26 @@ class BaselineFactory:
                 # If the module has a register_baselines function, call it
                 if hasattr(baseline_module, "register_baselines"):
                     baseline_module.register_baselines()
-                    logger.info(f"Auto-discovered baselines for task '{task_id}'")
+                    logger.info(
+                        f"Auto-discovered baselines for task '{task_id}' dataset '{dataset_id}'"
+                    )
                 else:
-                    logger.debug(f"No register_baselines function found for task '{task_id}'")
+                    logger.debug(
+                        f"No register_baselines function found for task '{task_id}' dataset '{dataset_id}'"
+                    )
             else:
-                logger.debug(f"No baselines.py file found for task '{task_id}'")
+                logger.debug(
+                    f"No baselines.py file found for task '{task_id}' dataset '{dataset_id}'"
+                )
 
         except Exception as e:
-            logger.debug(f"Failed to auto-discover baselines for '{task_id}': {e}")
+            logger.debug(
+                f"Failed to auto-discover baselines for '{task_id}' dataset '{dataset_id}': {e}"
+            )
 
 
 def run_baseline(
-    task: Task,
+    dataset: Dataset,
     baseline_type: str = "simple",
     output_dir: Path = Path("baseline_submissions"),
     seed: int = 42,
@@ -243,44 +259,49 @@ def run_baseline(
     Returns:
         List of submission metadata dictionaries
     """
-    # Verify task is prepared
-    if not is_dataset_prepared(task):
+    # Verify dataset is prepared
+    if not dataset.is_prepared():
         raise ValueError(
-            f"Task '{task.id}' is not prepared. Run 'biomlbench prepare -t {task.id}' first."
+            f"Dataset '{dataset.id}' is not prepared. Run 'biomlbench prepare -t {dataset.id}' first."
         )
 
     # Auto-discover task-specific baselines
-    BaselineFactory.auto_discover_baselines(task.id)
+    BaselineFactory.auto_discover_baselines(dataset.task_id, dataset.dataset_id)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     submission_metadata = []
 
     # Determine which baselines to run
     if baseline_type == "all":
-        baseline_types = BaselineFactory.get_available_baselines(task.id)
+        baseline_types = BaselineFactory.get_available_baselines(
+            dataset.task_id, dataset.dataset_id
+        )
     else:
         baseline_types = [baseline_type]
 
     for btype in baseline_types:
-        logger.info(f"Running {btype} baseline for task '{task.id}'...")
+        logger.info(f"Running {btype} baseline for dataset '{dataset.id}'...")
 
         try:
             # Create baseline agent
-            baseline = BaselineFactory.create_baseline(task.id, btype, seed=seed, **kwargs)
+            baseline = BaselineFactory.create_baseline(
+                dataset.task_id, dataset.dataset_id, btype, seed=seed, **kwargs
+            )
 
             # Generate submission
-            submission = baseline.generate_submission(task)
+            submission = baseline.generate_submission(dataset)
 
             # Save submission
             run_id = str(uuid.uuid4())[:8]
-            task_id_safe = task.id.replace("/", "-")
-            filename = f"{task_id_safe}_{btype}_baseline_{run_id}.csv"
+            dataset_id_safe = dataset.id.replace("/", "-")
+            filename = f"{dataset_id_safe}_{btype}_baseline_{run_id}.csv"
             submission_path = output_dir / filename
             submission.to_csv(submission_path, index=False)
 
             # Save metadata
             metadata = {
-                "task_id": task.id,
+                "task_id": dataset.task_id,
+                "dataset_id": dataset.dataset_id,
                 "baseline_type": btype,
                 "submission_path": str(submission_path),
                 "run_id": run_id,
@@ -288,7 +309,9 @@ def run_baseline(
                 **baseline.get_metadata(),
             }
 
-            metadata_path = output_dir / f"{task_id_safe}_{btype}_baseline_{run_id}_metadata.json"
+            metadata_path = (
+                output_dir / f"{dataset_id_safe}_{btype}_baseline_{run_id}_metadata.json"
+            )
             with open(metadata_path, "w") as f:
                 json.dump(metadata, f, indent=2)
 
@@ -302,7 +325,7 @@ def run_baseline(
 
     # Create a summary JSONL file for easy grading
     if submission_metadata:
-        task_id_safe = task.id.replace("/", "-")
+        task_id_safe = dataset.id.replace("/", "-")
         jsonl_path = output_dir / f"{task_id_safe}_baselines.jsonl"
         with open(jsonl_path, "w") as f:
             for metadata in submission_metadata:
@@ -310,6 +333,7 @@ def run_baseline(
                     json.dumps(
                         {
                             "task_id": metadata["task_id"],
+                            "dataset_id": metadata["dataset_id"],
                             "submission_path": metadata["submission_path"],
                         }
                     )

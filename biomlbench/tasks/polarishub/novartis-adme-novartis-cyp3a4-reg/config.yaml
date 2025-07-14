@@ -1,31 +1,31 @@
 id: polarishub/novartis-adme-novartis-cyp3a4-reg
-name: "adme-novartis-cyp3a4-reg"
+name: adme-novartis-cyp3a4-reg
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/novartis-adme-novartis-cyp3a4-reg/description.md
+preparer: biomlbench.tasks.polarishub.novartis-adme-novartis-cyp3a4-reg.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: novartis/adme-novartis-cyp3a4-reg
 
-dataset:
-  answers: polarishub/novartis-adme-novartis-cyp3a4-reg/prepared/private/answers.csv
-  sample_submission: polarishub/novartis-adme-novartis-cyp3a4-reg/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.novartis-adme-novartis-cyp3a4-reg.grade:grade
 
-preparer: biomlbench.tasks.polarishub.novartis-adme-novartis-cyp3a4-reg.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "single_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "absolute_average_fold_error"
+  modality: molecular
+  data_type: single_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: absolute_average_fold_error
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

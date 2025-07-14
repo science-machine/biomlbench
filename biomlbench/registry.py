@@ -11,7 +11,7 @@ from biomlbench.utils import (
     get_repo_dir,
     import_fn,
     is_empty,
-    _oad_yaml,
+    load_yaml,
 )
 
 logger = get_logger(__name__)
@@ -21,9 +21,53 @@ DEFAULT_DATA_DIR = (Path(user_cache_dir()) / "bioml-bench" / "data").resolve()
 
 
 @dataclass(frozen=True)
+class Dataset:
+    """
+    Represents a dataset in the BioML-bench framework.
+
+    Extended from MLE-bench CompetitionDataset class with biomedical-specific metadata.
+    """
+
+    task_id: str  # ID of the task to which the dataset belongs
+    dataset_id: str  # ID of the dataset
+    path: Path  # path to the dataset directory containing public and private subdirectories
+    answers: str  # name of the answers file
+    sample_submission: str  # name of the sample submission file
+
+    @property
+    def id(self) -> str:
+        """Combines the task ID and the dataset ID to form a unique identifier for the dataset."""
+        return f"{self.task_id}-{self.dataset_id}"
+
+    @property
+    def answers_path(self) -> Path:
+        """Path to the answers file."""
+        return self.path / "private" / self.answers
+
+    @property
+    def public_path(self) -> Path:
+        """Path to the public directory."""
+        return self.path / "public"
+
+    @property
+    def private_path(self) -> Path:
+        """Path to the private directory."""
+        return self.path / "private"
+
+    @property
+    def sample_submission_path(self) -> Path:
+        """Path to the sample submission file."""
+        return self.path / "public" / self.sample_submission
+
+    def is_prepared(self) -> bool:
+        """Checks if the dataset is prepared by checking that the public and private directories are not empty."""
+        return not (is_empty(self.public_path) or is_empty(self.private_path))
+
+
+@dataclass(frozen=True)
 class Task:
     """
-    Represents a biomedical ML task in the BioML-bench framework.
+    Represents a biomedical ML task in the BioML-bench framework, which can contain multiple datasets.
 
     Extended from MLE-bench Competition class with biomedical-specific metadata.
     """
@@ -31,6 +75,7 @@ class Task:
     id: str
     name: str
     description: str
+    datasets: list[Dataset]
     grader: Grader
     task_type: str  # e.g., 'medical_imaging', 'protein_engineering'
     domain: str  # e.g., 'oncology', 'drug_discovery'
@@ -68,11 +113,26 @@ class Task:
     def from_dict(data: dict) -> "Task":
         grader = Grader.from_dict(data["grader"])
 
+        # Create dataset objects
+        datasets = []
+
+        # dataset_data here is expected to contain answers and sample_submission file names
+        for dataset_id, dataset_data in data["datasets"].items():
+            dataset = Dataset(
+                task_id=data["id"],
+                dataset_id=dataset_id,
+                path=data["prepared_dir"] / dataset_id,
+                answers=dataset_data["answers"],
+                sample_submission=dataset_data["sample_submission"],
+            )
+            datasets.append(dataset)
+
         try:
             return Task(
                 id=data["id"],
                 name=data["name"],
                 description=data["description"],
+                datasets=datasets,
                 grader=grader,
                 task_type=data["task_type"],
                 domain=data["domain"],
@@ -90,29 +150,20 @@ class Task:
         except KeyError as e:
             raise ValueError(f"Missing key {e} in task config!")
 
-    def get_task_subdirs(self) -> list[Path]:
-        """
-        Get the subdirectories of the task, which are the folders inside
-        the prepared directory that contain a public and private directory.
-        """
-        subdirs = []
-        for path in self.prepared_dir.iterdir():
-            public_dir = path / "public"
-            private_dir = path / "private"
-            if (
-                public_dir.is_dir()
-                and public_dir.exists()
-                and private_dir.is_dir()
-                and private_dir.exists()
-            ):
-                subdirs.append(path)
-
-        return subdirs
+    def get_dataset(self, dataset_id: str) -> Dataset:
+        """Retrieves the dataset from the task using folder/dataset format."""
+        for dataset in self.datasets:
+            if dataset.id == dataset_id:
+                return dataset
+        raise ValueError(f"Dataset {dataset_id} not found in task {self.id}")
 
     def is_prepared(self) -> bool:
-        """Checks if the task is prepared."""
-        for subdir in self.get_task_subdirs():
-            if is_empty(subdir / "public") or is_empty(subdir / "private"):
+        """Checks if the task is prepared by checking that each of its datasets is prepared."""
+        for dataset in self.datasets:
+            try:
+                if not dataset.is_prepared():
+                    return False
+            except AssertionError:
                 return False
 
         return True
@@ -144,9 +195,13 @@ class Registry:
         raw_dir = self.get_data_dir() / task_id / "raw"
         prepared_dir = self.get_data_dir() / task_id / "prepared"
 
+        # {dataset_id: {answers: str, sample_submission: str}}
+        datasets = config["datasets"]
+
         return Task.from_dict(
             {
                 **config,
+                "datasets": datasets,
                 "description": description,
                 "prepare_fn": preparer_fn,
                 "raw_dir": raw_dir,

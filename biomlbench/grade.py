@@ -2,15 +2,15 @@
 
 import json
 from datetime import datetime
-from statistics import mean
 from pathlib import Path
+from statistics import mean
 
-from tqdm import tqdm
 import pandas as pd
+from tqdm import tqdm
 
-from biomlbench.data import get_leaderboard, is_dataset_prepared
+from biomlbench.data import get_leaderboard
 from biomlbench.grade_helpers import TaskReport
-from biomlbench.registry import Task, Registry
+from biomlbench.registry import Dataset, Registry, Task
 from biomlbench.registry import registry as DEFAULT_REGISTRY
 from biomlbench.utils import get_logger, get_timestamp, load_answers, purple, read_csv, read_jsonl
 
@@ -31,19 +31,28 @@ def grade_jsonl(
     submissions = pd.DataFrame(submissions)
     task_reports = []
 
-    for task_id, df in tqdm(
+    # loop over tasks
+    for task_id, datasets in tqdm(
         submissions.groupby("task_id"), desc="Grading submissions", unit="submission"
     ):
         submitted = False
+        task = registry.get_task(task_id)
+        dataset_submissions = {
+            dataset_id: Path(path)
+            for dataset_id, path in zip(datasets["dataset_id"], datasets["submission_path"])
+        }
+
+        # loop over datasets for the task, get the score for each dataset
         scores = []
-        for submission_path, task_id in zip(df["submission_path"], df["task_id"]):
-            task = registry.get_task(task_id)
-            score, submission_exists = grade_csv(submission_path, task)
+        for dataset in task.datasets:
+            submission_path = dataset_submissions[dataset.dataset_id]
+            score, submission_exists = grade_file(submission_path, task, dataset)
             submitted = submitted or submission_exists
             scores.append(score)
-        final_score = mean(scores)
-        single_report = generate_task_report(task, final_score, submitted)
-        task_reports.append(single_report)
+
+        # aggregate the scores for the task
+        task_report = generate_task_report(task, scores, submitted)
+        task_reports.append(task_report)
 
     aggregated_report = aggregate_reports(task_reports)
     timestamp = get_timestamp()
@@ -58,33 +67,30 @@ def grade_jsonl(
     logger.info(purple(f"Saved summary report to {save_path}"))
 
 
-def grade_csv(path_to_submission: Path, task: Task) -> tuple[float | None, bool]:
-    """Grades a submission CSV for the given task."""
+def grade_file(path_to_submission: Path, task: Task, dataset: Dataset) -> tuple[float | None, bool]:
+    """Grades a submission file for the given task."""
 
-    if not is_dataset_prepared(task, grading_only=True):
+    if not dataset.is_prepared():
         raise ValueError(
-            f"Dataset for task `{task.id}` is not prepared! "
-            f"Please run `biomlbench prepare -t {task.id}` to prepare the dataset."
+            f"Dataset {dataset.dataset_id} for task `{dataset.task_id}` is not prepared! "
+            f"Please run `biomlbench prepare -t {dataset.task_id}` to prepare the dataset."
         )
 
     score = None
-    subdir = path_to_submission.parent.parent
-    answers_path = next((task.prepared_dir / subdir / "private").glob("answers*"), Path(""))
-    submission_exists = path_to_submission.is_file() and path_to_submission.suffix.lower() == ".csv"
+    submission_exists = path_to_submission.is_file()
 
     if submission_exists:
-        file_extension = answers_path.suffix.lower()
+        file_extension = path_to_submission.suffix.lower()
         if file_extension == ".csv":
             # Traditional CSV-based task
             submission_df = read_csv(path_to_submission)
-            answers = load_answers(task.answers)
-            score = task.grader(submission_df, answers)
+            answers = load_answers(dataset.answers_path)
+            score = task.grader.grade_fn(submission_df, answers)
         elif file_extension == ".h5ad":
             # AnnData-based task (e.g., OpenProblems)
             # Call grade_fn directly with Path arguments, bypassing Grader.__call__
-            answers_path = Path(task.answers)
             try:
-                score = task.grader.grade_fn(path_to_submission, answers_path)
+                score = task.grader.grade_fn(path_to_submission, dataset.answers_path)
                 if score is not None:
                     score = round(score, 5)  # Match the rounding from Grader.__call__
             except Exception as e:
@@ -100,41 +106,51 @@ def grade_csv(path_to_submission: Path, task: Task) -> tuple[float | None, bool]
     return score, submission_exists
 
 
-def generate_task_report(task: Task, score: float | None, submission_exists: bool) -> TaskReport:
+def generate_task_report(
+    task: Task, scores: list[float | None], submission_exists: bool
+) -> TaskReport:
     """Generates a task report for a given task with a given score."""
 
-    return score, submission_exists
+    human_baselines = []
+    for score, dataset in zip(scores, task.datasets):
+        valid_submission = any(score is not None for score in scores)
+        task_leaderboard = get_leaderboard(task)
+        rank_info = task.grader.rank_score(score, task_leaderboard)
+        is_lower_better = task.grader.is_lower_better(task_leaderboard)
 
+        # Check human baselines if available
+        beats_human = None
+        human_percentile = None
+        if score is not None:
+            human_baselines_path = dataset.public_path / "human_baselines.csv"
+            if human_baselines_path.exists():
+                try:
+                    human_df = pd.read_csv(human_baselines_path)
+                    if not human_df.empty and "score" in human_df.columns:
+                        beats_human, human_percentile = calculate_human_performance_metrics(
+                            score, human_df, task.grader.is_lower_better(task_leaderboard)
+                        )
+                        logger.debug(
+                            f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}"
+                        )
+                        human_baselines.append((beats_human, human_percentile))
+                except Exception as e:
+                    logger.warning(f"Failed to load human baselines for task '{task.id}': {e}")
 
-def generate_task_report(task: Task, score: float | None, submission_exists: bool) -> TaskReport:
-    """Generates a task report for a given task with a given score."""
-
-    valid_submission = score is not None
-    task_leaderboard = get_leaderboard(task)
-    rank_info = task.grader.rank_score(score, task_leaderboard)
-    is_lower_better = task.grader.is_lower_better(task_leaderboard)
-
-    # Check human baselines if available
-    beats_human = None
-    human_percentile = None
-    if score is not None:
-        human_baselines_path = task.public_dir / "human_baselines.csv"
-        if human_baselines_path.exists():
-            try:
-                human_df = pd.read_csv(human_baselines_path)
-                if not human_df.empty and "score" in human_df.columns:
-                    beats_human, human_percentile = calculate_human_performance_metrics(
-                        score, human_df, task.grader.is_lower_better(task_leaderboard)
-                    )
-                    logger.debug(
-                        f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}"
-                    )
-            except Exception as e:
-                logger.warning(f"Failed to load human baselines for task '{task.id}': {e}")
+    # By default, we say the model beats human if it beats more than half of the human baselines
+    if human_baselines:
+        beats_human = (
+            sum([1 for beats_human, _ in human_baselines if beats_human]) / len(human_baselines)
+            > 0.5
+        )
+        human_percentile = mean([human_percentile for _, human_percentile in human_baselines])
+    else:
+        beats_human = None
+        human_percentile = None
 
     return TaskReport(
         task_id=task.id,
-        score=score,
+        score=mean(scores),
         gold_threshold=rank_info["gold_threshold"],
         silver_threshold=rank_info["silver_threshold"],
         bronze_threshold=rank_info["bronze_threshold"],
@@ -171,10 +187,10 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
             f"Submission invalid! Submission file must be one of {supported_formats}, got {file_extension}.",
         )
 
-    if not is_dataset_prepared(task, grading_only=True):
+    if not task.is_prepared():
         raise ValueError(
-            f"Dataset for task `{task.id}` is not prepared! "
-            f"Please run `biomlbench prepare -t {task.id}` to prepare the dataset."
+            f"Dataset(s) for task `{task.id}` are not prepared! "
+            f"Please run `biomlbench prepare -t {task.id}` to prepare the dataset(s)."
         )
 
     try:

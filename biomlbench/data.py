@@ -39,7 +39,7 @@ def create_prepared_dir(task: Task) -> None:
     task.prepared_dir.mkdir(exist_ok=True, parents=True)
 
 
-def download_and_prepare_dataset(
+def download_and_prepare_datasets(
     task: Task,
     keep_raw: bool = True,
     overwrite_checksums: bool = False,
@@ -47,7 +47,7 @@ def download_and_prepare_dataset(
     skip_verification: bool = False,
 ) -> None:
     """
-    Download and prepare a dataset using the appropriate data source.
+    Download and prepare the dataset(s) for a task using the appropriate data source.
 
     Args:
         task: Task to prepare
@@ -117,7 +117,7 @@ def download_and_prepare_dataset(
                 logger.info(f"Checksum for `{downloaded_path}` matches the expected checksum.")
 
     # Run task-specific preparation
-    if not task.is_prepared() or overwrite_checksums:
+    if (not task.is_prepared()) or overwrite_checksums:
         if task.prepared_dir.exists() and overwrite_checksums:
             logger.info(
                 f"Removing the existing prepared data directory for `{task.id}` since "
@@ -139,8 +139,9 @@ def download_and_prepare_dataset(
         logger.info(f"Data for task `{task.id}` prepared successfully.")
 
     # Save task description
-    with open(task.prepared_dir / "public" / "description.md", "w") as f:
-        f.write(task.description)
+    for dataset in task.datasets:
+        with open(dataset.public_path / "description.md", "w") as f:
+            f.write(task.description)
 
     # Prepare human baselines
     prepare_human_baselines(task, force=overwrite_checksums)
@@ -150,11 +151,11 @@ def download_and_prepare_dataset(
         logger.info(f"Generating checksums for files in `{task_dir}`...")
 
         # Generate checksums for public and private directories within prepared
-        for subdir in task.get_task_subdirs():
+        for dataset in task.datasets:
             actual_checksums.update(
                 {
-                    f"public-{subdir.name}": generate_checksums(subdir / "public"),
-                    f"private-{subdir.name}": generate_checksums(subdir / "private"),
+                    f"public-{dataset.id}": generate_checksums(dataset.public_path),
+                    f"private-{dataset.id}": generate_checksums(dataset.private_path),
                 }
             )
 
@@ -359,12 +360,13 @@ def get_checksum(fpath: Path) -> str:
 def get_leaderboard(task: Task) -> pd.DataFrame:
     """Load leaderboard data for a task."""
     leaderboard_path = task.leaderboard
+    print(leaderboard_path)
     assert leaderboard_path.exists(), f"Leaderboard not found locally for task `{task.id}`."
     leaderboard_df = pd.read_csv(leaderboard_path)
     return leaderboard_df
 
 
-def prepare_human_baselines(task: Task, force: bool = False) -> Optional[Path]:
+def prepare_human_baselines(task: Task, force: bool = False) -> None:
     """
     Prepare human baseline data for a task.
 
@@ -375,46 +377,57 @@ def prepare_human_baselines(task: Task, force: bool = False) -> Optional[Path]:
     Returns:
         Path to human baselines CSV file, or None if not available
     """
-    human_baselines_path = task.public_dir / "human_baselines.csv"
+    for dataset in task.datasets:
+        human_baselines_path = dataset.public_path / "human_baselines.csv"
 
-    # Skip if already exists and not forcing
-    if human_baselines_path.exists() and not force:
-        logger.info(f"Human baselines already exist for task '{task.id}'")
-        return human_baselines_path
+        # Skip if already exists and not forcing
+        if human_baselines_path.exists() and not force:
+            logger.info(
+                f"Human baselines already exist for dataset '{dataset.id}' of task '{task.id}'"
+            )
+            continue
 
-    # Get data source configuration
-    source_config = getattr(task, "data_source", None)
-    if source_config is None:
-        logger.debug(f"No data source configuration for task '{task.id}', skipping human baselines")
-        return None
+        # Get data source configuration
+        source_config = getattr(task, "data_source", None)
+        if source_config is None:
+            logger.debug(
+                f"No data source configuration for dataset '{dataset.id}' of task '{task.id}', skipping human baselines"
+            )
+            continue
 
-    # Create appropriate data source
-    source_type = source_config.get("type")
-    try:
-        data_source = DataSourceFactory.create(source_type)
-    except Exception as e:
-        logger.warning(f"Failed to create data source '{source_type}' for human baselines: {e}")
-        return None
+        # Create appropriate data source
+        source_type = source_config.get("type")
+        try:
+            data_source = DataSourceFactory.create(source_type)
+        except Exception as e:
+            logger.warning(f"Failed to create data source '{source_type}' for human baselines: {e}")
+            continue
 
-    # Check if data source supports human baselines
-    if not data_source.supports_human_baselines():
-        logger.debug(f"Data source '{source_type}' does not support human baselines")
-        return None
+        # Check if data source supports human baselines
+        if not data_source.supports_human_baselines():
+            logger.debug(f"Data source '{source_type}' does not support human baselines")
+            continue
 
-    # Extract human baselines
-    try:
-        human_baselines_df = data_source.get_human_baselines(source_config)
+        # Extract human baselines
+        try:
+            human_baselines_df = data_source.get_human_baselines(source_config)
 
-        if human_baselines_df is None or human_baselines_df.empty:
-            logger.info(f"No human baselines available for task '{task.id}'")
-            return None
+            if human_baselines_df is None or human_baselines_df.empty:
+                logger.info(
+                    f"No human baselines available for dataset '{dataset.id}' of task '{task.id}'"
+                )
+                continue
 
-        # Save human baselines
-        human_baselines_df.to_csv(human_baselines_path, index=False)
+            # Save human baselines
+            human_baselines_df.to_csv(human_baselines_path, index=False)
 
-        logger.info(f"Saved {len(human_baselines_df)} human baseline entries for task '{task.id}'")
-        return human_baselines_path
+            logger.info(
+                f"Saved {len(human_baselines_df)} human baseline entries for dataset '{dataset.id}' of task '{task.id}'"
+            )
+            continue
 
-    except Exception as e:
-        logger.error(f"Failed to extract human baselines for task '{task.id}': {e}")
-        raise e
+        except Exception as e:
+            logger.error(
+                f"Failed to extract human baselines for dataset '{dataset.id}' of task '{task.id}': {e}"
+            )
+            raise e

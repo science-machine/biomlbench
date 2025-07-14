@@ -21,8 +21,7 @@ from typing import Any, List, Tuple
 
 import docker
 
-from biomlbench.data import is_dataset_prepared
-from biomlbench.registry import Task, registry
+from biomlbench.registry import Dataset, Task, registry
 from biomlbench.utils import (
     create_run_dir,
     generate_submission_from_metadata,
@@ -119,7 +118,7 @@ class AgentTask:
     path_to_run: Path
     agent: Agent
     task: Task
-    subdir: Path
+    dataset: Dataset
     container_config: dict[str, Any]
 
 
@@ -146,22 +145,22 @@ async def worker(
 
         run_logger.info(
             f"[Worker {idx}] Running seed {agent_task.seed} for {agent_task.task.id} "
-            f"and agent {agent_task.agent.name} in subdir {agent_task.subdir}"
+            f"and agent {agent_task.agent.name} in dataset {agent_task.dataset.id}"
         )
 
         task_output = {
             "task_id": agent_task.task.id,
             "agent_id": agent_task.agent.id,
+            "dataset_id": agent_task.dataset.dataset_id,
             "seed": agent_task.seed,
-            "subdir": agent_task.subdir,
         }
         try:
             await asyncio.to_thread(
                 run_in_container,
                 client=client,
                 task_id=agent_task.task.id,
-                public_dir=agent_task.subdir / "public",
-                private_dir=agent_task.subdir / "private",
+                public_dir=agent_task.dataset.public_path,
+                private_dir=agent_task.dataset.private_path,
                 agent=agent_task.agent,
                 image=agent_task.agent.name,
                 container_config=agent_task.container_config,
@@ -190,13 +189,12 @@ async def worker(
             run_logger.error(stack_trace)
             run_logger.error(
                 f"Run failed for seed {agent_task.seed}, agent {agent_task.agent.id} and task "
-                f"{agent_task.task.id} subdir {agent_task.subdir}"
+                f"{agent_task.task.id} dataset {agent_task.dataset.id}"
             )
             task_output["success"] = False
         finally:
-            # Use a composite key to track individual subdirectory results
-            subdir_run_id = f"{agent_task.run_id}-{agent_task.subdir}"
-            tasks_outputs[subdir_run_id] = task_output
+            # Use a composite key to track individual dataset results
+            tasks_outputs[f"{agent_task.run_id}-{agent_task.dataset.dataset_id}"] = task_output
             queue.task_done()
 
 
@@ -262,10 +260,10 @@ async def run_agent_async(
     # Validate all tasks are prepared
     for task_id in task_ids:
         task = task_registry.get_task(task_id)
-        if not is_dataset_prepared(task):
+        if not task.is_prepared():
             raise ValueError(
-                f"Dataset for task `{task.id}` is not prepared! "
-                f"Please run `biomlbench prepare -t {task.id}` to prepare the dataset."
+                f"Dataset(s) for task `{task.id}` are not prepared! "
+                f"Please run `biomlbench prepare -t {task.id}` to prepare the dataset(s)."
             )
 
     # Load container configuration
@@ -281,16 +279,15 @@ async def run_agent_async(
     for seed in range(n_seeds):
         for task_id in task_ids:
             task = task_registry.get_task(task_id)
-            subdirs = task.get_task_subdirs()
 
             # Create one run directory per task (not per subdirectory)
             run_dir = create_run_dir(task.id, agent.id, run_group)
             run_group_dir = get_runs_dir() / run_group
             run_id = str(run_dir.relative_to(run_group_dir))
 
-            for subdir in subdirs:
+            for dataset in task.datasets:
                 # Create subdirectory-specific run path within the task run directory
-                subdir_run_dir = run_dir / subdir.name
+                dataset_run_dir = run_dir / dataset.dataset_id
                 agent_task = AgentTask(
                     run_id=run_id,
                     seed=seed,
@@ -298,9 +295,9 @@ async def run_agent_async(
                     agent=agent,
                     task=task,
                     path_to_run_group=run_dir,
-                    path_to_run=subdir_run_dir,
+                    path_to_run=dataset_run_dir,
                     container_config=container_config,
-                    subdir=subdir,
+                    dataset=dataset,
                 )
                 agent_tasks.append(agent_task)
 
@@ -331,7 +328,7 @@ async def run_agent_async(
     metadata = {
         "run_group": run_group,
         "created_at": get_timestamp(),
-        "runs": tasks_outputs,  # Contains subdir-specific results
+        "runs": tasks_outputs,  # Contains dataset-specific results
         "agent_id": agent_id,
         "task_ids": task_ids,
         "n_seeds": n_seeds,
@@ -339,7 +336,7 @@ async def run_agent_async(
         "task_structure": {
             # Add information about how results are organized
             "results_per_task": True,
-            "subdirectory_results": True,
+            "dataset_results": True,
         },
     }
 
@@ -412,7 +409,9 @@ async def run_agent_async(
             f"To grade results, run: biomlbench grade --submission {submission_path} --output-dir results/"
         )
     else:
-        logger.warning("⚠️  No successful runs to grade - submission file contains no valid results")
+        logger.warning(
+            "⚠️  No successful runs to grade - submission file contains no valid results"
+        )
 
     return run_group, submission_path
 

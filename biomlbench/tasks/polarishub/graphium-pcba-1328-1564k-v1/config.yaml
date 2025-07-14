@@ -1,31 +1,31 @@
 id: polarishub/graphium-pcba-1328-1564k-v1
-name: "pcba-1328-1564k-v1"
+name: pcba-1328-1564k-v1
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/graphium-pcba-1328-1564k-v1/description.md
+preparer: biomlbench.tasks.polarishub.graphium-pcba-1328-1564k-v1.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: graphium/pcba-1328-1564k-v1
 
-dataset:
-  answers: polarishub/graphium-pcba-1328-1564k-v1/prepared/private/answers.csv
-  sample_submission: polarishub/graphium-pcba-1328-1564k-v1/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.graphium-pcba-1328-1564k-v1.grade:grade
 
-preparer: biomlbench.tasks.polarishub.graphium-pcba-1328-1564k-v1.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "multi_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "f1"
+  modality: molecular
+  data_type: multi_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: f1
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

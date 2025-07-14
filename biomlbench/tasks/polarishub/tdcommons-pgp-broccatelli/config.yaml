@@ -1,31 +1,31 @@
 id: polarishub/tdcommons-pgp-broccatelli
-name: "pgp-broccatelli"
+name: pgp-broccatelli
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-pgp-broccatelli/description.md
+preparer: biomlbench.tasks.polarishub.tdcommons-pgp-broccatelli.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: tdcommons/pgp-broccatelli
 
-dataset:
-  answers: polarishub/tdcommons-pgp-broccatelli/prepared/private/answers.csv
-  sample_submission: polarishub/tdcommons-pgp-broccatelli/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.tdcommons-pgp-broccatelli.grade:grade
 
-preparer: biomlbench.tasks.polarishub.tdcommons-pgp-broccatelli.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "single_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "roc_auc"
+  modality: molecular
+  data_type: single_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: roc_auc
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

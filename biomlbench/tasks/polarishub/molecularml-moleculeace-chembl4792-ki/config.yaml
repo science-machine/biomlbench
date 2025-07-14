@@ -1,31 +1,31 @@
 id: polarishub/molecularml-moleculeace-chembl4792-ki
-name: "moleculeace-CHEMBL4792-Ki"
+name: moleculeace-CHEMBL4792-Ki
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/molecularml-moleculeace-chembl4792-ki/description.md
+preparer: biomlbench.tasks.polarishub.molecularml-moleculeace-chembl4792-ki.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: molecularml/moleculeace-chembl4792-ki
 
-dataset:
-  answers: polarishub/molecularml-moleculeace-chembl4792-ki/prepared/private/answers.csv
-  sample_submission: polarishub/molecularml-moleculeace-chembl4792-ki/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.molecularml-moleculeace-chembl4792-ki.grade:grade
 
-preparer: biomlbench.tasks.polarishub.molecularml-moleculeace-chembl4792-ki.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "single_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "mean_squared_error"
+  modality: molecular
+  data_type: single_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: mean_squared_error
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

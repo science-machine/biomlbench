@@ -1,31 +1,31 @@
 id: polarishub/polaris-posebusters-v1
-name: "posebusters_v1"
+name: posebusters_v1
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/polaris-posebusters-v1/description.md
+preparer: biomlbench.tasks.polarishub.polaris-posebusters-v1.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: polaris/posebusters-v1
 
-dataset:
-  answers: polarishub/polaris-posebusters-v1/prepared/private/answers.csv
-  sample_submission: polarishub/polaris-posebusters-v1/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.polaris-posebusters-v1.grade:grade
 
-preparer: biomlbench.tasks.polarishub.polaris-posebusters-v1.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "single_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "rmsd_coverage"
+  modality: molecular
+  data_type: single_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: rmsd_coverage
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

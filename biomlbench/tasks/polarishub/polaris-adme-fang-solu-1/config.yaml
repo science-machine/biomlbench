@@ -1,31 +1,31 @@
 id: polarishub/polaris-adme-fang-solu-1
-name: "adme-fang-SOLU-1"
+name: adme-fang-SOLU-1
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/polaris-adme-fang-solu-1/description.md
+preparer: biomlbench.tasks.polarishub.polaris-adme-fang-solu-1.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: polaris/adme-fang-solu-1
 
-dataset:
-  answers: polarishub/polaris-adme-fang-solu-1/prepared/private/answers.csv
-  sample_submission: polarishub/polaris-adme-fang-solu-1/prepared/public/sample_submission.csv
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.polaris-adme-fang-solu-1.grade:grade
 
-preparer: biomlbench.tasks.polarishub.polaris-adme-fang-solu-1.prepare:prepare
-
 biomedical_metadata:
-  modality: "molecular"
-  data_type: "single_task"
-  clinical_relevance: "drug_discovery"
-  polaris_main_metric: "pearsonr"
+  modality: molecular
+  data_type: single_task
+  clinical_relevance: drug_discovery
+  polaris_main_metric: pearsonr
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

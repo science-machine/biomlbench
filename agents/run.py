@@ -7,12 +7,13 @@ from docker.models.containers import Container
 from dotenv import dotenv_values
 
 from agents.registry import Agent
+from biomlbench.registry import Task
+from biomlbench.utils import purple
 from environment.utils import (
     create_task_container,
     extract_from_container,
     extract_from_container_sysbox,
 )
-from biomlbench.utils import purple
 
 CONSTANTS = dotenv_values(Path(__file__).parent.resolve() / ".shared_env")
 
@@ -126,7 +127,7 @@ def run_in_container(
 
     container = create_task_container(
         client=client,
-        container_id=task_id,
+        task_id=task_id,
         container_config=container_config,
         volumes_config=volumes_config,
         env_vars={

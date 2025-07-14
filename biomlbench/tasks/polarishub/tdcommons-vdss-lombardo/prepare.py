@@ -13,7 +13,7 @@ def prepare(raw: Path, prepared: Path) -> None:
         prepared: Directory for prepared data - will create 0/public and 0/private subdirectories
     """
 
-    # Create fold 0 directories (for single fold, we use 0 as the default)
+    # Create dataset directory (we use 0 as the default for a single dataset)
     dataset_dir = prepared / "0"
     public_dir = dataset_dir / "public"
     private_dir = dataset_dir / "private"
