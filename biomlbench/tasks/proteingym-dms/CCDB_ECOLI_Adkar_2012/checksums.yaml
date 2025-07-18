@@ -1,0 +1,91 @@
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_0:
+  answers.csv: 2ab42b4386bfdc22841224ea290e8fbf
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_1:
+  answers.csv: 519e784ca717b2977d97c72fd85449e5
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_2:
+  answers.csv: 7c7cab9585e87bbc5c986715e5b291bc
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_3:
+  answers.csv: 69446bfa9a561b6610172fcc93d72454
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_4:
+  answers.csv: 3511da09b967fd406dc81a7f4433f0af
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_0:
+  answers.csv: ac6eb045046bf7e59dfb89b1d58098c5
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_1:
+  answers.csv: bc2b62ea4dab37a9bcd10e1bcf3ec79f
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_2:
+  answers.csv: 9dcd044ad03c9a74a80cb23be312d75c
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_3:
+  answers.csv: dba4d83a2fe37879adb7c83c0e952f72
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_4:
+  answers.csv: 742b3c7ff60ac9f05ce02020112c8461
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_0:
+  answers.csv: ae284ed5b11645d0f3bb398b4ff5bd8a
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_1:
+  answers.csv: 826cc619d7b0bb434387eec330f6603b
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_2:
+  answers.csv: 911cb59534c35e768fa41f82823af812
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_3:
+  answers.csv: f84569096ccf1fa13cb99cbd6009d960
+private-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_4:
+  answers.csv: a4f1e4df2657d37eab20bbd2860344c0
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_0:
+  sample_submission.csv: adce11a0a6753f20df9532b157034b6d
+  test_features.csv: eba8328227b97c8670300fded6d1f289
+  train.csv: c3ba851fdd827d3c1d00c2ab90960b3c
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_1:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: 93adf4600351b90e3223339282b7ee07
+  train.csv: 742f56a3da13c49d393edb6b67006bdc
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_2:
+  sample_submission.csv: 7165a9c11c3468015a11825c0561e2b8
+  test_features.csv: 156f86bb1bf6849f5d47970d4cc9792f
+  train.csv: 312a756f2312f900972e9885ebdf5ea6
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_3:
+  sample_submission.csv: adce11a0a6753f20df9532b157034b6d
+  test_features.csv: 5cfb97d3c50e84c6169c8b41b284f4b3
+  train.csv: 1513091058669ea13342622051b29d8c
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_contiguous_4:
+  sample_submission.csv: 6cbf689677624e9423ea5040a9e6764c
+  test_features.csv: 0929dc1aa1a819c27f320f731f174829
+  train.csv: a78ac8e8ea2665c65c63398bf96cadd5
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_0:
+  sample_submission.csv: 146f0a018741033641a51628f16cf6fa
+  test_features.csv: 669e449835045bda4e62f6842ec53fbe
+  train.csv: e31ee043b44a49daff4c09085bdf2bed
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_1:
+  sample_submission.csv: 969c0a03ac60bff60b6a764310d42d4b
+  test_features.csv: 45bba25104fd50840c1bb66a33a879e5
+  train.csv: 838aea1f625f001bfce7171818b33dd3
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_2:
+  sample_submission.csv: 139fd96e567df94c35afea7f34d13ec7
+  test_features.csv: 9edf888067770f923ba48b6b171271e8
+  train.csv: ed4d96f97fd5e37d26b6763ac1396166
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_3:
+  sample_submission.csv: ddcc824a80dc65662c3d14ef806faa42
+  test_features.csv: 3e86f2358b5499c2b4be7513a78725b7
+  train.csv: cda6f13fd30413b17c1ea621c7f1b0e5
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_modulo_4:
+  sample_submission.csv: 27ed7f4e3601fe1bdad850eda06c384b
+  test_features.csv: 7603ad36388592c81cee671511f76b67
+  train.csv: 0d6ff688d350e1d19a229fa728f5f349
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_0:
+  sample_submission.csv: 27ed7f4e3601fe1bdad850eda06c384b
+  test_features.csv: dc7992b99dfca46380713fa5b357ea57
+  train.csv: d834a3ed0b196f1386a656fc4cdec08e
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_1:
+  sample_submission.csv: 655dc6e7154325d00a5cc43a367fd81a
+  test_features.csv: 8f357478179f60d3f8b4fe3f49640681
+  train.csv: 86cda65f475b70c9a6dcb04b672a38bb
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_2:
+  sample_submission.csv: f63764bfa80ab3dd175af0929f3b0a26
+  test_features.csv: 6508231b6bb3e4570b11a40a440940f2
+  train.csv: 2a428455e76eacbb867796d17fdcbadd
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_3:
+  sample_submission.csv: 146f0a018741033641a51628f16cf6fa
+  test_features.csv: d2e30a672ae8b48f17c53a6c26242f06
+  train.csv: 3b1ed6e736a987c8abe3f53a7547391e
+public-proteingym-dms/CCDB_ECOLI_Adkar_2012-fold_random_4:
+  sample_submission.csv: b538dfbecb705b60d1a15d07e24c0507
+  test_features.csv: 0f2d4b85f59dfced536781893591682f
+  train.csv: d22342516bc7f229c6c20b0a4a56cda2
+zip: 53b3c9be428aac3724703a877c014f9c

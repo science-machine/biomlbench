@@ -1,0 +1,91 @@
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_0:
+  answers.csv: 1f41ab83e74f74b40da66ba59f7e6dca
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_1:
+  answers.csv: 4337353876b0f5cdce89ab757d5bec0a
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_2:
+  answers.csv: a0f13867612c1b0322a6826d4c9454b5
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_3:
+  answers.csv: 69563fde6656d25b8b666defa6965cb6
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_4:
+  answers.csv: 441a6c520becd42d555639796e357eb7
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_0:
+  answers.csv: 3c6e235c972f1ef71c99f2fca646f1c1
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_1:
+  answers.csv: acc5d17691fe10280c9c634db3317a08
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_2:
+  answers.csv: ca4299cfc0c9c19603ec3cce9a164f81
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_3:
+  answers.csv: 59e53b5aec2bfa83272514c7987ebc3c
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_4:
+  answers.csv: 5a7c6000868842c3d009fe73e64d2944
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_0:
+  answers.csv: 112a85a325b3ab0bec1d966a0fd655d7
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_1:
+  answers.csv: 10a98a40c991758f8aa04dce56c9bc6d
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_2:
+  answers.csv: f0fb64c1342f9d3b37787e1da265a491
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_3:
+  answers.csv: 8fc0f1a1f4b3537ce748a6dca9db39b3
+private-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_4:
+  answers.csv: 99c4e7cc29aa52618e242561f363256a
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_0:
+  sample_submission.csv: 6d29dbfc407142cf40f0544740fcdb62
+  test_features.csv: dcdaee4d2a687e29a128ee8b3dc7907c
+  train.csv: b8ac3524097dfb2f378206552ef4495d
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_1:
+  sample_submission.csv: 1b62ea1436c91c798c15bd1767ceb1c6
+  test_features.csv: 2fba24bd57e5a4f4c6a8d9387325d5cf
+  train.csv: 7dfdd114531a035d33b8eec86c9ea512
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_2:
+  sample_submission.csv: 841d0dc52ec8b884005a500f867fd24e
+  test_features.csv: f1121daa7dd64e2af22ebeee09994147
+  train.csv: 54541949e19eade37bb1aeb981ec91fb
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_3:
+  sample_submission.csv: aa3b0783952b050ca519e24b57bad9da
+  test_features.csv: c533ecaf63cdad4d639f528a77bdcab1
+  train.csv: 5bf4c8d41d12ae8a0f0cf272144f440b
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_contiguous_4:
+  sample_submission.csv: 3483b247924f39fa051b54e9f223c1e6
+  test_features.csv: 7931667227ecc738518001ca12886c19
+  train.csv: 842c937f22c3e7b59981f77c4b513666
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_0:
+  sample_submission.csv: d902119046cabb21aa66e8a4f1fcef17
+  test_features.csv: bde08347148229d56c069cfb6401e0cd
+  train.csv: 0d231a7d04fc4679a1765af0a4f126f0
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_1:
+  sample_submission.csv: 7f8109882bdc659ecb727c0e6e826d6b
+  test_features.csv: 90b33e25f9cdb139ced8251e883bb818
+  train.csv: fdb409067cb080cf704152c1e359caa6
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_2:
+  sample_submission.csv: 415b658c9e229df3e48107e2cc32cde3
+  test_features.csv: 2dae62e37bfd69afb3d06597ff270c0f
+  train.csv: 06230b8fa54fdde37be231f49a1e9417
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_3:
+  sample_submission.csv: 8fae88996c42b95f3480d216148444e7
+  test_features.csv: 63d9b2e9b210497f8fafc9c51651a265
+  train.csv: 973e6f66c9342b25393cce6fa984a397
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_modulo_4:
+  sample_submission.csv: 347fac9a95cc8ee2ee8bfe16ab490b34
+  test_features.csv: 930590aeb6d3c615978f431a0baa6948
+  train.csv: 0924b72ea464357c035edaa5a3c690a2
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_0:
+  sample_submission.csv: 76088ff77a3e52964010b608abb44a90
+  test_features.csv: 5d9f72d5382f04b1fe95793cff82137a
+  train.csv: 1d33a9c5eb0a320c9ca7d70db69d6aed
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_1:
+  sample_submission.csv: 2fe5771682d5c12339cd5ed6444409ab
+  test_features.csv: fa87e7a343b86bfc708bcb8e563d2e17
+  train.csv: 3c48c0281d1bc264381ea8fcfcfa4a6e
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_2:
+  sample_submission.csv: c1737e962d7069af9f280612a2d9e46b
+  test_features.csv: ecc5b1ad7b360a346956ac16f22d188a
+  train.csv: d4239c59c828c260ea3b58361327d9bc
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_3:
+  sample_submission.csv: 86dec06926b89751bbd1052f2590269f
+  test_features.csv: 9c32d44e7d0321ee8abaaedaf3a22609
+  train.csv: 3223b912238e196d6db351110eb3f1b5
+public-proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity-fold_random_4:
+  sample_submission.csv: e13badd314a1e4bda8d6db65c17b2437
+  test_features.csv: 283356eaf6631e147187401594307de9
+  train.csv: 12613ca5170b7f15124fb80637b7f90b
+zip: 53b3c9be428aac3724703a877c014f9c

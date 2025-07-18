@@ -1,0 +1,91 @@
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_0:
+  answers.csv: 47aaccd1881e370b622345242f3ebcd2
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_1:
+  answers.csv: b0a081eb3f273e26460f62586fc4f8af
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_2:
+  answers.csv: eadfb755a90f33b2cdadebdc795f9b5a
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_3:
+  answers.csv: 0a1ba266a35e835126f92fffb2e4bbb4
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_4:
+  answers.csv: 8055865774c3640ec902e9b77348805a
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_0:
+  answers.csv: 7c201ebd10350b7ed9e51dff4cb1450d
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_1:
+  answers.csv: 3ce4c0dcb72c34656a107723f8c7e64b
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_2:
+  answers.csv: 0be71127672c229bceb2a0ded8e6324f
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_3:
+  answers.csv: a311860b57e322d4b5cba445c12aa533
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_4:
+  answers.csv: 5917a5eab86cb698a29603cc9f5fab69
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_0:
+  answers.csv: 84c9176134a23fc8a7b028589d839319
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_1:
+  answers.csv: 8c3a776b92b19798878ecc72a64c6512
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_2:
+  answers.csv: 36bfbad42768e096e288b860bf6b618f
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_3:
+  answers.csv: 760dd8171d39b408f1269b19400cedde
+private-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_4:
+  answers.csv: b0237bb0dfafcdc6dfdc575fa505b8c4
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_0:
+  sample_submission.csv: a48dc330fff4d508867ec463bb8cbbeb
+  test_features.csv: 5d6294aa2a65df2fb8c74215866a79ee
+  train.csv: 92414b9a5e4e0a7e67d8c658f66b54fe
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_1:
+  sample_submission.csv: f5666023339df4f9aa3389b94bf5a5ed
+  test_features.csv: dbc24d7ffb6651fd3d95da0959b23412
+  train.csv: 8411aed14243e5d75f8440159cfbb7e7
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_2:
+  sample_submission.csv: f5666023339df4f9aa3389b94bf5a5ed
+  test_features.csv: eb909eedf3c688ac9cf90121c7729b01
+  train.csv: 9f3b4a4c0d78bb3c6bd59101160ce7e4
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_3:
+  sample_submission.csv: f5666023339df4f9aa3389b94bf5a5ed
+  test_features.csv: 749afcdb490ec1e55b6620013066d6c8
+  train.csv: 2470f6cd5da4bf376ae3f84d822ecd1e
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_contiguous_4:
+  sample_submission.csv: 13e6d24c7b44ee34864b63b6dcb78c49
+  test_features.csv: 6046051108d926dd587b835ac2249974
+  train.csv: 18068a804b53f6ef735fe65a9c3b656a
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_0:
+  sample_submission.csv: a48dc330fff4d508867ec463bb8cbbeb
+  test_features.csv: 96d39e62af4883a4c1f07e1792cab7aa
+  train.csv: 8362c6a519d77eb6dab3498fc025c07d
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_1:
+  sample_submission.csv: f5666023339df4f9aa3389b94bf5a5ed
+  test_features.csv: 57e33b8079ca4c8e461e0bede68e3b0e
+  train.csv: 03f094c123176423ab588d977b71a1f4
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_2:
+  sample_submission.csv: f5666023339df4f9aa3389b94bf5a5ed
+  test_features.csv: ac9230a62395952b5110437fb33e50f6
+  train.csv: a665874df1b7ba486bacb365681126bc
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_3:
+  sample_submission.csv: f5666023339df4f9aa3389b94bf5a5ed
+  test_features.csv: 2a9326c7b37958d8de5e6549d61bde78
+  train.csv: 75b404df54cae6f7921c01baa7cd795f
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_modulo_4:
+  sample_submission.csv: 13e6d24c7b44ee34864b63b6dcb78c49
+  test_features.csv: a0af70fc6e0aec38cb4ddba506ff5c22
+  train.csv: b033086f1d2dc5e8f7bd8416ed56c6fb
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_0:
+  sample_submission.csv: fc7862537ef57fd2fac3dbbae1c2830c
+  test_features.csv: b23c42decd85f733bed8a439e1322035
+  train.csv: df9b069f505f62af652ccee330cf7b76
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_1:
+  sample_submission.csv: e17ffb58965d2f633a5c226cce716981
+  test_features.csv: 7a6a9612f280f78b39c35fa5e4351c97
+  train.csv: 1f0e385602723244a25ab2daa3f17a1e
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_2:
+  sample_submission.csv: d7279ede8572c23b26a0b1116645a238
+  test_features.csv: eab5906550353217258d7340b6eee6c4
+  train.csv: 80edbd9d5d428e224597fc595e99ca6e
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_3:
+  sample_submission.csv: ecb02891103e13152daec35ade36e581
+  test_features.csv: fea207f1ab18d8683711f8dad9f5d109
+  train.csv: 243d19434ccd01852a5402d056ead88e
+public-proteingym-dms/A0A2Z5U3Z0_9INFA_Doud_2016-fold_random_4:
+  sample_submission.csv: 868e5a8b39d91003162499cd9c107297
+  test_features.csv: 84190c436b4f693684a33b105059c5be
+  train.csv: 1343feef42e594e110e577298fb24552
+zip: 53b3c9be428aac3724703a877c014f9c

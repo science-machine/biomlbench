@@ -1,0 +1,91 @@
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_0:
+  answers.csv: 163e8ecd578aaaf9ca5ece9d7ba3ef94
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_1:
+  answers.csv: 36da41c01aad63021fc44c8a148d6aa0
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_2:
+  answers.csv: e04f2c5a62c1383230aa8035e87c30eb
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_3:
+  answers.csv: 4a04fa8693c619de437143274fe7dacb
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_4:
+  answers.csv: d07601638ac7289da50aa57ea8d331ae
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_0:
+  answers.csv: 5df755548c4fd50552f39e0dad9b923a
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_1:
+  answers.csv: 2f8fa502be99f266d98389186b832b1d
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_2:
+  answers.csv: 473a9877435b2cdf13d60325298c411f
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_3:
+  answers.csv: 6e71ae771923ce0e8d3e05c0e910526d
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_4:
+  answers.csv: c996d67a904952bddce49bf9a4fa29d7
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_0:
+  answers.csv: c0b80b604808c9df51bc7c347675d042
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_1:
+  answers.csv: ecde76c16f2d9a27a19fa1b97c13bfca
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_2:
+  answers.csv: c497ec37942c620e03ad751126298adc
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_3:
+  answers.csv: 7c9c9f7e11186dc2a1141ed87c069f9a
+private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_4:
+  answers.csv: 105e8fd907fbbdd23f63f7835eb81f0b
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_0:
+  sample_submission.csv: 9ff741ef36883c2911f6639c33cff800
+  test_features.csv: 0fdbe7e7129e106e83f352c4f5ca140e
+  train.csv: fdc8d19c11a25d6d906affeb82cb3a16
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_1:
+  sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
+  test_features.csv: d630c4cfa9cef66eb87608ac616e8a25
+  train.csv: b86c6b171662a9357e4267255f0a640b
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_2:
+  sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
+  test_features.csv: 454f64affff5dbe477ec3a459b438682
+  train.csv: 3295f6211958e15aa58928ae0c1717c8
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_3:
+  sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
+  test_features.csv: 0ca82bc43f761ac5790f1dd96f2fa76e
+  train.csv: 55df3cf32ce488728ed4dc47aee9d0c0
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_4:
+  sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
+  test_features.csv: f76653f9d521bbe7286ddd0263974dad
+  train.csv: 5ae545ee7a31f75a4dfe764ee945e480
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_0:
+  sample_submission.csv: 9ff741ef36883c2911f6639c33cff800
+  test_features.csv: 0bf33b68eace4c011990310717029d1d
+  train.csv: 893770e0fb848e8d6eefb2f85c0dd5d8
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_1:
+  sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
+  test_features.csv: ef0014f3a424ab7e0c46b8e0b33aa454
+  train.csv: 75d054a8aca028dc6def2446e56b21cf
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_2:
+  sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
+  test_features.csv: 46d3d634fc0558f50d4f8dfe97a4d4c0
+  train.csv: 49ade8c16cfaced1d48f6ccee63db5f4
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_3:
+  sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
+  test_features.csv: bcf9de05c2e196903713131391e3cf2e
+  train.csv: 3fbecf9de2387b3bd0ac1b29b476f836
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_4:
+  sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
+  test_features.csv: 192b8f4c25b9fa314e283dc1652f7a55
+  train.csv: bb45f6a4ffccae5a6c1c2422801fb345
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_0:
+  sample_submission.csv: b81dbd87cfebb350f8220069c2f721f4
+  test_features.csv: d802d64bbba0e0fca8fc8fcf47d8f808
+  train.csv: 9ba7451962f70bc2ff87bee5e718c757
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_1:
+  sample_submission.csv: f7cce3c4d1bf6e0f21a1619739f83311
+  test_features.csv: b640675598a978882d9b4f0230afc30f
+  train.csv: 3aec788f07e7652f230fad29eb525d97
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_2:
+  sample_submission.csv: b81dbd87cfebb350f8220069c2f721f4
+  test_features.csv: a3c49725532175eee8b02791b4283b9f
+  train.csv: cc34a1c49aa6dabfbfdce3051ddc12f7
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_3:
+  sample_submission.csv: 49fa8912487b1ca6598d56fa297b4e23
+  test_features.csv: 6f591c79e9b0ae156009c1de56c2a360
+  train.csv: fead14aae50879ee51a53c54e6bcdb8c
+public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_4:
+  sample_submission.csv: b918a5ceb79f8191990db5b384c5de3d
+  test_features.csv: 91069bf0a654c085e8dc29acaebad366
+  train.csv: 3b21c3abb38b36675aaa8f887e467202
+zip: 53b3c9be428aac3724703a877c014f9c

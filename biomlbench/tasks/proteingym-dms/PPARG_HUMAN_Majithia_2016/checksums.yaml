@@ -1,0 +1,91 @@
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_0:
+  answers.csv: 7a95ac3cac5c317e02c938f512e3bde1
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_1:
+  answers.csv: 90d9e699bab6c9d337062438a3b11470
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_2:
+  answers.csv: 303ccfbe3fcd37df3fb6cf66f349b8cc
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_3:
+  answers.csv: fde3dd6d599aaf37411754d83cbe0964
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_4:
+  answers.csv: 8d5f10d899d688ae563c3dfc730da12d
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_0:
+  answers.csv: 6a6a6be8b561dfd282c3824b55a97277
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_1:
+  answers.csv: 9db103df23f677e9890a8cb2cc4ac14f
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_2:
+  answers.csv: cf63c96725d7a5ae8755c087a41719f8
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_3:
+  answers.csv: 9511b8d1a662ffd90dcd067b29120ed7
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_4:
+  answers.csv: cadc1bac48677599215cf04c4f35a814
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_0:
+  answers.csv: b3f10eb7aaddabe9061ea8ad7972dab5
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_1:
+  answers.csv: b32a2a2d68ff6e9696f43ef547f40129
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_2:
+  answers.csv: 1b2e2269af4954c48b4fd66136647257
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_3:
+  answers.csv: af3c98e7f8108ce7006368f004cd12c1
+private-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_4:
+  answers.csv: a56791d69347339970abee40033bef97
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_0:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 0444a961ee6e4760082c77aaa46250d1
+  train.csv: 048336cee59a56b69ebee73ab573716e
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_1:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: caad0e32eb5523d819a05c77bf07abc0
+  train.csv: 9cfb65ee825bce83901fe8b030d97a18
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_2:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: ce9724287bba93e6571131578cf3af6b
+  train.csv: 77825da20c898a4284076bfd7e2dee57
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_3:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: d9d49c3edbf6f11645d15d813cb5b18a
+  train.csv: 50459337c2c215103115dfc4fe77c019
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_contiguous_4:
+  sample_submission.csv: 1020f34c315661f3504a130ae48f8245
+  test_features.csv: 5031090f0a0565571af4a0686a762c3a
+  train.csv: 1c42db48aab31d6b741db20e4d84a213
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_0:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: fc4f79002b2dc3aa406bc3d97b0978a8
+  train.csv: d2fb2e4b1311668abc0cf8c3bd77b876
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_1:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 05e0d978c2e80dfa3ffd4dbe64a7fce1
+  train.csv: 47c6583f4add17f558da7a472a8a94a8
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_2:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 18f86cc7666ae2b678064746a4dace9f
+  train.csv: 03af6e536a5febfb0e01c55a30b07bcb
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_3:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 854b4ef3cfca8beb2def5dd152a49f66
+  train.csv: 933686e74a9ceb6efd9594175a849c90
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_modulo_4:
+  sample_submission.csv: 1020f34c315661f3504a130ae48f8245
+  test_features.csv: 8995e7b5e9311cc7b929572bd1fe139d
+  train.csv: b6b1fb9aeb12561ea841518432dd5728
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_0:
+  sample_submission.csv: 0a33c4592ee338e756a51e8fd92c2205
+  test_features.csv: ed11337dfcf03ddbd3b49b8f129ba254
+  train.csv: 12e16a17788ea553e0dc84390fdb0a32
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_1:
+  sample_submission.csv: 625498846bdbde2b3fbdd7f9bb274319
+  test_features.csv: 7b900bb0a98df8597ee5ad13206151a6
+  train.csv: ba844ff1526d2d717990a2f8b39ec1c6
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_2:
+  sample_submission.csv: 8afd27aac09d6bc7570b0f93c6f0ef92
+  test_features.csv: 25931a3e06d446b4f0d2125669902f32
+  train.csv: 7d5d9f79ea6396997338f3ed07e128fc
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_3:
+  sample_submission.csv: 093b44a6c1aa382ec64a5bdc385c74dd
+  test_features.csv: f37b9b21c54558730d6a9deb2c4e1dc5
+  train.csv: 3b2e7a7f0fe4050d0cc4fefbef70487c
+public-proteingym-dms/PPARG_HUMAN_Majithia_2016-fold_random_4:
+  sample_submission.csv: 9c67d3045ac265b8d9cc3c8d48dcf5f4
+  test_features.csv: a18a6642717a3224ba8a8a5c6c11a977
+  train.csv: dc43c3c51b9dbf83973585ba2f38daf8
+zip: 53b3c9be428aac3724703a877c014f9c

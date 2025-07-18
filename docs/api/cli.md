@@ -17,8 +17,7 @@ Runs agents on biomedical ML tasks.
 positional arguments:
   {prepare,grade,grade-sample,dev,run-baseline,run-agent}
                         Sub-command to run.
-    prepare             Download and prepare tasks for the BioML-bench
-                        dataset.
+    prepare             Download and prepare tasks for BioMLBench.
     grade               Grade a submission to the eval, comprising of several
                         task submissions
     grade-sample        Grade a single sample (dataset) in the eval
@@ -36,7 +35,7 @@ options:
 ### `biomlbench prepare`
 
 ```
-usage: cli.py prepare [-h] [-t TASK_ID] [-d DATASET_ID] [-a] [--lite]
+usage: cli.py prepare [-h] [-t TASK_ID] [-a] [--lite]
                       [-l LIST] [--domain DOMAIN] [--task-type TASK_TYPE]
                       [--keep-raw] [--data-dir DATA_DIR]
                       [--overwrite-checksums] [--overwrite-leaderboard]
@@ -48,10 +47,6 @@ options:
                         ID of the task to prepare in 'folder/task' format.
                         Examples: manual/caco2-wang, polarishub/tdcommons-
                         admet
-  -d DATASET_ID, --dataset-id DATASET_ID
-                        ID of the dataset to prepare in 'folder/dataset'
-                        format. Examples: proteingym-
-                        dms/A0A247D711_LISMN_Stadelmann_2021
   -a, --all             Prepare all tasks.
   --lite                Prepare all the low difficulty tasks (BioML-bench
                         Lite).

@@ -1,0 +1,91 @@
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_0:
+  answers.csv: 6742dc78087f927a38486293bad31607
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_1:
+  answers.csv: b1f12b43e539d48646a778a6897accc7
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_2:
+  answers.csv: e5cadfa4e4389b56a306e1d5c6e16b2f
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_3:
+  answers.csv: d2778500a9eda119c16644396e6ee93e
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_4:
+  answers.csv: 3e304be3b72ea9c0fa66d3f206ad9779
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_0:
+  answers.csv: 882046e2911d190d133d7d236175a3c8
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_1:
+  answers.csv: c8f571dd5589455dd7c9a801a2de1163
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_2:
+  answers.csv: 2efe29c04b04002eba770dc68c743573
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_3:
+  answers.csv: 03e9d1ca5064b65a044edbce78293629
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_4:
+  answers.csv: c54e8b67bfaa6f89f218bd13f03f6bea
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_0:
+  answers.csv: b8a81486f14b07364920212e9e1a60f2
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_1:
+  answers.csv: d278c9a251dda9e2752611d47476a8a0
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_2:
+  answers.csv: 89521a834c51882fb7a47f3064cf9d87
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_3:
+  answers.csv: 5dfeb60277d27518a9e02706d197f9a0
+private-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_4:
+  answers.csv: 632f365678d05f60d96bf194df014f1c
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_0:
+  sample_submission.csv: dafa7cfbeca1f7dbd27904d4e028c24b
+  test_features.csv: 87c9d5716bc4b6204390246393523ae6
+  train.csv: 4b40974a71feb4066da5c36742eccf2f
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_1:
+  sample_submission.csv: 62f58a3f1a028cecde7ffd8b5809a361
+  test_features.csv: 2a51c9dd8f954ad7a371b25070e8caa3
+  train.csv: 0a1f9aaac95982fd9fc6f1dbe053cfe8
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_2:
+  sample_submission.csv: 98a911f2b859ab118eca0824f05cf44b
+  test_features.csv: 00584709c41aca88f20807cbb0a5cc6b
+  train.csv: d021b163aea61ecb57d36ecf02fae38e
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_3:
+  sample_submission.csv: 0cdf37598f38118d3b7a2bd8c3eea268
+  test_features.csv: f6690112d39879e5bc840add7c40a26f
+  train.csv: 89a31225eb14ee0f27749fe61e8593bc
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_contiguous_4:
+  sample_submission.csv: 7bd4eadf496b8427c943b4dec9579688
+  test_features.csv: 6aa5c870bd8ace162b8cc3bf42753d1c
+  train.csv: 30349ca7eaf9cd2a6db8ed5c0683c36b
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_0:
+  sample_submission.csv: 4ee0708ed29d73eb4d98001e71e9a35a
+  test_features.csv: 008eb3d40458e718ed246c995dc59a16
+  train.csv: 7fef08b20861aea67eccd24e3e1e5803
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_1:
+  sample_submission.csv: 47d8a27c8c59593a3f6ba615c84a085a
+  test_features.csv: e5b403a448d74830373dba99025201ce
+  train.csv: 5c66211124ff5a28745afc0e4300230b
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_2:
+  sample_submission.csv: 3787843f5c69b2c18db52721615e4e4b
+  test_features.csv: e1c8d0ec87e014198d9b42f2a4a2f372
+  train.csv: 66cca1ba41b56b17414f3412f8b8fcaa
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_3:
+  sample_submission.csv: e06b31891b20ea7a9188a1a2d8e226e7
+  test_features.csv: ab5f72b1247ebb94b346b5e09cadc141
+  train.csv: f1172ee10ff95f14dbedc92c8f79cc85
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_modulo_4:
+  sample_submission.csv: 3963047ad260bbb4d352a69196f814b3
+  test_features.csv: 9e7d13a30e629c9e024e0b778193642c
+  train.csv: ac4bf041db059f72697fd62ae3fb63da
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_0:
+  sample_submission.csv: 8ca875554a202affc08a591e860874a5
+  test_features.csv: 68298a0c7285e013976f4dcd4d2edcc4
+  train.csv: ff56fda2e5406f02a34ab77a200d662d
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_1:
+  sample_submission.csv: 54810013094ca4d1bbaf3d529467fd62
+  test_features.csv: bdf4c6ef2b62c7fd2fe5fbd215a35702
+  train.csv: 5a4df05495d51be46741ad8ad57a467a
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_2:
+  sample_submission.csv: 83cc4433b92eb7d29751267ea5fa9680
+  test_features.csv: 46ea9b17eae01f064587b5e7522c56e9
+  train.csv: 7296ae44c1e98dab4c8d8c224c44bcb0
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_3:
+  sample_submission.csv: e9ab184ad4ffbdba2fecc3d7ab64cd2b
+  test_features.csv: e7d5f977544469cfd190f8f70f920f45
+  train.csv: 717f16ed34891182b282ca783070cd4c
+public-proteingym-dms/LGK_LIPST_Klesmith_2015-fold_random_4:
+  sample_submission.csv: 04671188fe384e0cd5039ba484a3d2f8
+  test_features.csv: d82941479a6c13d7aa957f773c7407bf
+  train.csv: aabff4be95aaa7806d3e7b5900d54c96
+zip: 53b3c9be428aac3724703a877c014f9c

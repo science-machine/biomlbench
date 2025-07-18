@@ -1,0 +1,91 @@
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_0:
+  answers.csv: 5c13ce21a78a9f5b09242f288828705d
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_1:
+  answers.csv: 19ecd1e96797fccd4fb95fac4acb5088
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_2:
+  answers.csv: 46d6fbc30baf6d2ba4e4d2d27c144936
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_3:
+  answers.csv: e9e3d6a6ce846be27050f69448b87a4f
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_4:
+  answers.csv: 0756d664906ba8c15e3bb6f968eb4c46
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_0:
+  answers.csv: 57bd865824da3e5c9cae2827086ae6cd
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_1:
+  answers.csv: fcc79ec4ae2db46613af0b284ff12e15
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_2:
+  answers.csv: 4c75091ba838bf33a771a2e341c1cf8b
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_3:
+  answers.csv: e68686103c4752db40b729ba36bad7af
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_4:
+  answers.csv: 2143349fecaad6f30bf974a052da0402
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_0:
+  answers.csv: 955c06f827101f38c4798825d481ed82
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_1:
+  answers.csv: 30e11802f61e352fc6c5ecbe067f05a3
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_2:
+  answers.csv: b847e8c8a7a2f52ca7db8b98e644bb74
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_3:
+  answers.csv: 30d127add3673a562287388b20e4853a
+private-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_4:
+  answers.csv: ecaa78b283050f403ad28933e87484ad
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_0:
+  sample_submission.csv: 65b3df737f1995d1f5f133a72ea88792
+  test_features.csv: 72d5f0cc6f9d6fddc84263c7b6fe8a98
+  train.csv: 8f8e04f9afb439b181c354823cdcb8da
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_1:
+  sample_submission.csv: 65b3df737f1995d1f5f133a72ea88792
+  test_features.csv: ddf82afc2195fb328f4a61770944b0ec
+  train.csv: c0fef74c9375e22bb9725663579d1cd4
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_2:
+  sample_submission.csv: b23e0b3a2089a050e7663a26d85c0e61
+  test_features.csv: 2bcdb0287f3c79f982809a50c3214a20
+  train.csv: 32ba3cc5a840f43fde124aba09bdf2c4
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_3:
+  sample_submission.csv: 26c293d79081586a09343fc42aba22b1
+  test_features.csv: 2fb8248f43153d105e1de0b1eb739300
+  train.csv: 5bf41d22225ef1d43274ce4bc2fe8194
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_contiguous_4:
+  sample_submission.csv: b24c599ef81df041c387c85ea2e2740e
+  test_features.csv: 38a968ae78c86ad941b822930c150782
+  train.csv: 8c4fe81963652d9f7189594865099003
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_0:
+  sample_submission.csv: 65d1b4b302028cf6a36095929637ad45
+  test_features.csv: e1b2504d64e40f14e535d360d6a605ea
+  train.csv: 9dacbb09d44b5a90a8249376d82709ee
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_1:
+  sample_submission.csv: 79f847411a0ce127407acddab186ad6a
+  test_features.csv: a6fec043153a2bf80a9776ae25460d3c
+  train.csv: 60f01f71f5e76c128a22fe81d7b15b15
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_2:
+  sample_submission.csv: b69e1d65f29150861ccbd1800dd492a5
+  test_features.csv: ac4f51b8d3b54de4bbec9a9599a0697f
+  train.csv: 855193b923744c683d2b00b68ec56309
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_3:
+  sample_submission.csv: 79f847411a0ce127407acddab186ad6a
+  test_features.csv: 5da8e41b0a9b1307e1947c9c13bf48fd
+  train.csv: 165bba4d57ecf083ba8c673641745664
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_modulo_4:
+  sample_submission.csv: 73aede300e4d453dd000fcbe80573474
+  test_features.csv: 88f8febaf7134562ffc4f6b14c96f34e
+  train.csv: 55a7de5cac6dbfbfb238a33dec7c9405
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_0:
+  sample_submission.csv: 8c727d2253ab84d5cb0f8aba3d0d01a1
+  test_features.csv: 1aec2d78f5f62268c76841ffa01da451
+  train.csv: a721695dd3b99023df46210b100b6109
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_1:
+  sample_submission.csv: 5e7ae3fcab7777c0ae9a963855872a51
+  test_features.csv: bba76bc312a48a3291de240118507d45
+  train.csv: 0817cc0736d16b0e9774d507831dff52
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_2:
+  sample_submission.csv: e8e7b08cdc668c5565174ea89e801349
+  test_features.csv: 2b3429e04a594c201f09df662de6278c
+  train.csv: dd2404ee69df80877c3af3dce343b677
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_3:
+  sample_submission.csv: f5d8f7f5abcaacbf8b5754cde5b37580
+  test_features.csv: e52d2e780b3732d7da706523e118cfca
+  train.csv: 2217cd913033c36709f482505afc8129
+public-proteingym-dms/HSP82_YEAST_Mishra_2016-fold_random_4:
+  sample_submission.csv: 8c727d2253ab84d5cb0f8aba3d0d01a1
+  test_features.csv: 2d4cc04e9603d22b0ee244aaa09c9648
+  train.csv: 66e9d2899320332fa16cd9d30dacecd5
+zip: 53b3c9be428aac3724703a877c014f9c

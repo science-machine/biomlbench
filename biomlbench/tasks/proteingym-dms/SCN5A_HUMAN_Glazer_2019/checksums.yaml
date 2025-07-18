@@ -1,0 +1,91 @@
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_0:
+  answers.csv: 73bd5775b45b84621f3f3bc39d798f57
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_1:
+  answers.csv: 48ab2a09bf0dd34e1b4a8dfc75bc4009
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_2:
+  answers.csv: 5c938cac5e3e0e163c2f1c9a016b0c70
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_3:
+  answers.csv: 445deb72e72cc7fb07c4c94a80091686
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_4:
+  answers.csv: b7c03d4130e3d813ade6e37019786341
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_0:
+  answers.csv: 61a4fbb4f23d3334e0db85a3df7aab7e
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_1:
+  answers.csv: f4e7180191f7dfb0a2d92c5abaeb8fb3
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_2:
+  answers.csv: ddd4e4861174ee5f710803ab8d38c981
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_3:
+  answers.csv: 26c1ec7ab3564a1cf77a5242edb0a8b8
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_4:
+  answers.csv: 37656c7464a511375b6f3e39ba7a8910
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_0:
+  answers.csv: e1d9f8a971dcaa2b0d14d299e13d5758
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_1:
+  answers.csv: 2d1bc365b3458ba225776be2a644a13e
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_2:
+  answers.csv: 21600157ee2f8067bb6c6a5395bc71f9
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_3:
+  answers.csv: d5d05228748b4f5c921d9cb89e8b1771
+private-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_4:
+  answers.csv: 1b752d81bbb3de4c80f548b11497d4c8
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_0:
+  sample_submission.csv: e3ebaae4c4244d75c9a8bd65924ee9a8
+  test_features.csv: 9eb129aaba9d682917ad7af115897197
+  train.csv: 82383856bbbe205af3b018018a6e29cc
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_1:
+  sample_submission.csv: e3ebaae4c4244d75c9a8bd65924ee9a8
+  test_features.csv: eaf2a1169aa9758ab942050b77788685
+  train.csv: 529f0b7aeae1841eccfbf4f792f2b48e
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_2:
+  sample_submission.csv: 7f43103b6d5351eb9e2f141aae9b838e
+  test_features.csv: da5d9f8a37fffe2eda4e4b50e6c6f640
+  train.csv: 8cad2df53c587f4f2c25063c03f9a289
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_3:
+  sample_submission.csv: b2ba2af689b2794204566005caa2a834
+  test_features.csv: 31e62185b4b2d1afdeab5754011aa12c
+  train.csv: 6d111fdbc28b6ff0fc15afd9f84afba9
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_contiguous_4:
+  sample_submission.csv: b2ba2af689b2794204566005caa2a834
+  test_features.csv: 02e16a439dc675059f2a4c821fe817fb
+  train.csv: 5897a02ea8fc93d99b5f40b286210f10
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_0:
+  sample_submission.csv: e3ebaae4c4244d75c9a8bd65924ee9a8
+  test_features.csv: c2212e63948720f4422177b049fc596b
+  train.csv: 16056a387077de638977961e7aafcfe4
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_1:
+  sample_submission.csv: a7fb5b007e5f77b3978e2ca0caac9aa6
+  test_features.csv: e60bd814e0100c5add277d2da3ec2997
+  train.csv: 58bb53c297624a5fd16f9cda69491e42
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_2:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: ba7eea5b184e33f45b7351dc7dbac3bb
+  train.csv: 1831c56337a20e5de276b6e879810db7
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_3:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: 300907dbce316a172a6c288106d99b5d
+  train.csv: a91c6374a83b0dc578e4c44892745eef
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_modulo_4:
+  sample_submission.csv: b2ba2af689b2794204566005caa2a834
+  test_features.csv: 05e1aaf95ff26352df1ff2e32521f8a2
+  train.csv: 0991cd2827923d9dc66a7c034ababf91
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_0:
+  sample_submission.csv: c86b5f4d21c9ae1ea14b12dd229775a9
+  test_features.csv: 3448333e666ef1d9e574e871d507340e
+  train.csv: bcbf4e7c7474c7148565fc5d57aa8d52
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_1:
+  sample_submission.csv: 41563136ec73fa362f7e1eb6d9ace139
+  test_features.csv: 8e164e3b39db56e43bad044c08628c8d
+  train.csv: 6038bd1500bb191491262ce589ca0aec
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_2:
+  sample_submission.csv: 943865e650e53860d69939688713cbc4
+  test_features.csv: 77c4d5450ae9cf7e4db21bd053a9304c
+  train.csv: 6750d0c26e86d166af2c069adbf6d71b
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_3:
+  sample_submission.csv: 3dfa4d7a22f84950fcb3df8d117544cf
+  test_features.csv: 588cdc31bafb07c844f28122ce7f86a3
+  train.csv: 66846f28093392dc6fe135a9663276da
+public-proteingym-dms/SCN5A_HUMAN_Glazer_2019-fold_random_4:
+  sample_submission.csv: f93371021cf30bbdad55e15c6e2f2d13
+  test_features.csv: 7bb6976629cbcf0e1b671251e58947fa
+  train.csv: 018c3727d5ea230266e99843ebf27d62
+zip: 53b3c9be428aac3724703a877c014f9c

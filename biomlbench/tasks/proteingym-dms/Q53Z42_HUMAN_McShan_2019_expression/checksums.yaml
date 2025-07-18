@@ -1,0 +1,91 @@
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_0:
+  answers.csv: a3c5638bd6563692221e88eea2f98c6b
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_1:
+  answers.csv: 2d75127de057743af6a3b8f0a0325fb1
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_2:
+  answers.csv: 04404691d954c3f833522505d98e44de
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_3:
+  answers.csv: 88e29237bf445411fb6b703ba79569b7
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_4:
+  answers.csv: 2c3de672ad82e2dbd127fe1a9e9d3378
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_0:
+  answers.csv: 7966014c53fcf198c12d6cb613bb4611
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_1:
+  answers.csv: bdab4c67478dace80614c6dd8c2027f5
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_2:
+  answers.csv: 6fc3993c7c829ea1a88e48093f4d0dc4
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_3:
+  answers.csv: 67c03fc23ab6eb00550c0e20c3dcf88a
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_4:
+  answers.csv: 0a368151b7964c1af9ea738a3d090fb0
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_0:
+  answers.csv: 3dc46a8b343653ca6389550cc9a0f290
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_1:
+  answers.csv: 7933edd7daeaf26e5c2d69f145ccf91e
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_2:
+  answers.csv: e27e0b687c527ae852424fe9522f67c7
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_3:
+  answers.csv: 8cd9ed11010dcef573e8f5c9354f124a
+private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_4:
+  answers.csv: e1aee3878f1841a92ff5fd8143475017
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_0:
+  sample_submission.csv: 0ccf44ee630ba80d82ec18a099a29f71
+  test_features.csv: 213f08eb38ada76983b94d5da79638c6
+  train.csv: 0c5780a3b5b7c45b28d46ae4cb3b3f1a
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_1:
+  sample_submission.csv: 654e92450634281c6fe6a6a864ea42c0
+  test_features.csv: eb14eb91770c5fad190f2821ec268e82
+  train.csv: 863b261d1a8435d1fda9cd7d582a9c59
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_2:
+  sample_submission.csv: 0a40cdad1aab1e59b7165c1fa30e90c1
+  test_features.csv: 59701a0dbac6c524267a25df083602a6
+  train.csv: db8ea3fd85bab29e3f3ccdc00f1ca584
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_3:
+  sample_submission.csv: ba4d78f809ef0fe8b957048250385e55
+  test_features.csv: 3e0e79b9d782028a36867a64175a9e70
+  train.csv: b07f40f3e2af081f45cf79e7dced4de4
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_contiguous_4:
+  sample_submission.csv: 654e92450634281c6fe6a6a864ea42c0
+  test_features.csv: 814de7a60314c4cb7ef98732d9c8569a
+  train.csv: db07771920dda43f735be38585836c0a
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_0:
+  sample_submission.csv: 75f4200b58f86b5fa9d32b802fc36afe
+  test_features.csv: 08bfe68d7290a8102286effb49f331b9
+  train.csv: 5d3f427a5b9b7e3577e37f203a08828f
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_1:
+  sample_submission.csv: fa1c6c09d75a282fd3b9693a23e07485
+  test_features.csv: 3367ad3232412708c8f6e3b85b32b886
+  train.csv: cb6e8ffec07c3a2a4dd2d45e9834cd06
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_2:
+  sample_submission.csv: 5b8df962746011e0fbfa3878f6bc3c37
+  test_features.csv: f20724b2ea117673c3bf250280c56453
+  train.csv: dbb0adbc21c3bc8d21966a79d091c7e1
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_3:
+  sample_submission.csv: 93ce1b46f522e4e99c49160452899711
+  test_features.csv: 2ac5942020c03afd401c8457ca011ca4
+  train.csv: d86984579a25f61c9359c01a56cee9e1
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_modulo_4:
+  sample_submission.csv: c3d9583b074a242a6790ac53ce83cca9
+  test_features.csv: 0b3881bc78a80e055c144122ae4ce1b8
+  train.csv: 87463410258b3a521667ea64e71ddb6f
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_0:
+  sample_submission.csv: 722e6d280fa3045b228083651b251910
+  test_features.csv: d465c039082864cb38ff06826ba4231a
+  train.csv: 70327fb593946e0125e86219da4f69e4
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_1:
+  sample_submission.csv: 7ead620e73270acf4bf9228d8d13804a
+  test_features.csv: dd612e4bdfee7f3de8eff19873da9e49
+  train.csv: 65a46f0a6c7e717f10c484c114a32172
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_2:
+  sample_submission.csv: 0a40cdad1aab1e59b7165c1fa30e90c1
+  test_features.csv: 7239c3d51f8f46677e26d1ea3ce95c4e
+  train.csv: 6c512cd4c858a95890557874c5685d14
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_3:
+  sample_submission.csv: 89e3dfd1b573869a2b424c5b0ba47f9f
+  test_features.csv: cfe1ad8dc8cabd9e3f56745b88616022
+  train.csv: 7f882257f43e7d70c0bd9e565883a2e6
+public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression-fold_random_4:
+  sample_submission.csv: 89e3dfd1b573869a2b424c5b0ba47f9f
+  test_features.csv: b6ebc6dc36090f2692bc343e1d91699b
+  train.csv: f49a2195d7002c786ae59d33928542d9
+zip: 53b3c9be428aac3724703a877c014f9c

@@ -1,0 +1,91 @@
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_0:
+  answers.csv: 7b7a63ddf2c9dc52479a31e937dc67e3
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_1:
+  answers.csv: 57aff99f6439cf7abee3f25f60a97a07
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_2:
+  answers.csv: eed2c5b39a8e49a91ad755aabc605764
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_3:
+  answers.csv: 4d25994d397797f09cfbc3ba518e501e
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_4:
+  answers.csv: 738e3f420c180a447473309d2f408264
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_0:
+  answers.csv: 4c25846b78c3d21a213cbd61b9ac0453
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_1:
+  answers.csv: d487b4261c6e10a68340cec68efc6416
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_2:
+  answers.csv: cdb54d9cded337c5af67b7da85132500
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_3:
+  answers.csv: f43d12b38a79628dad31a4c7db80ad13
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_4:
+  answers.csv: d7998e793ad464cadfd47a2ca92859fc
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_0:
+  answers.csv: 90a0a2aab50637759ac3a9b4f4c8a5e7
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_1:
+  answers.csv: ba77ff2084ed6653a89742f40ee77905
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_2:
+  answers.csv: c8489299a750d2a3a2aeda56ea52a730
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_3:
+  answers.csv: 2cd1f1984848b59d461b89b9f2c7bcc0
+private-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_4:
+  answers.csv: 4619a21e9bb04fa4dea9689108da7f6e
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_0:
+  sample_submission.csv: 6365c0f7c9815df218f19f3b54eecc29
+  test_features.csv: cfd457843ba84b8dc35245fd39348917
+  train.csv: 3f570b7dd42dda724844f62c92d39151
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_1:
+  sample_submission.csv: a7fb5b007e5f77b3978e2ca0caac9aa6
+  test_features.csv: 9ce4693f2dbe41a3cb212452896781ca
+  train.csv: bf48e18b6c5db8f1a4b71d6b956f22db
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_2:
+  sample_submission.csv: a7fb5b007e5f77b3978e2ca0caac9aa6
+  test_features.csv: 89bffb8b78a479695a2e466fa4f18e11
+  train.csv: d5aebe6772c367cf677fd17141c62f98
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_3:
+  sample_submission.csv: 6749758d1d077790ba270f23d2a52a36
+  test_features.csv: 6398064be78d476a4683882d7bb6845c
+  train.csv: 9e96928d990fd7e3e7a8dd077c79e4ee
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_contiguous_4:
+  sample_submission.csv: d887c3631930806007256717076eb737
+  test_features.csv: a1879902e424f60ed041c1476780bcc0
+  train.csv: aa8e3b7e5e8801118c690567f4b61728
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_0:
+  sample_submission.csv: 6749758d1d077790ba270f23d2a52a36
+  test_features.csv: a22173e09a32e8f15708d46348725a50
+  train.csv: 9d10e36f2e05ad7e666c53de84a071e5
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_1:
+  sample_submission.csv: 6365c0f7c9815df218f19f3b54eecc29
+  test_features.csv: a03d95c9372bdfc1aa89f2f4506b0a79
+  train.csv: eff60e4339852bb4bcc369f6b798508c
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_2:
+  sample_submission.csv: 6749758d1d077790ba270f23d2a52a36
+  test_features.csv: adda11fbe8b02a6cec6a64106a050a0e
+  train.csv: b5660e37b4aeb1a5a8c3a635b9694003
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_3:
+  sample_submission.csv: 6365c0f7c9815df218f19f3b54eecc29
+  test_features.csv: acc72adfdeab30c1e12d2f5a9ed62bd1
+  train.csv: fe1e76dace2c33af3c5425a1c590aa50
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_modulo_4:
+  sample_submission.csv: e3ebaae4c4244d75c9a8bd65924ee9a8
+  test_features.csv: 3d630082f9b93a28e13476ae7725ab2a
+  train.csv: 0d7bb5b6abd0fc8e3884d2fc904fd4f1
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_0:
+  sample_submission.csv: fe3420ec8aa9a6d18d22011a86ea3d0d
+  test_features.csv: 6300f1cfa4786e2029ebd42717a07c9c
+  train.csv: 34c3cb180e5d4cdc2806df2726da5294
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_1:
+  sample_submission.csv: 9a9ec031cd6e6abfd4a9c4677508ee02
+  test_features.csv: d26c36541beb702d30293ebbb8f979ff
+  train.csv: 9278f9a0b2842937d748a8a76b16e9b4
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_2:
+  sample_submission.csv: 55c898fb392293de69ecfb0dbf6dc7ee
+  test_features.csv: 73b559b3012cf02ec1a7396e64f0026b
+  train.csv: dc516869d00d3b6f0b75e2564a42f15b
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_3:
+  sample_submission.csv: 6749758d1d077790ba270f23d2a52a36
+  test_features.csv: 01573514606e2a7a5b2cb5d632af524c
+  train.csv: 117162c2587919bbf0286ea3c964e0ca
+public-proteingym-dms/BRCA2_HUMAN_Erwood_2022_HEK293T-fold_random_4:
+  sample_submission.csv: e622d6a29c098b4aefbda5524900df32
+  test_features.csv: 2fc53db578dce6a4bd61da575e8b11fc
+  train.csv: 45983d6ce21f406bb8887966acc800cd
+zip: 53b3c9be428aac3724703a877c014f9c

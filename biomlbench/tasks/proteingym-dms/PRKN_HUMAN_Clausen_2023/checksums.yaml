@@ -1,0 +1,91 @@
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_0:
+  answers.csv: 1fcb2812817440783d4fc085a36b92e5
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_1:
+  answers.csv: 7e795c3b11823b482fcba9ccc95436ac
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_2:
+  answers.csv: 1df0c05f142c85e7bc4b97f3d5480d85
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_3:
+  answers.csv: 528ca7daa9a793bacf1c764f00b3666d
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_4:
+  answers.csv: 92b37dfa38a6e28d073fd073a2128dd2
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_0:
+  answers.csv: b724f5f81ab2589023942cb7c33fdc71
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_1:
+  answers.csv: 620b6c264575c9a141c759e43aaddf7d
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_2:
+  answers.csv: 46bfcd982d06bcf4cc9c6142d4b8c1aa
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_3:
+  answers.csv: 0a0e20e4f5edd76a3832e7bf6c655181
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_4:
+  answers.csv: 8374993b3dc8a33fba2c74900016930d
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_0:
+  answers.csv: 0fea1616602e1ea69241dc873a01819a
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_1:
+  answers.csv: e4ba9fa87042572bfeb2bbc8f5e8773a
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_2:
+  answers.csv: a5fa131304b1eaf618dbdeaf530b04a5
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_3:
+  answers.csv: d6d33dd476ad4c4f9962e4a025d69fbe
+private-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_4:
+  answers.csv: 669e91b3d7fd5a79dde2e22112d418f3
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_0:
+  sample_submission.csv: 28ff7f4fcf71998086f46eaf39c059bd
+  test_features.csv: 0434a1616f63a9520a299563edd4edb4
+  train.csv: 2110008f1c313a9efeebb91b50e96d91
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_1:
+  sample_submission.csv: 8fe059473bd750b8f1d2afdef23d0b88
+  test_features.csv: 9b9ea3d647d9a6ca5856533a8ccdf902
+  train.csv: 634bfae95d13a1e7a8a584bedf1cf34c
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_2:
+  sample_submission.csv: ac95e2db7eee73fd12d0109de47b23e3
+  test_features.csv: 96eadb09062a56b67963b117566f3085
+  train.csv: 013893559e4f25b7c845b7fe5887ade9
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_3:
+  sample_submission.csv: 8028c35b166738f710848b4aacc3eb98
+  test_features.csv: 0787246d3bac7278ffb646874ac6b74e
+  train.csv: 1fc5a25efb0793fd64d1984f1c047bda
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_contiguous_4:
+  sample_submission.csv: f4676ec546f1875fe21c4ac4c125ef61
+  test_features.csv: fddb4364312852302146689de9e03351
+  train.csv: c1f86e8ec263e3955cba91e61f3814ee
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_0:
+  sample_submission.csv: f99f80d8eee618ec2fb1a5c446adaf10
+  test_features.csv: 36d2aef1f2d280342fc9b0e1b95510ed
+  train.csv: 4c59f2e90fd90a41d4341f79406e157f
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_1:
+  sample_submission.csv: d7133deaab2ec99a2ceab8c82cca567e
+  test_features.csv: 9848fcd0ec2dbed31ed2e65c28023c75
+  train.csv: 846dbd01f8a503fad32f026b26cdeaf8
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_2:
+  sample_submission.csv: 23d20054addb920b059e5a05a828bdff
+  test_features.csv: 78984ab8ba6767661680f5a994396c00
+  train.csv: 87dfd9e5d32a0b3aff4de741d1dab8da
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_3:
+  sample_submission.csv: 719c9ce0f63fc76f0de75757d8bcf04a
+  test_features.csv: b7c1926069711c61aafc559b42dac04f
+  train.csv: db6b8043d1276736728a9db91ed42ae3
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_modulo_4:
+  sample_submission.csv: 5dcfbfeb165915879d2ef18715c4b5b6
+  test_features.csv: affeca3f39c3ed3bc0c7bf868ab6e7c5
+  train.csv: b14da5a906e8348a49b31a5cdb18d47f
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_0:
+  sample_submission.csv: 89bf3d1590a0ca2bdd3adfbbe808d0c6
+  test_features.csv: 05654e2501eddeb59be18658c29b87ab
+  train.csv: 74431de7c64cc0090bc14e04965633c1
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_1:
+  sample_submission.csv: 8ab0e8a3c8c1f30b02fe7c6be2fd4812
+  test_features.csv: e93ec5cc0ed4bcd0b992b17fae2fecf9
+  train.csv: 0f221619cf7d4d370cd0727ea6cd1e08
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_2:
+  sample_submission.csv: f9b295543cdf004d5c8f090705fd8885
+  test_features.csv: 5dccbc550ebb3aecae5fc21809aed230
+  train.csv: 049419ef05907f2f6ea534927de7a4dd
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_3:
+  sample_submission.csv: 808950c9c7c4dd5d333f86e97cfc02b7
+  test_features.csv: 3318638933c398bcf701a171bb44e209
+  train.csv: 0d1b33f51701ea96a18205e744dda417
+public-proteingym-dms/PRKN_HUMAN_Clausen_2023-fold_random_4:
+  sample_submission.csv: 23d20054addb920b059e5a05a828bdff
+  test_features.csv: 3ee1b1b0860e2c535f746a024c568f05
+  train.csv: 31d4e364a5f58f0cab1db167c5bacf87
+zip: 53b3c9be428aac3724703a877c014f9c

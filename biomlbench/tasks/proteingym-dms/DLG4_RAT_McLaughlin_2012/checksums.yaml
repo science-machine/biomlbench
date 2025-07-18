@@ -1,0 +1,91 @@
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_0:
+  answers.csv: f0bf2ec4550b41fa2537374d2b7ed4ad
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_1:
+  answers.csv: 6bedebd77e8510c2c41a966393258519
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_2:
+  answers.csv: d5154b0c1771010a0936990e674fe964
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_3:
+  answers.csv: 82f2873420a059f3a77db75cd9099363
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_4:
+  answers.csv: d8f2d61da6c1abf327ad095cfb0d0904
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_0:
+  answers.csv: 51721f131506f2c4885ee4b2633de60c
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_1:
+  answers.csv: d666b351687c29733bbf1f23e46a124b
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_2:
+  answers.csv: e65033cf645487cb59e9dc50ce719f12
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_3:
+  answers.csv: 6993052eb468c32f4ef2a85a09b7e35b
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_4:
+  answers.csv: 60a957a5baf9402ba9d6d2aa7516af90
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_0:
+  answers.csv: a27a9ee95ba36c999b80309228fc7c56
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_1:
+  answers.csv: 5a794621a5ad92336f8042444ad4dc7c
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_2:
+  answers.csv: d737425e35d34f4c77c0e4022f2acc35
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_3:
+  answers.csv: 0bf655502e5dfa14d8a253d2499f26ad
+private-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_4:
+  answers.csv: cc51892f618afad5c409a12b5664cfc5
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_0:
+  sample_submission.csv: 0a76406c13b3aa458c9f637bdcf21987
+  test_features.csv: b8b1c3fd89df904fb7f91eeee4ea7f80
+  train.csv: e075833d60faac92d9d1cf3038618d58
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_1:
+  sample_submission.csv: 5835d90791e5748d6c6d461443592ba1
+  test_features.csv: f588a1e2a7e5b4896b49bec3ea269c34
+  train.csv: 107af12f1786ca9eabb0799de7ec6fa5
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_2:
+  sample_submission.csv: 5835d90791e5748d6c6d461443592ba1
+  test_features.csv: 4664b68e093c48c5787cc879695aee4a
+  train.csv: 575e4648602471fd0a51255ffac885ae
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_3:
+  sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
+  test_features.csv: 9f5b41eaea68070213270fbe28757e64
+  train.csv: c23f40ebd87a000da43c2fe3833bc196
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_contiguous_4:
+  sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
+  test_features.csv: 87bcdba1ce259c8cdedf349e4810eb31
+  train.csv: da8b87029dcb249f617f75903f72003c
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_0:
+  sample_submission.csv: 0a76406c13b3aa458c9f637bdcf21987
+  test_features.csv: 8f03afb5570d54fd641c2e846c6f7bab
+  train.csv: 713e5c28e299b54e3ef5d366d07fb927
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_1:
+  sample_submission.csv: 5835d90791e5748d6c6d461443592ba1
+  test_features.csv: c3522f3fcc943f381f604be95a4644d3
+  train.csv: 31ef392bcc7abb948a5c66514b6bc8c4
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_2:
+  sample_submission.csv: 5835d90791e5748d6c6d461443592ba1
+  test_features.csv: 27cbd28f621a01f0d95af1d87acb015e
+  train.csv: 6d22be142a42ddc8b2f51d889a2dc049
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_3:
+  sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
+  test_features.csv: 22da16beabb2fe13815b1a797ebcbe5d
+  train.csv: 56e47778c6efbad3a13876ec048c0081
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_modulo_4:
+  sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
+  test_features.csv: 37f94112d9909ec6745b252e45d81d3f
+  train.csv: 2d3db54cca2ce02df2822eb9131e3ed1
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_0:
+  sample_submission.csv: d219fab3d2c3bd053d230adb5479081d
+  test_features.csv: 191ef2a44409c36a4de36c5f0234a8e6
+  train.csv: 801c39d8e0c0b95017def99c58c6f83a
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_1:
+  sample_submission.csv: 1b14fa8b991449851953014e6d224ad5
+  test_features.csv: 310eb0db6e395b83a910e0a06576742f
+  train.csv: 5a5a01511981d1ed12042d399c1cee9c
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_2:
+  sample_submission.csv: d2670a95435ded42582906fb7bdb0ba8
+  test_features.csv: f9049babece2c558fce7205ef3e9c920
+  train.csv: 16bbd4500bb13941465e2d9096e6ca33
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_3:
+  sample_submission.csv: 3963f533342de66c7d0c5dbea5d1ddd1
+  test_features.csv: f6f73f022d6d791194ac6342b65a7c54
+  train.csv: 989a1a77ab3777f30425910aa51a4769
+public-proteingym-dms/DLG4_RAT_McLaughlin_2012-fold_random_4:
+  sample_submission.csv: 5835d90791e5748d6c6d461443592ba1
+  test_features.csv: c4452ebf50900ac750ff6c8ab5373d0f
+  train.csv: 867073e9118c5e347f01f7815054563e
+zip: 53b3c9be428aac3724703a877c014f9c

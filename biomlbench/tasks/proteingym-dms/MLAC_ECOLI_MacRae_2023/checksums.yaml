@@ -1,0 +1,91 @@
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_0:
+  answers.csv: 0fcd57b7fd1b3086ad0d274718f53782
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_1:
+  answers.csv: 48cd0175632c2363ecb531364353f85f
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_2:
+  answers.csv: 46a60ae825a6aa7eefc385c0d88a4de2
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_3:
+  answers.csv: f81484cc928043b91eb8796c5781decb
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_4:
+  answers.csv: cbef9a081f38ebb785dfcde28dd0233b
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_0:
+  answers.csv: 6e918cebd60aa00efb629bc1f97e36ac
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_1:
+  answers.csv: b3aea03a61bf4a9c27c57683a657434d
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_2:
+  answers.csv: 360db1ebc99a281249a8b3826344a47e
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_3:
+  answers.csv: ac60434be6c34d0bedd7b49eb52cf07c
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_4:
+  answers.csv: 5b4cd5afd0f139d6feef433f6cd24066
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_0:
+  answers.csv: fa4260496164253d946a57433cdec206
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_1:
+  answers.csv: 4feded738bc22511e2c977e24e7feb72
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_2:
+  answers.csv: 4a096f42a6e353664fcc39cfbf0d0328
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_3:
+  answers.csv: 351f06227c12fddf36128d85ad5db150
+private-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_4:
+  answers.csv: d0ca158d4f33d02a1aed2add5659cbb4
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_0:
+  sample_submission.csv: 5e7ae3fcab7777c0ae9a963855872a51
+  test_features.csv: 07df6afe13bcaa1548d77ad39d63bbe3
+  train.csv: 74ba1679ac7f1645913a6c5eaeaf3a0f
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_1:
+  sample_submission.csv: 0a15ca4e0e789dbdc5a52bf2800ffb63
+  test_features.csv: 90717fe853f042ac7ea1055df1cb032c
+  train.csv: aeee09114eee320b019294bbf9be896c
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_2:
+  sample_submission.csv: 0a15ca4e0e789dbdc5a52bf2800ffb63
+  test_features.csv: 9b56b6f1274d526326b302ed06cd5fbf
+  train.csv: 04d81ec2a5dfc9e985cded9ad9dc7321
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_3:
+  sample_submission.csv: 0a15ca4e0e789dbdc5a52bf2800ffb63
+  test_features.csv: ec0bc5874d9b28bdefc9583d74acc560
+  train.csv: d2739b3b5543081594c038b940377059
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_contiguous_4:
+  sample_submission.csv: 11c737e6e3c56323fe359b2fd73501d4
+  test_features.csv: 1ef52a122c900f1b24dcb5057e52913c
+  train.csv: 1e928eac350ef8fd2b9a53c9e68c8c4e
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_0:
+  sample_submission.csv: 89d9e995eeac0ef45f1f2d389f9f66a5
+  test_features.csv: 74be883843e8ffa2b122d977798e6097
+  train.csv: 81c0b5360d9a41ca9354e5818e330a5a
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_1:
+  sample_submission.csv: 0a15ca4e0e789dbdc5a52bf2800ffb63
+  test_features.csv: 7f1132ea090b7f207b42e20376d922d5
+  train.csv: eb323269699e80a35e22ddb334f2f9e9
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_2:
+  sample_submission.csv: 0a15ca4e0e789dbdc5a52bf2800ffb63
+  test_features.csv: 08439d53e839e3d257677129743c5c8f
+  train.csv: 8e1bab1e8184e6d1b723d6f3317b7cd9
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_3:
+  sample_submission.csv: 0a15ca4e0e789dbdc5a52bf2800ffb63
+  test_features.csv: fe5609ee630d04126ebe93f3053153f3
+  train.csv: 033c6c97e07e68461adf87477cd51f82
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_modulo_4:
+  sample_submission.csv: 0a15ca4e0e789dbdc5a52bf2800ffb63
+  test_features.csv: 7f462eae7b91ff9f14300a891f3c4c2b
+  train.csv: 50e4438cbe11ea5c3d3979b8344e51da
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_0:
+  sample_submission.csv: cd9fff1e28f578d2945c7278b2915c86
+  test_features.csv: a599717a1cfc0db2a4c038a910fed297
+  train.csv: eda67856bbde7c33d251af5712ad2637
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_1:
+  sample_submission.csv: 90529323d74c125610d26aef2f429d6d
+  test_features.csv: 7cfec51fb516cfe612a68914f5edefa7
+  train.csv: 5717212ba3e367e9addff332b2ac2d5d
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_2:
+  sample_submission.csv: 132f71ff7ddc44951d5fd87525f43aaa
+  test_features.csv: bd8f6d7f826e4c2202fc041439cf0d7b
+  train.csv: 2ef92cbd1f5148bd6dc76c7213daad1b
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_3:
+  sample_submission.csv: 1d7b32cd70e75d1ac20b4a14a8b38041
+  test_features.csv: 607610543a64da0e62fb09d033a6752a
+  train.csv: 329377dce974c205f4388bb1e55e49b1
+public-proteingym-dms/MLAC_ECOLI_MacRae_2023-fold_random_4:
+  sample_submission.csv: b23e0b3a2089a050e7663a26d85c0e61
+  test_features.csv: 47fba6d8d1b2833e809b604a61c08f11
+  train.csv: 6a459081f7bb36959c928a71dddacfe5
+zip: 53b3c9be428aac3724703a877c014f9c

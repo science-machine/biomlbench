@@ -1,0 +1,91 @@
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_0:
+  answers.csv: 2c5e4bb3bac556ac38bc1114cac1d048
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_1:
+  answers.csv: 63df65735fed343484c79ce48d65608b
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_2:
+  answers.csv: 7d200028fd691835d132576011ad01e1
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_3:
+  answers.csv: 50d3c0a6a92fec4ebdcfc6800c29b655
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_4:
+  answers.csv: 01511af2993ac0586b83a1fcc9acbf4d
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_0:
+  answers.csv: ee5fddd28a2313ceccfbfc665b77333f
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_1:
+  answers.csv: fba3135e8e493754883a7f11735a0c33
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_2:
+  answers.csv: 87bc0eb70ad8f64a607f078d6ea84f5b
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_3:
+  answers.csv: 0c01efbb3cc590812dfe4b8b45846db0
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_4:
+  answers.csv: df5d6d6051a57ad133d7e429688447c3
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_0:
+  answers.csv: 8f7772ea65a7896d1bcf37de3a2fa27b
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_1:
+  answers.csv: 8c3a829f4a5e98deef2a9b81bad5cc95
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_2:
+  answers.csv: 8540d9054f01b8c7d9a1d18e7f6bb7c6
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_3:
+  answers.csv: fa3177df0479b8fc465fbe65a7d31fb4
+private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_4:
+  answers.csv: c27e7a4947805af7d650cc3bc433c454
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_0:
+  sample_submission.csv: dc549043cb8cf390c4f1bfcdc9389dd4
+  test_features.csv: 889ce710e3c4942a39fa3815a84bea08
+  train.csv: 3923a78582b5b410f8fcfbe2997a9692
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_1:
+  sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
+  test_features.csv: 72e5f6ae973b5233edae009258fb0a3f
+  train.csv: a374668f418130196c8ca7a6901fd3a6
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_2:
+  sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
+  test_features.csv: 41ef4f3c8f6ddce14d1ab10844810c2e
+  train.csv: b1495d67e1c3af362f419e2a769344e4
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_3:
+  sample_submission.csv: ec754a033b9ad2bed8571ac9afbe1f6e
+  test_features.csv: 9e5d73e4362b75b697022db4d5c5e557
+  train.csv: c1079fd4ae868ea334d3e0016ebf7d18
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_4:
+  sample_submission.csv: e5960de167c2dce50d0282203c94c732
+  test_features.csv: 9be9e329e8443db0b0089294e203680b
+  train.csv: 71fda2324a0ad6d09cd2aed8d969b477
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_0:
+  sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
+  test_features.csv: d378e22fe6e4e89e967efab0577b24ad
+  train.csv: 31202e632b34d69d02bfd53200878acc
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_1:
+  sample_submission.csv: 2564be7048e0e9be88182a1962b462b4
+  test_features.csv: db0b2a096bb30bb51978a771ad446f22
+  train.csv: 29d266afbb8f4ba40db38d214268c946
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_2:
+  sample_submission.csv: d2670a95435ded42582906fb7bdb0ba8
+  test_features.csv: a91f931ccdbbf43adf25d80d76868678
+  train.csv: 5199e8c22fc05dfa6625499834818472
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_3:
+  sample_submission.csv: a5cbd575ec412c8b6690f3353b505222
+  test_features.csv: 932b3999ce734a1c54d626890baa8a06
+  train.csv: 18736b033f37a463e2a5c287e5a6f3cf
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_4:
+  sample_submission.csv: ec754a033b9ad2bed8571ac9afbe1f6e
+  test_features.csv: f368cef7de83732ceb9072c6c599573e
+  train.csv: 6f6f4bb9c89fc8d3eca07210beb93ebe
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_0:
+  sample_submission.csv: 77a3cf21c3dabe1d9561e94dc0065f26
+  test_features.csv: eca9901072ccfdf17470bfda152387a8
+  train.csv: 256078753f403b4818d24b8c28f47dc6
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_1:
+  sample_submission.csv: 686c1f3a5087c39131aad8f773826263
+  test_features.csv: 706829a43c8a062316d7e7f0f7e7cdbc
+  train.csv: 8413bbd7f3e01ce46d67d09b78aaa37e
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_2:
+  sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
+  test_features.csv: dc89aac7acc85016f4b8e0722a0b6550
+  train.csv: bb8768555c0c73308d4828b2355d5549
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_3:
+  sample_submission.csv: e640ca07896f2e3852eeb0d4a2739cf2
+  test_features.csv: 415f7bfe12091fa3a16b4aad4e13bcd7
+  train.csv: cb9398fde154bcd5c2b1e3abb3b2efd7
+public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_4:
+  sample_submission.csv: 4928c513cba19930e3fd774a6260a54d
+  test_features.csv: af4ca7df029e8e57440f6124e7daeadf
+  train.csv: 5ce5d8cf42198315457aeb98a0bc2acd
+zip: 53b3c9be428aac3724703a877c014f9c

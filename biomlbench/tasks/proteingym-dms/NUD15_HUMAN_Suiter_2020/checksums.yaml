@@ -1,0 +1,91 @@
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_0:
+  answers.csv: 2ac6a7517637ee216cdaa5d1d01b5443
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_1:
+  answers.csv: 511820133bc515c205e7c4bd7b978b48
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_2:
+  answers.csv: 96e7b0f245458ac7c17b486fa47368dc
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_3:
+  answers.csv: 47a537d71bc0b0d5b6f69664ff97db7e
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_4:
+  answers.csv: 23c7c248f4c080ecab5e2c0e20058a4d
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_0:
+  answers.csv: 90dac44506497cefdae5b3e1e832a03c
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_1:
+  answers.csv: 13e5f5b69cf3250ef0aa277c5acdba90
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_2:
+  answers.csv: 8d12335c3d76c96cac3b3c95aef7963e
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_3:
+  answers.csv: 92309514c141ec2385642c46344eb4c2
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_4:
+  answers.csv: f8505375d7cd06b007fafe7ab3a8647b
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_0:
+  answers.csv: ab704b9008108fcc2ae8d6b7de89c7b9
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_1:
+  answers.csv: f7f3545f4cd1a5de3dd4571f8b8602ad
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_2:
+  answers.csv: 4c9ca56ce3f2daae96fa965266edc9ce
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_3:
+  answers.csv: 225b558e8c5608580b4416ddf8186c8c
+private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_4:
+  answers.csv: f86d3fa034169400425b5b8a2c74235e
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_0:
+  sample_submission.csv: 84c3901e9edce9f5c81384faa11bc4fd
+  test_features.csv: 1584542510a05b38804591430a72ac76
+  train.csv: a0858a97a82746d818126b4d3cefc3c4
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_1:
+  sample_submission.csv: caa4e7bcc2f71e9e9866f506785c3e2d
+  test_features.csv: 7c768740fb1fa586144c8c63f18956e7
+  train.csv: 539ba25e3b474b3e457ffedc96df0429
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_2:
+  sample_submission.csv: 850804a6d2276320c0ba1c7aa0f1096e
+  test_features.csv: b6bdf2a4573fbd4402a516f27c07a617
+  train.csv: 7aba0f736584e7d8f70fa6b570cd1678
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_3:
+  sample_submission.csv: e3dfb84ff045dae9ba670cfc3f5b950c
+  test_features.csv: f90f1da456e74e3c06a3f3ec0d22386d
+  train.csv: 682e1c4b9a24848f93d8a51dcc4003b4
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_4:
+  sample_submission.csv: 4e3a0d4e271467484a73aa274232dfc7
+  test_features.csv: 90a5761a2f2ceb9b7a5ff92edd5d7873
+  train.csv: b1986d2c74be78a32a1bba3de635b53c
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_0:
+  sample_submission.csv: a604017365b460e6f2b85d325f799602
+  test_features.csv: 8d4b9abc34a8425c71a33dae99cd9cc4
+  train.csv: 9b7619911355950d444d3c7ea88173e8
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_1:
+  sample_submission.csv: 8d0de74952e5993c68c6ad69b042ebe4
+  test_features.csv: 1d7929a63447f971079e78f9e329421b
+  train.csv: 9281c5fe5f7e7575d8fc93078f0ea6f2
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_2:
+  sample_submission.csv: 7031f4974617f5c189406356ce98f7e6
+  test_features.csv: 43da5c2c0cc3415fbc07f0a1d59812e2
+  train.csv: 8a89c4ac5205aac30577d8f0c259d7d7
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_3:
+  sample_submission.csv: ff0189056e99b8ce18cb53f8e43e2ecb
+  test_features.csv: a65c18760e822bdd4a513fd0e6ba9e16
+  train.csv: d23e543a6a8bd0e2ba938f5d75f3f177
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_4:
+  sample_submission.csv: 33d33fe6baf0c296d8347f471e9a6b81
+  test_features.csv: b9920a387031d16697e4b72477164cac
+  train.csv: 64576891f759cc303073832255f36371
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_0:
+  sample_submission.csv: 4792e2b5c578568aafb1a30b0f007796
+  test_features.csv: 0bdb2e9bf302fc477f46d34aec117643
+  train.csv: a9b050a370fefee331bd25a32c0c026d
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_1:
+  sample_submission.csv: 84c3901e9edce9f5c81384faa11bc4fd
+  test_features.csv: 2a777ef536966ceac0521be5b6777b50
+  train.csv: f4002816d60de497915117771054b103
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_2:
+  sample_submission.csv: 6a9bdd52fd2a40ebb918c0900c8285b9
+  test_features.csv: d2216e94a8dd38f5fce0f7e1a876df3b
+  train.csv: c9fb382e5a44670080dbf2059a57cc23
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_3:
+  sample_submission.csv: 6b4aba7767b201b03a9f98a5336b2d1b
+  test_features.csv: 0c76fbaadf78040f841524547db0e3a7
+  train.csv: 56cfeb713fdc115e2a46602f2dae4c71
+public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_4:
+  sample_submission.csv: 547671bc5d9f439efb55bb5971d0a63a
+  test_features.csv: 37afa67c3997f71ee38ffda4f6593738
+  train.csv: 088d2ff4f5218375867630f720091496
+zip: 53b3c9be428aac3724703a877c014f9c

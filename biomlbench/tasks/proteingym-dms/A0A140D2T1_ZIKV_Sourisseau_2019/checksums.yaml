@@ -1,0 +1,91 @@
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_0:
+  answers.csv: 4ae81704a3a43f625b487d3a3a2e1c62
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_1:
+  answers.csv: 380ef558b7f6b855ad219f41605716bf
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_2:
+  answers.csv: 55ef30a32e69975ad4f8381adbbbcdee
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_3:
+  answers.csv: 3dfc211120167ae0e921f5563dd0d83f
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_4:
+  answers.csv: ec3b8e83ebadd353739bee1f029b5ab0
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_0:
+  answers.csv: 26a6b320899b09e0ccd8f51bb129894f
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_1:
+  answers.csv: bff6d33739b255b6a450041e226dd378
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_2:
+  answers.csv: 52fd796a5ca5d8a9c80853dd497dd346
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_3:
+  answers.csv: 8407461a94674ed58963fc073e9da447
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_4:
+  answers.csv: 883c400e9e8de33e7baff9c04bf2eb85
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_0:
+  answers.csv: 5276823d4760d5662b7b82935b09f3a9
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_1:
+  answers.csv: 33f3da7714121cd6d770655290e08204
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_2:
+  answers.csv: e953e2ea1a49c6911f79ed6259abe70a
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_3:
+  answers.csv: 031605f365cf11002d359372a1e6b402
+private-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_4:
+  answers.csv: f3e067bed389c394cf286f17c8ace008
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_0:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 0a21b44ea9b9ca0f7ffcb01171529247
+  train.csv: 8358d90ec93c65ba3b3c71bf187f5e95
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_1:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: fa784e5759e591481d00f3f5bae2719c
+  train.csv: 0114f707ee812692463b84266f093ae7
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_2:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: d3a16783a5c90b1d778c606405797524
+  train.csv: f7cf9df03f028e0591b20a6761821f2e
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_3:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 5580e91815c6e1945033d60ec295285c
+  train.csv: 981ea834ec260e629a29978661cf58fe
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_contiguous_4:
+  sample_submission.csv: 1020f34c315661f3504a130ae48f8245
+  test_features.csv: 9bd95656a6a4f5fa84bf980dfedfc334
+  train.csv: 760fba4878db4c2411de3cd9adeabf3f
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_0:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 3676b7ac31626105c24ccb8ad9af91d6
+  train.csv: c1c9dd04c50c86e66901763d11e48a2b
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_1:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 6468f67ffdefa5c00fe6e560e19de2eb
+  train.csv: 7008dfe9f5734dd1754e1eccf77714bf
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_2:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: a82c66d012f1e5531836bd934d07e65e
+  train.csv: e912f7d8f45a82381b9f57659a1fb6e3
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_3:
+  sample_submission.csv: 81456062ff5b27950c09c1623eec206e
+  test_features.csv: 34f2fb295a80f7da99f1cbc71dbcfa3d
+  train.csv: a8039dc4222ddec2033fb064de10387b
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_modulo_4:
+  sample_submission.csv: 1020f34c315661f3504a130ae48f8245
+  test_features.csv: bdc8021fac0fa5254e6dfaeddaba97b3
+  train.csv: 1156d014e7ed2d12bcc26921cd913720
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_0:
+  sample_submission.csv: 11fed1291a9e84972b2c9c0814012f86
+  test_features.csv: 2b15425d3ce1f04412ca561361e17904
+  train.csv: 342b1c09f3f593fd0f3fbe0218ad138a
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_1:
+  sample_submission.csv: f1728b37c65ac6e2f48592dff00b86fe
+  test_features.csv: 3d1075c1b9697a06ac510903c71ac2d2
+  train.csv: 72d011819a5e5224a8e96e10e5e58923
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_2:
+  sample_submission.csv: 3d0fca6203ed97b4602bb362e6e0d631
+  test_features.csv: 9ab4f6b47e17a9b5700369716e06c57a
+  train.csv: 0982b02b795b467de0db819437ad15d2
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_3:
+  sample_submission.csv: 9edfcf0ce74dce29070893c092d6c7ad
+  test_features.csv: cf3548daaed3cfcae365216ed18a7f75
+  train.csv: 69c4dc72b236c250ad0b5239f41d43e6
+public-proteingym-dms/A0A140D2T1_ZIKV_Sourisseau_2019-fold_random_4:
+  sample_submission.csv: 81e282021358bb8cb30ad201551d3c76
+  test_features.csv: 2458254cdda79141735cc67cc243c48d
+  train.csv: fbf2e782db6a771742b8acb0b974aaa4
+zip: 53b3c9be428aac3724703a877c014f9c

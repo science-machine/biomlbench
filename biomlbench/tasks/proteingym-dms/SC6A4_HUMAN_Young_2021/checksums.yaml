@@ -1,0 +1,91 @@
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_0:
+  answers.csv: 010d635852705e72d10b27f00d0d529b
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_1:
+  answers.csv: bd935f3c571a851fecaab29318c7c398
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_2:
+  answers.csv: ce542c08efa83c77ee2239f4d27e3c35
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_3:
+  answers.csv: df35d8f5b4015e1f7601aa0dabcc7a44
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_4:
+  answers.csv: 96d19509cac380f0b1eef73b59f6254a
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_0:
+  answers.csv: aa3aa404594020724734653110093530
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_1:
+  answers.csv: 442d27660a43d08da4a9d1543d286af8
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_2:
+  answers.csv: 03506930b2f0401e6be53753f211f43a
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_3:
+  answers.csv: 97144f3d081c5dd95f68c45d74d3e8ca
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_4:
+  answers.csv: ff200d329c9895455fdc5389008e6520
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_0:
+  answers.csv: 431c3c373b55a067ad3ab3affa2b79fc
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_1:
+  answers.csv: 0326b23fde7ff118769035c231338a0d
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_2:
+  answers.csv: bf621a042d33f3bb3f482c8c560b224d
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_3:
+  answers.csv: 3c7af889e529cbe0f4ef4ee725851534
+private-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_4:
+  answers.csv: 75438aa8b79151977123907d3fbd2c1b
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_0:
+  sample_submission.csv: 152eb38cf1cd24e5a6c8553dc4bdb521
+  test_features.csv: 4fd8d8c08451a90e91551a910d8fbb63
+  train.csv: 50111f08cfea6d9fa48b2ff350cb6378
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_1:
+  sample_submission.csv: e475348c53ba5027652ac22a7d4b1164
+  test_features.csv: ca4083708628f36b567cefcea948d515
+  train.csv: 7503ec7c9ab72ed6420785d65d5ed720
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_2:
+  sample_submission.csv: 39fd15277405cb94bb49cffec496877c
+  test_features.csv: 2ef042e7b17e86dd675fb25eef451788
+  train.csv: 56027e5eb5f66ff71a5f9d31cc560b53
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_3:
+  sample_submission.csv: d433dee854eedc29d4459699650b8dbd
+  test_features.csv: 67ccdafd5174c2b4f703b3a1a8e674ff
+  train.csv: 0d9f288a285e2ec79551b6dd26afba48
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_contiguous_4:
+  sample_submission.csv: c6a47cc7210968989abec47e7431189b
+  test_features.csv: 1d68b0d2b3a4d2b5c064d351fdb9efb2
+  train.csv: 65e65fffe1c9bf1a8a5a7cb99394c734
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_0:
+  sample_submission.csv: 7a83b4a01e02ee02b6e39b91f109258f
+  test_features.csv: b6ae71a064744c245ba7a1af1e143230
+  train.csv: e8aa039e7edaf8a401c752cb2cead4d9
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_1:
+  sample_submission.csv: b557e1758372efe6b9b610e1030d80a9
+  test_features.csv: 469c901262cd0a097b3c3d2ee479fac3
+  train.csv: 2b1a9550d17bd29aac1257cdf8547bfb
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_2:
+  sample_submission.csv: 6c51e28030d4b4ffb7f21bf4851924ef
+  test_features.csv: 1ed8ced2b004bb95bc1043b7d9fb0413
+  train.csv: c47f5db49e605b352a63d68b13651e48
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_3:
+  sample_submission.csv: 2ebb6900e14ac65b9eed8ae5b3835058
+  test_features.csv: 487d2cfcd54300271c674da46d20d3e2
+  train.csv: 52bd3ee232c2783a633241eb841e571d
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_modulo_4:
+  sample_submission.csv: 21f1d9fdcb10f9ef16f7a551a53b6cea
+  test_features.csv: 68360b6ab5701b1d3fa10a1bc68da365
+  train.csv: fc162209019d8ee27a8de14138499365
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_0:
+  sample_submission.csv: cf0ac86812e010a42217e7f4de1de8cf
+  test_features.csv: 4755a4bbe6b7759cf922492c39b3b0dc
+  train.csv: 4ab208ad280c501cba4517ba488f5f8c
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_1:
+  sample_submission.csv: 290ad5b51d96dc361f352a40f441c7a5
+  test_features.csv: 87fe7d295a44f9c81624c4723c4e9bfb
+  train.csv: 1d05e4aea15145d29d5a360601244246
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_2:
+  sample_submission.csv: 70e9f5d70ed6a276b2dd28aab4117d31
+  test_features.csv: 89c956ca258ca80bf6b476a58c65defb
+  train.csv: 97cd68d1dec3804c9411abac61c78578
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_3:
+  sample_submission.csv: 2ebb6900e14ac65b9eed8ae5b3835058
+  test_features.csv: c17973b1feadf699fc37ec63057ce80d
+  train.csv: 43c58e8391f76bab9371ed94f1a69bb4
+public-proteingym-dms/SC6A4_HUMAN_Young_2021-fold_random_4:
+  sample_submission.csv: c9411ac0fefc17e1e0abddb0e46e2b5f
+  test_features.csv: 04b02419074f4c9d9c750aa8bcbc4502
+  train.csv: 823132b27999bde899f8cd106ebdfdfb
+zip: 53b3c9be428aac3724703a877c014f9c

@@ -1,0 +1,91 @@
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_0:
+  answers.csv: 71c3f39e05250e3f3548a82d7a61c8a8
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_1:
+  answers.csv: b57449c8b502ee0a04212a48b0410339
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_2:
+  answers.csv: 834fa369b4ef478209318fd575598f80
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_3:
+  answers.csv: ee94e23df26ddf4dde2ce81fc080fdd4
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_4:
+  answers.csv: 7666855e8d1fb40661d3bd71557adbcc
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_0:
+  answers.csv: 16b6755cc3c7c67c7729aea21a2bef3f
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_1:
+  answers.csv: 5a692a0891c7920f9f7712e39398f71b
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_2:
+  answers.csv: f431a983737cb76610da6d06d7a7563f
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_3:
+  answers.csv: 3329279e70e065aa88d9962ab10c3f4a
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_4:
+  answers.csv: 05ec8906e14c1ce1db11e54b831bd8c9
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_0:
+  answers.csv: 2b81d32cc636fa53582cb85809b4f81d
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_1:
+  answers.csv: 2c96db43af9c7c4905d61d723b56b18e
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_2:
+  answers.csv: 96a391868cb12b8a11b94a7ff679eb25
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_3:
+  answers.csv: 54fe705c785f1dcbcfac8c54b6d94a7e
+private-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_4:
+  answers.csv: eaf91c03ba6e952dd668641689ef87db
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_0:
+  sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
+  test_features.csv: 284f647af97708cdfd67f7fef759d871
+  train.csv: 76335e0244374aa61da4823ce023d759
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_1:
+  sample_submission.csv: a302870b9b83a2b4e8faae6cbc03c38a
+  test_features.csv: 8f69ff2df4b63012ab2d64dab7a97336
+  train.csv: 5bb761fb999c8fc0f6efe1ee6434bd5c
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_2:
+  sample_submission.csv: c2ed3e50045474dd61d38af75eca2e8c
+  test_features.csv: ab82957113d3b5d6dcb895ff685773e0
+  train.csv: ff5db76888da1059beaa95f25ba6a093
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_3:
+  sample_submission.csv: beb20b491eae9cd4e23ecca7e321496a
+  test_features.csv: 1d57bdd66cd794ec93fe360f6654c15c
+  train.csv: aa446b2f7e95932a3f25729a247ac5fd
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_contiguous_4:
+  sample_submission.csv: 486acd44356d69054ee4d89d5ec47f24
+  test_features.csv: acf8de85f981d9f045cce2dc0d650548
+  train.csv: 4a47e72fe8b4fa8bc8eaa51454632150
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_0:
+  sample_submission.csv: cff4cfa620a21256072cbc2e5b7a7dc1
+  test_features.csv: bb773a1ff41d4745444181efb2f10788
+  train.csv: 8dbe61738f58522192b582f2c6caa42c
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_1:
+  sample_submission.csv: fc6eb1f79e4934c053da3935bbf9561e
+  test_features.csv: 589aa615d85985fb84ff1e6e6216145d
+  train.csv: 951f3925a132f6a10f82d3788c1e32b2
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_2:
+  sample_submission.csv: 7deebcf49f1a991068890e33cdc3f867
+  test_features.csv: f6b8b17f65badcad801ba7e2cb9600b4
+  train.csv: 3eafa18a225ea13ad0c12fcb5aa25760
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_3:
+  sample_submission.csv: 7165a9c11c3468015a11825c0561e2b8
+  test_features.csv: 13a856956b56c1c9123c8e9c2ce6034b
+  train.csv: bf5e8355e32d5cc38c3f481dd1006881
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_modulo_4:
+  sample_submission.csv: 6c7a3fbb381f67a5a4739054480ddbfa
+  test_features.csv: 63ee8b6fb4ef504dd5f0447e8fed03c2
+  train.csv: 2685757500688dc41db79ee48230fc25
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_0:
+  sample_submission.csv: 58055da0766de36f31b78798c55fad6e
+  test_features.csv: 867c0b69b2e58710e510b6eae0a10818
+  train.csv: 06fbc791989ba5e16bd480c49805fae0
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_1:
+  sample_submission.csv: 0f8a195880a8c1da917f841b0bb471b2
+  test_features.csv: 314ed30dc6870ef738579b130875ba12
+  train.csv: 7c9d163669d8ddb4c9b2e99ae1ededed
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_2:
+  sample_submission.csv: 393a2ad67c7aff27161a101bc65b6841
+  test_features.csv: 77fc139445b4f908575caa4b631314f9
+  train.csv: fc3628c52bf8427b990448f472528959
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_3:
+  sample_submission.csv: f63764bfa80ab3dd175af0929f3b0a26
+  test_features.csv: 65cd25b1f9a657b36a389a9b600cb89f
+  train.csv: 99894a98a5e49a1dd822411f35e9a58b
+public-proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV-fold_random_4:
+  sample_submission.csv: 479a73c1a16f19ea8759acb871ef46f1
+  test_features.csv: ec9435943bc1808eb7c75648c2120969
+  train.csv: 7c1f91c8c5d3744f3a2416a7b1868032
+zip: 53b3c9be428aac3724703a877c014f9c

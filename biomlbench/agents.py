@@ -108,8 +108,8 @@ async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool
 
 
 @dataclass(frozen=True)
-class AgentTask:
-    """Represents a single agent-task execution."""
+class AgentTaskDataset:
+    """Represents a single agent execution for a single dataset of a task."""
 
     run_id: str
     seed: int
@@ -124,7 +124,7 @@ class AgentTask:
 
 async def worker(
     idx: int,
-    queue: asyncio.Queue[AgentTask],
+    queue: asyncio.Queue[AgentTaskDataset],
     client: docker.DockerClient,
     tasks_outputs: dict[str, dict[str, Any]],
     retain_container: bool = False,
@@ -288,7 +288,7 @@ async def run_agent_async(
             for dataset in task.datasets:
                 # Create subdirectory-specific run path within the task run directory
                 dataset_run_dir = run_dir / dataset.dataset_id
-                agent_task = AgentTask(
+                agent_task = AgentTaskDataset(
                     run_id=run_id,
                     seed=seed,
                     image=agent.name,
@@ -328,16 +328,11 @@ async def run_agent_async(
     metadata = {
         "run_group": run_group,
         "created_at": get_timestamp(),
-        "runs": tasks_outputs,  # Contains dataset-specific results
+        "runs": tasks_outputs,
         "agent_id": agent_id,
         "task_ids": task_ids,
         "n_seeds": n_seeds,
         "n_workers": n_workers,
-        "task_structure": {
-            # Add information about how results are organized
-            "results_per_task": True,
-            "dataset_results": True,
-        },
     }
 
     run_group_dir = get_runs_dir() / run_group

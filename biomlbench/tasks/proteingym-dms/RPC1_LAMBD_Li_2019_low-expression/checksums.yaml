@@ -1,0 +1,91 @@
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_0:
+  answers.csv: ff4e874e61230ff210bcc110ce4debab
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_1:
+  answers.csv: ae4682869b00edca0066f1cf6ff0f1c0
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_2:
+  answers.csv: 559911d98d9b4e85bdb5fc66dfaabe92
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_3:
+  answers.csv: 7884e4111c4c94b194f30ab51ba31c05
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_4:
+  answers.csv: 5db89e42dae17dafaf8eb790b441b229
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_0:
+  answers.csv: 875260563ae825bb3b06330d19d0c51a
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_1:
+  answers.csv: 48b257c6a6de5169b0b30eafe733475e
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_2:
+  answers.csv: 4c65b4fe703e1d157e5c4858d11c6cf1
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_3:
+  answers.csv: a53d91ce6382e2c58d1ad97db01bc22f
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_4:
+  answers.csv: 670274b8e530c095d84771c4296c0ae7
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_0:
+  answers.csv: 0289c7300c08a4098a4bbd827c7cbf7e
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_1:
+  answers.csv: 6647ac1af7e68bb14212dee084d621b5
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_2:
+  answers.csv: e5e9eca690d6bdd3f512aa6b2dfc65bd
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_3:
+  answers.csv: 64455c02cf27896f1fa861ffb34a60ae
+private-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_4:
+  answers.csv: c47ad30102132dd2a0b0242838ad4eda
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_0:
+  sample_submission.csv: 61438db5990897c82de2c6e05fc66e48
+  test_features.csv: 52b1eef8c6ea53a7224c8b19d91c7da3
+  train.csv: 86682162d6ba20119d0c434d594e6010
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_1:
+  sample_submission.csv: 6d7ba3f49119efb2e89ffb70401dff09
+  test_features.csv: 2cc373b50e5c471086523ddaef121fea
+  train.csv: 0dcfe70d83ffe99c890e18de20b4a8e9
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_2:
+  sample_submission.csv: 118f57892d810f60810bcffd5cf5c411
+  test_features.csv: 8ab967828fd32e2a09e1a0e4a8a45733
+  train.csv: f5d264f132896946782353a451fbb0b5
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_3:
+  sample_submission.csv: d9f9530027f504598848cd79b9bcfaae
+  test_features.csv: 58a5ceeb57de1bf190984bd92bfcc111
+  train.csv: 90c1eb07fd0cb8561151b6ba00b868b6
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_contiguous_4:
+  sample_submission.csv: 0866dc19007310e26815dff30131d7a7
+  test_features.csv: aabf1791ac4276766fd03d63d606d7bc
+  train.csv: 5e897aa6254a4f3eea3a8076f2512f0b
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_0:
+  sample_submission.csv: 52794d813f9503582c0f795e5fb74935
+  test_features.csv: 86be5caf4f9f6c635fdfcbc602b59d2f
+  train.csv: a89767b7ed791e0a6c08acf9997a5764
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_1:
+  sample_submission.csv: ab9b1256bfb67f743492ababa361f599
+  test_features.csv: 0f36db91aee075c7cbd005960a094ccd
+  train.csv: 78adafeda7a80683824a7df47700c961
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_2:
+  sample_submission.csv: 6d7ba3f49119efb2e89ffb70401dff09
+  test_features.csv: e12e3cbd18dc511ea54826c00de1a58e
+  train.csv: 9759764c00c85d513b152a965d59166b
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_3:
+  sample_submission.csv: 6d7ba3f49119efb2e89ffb70401dff09
+  test_features.csv: 17f63114442366205dd2cafff04e51fe
+  train.csv: b603eb446126725faaf65fbeb18414ee
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_modulo_4:
+  sample_submission.csv: 6d7ba3f49119efb2e89ffb70401dff09
+  test_features.csv: 4c6884acc53c306991e11d087060afd2
+  train.csv: 7b27e8eaa58de98241fe42e36fb14709
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_0:
+  sample_submission.csv: 52794d813f9503582c0f795e5fb74935
+  test_features.csv: 68413f68a8ecbe1fe9d558b82bbcd8a3
+  train.csv: bf1f4756cf78ad86250c214d8d099299
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_1:
+  sample_submission.csv: 59fe0288799bae9322ea74ec996d7dd8
+  test_features.csv: 71d1fec5c65550f845e0ee1c9b085226
+  train.csv: a076eeda0799ff5ed3d532f76d24a47b
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_2:
+  sample_submission.csv: a50bb191df04f3dab4d3619677f6b3f6
+  test_features.csv: 73dcbb5747aa379d93c470206a8fdf06
+  train.csv: 4ff4ddaddaa8a86f41777d1cda42dde5
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_3:
+  sample_submission.csv: 92f2ade299b9a0fab707c1038fa5469f
+  test_features.csv: 5683642ebf3ac99f3d91520fdd857194
+  train.csv: f6367112165308da083aad0c7bbfd87f
+public-proteingym-dms/RPC1_LAMBD_Li_2019_low-expression-fold_random_4:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: 6a67e84c3fcf8baa631fab89ace93135
+  train.csv: 3327c810fc5123dc8ba7090e38755240
+zip: 53b3c9be428aac3724703a877c014f9c

@@ -1,0 +1,91 @@
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_0:
+  answers.csv: 980fe35fb60b105ccf02c420d641af47
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_1:
+  answers.csv: 126d9d13ac9ea57935d6f8ca5316c498
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_2:
+  answers.csv: c5d0a414646a388e36d7eb33a37b8e4d
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_3:
+  answers.csv: 3fd60478887f59391c08e4f72e3deb8a
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_4:
+  answers.csv: 600781157b75ef761cbdc958a12889e1
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_0:
+  answers.csv: 1c255365a7f1d3255ca99c55f3d3a95c
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_1:
+  answers.csv: 6b52e2322b40b56e633b69979f79fe4c
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_2:
+  answers.csv: 9ae01da7ec1372afeff669f1aea51887
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_3:
+  answers.csv: 73b1cc6254947af1305b5f25f57a7bb8
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_4:
+  answers.csv: d676a5479b8f735def12af7b21b5e1ba
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_0:
+  answers.csv: 4bf544689b1dc7eb2043d1ed11cd1d79
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_1:
+  answers.csv: 5eab8d99074c2eaf7cf0253276764290
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_2:
+  answers.csv: cd20c661888dc59f334da1dc6d6535e2
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_3:
+  answers.csv: 64eafc5ff0d5c8bdda21d1d12f9a2b0c
+private-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_4:
+  answers.csv: d7d7d957f9d3a3dd70677d9c83a1dc3d
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_0:
+  sample_submission.csv: e3ebaae4c4244d75c9a8bd65924ee9a8
+  test_features.csv: 9eb1b64d1c52fcfb72fc682a10356b55
+  train.csv: b5358160e610583ab4a2930c511560fa
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_1:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: 0f996c95303c5f8116d1bf7b970171b8
+  train.csv: 399ed623e2dbba4c54dd8724713a25fb
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_2:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: c2492494be12b847beb1e8bd515fcf08
+  train.csv: 66156619d9f211eb2a4573a12040c1a1
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_3:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: b914464ed643544943c66e925d9c83fc
+  train.csv: 2d22733740fe17a32bd916aa2a647ef0
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_contiguous_4:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: e266f9b41bcb3b95a92bd82f980a1ab5
+  train.csv: b0125ad6f414bc580a981d79c4a14fdb
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_0:
+  sample_submission.csv: e3ebaae4c4244d75c9a8bd65924ee9a8
+  test_features.csv: 5b8c000f43feceaa30910b11a2b0e6b7
+  train.csv: 781138203ec3927609315a518f13d5ed
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_1:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: 83793c3e4390550429bdad4cd6c739cb
+  train.csv: 8a62cfebaae6651fd5f99f189d003d03
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_2:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: d83bcb24850f1bfbc63517d516e0c349
+  train.csv: 8d35d4b707029eeaeadf8d5b345eea43
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_3:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: 9e44f38727ce18f326317398bc512b53
+  train.csv: 43ac8b601241e843a7d0cad2bdf50157
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_modulo_4:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: 2b5fcb9aa8c3a7b438dea5aa2df449f9
+  train.csv: d475cc6949ab99b368f21b7f96ebb245
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_0:
+  sample_submission.csv: cea4688eff5a2fdcbd0e228314becbb3
+  test_features.csv: 1b2924060c7f31fb5e2f6cc4bb0a09ca
+  train.csv: 138a97dc7520925c1aba2195b88b3e81
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_1:
+  sample_submission.csv: 7f43103b6d5351eb9e2f141aae9b838e
+  test_features.csv: d9e2d6bea906c1eab4a64f02b149abe4
+  train.csv: dbc7942f2421d457a50ee9a35a4c00a9
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_2:
+  sample_submission.csv: e783784cd12761411c29ce3c83e6c46b
+  test_features.csv: dc45c7b0b6bd439b5feb8c912c9a5f2b
+  train.csv: 5d9630e123770c63c4f7809db89db426
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_3:
+  sample_submission.csv: a089c3e4ed14bb0e9a5511ad5b90fe06
+  test_features.csv: 4f4af27fbef44cc78c22fee69f32953f
+  train.csv: 0778656c11463c20c931e72782ff464b
+public-proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles-fold_random_4:
+  sample_submission.csv: 9a9ec031cd6e6abfd4a9c4677508ee02
+  test_features.csv: 1f3d2ea9d25759ecd951a6bba78e4ab9
+  train.csv: 0e0c9f1772cf631c94183a13c0221a77
+zip: 53b3c9be428aac3724703a877c014f9c

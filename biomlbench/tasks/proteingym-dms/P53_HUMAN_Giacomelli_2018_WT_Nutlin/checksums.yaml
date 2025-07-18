@@ -1,0 +1,91 @@
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_0:
+  answers.csv: da3861776d9ebffc137e9933ce734efc
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_1:
+  answers.csv: 6f314aef8559cc727d3e974cdb06d3db
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_2:
+  answers.csv: a4a4c3045f0d750e338cd10246ba0ab4
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_3:
+  answers.csv: 3c028d6ea11c311a69c35c3eeea2ad14
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_4:
+  answers.csv: 683e44422d04a25d35c49dddd0102115
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_0:
+  answers.csv: 4be2c1cd882eb37ff5766232e5362999
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_1:
+  answers.csv: e9873aecfd4702a8d0e481a72388e464
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_2:
+  answers.csv: 0ace54d573afe5b4f6ceefc35c9c64ed
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_3:
+  answers.csv: c5eb1604fd48e02655de94f8499d1a4d
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_4:
+  answers.csv: 3360ebc48de1a250ca8d39cc63071320
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_0:
+  answers.csv: bb4f3768ec3b2709b1f8bed9cb6fcb3f
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_1:
+  answers.csv: 8d47b07686cad3fe5c87baa57433dbad
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_2:
+  answers.csv: 067dcb40ee104ba97760cba97499e6e4
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_3:
+  answers.csv: 6eec77a40df04b8ce6068244a9d1847a
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_4:
+  answers.csv: 31b7f8e7157db0caf761ed5a966d32c0
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_0:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: f8b433d81388f4f8f50c6e0cf9df041d
+  train.csv: 9d4af189f780bc89009d5b5f59ecc8c0
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_1:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: b408d0a86d63773433a17c8810e51018
+  train.csv: b5a6f0c9062a37de6d4dfdee9867947b
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_2:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: e6a8dbcc03a077a98656a60d5feca888
+  train.csv: d0f9ec012d347eaf02691db1975a180b
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_3:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: d04ce715362a890a6d92918a0990eed3
+  train.csv: 3db68ee8bc3d1d13d74e89b9621fb6d2
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_contiguous_4:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: 5a608e406c8bfcccb55d9c31d22c83ba
+  train.csv: 6c2479a82c47f37c941a2d6586f968b6
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_0:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: c7f2e66be278443494151442f0b42f82
+  train.csv: cad4039dd1c7663d0a2f969d5171db8c
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_1:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: 6c501df797176380a3246adafcb16d91
+  train.csv: cc9897626ef8d39d17a6c6b5537ebdc6
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_2:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: c6b3c6fa53010e3e46cb8b4c763169ae
+  train.csv: 18d60b50e2fc09d18256f25a4fba4246
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_3:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: 9db596d6bab57095b811bcc7065be5b3
+  train.csv: 42fd7bc31d33f951e5a01edf963b6e33
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_modulo_4:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: 8a1ba967e1ca6f5bee4ba50b7c6bf5aa
+  train.csv: aba141fc5b65eb43efed576100e6f141
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_0:
+  sample_submission.csv: b668325793ff2e815c1f9106b098ea4c
+  test_features.csv: 9245a9bcbedac72d9435ce631dbbf77f
+  train.csv: effef325d489e5b22f57af5061339cda
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_1:
+  sample_submission.csv: 261bb372ab9d79b379b53072c60bcca1
+  test_features.csv: d09004c916377a1955849a8190694d3a
+  train.csv: 229b66de3ab9e7a40830b5698313bfc6
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_2:
+  sample_submission.csv: 7ba9f954a2b9c1bce15c3e2d85c31857
+  test_features.csv: e0e77477c5873c47f012f289569ee726
+  train.csv: 5eea6d27f463af98570b89894c1c9d2a
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_3:
+  sample_submission.csv: 54810013094ca4d1bbaf3d529467fd62
+  test_features.csv: 0f9d7b73080356bb331692f5570185c6
+  train.csv: 942b321fbc1a3a0e991269501a85e1df
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin-fold_random_4:
+  sample_submission.csv: c354a824fc1126112ca970d0b1ac1658
+  test_features.csv: b8d6b3550112b977086302cac93cb6b3
+  train.csv: 5c6d03c326609686a02f75f305ed1e27
+zip: 53b3c9be428aac3724703a877c014f9c

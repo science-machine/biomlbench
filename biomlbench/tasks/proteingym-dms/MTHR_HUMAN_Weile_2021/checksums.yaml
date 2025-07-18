@@ -1,0 +1,91 @@
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_0:
+  answers.csv: b166ad89a8758fbb9618a83f44748574
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_1:
+  answers.csv: aab0c2ab778460675b770d7aaf09f362
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_2:
+  answers.csv: ad2b45f7db176c366639a77b5dba99d4
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_3:
+  answers.csv: af1bc054312359564231f6c154802a3a
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_4:
+  answers.csv: b5aed5975bf60c49187008c8fd01fb1a
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_0:
+  answers.csv: 1d01a2711ea6ea6a73b3098d89d57584
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_1:
+  answers.csv: 6de12b67bae274323b86f748ea4be72d
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_2:
+  answers.csv: f2b788801d7ddf941a312b42bb04c70c
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_3:
+  answers.csv: 8f4a3300e5b58232a089c11291ed3c4f
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_4:
+  answers.csv: 64fac7ce1e2e371500254244bae66533
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_0:
+  answers.csv: 3fe5c7c001ce189d7c36c67ffcabc1d4
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_1:
+  answers.csv: 21bf413bfc733e04ff3240bc33bb17c4
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_2:
+  answers.csv: 168c389081104330b06d655216261b22
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_3:
+  answers.csv: 8193409d4bce0289d9a03fbb34ff0dad
+private-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_4:
+  answers.csv: f4c8c48571ada6321f324eb53bd32759
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_0:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: 38dc39eb905c9ec67abfee1930efd8cd
+  train.csv: d0716f0557209938483de77511ff7e29
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_1:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: 3848f34ee2e1ec06a9c099ac982554de
+  train.csv: 1ac8e368406ae45a8c384b343e1cda7a
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_2:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: b5977850414950af43eb0328d9b535a7
+  train.csv: b18914c316713cb02490a2e580bd66a0
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_3:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: db481731e02e4ccf84a60b6c5e561ca1
+  train.csv: 13bf0a51debb8488b2e56fa12b25214a
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_contiguous_4:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: d62bfeffef45ee2c7798b9a5657d347d
+  train.csv: 68d05de983bc61f6d51bf33429653a8a
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_0:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: b02ccdca47d7f8dd2c7d039f449abac3
+  train.csv: 103c31212bed43e81a17a3fb791fd19e
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_1:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: c896f41f793a202ddef644ed35789b4d
+  train.csv: a32d862a9e38581ba6e4661470329a17
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_2:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: 084e7df79ec82f4efa9dd9a326f3dc85
+  train.csv: fed49200e9701978f0cfd2693bf0a6cf
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_3:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: 23eaad4b59d68b9889c47c3cd0d3d0e4
+  train.csv: 192107e477628a6ad15fdfdc0db798a4
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_modulo_4:
+  sample_submission.csv: 955cdea48994d9976411eefb4bc2c7d3
+  test_features.csv: 45597fecdde23fe1674fbaaf4ad545c0
+  train.csv: ae5622fdcb462fffa978aaedb91500d4
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_0:
+  sample_submission.csv: c51c5717e53ba05417fdf19b4dfa7632
+  test_features.csv: 103d344b7a6a6c9541ee48f1c77d3079
+  train.csv: 175b1ff09b75d61bbfe3a4ec73b98384
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_1:
+  sample_submission.csv: 4532a04ec6f346c0478b8d67c1d7c860
+  test_features.csv: 1563de26cf16f4f67b374222b4a84e23
+  train.csv: 0371f3630e6061f44f7384057f3a2669
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_2:
+  sample_submission.csv: 04442ef686f6630d4202512cbe390e9e
+  test_features.csv: cd2244f649a8d0a0b33cd65345f5bf88
+  train.csv: 4105ebce164d4e08dbbdc462b3f17e02
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_3:
+  sample_submission.csv: 94424b37f0185d84b3a8c57db4398228
+  test_features.csv: 7b9d2645422e6695d6c6597a6f299eeb
+  train.csv: 4f9e8fdb24ae1e09bf9878a432dc0f6b
+public-proteingym-dms/MTHR_HUMAN_Weile_2021-fold_random_4:
+  sample_submission.csv: e8f600b8f1bced882c56474b61e75d1b
+  test_features.csv: b21ff67dc3551b0f2e6b2f08d7cfb806
+  train.csv: d71789319522fedabdde7e9fb8a836ab
+zip: 53b3c9be428aac3724703a877c014f9c

@@ -1,0 +1,91 @@
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_0:
+  answers.csv: f3ac12d0f103e0df8fa478e477aaeece
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_1:
+  answers.csv: 7d580749fcd226ce5baab76008ab3a86
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_2:
+  answers.csv: b8c11602f3e7bc4d21e076933c866127
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_3:
+  answers.csv: 116dca1db91b6af6216cbc6d3da4cee8
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_4:
+  answers.csv: d9749d4cdab0afd0dd33468967c13de0
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_0:
+  answers.csv: 98bcc8343b9d66b75df9dcf03ede7129
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_1:
+  answers.csv: b3de12598bfe21ba38fd7a11f7915b2e
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_2:
+  answers.csv: be7fe245d6c1433be3172fc222e664b6
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_3:
+  answers.csv: 2dd07d04b5611f3bd4a6ab2ec57b725d
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_4:
+  answers.csv: d53a990d13f77ff0548ee18c91fb2910
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_0:
+  answers.csv: 27f321a4984b3ee2f04392f197dab381
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_1:
+  answers.csv: 2ae6215f5a8fb837781c8dfc07385029
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_2:
+  answers.csv: 8cdecfc37a76c2f5eb0fc23c671783fa
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_3:
+  answers.csv: 3c590c6ef09e69be00d61e1ef2545de2
+private-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_4:
+  answers.csv: 2d231a9415a53cf087662f9a11609ff3
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_0:
+  sample_submission.csv: 5186c4e44a0205a13b86c17a3485b343
+  test_features.csv: 288397d9e1c4e7300e9ee5884c8d9537
+  train.csv: 569313f09bdb67037b3c136f76e3633e
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_1:
+  sample_submission.csv: e5bd6fb425a2c8826d42d965d243e27a
+  test_features.csv: 61f36b458bc77e8481a198dc44b8cb81
+  train.csv: 74b92510e9dada1fa9d9f80e4798ec8f
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_2:
+  sample_submission.csv: 70eb91af622341644ba5b54900b58473
+  test_features.csv: e694767b4ac1278ebcbd6b4dd4114e15
+  train.csv: f21a91740bffcb7de696869c464481d4
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_3:
+  sample_submission.csv: defd9b0cfd89def0e033ea32c33f1371
+  test_features.csv: 2966b1c036c16c784fffd6678416667d
+  train.csv: 99d7b7b6de834ec646531d749444e622
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_contiguous_4:
+  sample_submission.csv: 6c20ffc8a9d5408c412a60b46fce2252
+  test_features.csv: fe1320a1d6cf6ac7f408f17b40f61b18
+  train.csv: 43914dab89141db93996e62dd66ca9f4
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_0:
+  sample_submission.csv: ca993dde1eb95f9dd40424d1079029de
+  test_features.csv: 87eb4cb95882c0d4c5dac88c9ea41fbf
+  train.csv: 5c6286c890a943d255b79568afeab975
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_1:
+  sample_submission.csv: defd9b0cfd89def0e033ea32c33f1371
+  test_features.csv: ea9c85d28bc315eb93b05f5f8053ceae
+  train.csv: d3ea0751be6cf4486f45d276a6e5ddba
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_2:
+  sample_submission.csv: e8aa1763e41f2522cd36e13f15c46264
+  test_features.csv: a46533afdef19946d880848fe866de3b
+  train.csv: 588c037c8d31e80234d67a73a66a3e56
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_3:
+  sample_submission.csv: a85082457384d9d431db90c79799ad56
+  test_features.csv: c5c6f2315f7dfe80b02458a274863846
+  train.csv: dd18634f4c43bfd3d37e4a4ab131af25
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_modulo_4:
+  sample_submission.csv: 59e0cac68f916d9ca88248c072798cf9
+  test_features.csv: d9d068d4bfe04fe98977b9a619694ebb
+  train.csv: a60e97498a45b6a2c2fb0a8cf6f5738a
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_0:
+  sample_submission.csv: e6c5019a31b0e07923d06ea567fca6f2
+  test_features.csv: 8257d3e54859e3cdadc3d22dbc244739
+  train.csv: 7c03d525fdc5efa4606fe1ce5bef94d6
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_1:
+  sample_submission.csv: 4bd5719b3991f05a2768676b69befe55
+  test_features.csv: 315c7d6e2789c331560c3426b818c04d
+  train.csv: 5e798a200e8b1beb7c49117fef73948f
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_2:
+  sample_submission.csv: c3b3d8afd1a03ddb3769d012097838a7
+  test_features.csv: 90112133d4ef2d0868f316efaf4eaa0a
+  train.csv: 5837daacba9ee7136ba6530f374ead51
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_3:
+  sample_submission.csv: 166568c98ce9702438bd30dda257f27f
+  test_features.csv: ce7dfaa8425dce32810220186a15db6b
+  train.csv: f1976ac9f9652a336ac558ab42465266
+public-proteingym-dms/HSP82_YEAST_Flynn_2019-fold_random_4:
+  sample_submission.csv: efef20a98bcc272c0d02e4f27068ce83
+  test_features.csv: 2542bdba7cab19257ef12c1b32124839
+  train.csv: effa4e2e646b2f31057c5b8917360ff7
+zip: 53b3c9be428aac3724703a877c014f9c

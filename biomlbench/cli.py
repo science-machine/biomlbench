@@ -12,7 +12,7 @@ from biomlbench.data import (
     ensure_leaderboard_exists,
     prepare_human_baselines,
 )
-from biomlbench.grade import grade_file, grade_jsonl
+from biomlbench.grade import grade_jsonl, grade_submission
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger, get_repo_dir
 
@@ -41,13 +41,6 @@ def main():
         "-t",
         "--task-id",
         help=f"ID of the task to prepare in 'folder/task' format. Examples: manual/caco2-wang, polarishub/tdcommons-admet",
-        type=str,
-        required=False,
-    )
-    parser_prepare.add_argument(
-        "-d",
-        "--dataset-id",
-        help=f"ID of the dataset to prepare in 'folder/dataset' format. Examples: proteingym-dms/A0A247D711_LISMN_Stadelmann_2021",
         type=str,
         required=False,
     )
@@ -358,7 +351,7 @@ def main():
         task = new_registry.get_task(args.task_id)
         dataset = task.get_dataset(args.dataset_id)
         submission = Path(args.submission)
-        report = grade_file(submission, task, dataset)
+        report = grade_submission(submission, task, dataset)
         logger.info("Task report:")
         logger.info(json.dumps(report.to_dict(), indent=4))
 

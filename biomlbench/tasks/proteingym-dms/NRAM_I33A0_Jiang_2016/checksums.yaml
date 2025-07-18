@@ -1,0 +1,91 @@
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_0:
+  answers.csv: 1a13b2bdec5e0500227ce1bc690ec779
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_1:
+  answers.csv: ad98d7f8cc9a9228c37206e34e914f93
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_2:
+  answers.csv: 53cc929833a6f949d525010924a67900
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_3:
+  answers.csv: 89b166d63ddbeb5add6b9944ec9956d1
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_4:
+  answers.csv: 207793ef9ee561e74fbe40a92f21bf52
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_0:
+  answers.csv: f2d05ceaf891408501374db7dfdc7abe
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_1:
+  answers.csv: aaebfc75385f1f4dee7ecac0bef00d24
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_2:
+  answers.csv: d1bdc132b167e3d6caaa8d7a1164d84b
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_3:
+  answers.csv: c4f23d6917f5383d23cef5b31eeff383
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_4:
+  answers.csv: f25c832be39878a674780b3f1130d97f
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_0:
+  answers.csv: f77093abebb812170c8973a877846310
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_1:
+  answers.csv: 71bc45ec5c8ccf95343542ee5f5be38c
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_2:
+  answers.csv: 7b6b568defe6c5d11b0073b19507bbfc
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_3:
+  answers.csv: ee1fa050ba9d1f07216ca034609e56f6
+private-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_4:
+  answers.csv: 1f066d3b64b8c3959003e9f6adcb76b5
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_0:
+  sample_submission.csv: 6749758d1d077790ba270f23d2a52a36
+  test_features.csv: e2b26590903a3f9fd13b94e5579d5b47
+  train.csv: 2a696368af439e753acc69a19c83f655
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_1:
+  sample_submission.csv: 29b4c87a3c9b4a22255a7c0e1427f32a
+  test_features.csv: f6deeb371ee00295abf0f8db77954e1f
+  train.csv: 481635dc76a0073edf4b3afa69be7999
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_2:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: 70135804714bddac7646e7e96d082367
+  train.csv: 9fdcdb3725ea65b85a8dc45a735f6fd5
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_3:
+  sample_submission.csv: 50ee1f9a7757f5e8ff89bea8b0651cde
+  test_features.csv: c3299f4b7fe9637748c3b61f27d0599b
+  train.csv: 7991e2b1a03925d2628755f4440f70aa
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_contiguous_4:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: 83509cbf031108ad3b77525841f2cf3c
+  train.csv: 9e62a0a4fcb1b27170d2197f8ac4eff4
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_0:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: 82e1a95498d3e35a877923641826b8a6
+  train.csv: 1a44b88ebaec10407245698c362fc328
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_1:
+  sample_submission.csv: e2e2536002dce3d36f9ea83cf2501eb2
+  test_features.csv: 3a0d765047befa1ab5b631fa8e705f65
+  train.csv: a73bf096609092160a1a72933aa0328e
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_2:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: 2185a2841e5afb74d9b300222018b937
+  train.csv: 1b36a8adb6a04c9f92f50b9e2c94aaff
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_3:
+  sample_submission.csv: 711211a6fbac666912ef834fda0850b0
+  test_features.csv: 78ed147cf44d679f4467fd4706d41df1
+  train.csv: 0a80ce1a22aa65687d86f45cc73d9ddf
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_modulo_4:
+  sample_submission.csv: e2e2536002dce3d36f9ea83cf2501eb2
+  test_features.csv: 27ab668f71e9bc835dac4eedd02e252c
+  train.csv: ea730449d14f5e8057ade7f48e0ed734
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_0:
+  sample_submission.csv: 55c898fb392293de69ecfb0dbf6dc7ee
+  test_features.csv: 6fe20a32f735a2602b159371679bd877
+  train.csv: e81a3f23ec3b06b498b02b13057c47b6
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_1:
+  sample_submission.csv: 9a9ec031cd6e6abfd4a9c4677508ee02
+  test_features.csv: ddf1a3b81f1f177ea57565114e374436
+  train.csv: e0f7c874b73eaf601b43ae4e2a165215
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_2:
+  sample_submission.csv: e783784cd12761411c29ce3c83e6c46b
+  test_features.csv: 6bb92f2d2cd9face5ad051c6e29e2462
+  train.csv: 40144cd07d3609d447abf9f6b54ac39f
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_3:
+  sample_submission.csv: 15f7f090a2597c5c558c62e18b2a8c25
+  test_features.csv: 4d7fa45ce2c33fbf831c465eb85553b8
+  train.csv: c9ad54abbb7f6c80a6ee350c7e5773f9
+public-proteingym-dms/NRAM_I33A0_Jiang_2016-fold_random_4:
+  sample_submission.csv: 9666c6bd71c7502590dd094c74099dc4
+  test_features.csv: 7d413204ed1df41232db31e331392987
+  train.csv: a89531bdfcb8be03efb0992aad70509f
+zip: 53b3c9be428aac3724703a877c014f9c

@@ -1,0 +1,91 @@
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_0:
+  answers.csv: ac4e70113568d9e427c8f1196b85f8b2
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_1:
+  answers.csv: 3ad53df68a6f1cfebbc95d847b3f6900
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_2:
+  answers.csv: c7b646ab60c3dc810a12df1373b550b6
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_3:
+  answers.csv: 43f898b59f8dfceddad09dde267437c2
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_4:
+  answers.csv: bd82415962e931ccda3e0734b6c5f4f9
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_0:
+  answers.csv: 183dc6246af45a5566bcbc11ce649db5
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_1:
+  answers.csv: 777310eb1dd19455c518d9b113cfaec0
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_2:
+  answers.csv: 1aa70440b6724745db7bdd82b976e7a7
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_3:
+  answers.csv: 25cf4e2156de91aa5629d3f491d3c359
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_4:
+  answers.csv: 686159068c8e57ee3de88b6cb8a1d837
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_0:
+  answers.csv: 779eb13fb013ef71815773c0474a0664
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_1:
+  answers.csv: ec6f84b81c4848ddf10becc4c386e965
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_2:
+  answers.csv: f8af685e49bf30af559761463b8fa081
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_3:
+  answers.csv: d5bdf9383ce19284d158273a93236aa3
+private-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_4:
+  answers.csv: 8f5619b00cfd633e0667fb111c95d2d1
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_0:
+  sample_submission.csv: 2cfe41b351a2ad20b070f8138a1bf600
+  test_features.csv: 45065f15f7d02be8e7a09f5f5b01bb4d
+  train.csv: 0dae1f7f1816891e38be7417426c2e5a
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_1:
+  sample_submission.csv: c227aeb11454534f767051a4fdd5a276
+  test_features.csv: 4fb2ced24c78a834000fdf910d9cefb8
+  train.csv: 83886c157de75a1c10b3d9b05126bf24
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_2:
+  sample_submission.csv: 2cfe41b351a2ad20b070f8138a1bf600
+  test_features.csv: 3e8558563b084fa2a6412db70fecaf91
+  train.csv: bcabe6d243ea249d7d135d7ed83a7bbb
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_3:
+  sample_submission.csv: 7263701220059f3dfa070564f1da91bb
+  test_features.csv: 8d34aad4716a084b117747948a7836ff
+  train.csv: a17e2800a3ece2fd48474dbd775f55aa
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_contiguous_4:
+  sample_submission.csv: 864f9031a790b13d878aaa820983d827
+  test_features.csv: 54a93e15dc1b66c1926b965140b3bfaa
+  train.csv: 917811d19d3fd1a01d8b8108e8466e2c
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_0:
+  sample_submission.csv: 2cfe41b351a2ad20b070f8138a1bf600
+  test_features.csv: 4acb6f3e1701fde98e6702b5db583d67
+  train.csv: 43f9b58ed428c03b5ec18fe7ae3c7d19
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_1:
+  sample_submission.csv: 2cfe41b351a2ad20b070f8138a1bf600
+  test_features.csv: 6019da9d2616639d89bb18cb7cf5abb9
+  train.csv: 8e1f1dde2533ec37aac11d6ea583a378
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_2:
+  sample_submission.csv: d728693ed3397e6d00a9e884bbf95d15
+  test_features.csv: ea5f7827b3e1f67b8bee03b6f4c64d60
+  train.csv: 1d6bc171880596c7e0b34baa28972994
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_3:
+  sample_submission.csv: 85d74ed489b1bb2c5c280f2060ddb1dc
+  test_features.csv: 9620409efdfd851b4e4ecb959c437494
+  train.csv: 4d3038a8b426db1da5a8f866dd7fe41f
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_modulo_4:
+  sample_submission.csv: 6cb2102fd92ebc560b833781ab6cd829
+  test_features.csv: df50a8c009679918fb44c425670c28d7
+  train.csv: 5e7a3bdec9499a99215d71371bca62e5
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_0:
+  sample_submission.csv: 695263a20a87e7f4d2219296fd708b81
+  test_features.csv: 4c25e1e546268cd5cb724fcf903305ed
+  train.csv: 9fe1ddfd4135edd9a9d22a0d38d38f29
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_1:
+  sample_submission.csv: 8dcbec686c88b928dde17cc5a89a4545
+  test_features.csv: 83e4bb5d92e2217bb933c99b38b385f5
+  train.csv: 5f8629fffae01a4fdcb1dd88061c3f43
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_2:
+  sample_submission.csv: 05d5e191cb754159d47056bd34765754
+  test_features.csv: 5b4a2d1631adce9b690aa7d617bbc4da
+  train.csv: 95852c0483c2f106121b0d1b137477c1
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_3:
+  sample_submission.csv: 364aad8c42d2a0cb6b54f57046489bc3
+  test_features.csv: d00c9ffb719ab7f187283bb813548311
+  train.csv: 95951a2fc12037e719c736b70718d152
+public-proteingym-dms/SHOC2_HUMAN_Kwon_2022-fold_random_4:
+  sample_submission.csv: e68068a7455e0c314d0af6ab9766bb41
+  test_features.csv: fbdf5dda0a033d16a7b6473bdf567245
+  train.csv: 080484b2ee4529ce7a6772b1e2b0db73
+zip: 53b3c9be428aac3724703a877c014f9c

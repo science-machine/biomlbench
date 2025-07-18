@@ -1,0 +1,91 @@
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_0:
+  answers.csv: c0fcc2edbb38d26197cb425917443ff7
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_1:
+  answers.csv: 3d2b1dfe8a1302d3a81d66ae52363aad
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_2:
+  answers.csv: 9cf435bb80482e31314c52da366029bf
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_3:
+  answers.csv: f428debfb8f3e6215388be4a8abe5cde
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_4:
+  answers.csv: 5e8c7d546f6deb944f869c57224f793a
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_0:
+  answers.csv: e40cd7c3af795232c10c671b7b299bcc
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_1:
+  answers.csv: 0e4fb616a98036aeada2ecba09333cbc
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_2:
+  answers.csv: bdbf32847994a6f6d5db4c7f8fa2084e
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_3:
+  answers.csv: 07a02185e42a389f2eff8bd48d72f8d4
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_4:
+  answers.csv: 2fc75a51c84243460768a099cafed55f
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_0:
+  answers.csv: 4cc2a731ae9ea092f9286d09d46108c0
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_1:
+  answers.csv: 98a1910b27037b8197e2c0b454b3458e
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_2:
+  answers.csv: d7ace25c9e5764fe1d324dc4a097d803
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_3:
+  answers.csv: c0511a82f62252f4782c56bed9a05fb8
+private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_4:
+  answers.csv: 6bde1ef9bc4276bb53d5afd9e57efae8
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_0:
+  sample_submission.csv: d9a07a667689a35c9dc0b411d78467c6
+  test_features.csv: 628cb174230548a24038f7555af97f55
+  train.csv: 5d39c873d615b4ef418dc868305e6971
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_1:
+  sample_submission.csv: 8cb6ad553b6bb21e13b2a566ef35ea31
+  test_features.csv: 725e5a14559f2e7abaab9a1fae90dd63
+  train.csv: c440ba1124900bca646de427356f0793
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_2:
+  sample_submission.csv: 4ba6850fca98bda1a9dfc8d7e04eb97a
+  test_features.csv: de0fecff2dcfe5ebe362629393674f2d
+  train.csv: 1958e18380c56af8e6595d34881fc46d
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_3:
+  sample_submission.csv: 5fdb80e0cee4eabba4b935fe6203bf27
+  test_features.csv: 4b1160199ca17756cf536d57339b9aa1
+  train.csv: 3f4cdea08fd4ebc7305dbdbdc2f20440
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_contiguous_4:
+  sample_submission.csv: 4e5e6fe832070a7be791cdddfad8eb4c
+  test_features.csv: 188e866b4020b44d20ffa5afa47db516
+  train.csv: 1b5798d8b26d45abbdd74e8f5e44b105
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_0:
+  sample_submission.csv: ffa22908e99b3a4139314c98feab79a0
+  test_features.csv: cefdaa4683a259688de2031db7b54def
+  train.csv: 710963f527bf5627beac4c9f70aee8ff
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_1:
+  sample_submission.csv: 7429651d7256b9edf8a95b2eed33ac21
+  test_features.csv: 3a4c1ddb788141a2ee1152904d512f3e
+  train.csv: 625190cbc0753a48e87e2c12ed5a7799
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_2:
+  sample_submission.csv: 1d3dbd24c78b0a9d5633ca202f9c0e32
+  test_features.csv: a4a7e449bc6315cbef01773cf1ad0546
+  train.csv: e63f11e5ffda1cebd6d05ed9809b2186
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_3:
+  sample_submission.csv: 5b54cc028b73b60ecd0867fd2cd38190
+  test_features.csv: 521006c2659c1adeb4a0e84e37c8fb85
+  train.csv: bc715c5c7c893abb6cb368906b16242b
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_modulo_4:
+  sample_submission.csv: b63a50a64cb308a6ce9aec69032df87d
+  test_features.csv: 9f221cd5ba3bc9abe0d7cf3c81449207
+  train.csv: 00c81f6d735c15e35a6931c0cb4f7786
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_0:
+  sample_submission.csv: 3674a09ee506e82435c5af5567fd006d
+  test_features.csv: 42591fb0d11173a85a6b2e39e6addef4
+  train.csv: ec37c6bef3cb6200eb236b9a7e3b4612
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_1:
+  sample_submission.csv: 82c508f3b3834321b713d6750c40a1f6
+  test_features.csv: ad9e17c3305e5cc235ddec151b867f78
+  train.csv: b944c92faac0272a35ffc6f81e0d7c9d
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_2:
+  sample_submission.csv: a88e8104b1603b106c315ecd9535dc36
+  test_features.csv: 9fb78dc8e49dfff8526fa0ff2de46698
+  train.csv: b702bcfb646659186816be31a657a3fd
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_3:
+  sample_submission.csv: 99fe762c0e9ba93d37197d9409df4a1b
+  test_features.csv: 553c116991cac2fe4b2882ab0d227f4f
+  train.csv: 393692c81afbeb956a8f062799c2c47a
+public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_abundance-fold_random_4:
+  sample_submission.csv: ffa22908e99b3a4139314c98feab79a0
+  test_features.csv: 69e032c9e5a1c9476266cdefa44e84a6
+  train.csv: 8d8ac733e1d5665184d52517d099d9dd
+zip: 53b3c9be428aac3724703a877c014f9c

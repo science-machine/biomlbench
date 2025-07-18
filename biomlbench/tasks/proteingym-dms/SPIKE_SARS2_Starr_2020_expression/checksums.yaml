@@ -1,0 +1,91 @@
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_0:
+  answers.csv: 40ef45fa6a6f14efaa094bc5f4c14040
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_1:
+  answers.csv: 4aa6b5cacf30a33bb70552e3a3960ab7
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_2:
+  answers.csv: cf9e883e2af39e562b7245af3377a851
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_3:
+  answers.csv: 053c1382d997d977a321403200ae9e61
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_4:
+  answers.csv: 412888cd0c57fac016893558f01b9c1c
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_0:
+  answers.csv: 338327b42940f0ae57857782bcf15b16
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_1:
+  answers.csv: 0712eba7dfc2d534d46f17b94d9429d7
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_2:
+  answers.csv: cd9ad4c03dac017ea330e7afa288c64d
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_3:
+  answers.csv: ed1ea6b4dfb97e280221f2b0d05ba31b
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_4:
+  answers.csv: 6692ccc9e5b5939197abb56777536afb
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_0:
+  answers.csv: ca4c974960396423c46128bbb0d3b8d7
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_1:
+  answers.csv: 715dcad237fd11a84566c55aaae2fca0
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_2:
+  answers.csv: 3628f9e1170f4ebd14049296bb7c7192
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_3:
+  answers.csv: 7e45acb21f0de01d802ef049b1155b2d
+private-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_4:
+  answers.csv: 4b714a4a1078dcd6fe59a629dcc6310d
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_0:
+  sample_submission.csv: 1c6ca608ac154d10432297b068b60c3f
+  test_features.csv: e8858bc8b2cae3311013fece4520dfb0
+  train.csv: 327e83bf4d56096d1d5d60cb5bacfa1c
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_1:
+  sample_submission.csv: 6e5ad2e652d9e90fb12916a54cf894d9
+  test_features.csv: 4127e951de3299382b9ef6793796c68d
+  train.csv: af63710d394350ab8ccb281ae528dbb1
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_2:
+  sample_submission.csv: 6d6c4df897eccce7699613b5c5870c77
+  test_features.csv: c6bb41ac9297142a924c127b3f004a29
+  train.csv: 9eed9314b42b4be242f10190fe34e5d6
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_3:
+  sample_submission.csv: 4d17d62f4e12e920f34d60eec9025005
+  test_features.csv: 7730c5bb3e42eaca0158975cec5ee85f
+  train.csv: d42b7f4f83ecb875aef5459a78694126
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_contiguous_4:
+  sample_submission.csv: 163068a9c1672ab75252f5adaece7226
+  test_features.csv: 0b96576aee268fc72afd09abc9546e3e
+  train.csv: a4423d48502ad5d87eb611398303171a
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_0:
+  sample_submission.csv: 72783e5d0f4dfccb7da53eaf54f52122
+  test_features.csv: 5c23817bb9124cca0fb02ec19441f405
+  train.csv: 6f42f69519d7e90d20d9e8ef25477940
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_1:
+  sample_submission.csv: 6e5ad2e652d9e90fb12916a54cf894d9
+  test_features.csv: b1fed74c70343c85bdfaa62f8972baa4
+  train.csv: c3a62099b73f99ed7ec925b898919954
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_2:
+  sample_submission.csv: e4a34746739eaa6f512096332c9b6c28
+  test_features.csv: 20869be489d9a4a27ec32c01020a4a81
+  train.csv: c10b44d3395b027c7b70f0d5f83e2c24
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_3:
+  sample_submission.csv: e935c74b07b11ff33346c61da4d7aaf3
+  test_features.csv: 05dce7ba899ba8546561c9e207466b99
+  train.csv: ea967f995f62ef5977d29bac14ebebf9
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_modulo_4:
+  sample_submission.csv: 4d17d62f4e12e920f34d60eec9025005
+  test_features.csv: c33894189ec2770e2e67316c2145deb7
+  train.csv: 6ba05c74c37c1bfd910c84efc374032c
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_0:
+  sample_submission.csv: f3bb1c681fc06fe6255365734d2485dd
+  test_features.csv: 2bf97f57a5de36b1ab904cff2eecc4c0
+  train.csv: 9b5771daca57d49f8c82c6952e8c1b22
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_1:
+  sample_submission.csv: 66c07153983c457f22fb23329d6c0c5f
+  test_features.csv: a224ec2a221b1ce375346a224648b0c4
+  train.csv: 67373cd6faaa9d51cdb33b6ceae3a59e
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_2:
+  sample_submission.csv: 2dd29f5a1fb9b3f55d3f070790d39d91
+  test_features.csv: a175fb57827fb0634c02305647b1e1bf
+  train.csv: f848c85f61e8300d7e977a2f7c9f23ea
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_3:
+  sample_submission.csv: 425cbd99445f9296de38ed9e51ad5e0e
+  test_features.csv: f16afabe770355a87e2a61d2a61acdf9
+  train.csv: 4a0c407cbf1e6dfe139dcc711a215ad7
+public-proteingym-dms/SPIKE_SARS2_Starr_2020_expression-fold_random_4:
+  sample_submission.csv: 0140185440c5f28a6ca4b4466bf47ad1
+  test_features.csv: f7d2a495bece0a92784aaac3b6e6d2b1
+  train.csv: 4d92abe40646002051f6e3533d062e51
+zip: 53b3c9be428aac3724703a877c014f9c

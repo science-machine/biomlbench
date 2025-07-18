@@ -1,0 +1,91 @@
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_0:
+  answers.csv: 5ca796d693a8639bc39c442232f2c1c0
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_1:
+  answers.csv: 16a8321b598d4c922192694b962e978c
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_2:
+  answers.csv: 1319cb97b5e3177eb05ed317fb72de7c
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_3:
+  answers.csv: c02e5f47bb5c9021ddfa9793c0a46546
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_4:
+  answers.csv: a269aa302ff1a473562d83ea7f8ecb79
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_0:
+  answers.csv: db60201508ae5cde80f2769646a4d2d8
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_1:
+  answers.csv: 08e08efc8a25fbee7304451f9077cebf
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_2:
+  answers.csv: 9bce9a69611c757dee34566be10fd8c6
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_3:
+  answers.csv: 49dd1a105cbd5f63292ef18c06db5114
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_4:
+  answers.csv: fcef9349c462f862c7020616a75de90a
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_0:
+  answers.csv: 207126275875382d7cd85472e6566510
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_1:
+  answers.csv: 16c4e8d4c4c47f8b7f234e66919f5e6f
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_2:
+  answers.csv: 11b781928ca85d2247f7073be37ae619
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_3:
+  answers.csv: dc13458450563449a9f6960c8ca3c659
+private-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_4:
+  answers.csv: 2a6a071c0814e7d7461ce7f7c695644f
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_0:
+  sample_submission.csv: f3c1e7414a7352f3c779bf2a6a996d9a
+  test_features.csv: c4523ea8f2157fef9e4520ee8219cb49
+  train.csv: bc1d9462064f264ef5c7510dc1b97a58
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_1:
+  sample_submission.csv: 567cd9111bbe3a5e1c2c51c5c96d1aa4
+  test_features.csv: 5dcd4e8ee3943d02287b430c14aa9d28
+  train.csv: 6601b275f292cad53fbee789f3419a2e
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_2:
+  sample_submission.csv: fdc7d0c7cf96014c113659772dc54f32
+  test_features.csv: 5add723f8cd2def87ad5fe383ef7c39f
+  train.csv: 52ebe56ec3d37ab35968e7f08eada31c
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_3:
+  sample_submission.csv: 139fd96e567df94c35afea7f34d13ec7
+  test_features.csv: 2d687641ac67a164726a414b9449c82e
+  train.csv: f4de26ec9acb688b02a0dc8ff3a9c414
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_contiguous_4:
+  sample_submission.csv: b538dfbecb705b60d1a15d07e24c0507
+  test_features.csv: 63cf1a57131c5347b490b190485a5599
+  train.csv: 5f0a6abeb36e2785edfe03f77eb69dce
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_0:
+  sample_submission.csv: c2ed3e50045474dd61d38af75eca2e8c
+  test_features.csv: 00532d0313111e083a839593a528bb18
+  train.csv: 884a85ceee57dbd8e65a85da214a9e3b
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_1:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: af77879e93599ceef4c3af025ac0d8b9
+  train.csv: df9839eb6435477364866347a08bb3ad
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_2:
+  sample_submission.csv: 5ef32a98b6d8bbcb44f7fafefce6cb98
+  test_features.csv: 8b52fd2d497beb0c0bdd858821e52708
+  train.csv: b61183a74c70d1c363fe984bfa5c22a1
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_3:
+  sample_submission.csv: 146f0a018741033641a51628f16cf6fa
+  test_features.csv: 70b5ff57d3638ba14d96a8b8ac565717
+  train.csv: 60dd84329e94358012dbb9e48796a4ac
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_modulo_4:
+  sample_submission.csv: 486acd44356d69054ee4d89d5ec47f24
+  test_features.csv: 026c62be716c03751b2de52e82785414
+  train.csv: 634b0ac6b3dbfb2095cadc1ee21daf90
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_0:
+  sample_submission.csv: 857b2baf0ecd0bcc973e5bb04bf6e459
+  test_features.csv: 4c4a9cc60d051e30a8bbcc443880b10a
+  train.csv: 526e39264cf37b61b8bd7c614ebc5f2c
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_1:
+  sample_submission.csv: beb20b491eae9cd4e23ecca7e321496a
+  test_features.csv: ecb9a09f12e2bae30bb5e69aaead4021
+  train.csv: 4386509b790c824b2433cb804d95d520
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_2:
+  sample_submission.csv: 0f8a195880a8c1da917f841b0bb471b2
+  test_features.csv: e3ce4bc95a9b08f4520e5ff19ff9b9e6
+  train.csv: 34af6f1d74ef614250ad4a828f145664
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_3:
+  sample_submission.csv: 884637d2658fb271f9c703435649d2a4
+  test_features.csv: 702e0d32ca74565b922a09900f64116f
+  train.csv: 7c38005a431d4eae1326518d2ad7d8da
+public-proteingym-dms/RL40A_YEAST_Roscoe_2013-fold_random_4:
+  sample_submission.csv: 5ef32a98b6d8bbcb44f7fafefce6cb98
+  test_features.csv: 3c83131452cf544ffbafe4aee44e4fef
+  train.csv: 94dfced9cd0a6f61362135ccf0adb78d
+zip: 53b3c9be428aac3724703a877c014f9c

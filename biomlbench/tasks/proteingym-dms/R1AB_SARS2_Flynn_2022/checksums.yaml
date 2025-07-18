@@ -1,0 +1,91 @@
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_0:
+  answers.csv: 22fd953ff4cfabd05cb2034f3b821812
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_1:
+  answers.csv: c186fcf4df4e3ae67e6528b29a063e79
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_2:
+  answers.csv: 5fea4e57e6af5a298f48da3dccfdc1b6
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_3:
+  answers.csv: e1e1c246d30bfe0824c1a073e4c44fc5
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_4:
+  answers.csv: 6990df300bc3ff11bc7cd47da3c48ac2
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_0:
+  answers.csv: 350da100d5b585ebb5aca7ad17b93da9
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_1:
+  answers.csv: 1b80d9d30fb1bd8e6a9c699eea3075c6
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_2:
+  answers.csv: c0f86bdd1d4f4f358c2638502c02d8cc
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_3:
+  answers.csv: 6c1fe8d30156dacae868676b0f8c2df3
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_4:
+  answers.csv: c83d45cb0a75e9477049eaf6fa4c9f16
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_0:
+  answers.csv: 148bda536b16e2a73e56b93295606371
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_1:
+  answers.csv: a6b305fdc5b086ceb9fe10c66633f8e3
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_2:
+  answers.csv: 85fe2412afa3d4f9774150a9f7e390b5
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_3:
+  answers.csv: 43bb8f92ed689c3a636356e67f5326f8
+private-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_4:
+  answers.csv: 5f3b6b0055926875f2b3bafb5b527e0c
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_0:
+  sample_submission.csv: 7ba193e9783bda5208238055c77bfed2
+  test_features.csv: 4b53739626359f1bff8aa73f64ec3660
+  train.csv: bb58762deda31b533840aee7332ce61f
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_1:
+  sample_submission.csv: 04ac3d88e665c34ea9ae2bd76dbcc12f
+  test_features.csv: c9b04a406432edda4ae3dbd652c30581
+  train.csv: 8db7e33fe3285ee1364dd21bbddcdd83
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_2:
+  sample_submission.csv: 04ac3d88e665c34ea9ae2bd76dbcc12f
+  test_features.csv: 39ed26edb3a330b9398c97e86c183548
+  train.csv: 804786eb34868868fbdeadf92f07fcea
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_3:
+  sample_submission.csv: ab7927b8b65e5b83884cce36c7ec7085
+  test_features.csv: 605f78c71f0dee433b4314f7779e15c3
+  train.csv: 98698c626efe3b9d2b0f557019ba8a04
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_contiguous_4:
+  sample_submission.csv: 119911d78756111696c7dc98837bd022
+  test_features.csv: d17573ba797a58dd7a394012098c8668
+  train.csv: 2a6be99506ff3b93995ec494e80ae52c
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_0:
+  sample_submission.csv: f477ac843dd8bda2b1fce311f7c494af
+  test_features.csv: 03d88a7304435b626cb356542ccb8924
+  train.csv: 56319d1f3d6859d94fcd8f5f427347ee
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_1:
+  sample_submission.csv: 42dfe20f74faeefb88b4433cf4c9dea3
+  test_features.csv: 653f17afa1e879d5fcbe79a529183fa1
+  train.csv: 150fe53da6087435ee817e496ae9212c
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_2:
+  sample_submission.csv: 811649bb4539479b838be3c85f89522e
+  test_features.csv: d6446496c85350c5e66f8a21607707ce
+  train.csv: 38dc8b95cdbd09d8594e7c4043a03f20
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_3:
+  sample_submission.csv: a9f0bde22df75e384c615c84f548d5a4
+  test_features.csv: 7f8b824a36821d18e15bc596f1dec248
+  train.csv: 09cb2f3446606af84f1784048cb2f51b
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_modulo_4:
+  sample_submission.csv: a9f0bde22df75e384c615c84f548d5a4
+  test_features.csv: 0f336fed8a76905286ac830318527982
+  train.csv: 96839c457f7ad9f01fd7d48a65769870
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_0:
+  sample_submission.csv: dafa7c57663e903424e90437c0a286e2
+  test_features.csv: 69cf359d4ee4a4d37151df7d33084037
+  train.csv: d233ff3ecc1b58cc700bf33ae9771bf0
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_1:
+  sample_submission.csv: f477ac843dd8bda2b1fce311f7c494af
+  test_features.csv: dda262e695f1b752cc06a6d61a2f11f2
+  train.csv: 70013d5e6c13342d482d259e55afe281
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_2:
+  sample_submission.csv: 6913ccbfe299c5735622010cb704b8bc
+  test_features.csv: fab4b54feac2fa172bee2a9907b4499f
+  train.csv: ab27441eb434e5ddc232fbbd867e23c0
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_3:
+  sample_submission.csv: a1cbe127f6b709712a8d8b32683c9ccb
+  test_features.csv: f43d59c2b0d6eaa779aeb8984402613f
+  train.csv: 5e75a442a451cfa87f6d495af17a698b
+public-proteingym-dms/R1AB_SARS2_Flynn_2022-fold_random_4:
+  sample_submission.csv: 841d0dc52ec8b884005a500f867fd24e
+  test_features.csv: 09be969aab6e8dd2ea6a7e2eb052ccd5
+  train.csv: 477b3fd27af845a52b37d16394f9014a
+zip: 53b3c9be428aac3724703a877c014f9c

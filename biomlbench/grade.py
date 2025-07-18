@@ -46,7 +46,7 @@ def grade_jsonl(
         scores = []
         for dataset in task.datasets:
             submission_path = dataset_submissions[dataset.dataset_id]
-            score, submission_exists = grade_file(submission_path, task, dataset)
+            score, submission_exists = grade_submission(submission_path, task, dataset)
             submitted = submitted or submission_exists
             scores.append(score)
 
@@ -67,7 +67,9 @@ def grade_jsonl(
     logger.info(purple(f"Saved summary report to {save_path}"))
 
 
-def grade_file(path_to_submission: Path, task: Task, dataset: Dataset) -> tuple[float | None, bool]:
+def grade_submission(
+    path_to_submission: Path, task: Task, dataset: Dataset
+) -> tuple[float | None, bool]:
     """Grades a submission file for the given task."""
 
     if not dataset.is_prepared():

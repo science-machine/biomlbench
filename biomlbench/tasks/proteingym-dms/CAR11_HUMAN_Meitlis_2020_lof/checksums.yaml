@@ -1,0 +1,91 @@
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_0:
+  answers.csv: a4b9a468051cc2d92f70a626ee2506f6
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_1:
+  answers.csv: 08b1421158e0283d84a97b33f4460379
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_2:
+  answers.csv: 270e5a3178fffba0134d28eef6fe448b
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_3:
+  answers.csv: e74c1c148bcba0862b9740e5d58d14d1
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_4:
+  answers.csv: 570cb144840e08e1f7e13793148f286f
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_0:
+  answers.csv: 8c27eb8bb1c1b42555e182d96fc7fd25
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_1:
+  answers.csv: 39b409cc0966957a04d919d0caa60181
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_2:
+  answers.csv: 57a2a1502d8a8a37636c3f3f0a3fa5cc
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_3:
+  answers.csv: fa0cb3a608eefdf9a06be95723bedd73
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_4:
+  answers.csv: 924bdc75e45d7415cc8be92aab9d24d2
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_0:
+  answers.csv: 8d90af9326de1dd592f0bc2dfeb1e711
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_1:
+  answers.csv: 2a367c65350dc3b45050b80d17e81767
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_2:
+  answers.csv: 38e0845cc086bfbcd8f09127e508dacc
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_3:
+  answers.csv: f16cba7e6e951dc02c017de06dafaecc
+private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_4:
+  answers.csv: 1ddb3c52493e43c50b1a55407c15c45a
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_0:
+  sample_submission.csv: 29ed0820bcea8028f04cef57ed6b3122
+  test_features.csv: 4ce45b884b1c5796a11edf54e5db64bc
+  train.csv: 839bd23b3188b5e2612da45d9e40c256
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_1:
+  sample_submission.csv: ab2eb2418aa909a046a42612de7570b8
+  test_features.csv: cd42ac45dfc344f29eb5c038fb6b00d3
+  train.csv: f7e92533ce2214ecc739673b9b03bb33
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_2:
+  sample_submission.csv: 2397e524c4f7fdb33803d22fc12ba2a8
+  test_features.csv: dd8f1c8b5426f5dc64cf6fdaa78d55fb
+  train.csv: 060e19bb8df67c65dd77d34915e2733a
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_3:
+  sample_submission.csv: 3963f533342de66c7d0c5dbea5d1ddd1
+  test_features.csv: 9722940fb0a6be25c25213038a37b2cc
+  train.csv: 5c1bcad7163b5b2a31371e7e500a2228
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_contiguous_4:
+  sample_submission.csv: b10dc1734fbc14c1bf83355cfdb03683
+  test_features.csv: aef2323bac73ae030bd0bf190bf67491
+  train.csv: fafb9b51db5acd3ab358ffbb1aeca5e3
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_0:
+  sample_submission.csv: a8e76e437b687e8629711c4c1bb5f0fa
+  test_features.csv: aa0ef16efa307fe09bf076c5f14bfcfa
+  train.csv: 6121f3e3efabdf5c1639bdc2af39a7dd
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_1:
+  sample_submission.csv: 9b02cd94abe3f41cf0b4a2925590a6fe
+  test_features.csv: 92278e4c4fe161f8e20f5780be944c52
+  train.csv: 421ec124574cd804ccc9ba810f487f18
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_2:
+  sample_submission.csv: a2105294a60b381ce576d22be9ae5e32
+  test_features.csv: 07d39910387631d8884e4e66f5a814d5
+  train.csv: 7ad3961e4505af8160c1a3f0e79fad8f
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_3:
+  sample_submission.csv: 665dde44ee5b88125a85848dfabd54fc
+  test_features.csv: 1ee488cbda493ed8c0d185e486550843
+  train.csv: f66503bc899e38fdba36d5cc42986b97
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_modulo_4:
+  sample_submission.csv: f26e9e3ef3f0889d886cce84a0933e5e
+  test_features.csv: 4bfd4df9d1dedacb50ad8c9a9c683e97
+  train.csv: c58d1cde6337efe95e97e60f96dcca28
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_0:
+  sample_submission.csv: a8e76e437b687e8629711c4c1bb5f0fa
+  test_features.csv: 0223f66064227f3a9ef0c37548f17cef
+  train.csv: 1184d98f2873b3f0224bfb42de0b21e4
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_1:
+  sample_submission.csv: 8c2fe578250d52d93fd7764357ef0583
+  test_features.csv: ab88455a198bf9dec437c176aa5f49e3
+  train.csv: 510943b49efdedbec82d6b1077122ea7
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_2:
+  sample_submission.csv: ef98fe377fbabfa71def31ccf330eb53
+  test_features.csv: 1ba8a06f303c61c028f47f4d1ba63871
+  train.csv: 7d090008b7e0749a224ab075fc43c5f4
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_3:
+  sample_submission.csv: 3e84a84394c8ccc52b47bc8ecb880e02
+  test_features.csv: b20f0c76aabe3f69c7f08a5d8db738a2
+  train.csv: 13d4b5216b9f095d2051a731c4da42ad
+public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof-fold_random_4:
+  sample_submission.csv: 8cd69b3d604e63b35f484e9a1dd4fb6f
+  test_features.csv: 2ff1d00a3ea0318dba574909ba7aeace
+  train.csv: 57a3661f978f72b72cccb6277c80f2ea
+zip: 53b3c9be428aac3724703a877c014f9c

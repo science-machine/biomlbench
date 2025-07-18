@@ -1,0 +1,91 @@
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_0:
+  answers.csv: f31a3484023d6586ab0617d2d79fab81
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_1:
+  answers.csv: 152474b02a941e8a9498c709a4418cef
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_2:
+  answers.csv: 80c5510ffab80be04a2c04c5f79baf59
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_3:
+  answers.csv: b958d4d1c13e42cd6fb2a95749bb9b4a
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_4:
+  answers.csv: 6c68bffd790ec35c55b032e40d30b42d
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_0:
+  answers.csv: f6c5654b216089837c62753235f8122a
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_1:
+  answers.csv: cc7731107b873e4bd65e89026b1cc94b
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_2:
+  answers.csv: 65a426ffc3398a6ef1f5841fe1b0febc
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_3:
+  answers.csv: f7f8951e51850a8d95767df7ea4da2aa
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_4:
+  answers.csv: d8d7d34d7036d07b870c7672654a7ac3
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_0:
+  answers.csv: c73d3c92eaa61402108d0c88e453f351
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_1:
+  answers.csv: 25cb017fc8f1cf35c87187dcff8248e1
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_2:
+  answers.csv: 289076cb2c61f948fedd10b469afc5f0
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_3:
+  answers.csv: 13dd46eada13a80d2ac4a2eb0b5eda57
+private-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_4:
+  answers.csv: 05515a077761e0d96829090eca5dd8a6
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_0:
+  sample_submission.csv: b938645798e689e84f44255f819b1964
+  test_features.csv: 8c850e96413329f4c12540530235fada
+  train.csv: 04f50f1bf7051a9e7256043b26efdb13
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_1:
+  sample_submission.csv: 68edee9439103f6840f365bb94f3265b
+  test_features.csv: a9aefdda25ca42d62d2edd9af919fb61
+  train.csv: 0683cd5f8e0f2e197ca9b9c793f4791a
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_2:
+  sample_submission.csv: 8569006b4bc9bfa00e5e783aadec56d0
+  test_features.csv: 53c3cb670a36f3975dc06f4e93eb192f
+  train.csv: 373ccaa482ba3cfdedfbf814809cb785
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_3:
+  sample_submission.csv: 8ad873dd7328704a1a86bec07cc0e22d
+  test_features.csv: 36e3b2a99173f53fbc2aff0b4c368dd7
+  train.csv: cf2d4ed512ac4990ba4599eca7770d79
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_contiguous_4:
+  sample_submission.csv: 5afc6b3ed9445c70ba1d0970b8df5485
+  test_features.csv: d9da5a4bf20fe2b1425e1b79d1673fe7
+  train.csv: 8bf96af20a464e14428d63584d93a5a8
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_0:
+  sample_submission.csv: 0aa0ea426eafef0b5e48b2a8ed6e9851
+  test_features.csv: b2f98c04b84b33774260afcd2f228ce5
+  train.csv: 531c1d95982eb46c7bf7dfd27c079ad9
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_1:
+  sample_submission.csv: 7e8b438a9bf48472a2360df057b99a72
+  test_features.csv: 2e15f78bcaed1a0c429ebcb2412776d3
+  train.csv: aeae03cc3edd583eaa5077c0fd7ea563
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_2:
+  sample_submission.csv: d16627eac44e49ac4db3808a65edc835
+  test_features.csv: 9f431a587a7d3f22151fa787edf42b87
+  train.csv: de9e4dd4e53add22b78999348ea6b728
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_3:
+  sample_submission.csv: 7e89b9bea66042f3a98912a47ceebf73
+  test_features.csv: 70017cc0ddff11db95c5659366fe1cb7
+  train.csv: 591f3a215d1ca46e3770afaf2a2379ec
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_modulo_4:
+  sample_submission.csv: ad4529ad3b1b9036d08a40a1c7b5483e
+  test_features.csv: 7139eeea00aff7099cdb9fae8443bc58
+  train.csv: 27e0aa0a1435a805425018455a76dda7
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_0:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: 30e3bb1f76b3a106c49b014a67e65656
+  train.csv: c49127107b3e8f9c334323602642c33a
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_1:
+  sample_submission.csv: fc3add04dfdfc49dd3a490f22894904f
+  test_features.csv: f6ace310c7326082f34bf3acdd955d36
+  train.csv: 56215e6bde9c4326ae84104a8af9e71b
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_2:
+  sample_submission.csv: a688c6025d08ea76a928af47249071d8
+  test_features.csv: 48acde53e944d60598b5d27ab2f2cc2f
+  train.csv: 16f488b9cf55af5ef164fcc21fedcc5f
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_3:
+  sample_submission.csv: cfbc576d90401298fae98eb3bde61aa1
+  test_features.csv: 62a44ad6a7aeda7f2a4522def2a9a547
+  train.csv: 71d98bdc9fbdab607703b8883213b84b
+public-proteingym-dms/CBS_HUMAN_Sun_2020-fold_random_4:
+  sample_submission.csv: 1cde25504c436869cccd711ed3c887ca
+  test_features.csv: b35d1eb1e28a96b24e44d22545bac492
+  train.csv: b32cb79633adf6d3caae3f7ce8cedcad
+zip: 53b3c9be428aac3724703a877c014f9c

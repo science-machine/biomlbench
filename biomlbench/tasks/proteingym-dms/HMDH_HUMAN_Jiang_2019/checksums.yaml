@@ -1,0 +1,91 @@
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_0:
+  answers.csv: a0aa3b7f0d641176fd1ef0e6ef243737
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_1:
+  answers.csv: 273d8863f2fd70368c7ed4983edb6126
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_2:
+  answers.csv: ef332487532f3aead29135120f2822af
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_3:
+  answers.csv: 9d36f333eb56c196d199579bfd095a96
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_4:
+  answers.csv: 8ce41fa4e4c1b0cb4ca08d35aea2956f
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_0:
+  answers.csv: b53e19d8c61a1d24c96523ada71e1796
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_1:
+  answers.csv: e49a27c67ef6a84ce39449f904e34bb2
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_2:
+  answers.csv: 1ef1198d0d658ebe981666555e42a3c2
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_3:
+  answers.csv: eade176985131a437adf56f2c1f96f86
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_4:
+  answers.csv: fb0750f9c13c27eb26c7ce86e1f0900a
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_0:
+  answers.csv: 513e20fd2ea899dedb93f19a1a83aeb8
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_1:
+  answers.csv: 3c42d2f43ddf6a27bc43631786fb4ec9
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_2:
+  answers.csv: 7bcbd77c4a3c86d07caaa4a5b8411db3
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_3:
+  answers.csv: 8a151f70f697da499a21876f6fe47ff5
+private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_4:
+  answers.csv: 81f39471f215f612671b597697be88a6
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_0:
+  sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
+  test_features.csv: a5918bf6a995fb52d4be6e98de1f282e
+  train.csv: 8c78fb569d23d968a7a77740cbffe4c1
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_1:
+  sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
+  test_features.csv: a0012040bf23823e78e1d91065f26e0a
+  train.csv: 83b64ee8b8db96f2435f9d0256672c41
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_2:
+  sample_submission.csv: bdb45082d5722f3204790867cde4c941
+  test_features.csv: 9fb62be6decd84bcab7e79b0712b508b
+  train.csv: d3dc9436718a77f8587d0d28cb7ae7d6
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_3:
+  sample_submission.csv: bdb45082d5722f3204790867cde4c941
+  test_features.csv: 5e94e04a7a10587979a96509f993c128
+  train.csv: 33100a7cf1a191cef1baf5a63a646918
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_4:
+  sample_submission.csv: bdb45082d5722f3204790867cde4c941
+  test_features.csv: 1d9651c5bbe8f5c0a9000a885d7ff7ef
+  train.csv: f1aa0108887cfd1eae7394f669e9ccf1
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_0:
+  sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
+  test_features.csv: 664668cb5b0ed5261bb293848430a958
+  train.csv: 8f3fa6272f6c8458b9d67efb37d2fe71
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_1:
+  sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
+  test_features.csv: d8b9b3abcecea45769f04b582ae55222
+  train.csv: 09624c41eae371e7a9f497fa08f1f1a2
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_2:
+  sample_submission.csv: bdb45082d5722f3204790867cde4c941
+  test_features.csv: d72f283bbe85ac1d70fffe367ba5bab3
+  train.csv: 62c83ac3c6615a75aa630368628a2a95
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_3:
+  sample_submission.csv: bdb45082d5722f3204790867cde4c941
+  test_features.csv: afee141924280b36ad5dee2caffbf8b4
+  train.csv: 17c788092feac345217ebc652b556e99
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_4:
+  sample_submission.csv: bdb45082d5722f3204790867cde4c941
+  test_features.csv: a4827b6c44ab8d01e6a826f53e62e430
+  train.csv: 38afa0d433e789a6fadc582f89e7d1bf
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_0:
+  sample_submission.csv: 8a090dbd2a754bce42cec4e2ac05f6e4
+  test_features.csv: 632ac8d39fc6c205141ceb6ec10cf6bb
+  train.csv: 787c0591e6fb52aafb651041e6301873
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_1:
+  sample_submission.csv: eae50eccc64f085c832fd0e856d86eeb
+  test_features.csv: 5a93f3297d511c8a708fc6ad596a2f2a
+  train.csv: f39bbee6de5752fdd9bcb840b5994ed5
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_2:
+  sample_submission.csv: d19f389986b6e34f17a18ec0b5280da8
+  test_features.csv: 9d65026bf289a9dd41f170ed2060174a
+  train.csv: eab6e8311e3b671e2e813627b5e87895
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_3:
+  sample_submission.csv: d19f389986b6e34f17a18ec0b5280da8
+  test_features.csv: 760cf18225d32756b0b954d1bdfd0863
+  train.csv: 6bf66455b0e07d57acc64806be063f4e
+public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_4:
+  sample_submission.csv: 436a73fc21049b29c4a26473c85c53dd
+  test_features.csv: 3252d1711fe21c4ba34f0e56864b7b00
+  train.csv: b557c19de3998e8206aa5053137f6466
+zip: 53b3c9be428aac3724703a877c014f9c

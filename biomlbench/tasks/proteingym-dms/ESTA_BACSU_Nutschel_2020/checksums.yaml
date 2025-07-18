@@ -1,0 +1,91 @@
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_0:
+  answers.csv: 6fedaf985fecb1eca88beb255819cbaf
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_1:
+  answers.csv: 083854c3e4e1b2e99a63b24bf17cd523
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_2:
+  answers.csv: cde4ce992ae853cd55e2921b1b3c8976
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_3:
+  answers.csv: fe6b876a3c7c4275a28c7ff241474f90
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_4:
+  answers.csv: 482364addcf2976da31c099cb816dcea
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_0:
+  answers.csv: fdba671bfc63a092795879fd69e55e3b
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_1:
+  answers.csv: aa6c57b211641dd3007951619d511299
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_2:
+  answers.csv: c039078512ce4ac0fe605057421babc1
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_3:
+  answers.csv: 621b22bff852ceea149692dbefb8d043
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_4:
+  answers.csv: 1bfa08384d05234355f8a9eac592c724
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_0:
+  answers.csv: 69416b6d057dee60d93e908dad62ba97
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_1:
+  answers.csv: a5c2582753812b88369d9b77d1a00b61
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_2:
+  answers.csv: 0c282d93ce80fbe3c73b03c3110493b3
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_3:
+  answers.csv: 8b75bb9aec89a033b8d51f79e97b4352
+private-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_4:
+  answers.csv: 0f6afad97488d72e370dd334a5d4e1e4
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_0:
+  sample_submission.csv: 4285427552d55fa516aa6a4d5e3837a6
+  test_features.csv: a3e84ca9e5e5b38a582e4a34759f797a
+  train.csv: 6a293698b09a9c02b3a03926e5e285b0
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_1:
+  sample_submission.csv: 8d646f09c6c258d1de8dfd6309ec0dc4
+  test_features.csv: 633d126c10fb4d4556d142b55859cfcf
+  train.csv: 46bfcaa0a10cf1a26a7e0b524c7e2159
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_2:
+  sample_submission.csv: 891834b80496406d151054b368938fce
+  test_features.csv: b4324059c65ce2a8097305f821dfebb6
+  train.csv: 1d1d9b9db8b156d609651ef80074d8fe
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_3:
+  sample_submission.csv: fed2adedd4fd3ac2eb40b8d78dd321a8
+  test_features.csv: 3e1eace1825db40d20fd7d802c70ab77
+  train.csv: 5090310b4c6172dbfd799803ffe94702
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_contiguous_4:
+  sample_submission.csv: e83487930fd83f048267aae29f79fd7f
+  test_features.csv: 2d3d0b3560abd7905410fbcaedf3db8c
+  train.csv: e0e1df0909e21e0eed3fad2b4b9383ce
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_0:
+  sample_submission.csv: ddeb4ace3da8155e6d0414ae4f4646fe
+  test_features.csv: be5631efe37f540cfbfc4f44a10ba8a9
+  train.csv: e0ac138ff8356045f151c090a76ed371
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_1:
+  sample_submission.csv: a2105294a60b381ce576d22be9ae5e32
+  test_features.csv: d783791016ab89bdaae57445aea8a63b
+  train.csv: 0e2fe7891efa2e131681cb6790dc3b4e
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_2:
+  sample_submission.csv: 4cbde12e5e050e5a07b450084363b872
+  test_features.csv: a49d79cb8bd5a1d9b4b537f78db8a08f
+  train.csv: a5a1c9ae56e1ee3965d51dc5d9a25f33
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_3:
+  sample_submission.csv: e83487930fd83f048267aae29f79fd7f
+  test_features.csv: 075981d08aa645b96a452d42e11a977c
+  train.csv: 02f735f74fffdebcd64cbd06e8d82029
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_modulo_4:
+  sample_submission.csv: 32b6e26ed145fa2e778d04bb1d5b366a
+  test_features.csv: 9c9c4249dd47cede38dd7e6d663d2226
+  train.csv: 00bdeb9c6a5a0f8a65fcc5f8d680efee
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_0:
+  sample_submission.csv: 2678ac76de5057c0c7529650a58f410b
+  test_features.csv: c2469d68f926700e033ff12ae2d9d982
+  train.csv: 9dbd4528785ee96379d93f07a237fc7d
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_1:
+  sample_submission.csv: c6da3ca61fb4609fef4fc8161ac04105
+  test_features.csv: dbafac57252b7ecb9f5a61bdf7b88605
+  train.csv: 10ef043907cd53817c5bbf0196ced48f
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_2:
+  sample_submission.csv: 3630691bbbae6e978fdfdad9a680b095
+  test_features.csv: fe497f15aab4f594283a9dbbaa518215
+  train.csv: 55807c531e397e1bff0dce224ca3be56
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_3:
+  sample_submission.csv: 9de13b3530e005066019eb8416aefbb8
+  test_features.csv: d07a65dcd69cfdfdd0d9d79f673151f3
+  train.csv: 8aad83323a934ef10ec32e20d3405d48
+public-proteingym-dms/ESTA_BACSU_Nutschel_2020-fold_random_4:
+  sample_submission.csv: d870545cdbe9df0eda598e83c6715d49
+  test_features.csv: 2db8dbe22bb1bbc616384821a74dd60e
+  train.csv: f86cacee61316ff7c6e38a6b3b5b9cc6
+zip: 53b3c9be428aac3724703a877c014f9c

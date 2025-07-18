@@ -1,0 +1,91 @@
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_0:
+  answers.csv: f0eca5f21445a8e22b1b3771b549ce5e
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_1:
+  answers.csv: d421ee5f4dccdc7475d74c87f2036447
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_2:
+  answers.csv: 748a7666b2eddf6fe8e558e0651039b8
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_3:
+  answers.csv: 222c80b1b906d220e9e7c76725dd9ca2
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_4:
+  answers.csv: 58ab068c585e0d9a571985952dd2a61e
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_0:
+  answers.csv: d76f0cfcfb6573f55d6f594609730c13
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_1:
+  answers.csv: 1eb1b4bb100d9a8e94808ac2cc8dfa2c
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_2:
+  answers.csv: ef2638f0c24c028318daf28799c9264d
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_3:
+  answers.csv: 1acfbf57f143b22ee345131a08466ed7
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_4:
+  answers.csv: 4d169fa122174bfc5fdfdb1454e6e694
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_0:
+  answers.csv: ad3596d62cefa87876a7b9772ca68c8e
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_1:
+  answers.csv: ab921f0900bec4c7f039f84b93efb407
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_2:
+  answers.csv: 1590e8d882173faa25ee7344de548b37
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_3:
+  answers.csv: 8291098a4bfc5965bd600683d5229969
+private-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_4:
+  answers.csv: 24a71ea88a3e405ed00decfa84f2432c
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_0:
+  sample_submission.csv: bcefb3c9112e04d12b9e34169348e44a
+  test_features.csv: b8448472a53c3f4a62e049969fb427ae
+  train.csv: 0411416d304c0797c8e6e033aaadc862
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_1:
+  sample_submission.csv: cb0a2ba1a550cd0cedc006af16ae4a95
+  test_features.csv: bf717236b134e891db0c1123a23c9c92
+  train.csv: fd6852e1e0e96207de074a3aa741e05d
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_2:
+  sample_submission.csv: 20851e9a73cf3da5e49ffede98040e8d
+  test_features.csv: e0bc394b7cc257ed7bb48aea86121f6e
+  train.csv: 901336a9634e594b0005f7bfb256171f
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_3:
+  sample_submission.csv: 57d7c8fd5612876a3c0d984d176d7f39
+  test_features.csv: 7b1870053a531bb0f5a272014e44df89
+  train.csv: e48ed3b73e3a1b91d34ddfe7201279d4
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_contiguous_4:
+  sample_submission.csv: 1f8fcd1eab9433f843d82f55417b7a08
+  test_features.csv: e6a24f074b9a3b79331b3c2c00bc921d
+  train.csv: 0e0180549e30c6cb00feed4752648e0f
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_0:
+  sample_submission.csv: 39f58bfbcf6a11a624c8fd2f5640a251
+  test_features.csv: 0e1d75d2155468c8b4fb6ccf81f6daaf
+  train.csv: 926cd7fda07456d05c4b5590c3457e84
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_1:
+  sample_submission.csv: cb0a2ba1a550cd0cedc006af16ae4a95
+  test_features.csv: 04ca9a0d833604659b95db3d9a085acb
+  train.csv: 952849b938ef5c4409f0e31aa68acf32
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_2:
+  sample_submission.csv: 39f58bfbcf6a11a624c8fd2f5640a251
+  test_features.csv: 4b3ce3832c283a25694ee72928876d4c
+  train.csv: bf0a52de7374719297a19529bc825175
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_3:
+  sample_submission.csv: 20851e9a73cf3da5e49ffede98040e8d
+  test_features.csv: f6900e1214831f7025789609b2463b05
+  train.csv: eed195fbeb9d23c1d33175640d479f06
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_modulo_4:
+  sample_submission.csv: 78ab9c53a519f11aaa1391dd5d5f6796
+  test_features.csv: 302cde858577b8d1a1e17979f14222a7
+  train.csv: 38900f7dc93ab2fb11185cbbff4db4ad
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_0:
+  sample_submission.csv: 5724809c9889338496b8667d81c3a0d5
+  test_features.csv: 564cb8432864086a704cb947eb8bbb82
+  train.csv: 267dea2207e18bb2f60f88d9112c1264
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_1:
+  sample_submission.csv: 7b3fe8e5bc8377e4dc9f0724ce62129b
+  test_features.csv: fe5c1da32573c4c92fbfecc8996afdd5
+  train.csv: 3049c30ef9b7fa21c352262caabf4c05
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_2:
+  sample_submission.csv: 58763235440c497b8d2bcf311dbcda2d
+  test_features.csv: 166ff9f52aab41d6791a11b6076fc2cf
+  train.csv: 65d9c9bb2764ada473d91ae110b67abf
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_3:
+  sample_submission.csv: 6857ac8a79fe00677d22ee5a1e246f11
+  test_features.csv: c1254a70ae33a29b3c99bcdfeb7c3d55
+  train.csv: d966d4d71f20f3f5d7eb6ab7f1cf6cd3
+public-proteingym-dms/OXDA_RHOTO_Vanella_2023_expression-fold_random_4:
+  sample_submission.csv: cb888503946ff08180bae39f42513b9d
+  test_features.csv: 34ca4ff0b83b6c4b89fb2ecc0b743659
+  train.csv: 24e47e3231eb7bcd06ea5bc40935402d
+zip: 53b3c9be428aac3724703a877c014f9c

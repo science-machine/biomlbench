@@ -1,0 +1,91 @@
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_0:
+  answers.csv: 06c10157278c266ad926437833b11048
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_1:
+  answers.csv: 79eee17c2d1cfd1fa35711ace033b794
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_2:
+  answers.csv: fc79114296cd273b8f3e5b67b5650b06
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_3:
+  answers.csv: baff358aea97dc1c6d872e250fb94130
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_4:
+  answers.csv: cb1edcd3337ae213d06bb40cf7afe1a8
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_0:
+  answers.csv: 8d879115620ae2dc3589d4e55a204b42
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_1:
+  answers.csv: 2e35e8955d9470f53ed5fa05d4089711
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_2:
+  answers.csv: ed451439f52710d16c2cc31751af3048
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_3:
+  answers.csv: e38276b6a53c3ce05672e4f84bd474bf
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_4:
+  answers.csv: 440d383de2acb9e3ae43a4f24a084b6c
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_0:
+  answers.csv: 49deb506bcd06261e52040d0a4c70837
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_1:
+  answers.csv: 86e448c7e9434268c97aff2a96090511
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_2:
+  answers.csv: 1ddef4822d66be6f2cd483c76ad82aaf
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_3:
+  answers.csv: eaf1e896000dd1214f13b01a375e058b
+private-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_4:
+  answers.csv: 1d38cb4625c54e227262a3b952651e37
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_0:
+  sample_submission.csv: 2b5a7c8aebb5f333ef615b70fdbab83d
+  test_features.csv: 920bb9ae9a40a2f3aa1268802fbef188
+  train.csv: 483c00feed74ff81f5aa42563d207fa3
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_1:
+  sample_submission.csv: 2cc5c9153d02f513953b2aeb51613572
+  test_features.csv: 2c53d518256c81062a0f35179078a381
+  train.csv: d1dc057de6ba75f1c5cd825d7359e775
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_2:
+  sample_submission.csv: 2cc5c9153d02f513953b2aeb51613572
+  test_features.csv: d9f82a84cda6e4fd0ed77dc0a0e32f32
+  train.csv: 47ac878695c63efbadeb723667e95174
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_3:
+  sample_submission.csv: 2cc5c9153d02f513953b2aeb51613572
+  test_features.csv: c7cb2fcc45100315d359a05c5f83a6ac
+  train.csv: 6f7f6ada8d2c2f326ddc9ce4c5612586
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_contiguous_4:
+  sample_submission.csv: 4c7f2430fbf17a5da5fd5be23f67def2
+  test_features.csv: 9b7b49ec3c0129b4e0676b72d4982550
+  train.csv: 595b980ccdfbc60ab33145fd6f7ad5a5
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_0:
+  sample_submission.csv: 75d31adee75274a6bdd6b664636095c4
+  test_features.csv: 0c01b28a6d16b440b2afb4b2f6bf1250
+  train.csv: b0149c2eb7b1b28f4cb0c9c97a78fea5
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_1:
+  sample_submission.csv: 2cc5c9153d02f513953b2aeb51613572
+  test_features.csv: 02bd945c6d74431de756b86cb56b8e0f
+  train.csv: a134fadc163fd971885b46d7426f8c5d
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_2:
+  sample_submission.csv: 2cc5c9153d02f513953b2aeb51613572
+  test_features.csv: e486a51bdfedc8db09023065b1b3a5b3
+  train.csv: 01587781c8068c02f74e58372f9610e7
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_3:
+  sample_submission.csv: 2cc5c9153d02f513953b2aeb51613572
+  test_features.csv: 26102a5a7318906e8cbde2425b101adb
+  train.csv: ef853eadbd0ceb00bfd2c0ace2ba4f42
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_modulo_4:
+  sample_submission.csv: 2cc5c9153d02f513953b2aeb51613572
+  test_features.csv: a893d2ebcc1e736506ef05e0a18efa91
+  train.csv: 7a871313f5996eb28167ee09199ae743
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_0:
+  sample_submission.csv: 5c168c62d3fd39a661e61d1ad25d4d25
+  test_features.csv: d8413b6c31d319aa6c63f5db6e3ee754
+  train.csv: 8cd89d9a37ea372077722d7251b18e3c
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_1:
+  sample_submission.csv: 9ed6605f090a5c5b55baa9f4c1832080
+  test_features.csv: 61de883389965670fd8a7baa1173cc2b
+  train.csv: fe2ed7d57f6c0d34f9ab86515906d00b
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_2:
+  sample_submission.csv: 9ed6605f090a5c5b55baa9f4c1832080
+  test_features.csv: dbcaa813ded2c6b8378e7e37d1682ec6
+  train.csv: f9bc35235f041d8b64cb4b1ad1f61944
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_3:
+  sample_submission.csv: e43bf312bfbf60f887c8972c8987ebd8
+  test_features.csv: 9d58dc96e6bf50379cb3840d996fda47
+  train.csv: 505be5d570680a555b0bb8c124a77c57
+public-proteingym-dms/TPOR_HUMAN_Bridgford_2020-fold_random_4:
+  sample_submission.csv: 63bd2089f909d05fc0ab2a45746f3a1b
+  test_features.csv: 4d956e9c0c6db5245d703aba466971ac
+  train.csv: 437f0cac262cc8729a7fbf4eb3176a38
+zip: 53b3c9be428aac3724703a877c014f9c

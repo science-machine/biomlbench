@@ -1,0 +1,91 @@
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_0:
+  answers.csv: b00b02ad1fad14afa7d093318fe1a013
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_1:
+  answers.csv: ef61bf2743606d561a32d8f67c7d3cd5
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_2:
+  answers.csv: 3d7e51143efaf21377df9220527901a0
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_3:
+  answers.csv: 850c53853aed1878c04ae6ac9fe9bbdc
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_4:
+  answers.csv: 92f41fce8a911a6606f8ef8985c7ec11
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_0:
+  answers.csv: 5e6faa52edb8bba37a97d86e23db688e
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_1:
+  answers.csv: c2e9424b8be96dfe68af24561393574a
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_2:
+  answers.csv: 88429b431d5231bb13a1b5b61fc85bf6
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_3:
+  answers.csv: 0c337b253ea6ea6228ac467ccd53ea29
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_4:
+  answers.csv: 6ccaa8d209e16408328447c651834707
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_0:
+  answers.csv: c537c38222c54e9bf9690d846c8fc0b1
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_1:
+  answers.csv: 4db598bbd951a45184c448caa596ca31
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_2:
+  answers.csv: 30955979ad238814b96ce0a0418aef58
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_3:
+  answers.csv: 2a195aa76d3c81369a94427aad4335d2
+private-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_4:
+  answers.csv: 2464b28200aed8c4ea39bdeed5394fc8
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_0:
+  sample_submission.csv: 9666c6bd71c7502590dd094c74099dc4
+  test_features.csv: a1ec40e71390f29bca098206191e4005
+  train.csv: 349792614386880f72d4761a0e91d201
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_1:
+  sample_submission.csv: e2e2536002dce3d36f9ea83cf2501eb2
+  test_features.csv: 6b923a1ad8f46283363c11cfd36fd534
+  train.csv: 58f7719954ed97183fe342a4f8f6a214
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_2:
+  sample_submission.csv: 50ee1f9a7757f5e8ff89bea8b0651cde
+  test_features.csv: 9beedf74b1570d16df2dd0e4fbdf5af3
+  train.csv: 810dc5df5489384fa9a486ac97513164
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_3:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: 6b91aad8ea8d0844e704a69f1fa45478
+  train.csv: e6eb1834d408247e19ba250781613e47
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_contiguous_4:
+  sample_submission.csv: 32144810b2a407d59bc3e9f80a4932a0
+  test_features.csv: 523a825a114367dce0d2eeccaf70008a
+  train.csv: 1833fd0c170d5322a8f02a544c027581
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_0:
+  sample_submission.csv: 711211a6fbac666912ef834fda0850b0
+  test_features.csv: c6ff06cdf798d9fe844a4aa69eda274b
+  train.csv: f8bac095a24554e39d0eeb5235bcb6bd
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_1:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: a0748f05b5df894c21e76a1fa8a4aba4
+  train.csv: a33d879e58888ea1a8c99211f36b3779
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_2:
+  sample_submission.csv: 50ee1f9a7757f5e8ff89bea8b0651cde
+  test_features.csv: bbfc2ec8ba981b4169052f46a5dee4fd
+  train.csv: 32a46837a16b16bc72d26888385e3d16
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_3:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: df3ba60153d855aec473dc39b69a6cfa
+  train.csv: 30888586351709664ed07cfd38600180
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_modulo_4:
+  sample_submission.csv: 32144810b2a407d59bc3e9f80a4932a0
+  test_features.csv: 3a9520cf182c2000473320d30a0e3dad
+  train.csv: e6a276a87ee69c76f2ce4c3420e77436
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_0:
+  sample_submission.csv: c86b5f4d21c9ae1ea14b12dd229775a9
+  test_features.csv: b88513740098a89be259173693f085ac
+  train.csv: 90a4b42fa59fdc1af55bff604573d60c
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_1:
+  sample_submission.csv: a7fb5b007e5f77b3978e2ca0caac9aa6
+  test_features.csv: da9059a1e2bb4cfbde869b3fa7782a2b
+  train.csv: ebc9f50f8e72a9d47fbe3969e7f733a9
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_2:
+  sample_submission.csv: 0866dc19007310e26815dff30131d7a7
+  test_features.csv: b1aef76bcaceb3c92ff124e85894d295
+  train.csv: 6bfd52187d9d9e552c8e9f5be0254dc4
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_3:
+  sample_submission.csv: e2e2536002dce3d36f9ea83cf2501eb2
+  test_features.csv: c395b44ecb39b6d091ef3494ab47a760
+  train.csv: bd1e9d05677ab21d67979ac2287cac91
+public-proteingym-dms/RAF1_HUMAN_Zinkus-Boltz_2019-fold_random_4:
+  sample_submission.csv: a7c42dd78e64a25f492fd1f0f59a30cb
+  test_features.csv: 602f054e1074b0e27409dc12ecb1f476
+  train.csv: 5ba44f39c974465a52fa62e515115925
+zip: 53b3c9be428aac3724703a877c014f9c

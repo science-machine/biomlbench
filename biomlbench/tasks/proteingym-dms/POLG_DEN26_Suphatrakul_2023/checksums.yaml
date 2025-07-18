@@ -1,0 +1,91 @@
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_0:
+  answers.csv: c7c90c5332acde8a3fec2d3a61b81dbd
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_1:
+  answers.csv: 902fe2dc64c0503f21fd9fff057d990c
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_2:
+  answers.csv: 980eb27ef1b0d1115f491ab0cd759a1a
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_3:
+  answers.csv: 3b29d4e3d300dd251f6b05a302f05aad
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_4:
+  answers.csv: d4e4b6f9b8e37d7065f0ecc821cdced8
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_0:
+  answers.csv: da7a513a3d996d20f21dc893c622e45d
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_1:
+  answers.csv: 1afd8cd001f38594c88434040e24dd60
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_2:
+  answers.csv: 49c6a4445085e5d32e216783dab30554
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_3:
+  answers.csv: 9bef08da6c4f6d4032df8dc7f92be706
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_4:
+  answers.csv: f768cd81441c4288ce1ea71e995c873f
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_0:
+  answers.csv: cc7dc15ce4f7df5b10cdecc3e8d898c1
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_1:
+  answers.csv: e63c3de324bab44969a16865ead6ef4b
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_2:
+  answers.csv: 2e96a129c7b672b495984a73f39ce25c
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_3:
+  answers.csv: 37627c0202045699d9d53d0525808bea
+private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_4:
+  answers.csv: dc3c24072e9c4ebb4397fabbaadd78ec
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_0:
+  sample_submission.csv: 98bff0d704fdad0dc944aec7cdf83f42
+  test_features.csv: 030ef0bc8f2070d98fd94dcb0bd6fbc2
+  train.csv: e01de80fb5bf97c2784286c8c5ed40bd
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_1:
+  sample_submission.csv: 4e518b3de1d285fa75581cfa62a049b4
+  test_features.csv: 6ed52dc1b252a83a4f46bb0e1433825c
+  train.csv: f368457b78fd33a77bf4e00da8921404
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_2:
+  sample_submission.csv: 8bd5a132b2ae675f26e3b39d6b7f9114
+  test_features.csv: 9fb765e2a1a15481e23fc77f28644304
+  train.csv: 8d02dc74f583e919b02b656e8ab46a47
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_3:
+  sample_submission.csv: 8edafb203ca48f47597ebee1ded80995
+  test_features.csv: 6328ec49d9140baea627c818ef724060
+  train.csv: a8948b0db268bb58161b8ba98284045f
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_4:
+  sample_submission.csv: 50ec9e40ac3264782b2b13a912466990
+  test_features.csv: 69e3283ca4148ee906b8a217a87a9ccb
+  train.csv: d43afad692c9334445f714b3807a95cc
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_0:
+  sample_submission.csv: 50b0d1b62a36cffb2b19a4da8abcd2e3
+  test_features.csv: b75fb31e711444f7c4c29f0564c0ea32
+  train.csv: e1efdb1b2d241fb6de2010a564d0ba16
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_1:
+  sample_submission.csv: 50b0d1b62a36cffb2b19a4da8abcd2e3
+  test_features.csv: bde7ebe0950c528cabb594f72606e4cc
+  train.csv: ac7586ff4f36e519e293053f78948ca3
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_2:
+  sample_submission.csv: 0b573cb9a6d1e984a18dcbb1d95081ac
+  test_features.csv: 44ab593dd55be6902c2f80703ccc501e
+  train.csv: a4d2a07a9c5c752453bf1b116babbc53
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_3:
+  sample_submission.csv: d6b1b0d890296ebd201bfebcec40455c
+  test_features.csv: 257d8ee5ee3864560c6541fffd6bc441
+  train.csv: 2d6e14af659aa8c5a033d213ab2165f1
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_4:
+  sample_submission.csv: 335f607406efbd2709546ddadd00920b
+  test_features.csv: a52c72a48c57fa74f6967d9db95a85ec
+  train.csv: cdb5c4911931cdfa1d8d1bec70a4b099
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_0:
+  sample_submission.csv: 688a48b3b6fea15ae15848a310ffda1b
+  test_features.csv: 963cb0ba0cbe5058c7728a5544d8c574
+  train.csv: 96e7e7a5cb4aa75e0776484cc983840c
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_1:
+  sample_submission.csv: 53239dd1af10ced72a20426e918c0978
+  test_features.csv: d959bd7a6ac4b4c60237ac2783536ece
+  train.csv: e38dfb56e39f00dbbf3b82cbc1dcdf0e
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_2:
+  sample_submission.csv: 5d62c09b4024aff2181578ddccbc3cf3
+  test_features.csv: 2aff499dec484bbbc7e4ef2890fda413
+  train.csv: a4269a70ab0f9681008735839f77035a
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_3:
+  sample_submission.csv: 2ee799bfa4a4270dbf38553c234dc0f3
+  test_features.csv: ed099663abc895f6f7d76d7d074b6299
+  train.csv: 9929fbc5c893b9c9e3835d7330573a3c
+public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_4:
+  sample_submission.csv: 94b0fb0d631ff1a0d047ca12855e83b0
+  test_features.csv: b50f0fd259650fb7b24c58258b74a5b2
+  train.csv: e819a2201af08e8331a8b86ab50013c4
+zip: 53b3c9be428aac3724703a877c014f9c

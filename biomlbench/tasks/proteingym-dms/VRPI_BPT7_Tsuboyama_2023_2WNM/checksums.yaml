@@ -1,0 +1,91 @@
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_0:
+  answers.csv: 6a54e2fe96e078d3f50f45b9f88cbc3c
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_1:
+  answers.csv: 98ab571234abbdeba5782023547b7ed9
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_2:
+  answers.csv: 301d0a41d4c7512c32058cf4ce2a502d
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_3:
+  answers.csv: 0d168e884f3c4b034bf569cd3486bd9a
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_4:
+  answers.csv: f5f8629a76d0202561b8264be7ca5bed
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_0:
+  answers.csv: 965084c84c6fa888d35d439d0b232bfb
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_1:
+  answers.csv: 2e657719adc9211c0f0f6b44c1294e35
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_2:
+  answers.csv: 5aa9f937da38f4840cde58d9a6b2bf42
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_3:
+  answers.csv: e1e7c6c89c0ff1a4c7b1453a8a921651
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_4:
+  answers.csv: a872622b6920ad210221fa41af3a7b01
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_0:
+  answers.csv: b2a65c3decdffd6e855f6f7464c8b715
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_1:
+  answers.csv: 16fc1f4dde0b44bc017a006457baad92
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_2:
+  answers.csv: b9eccc78eb83396772f645533090473c
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_3:
+  answers.csv: e6c13c3a25f4a7fcbf8ab93f946a8ee6
+private-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_4:
+  answers.csv: 40a1ea6baca1dfea146bd1d259eec6e7
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_0:
+  sample_submission.csv: 2eda32e7f7e65c29f3381a82b05284ba
+  test_features.csv: 8e2ef63b83074dbd56650dd27c44b59e
+  train.csv: 9917040f7176ce135cc38f2e7643c760
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_1:
+  sample_submission.csv: e65c57e9b39664163cf36d5d311c5743
+  test_features.csv: 5945c607adee94cd9d0f4487cd87d410
+  train.csv: 79391a923ee0786d512b3bb6a8d73140
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_2:
+  sample_submission.csv: 1842433c6d31bd1a45257d6ae1ab31d3
+  test_features.csv: 4a4917b7c6221bdf52b38d2011676a48
+  train.csv: 5196b5819c8eff40c7847df224c8bdfc
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_3:
+  sample_submission.csv: e57507fc941454d799d75dfdd6e4f9a8
+  test_features.csv: af619970978f8ff7816aa891df46d339
+  train.csv: 30683e86e7c92e6f4829146e0072aa72
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_contiguous_4:
+  sample_submission.csv: e65c57e9b39664163cf36d5d311c5743
+  test_features.csv: f32611ae4c3cb290fe77afec3c8d1ea3
+  train.csv: aac84fb329c3b7032e6d807ab84fbc73
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_0:
+  sample_submission.csv: b538dfbecb705b60d1a15d07e24c0507
+  test_features.csv: de5fc97404bb4db655fbcd69073a53de
+  train.csv: 092808b7bceb93ff0b55220fc9259c15
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_1:
+  sample_submission.csv: 2e1c18a2dae045fb7f830d6b90550670
+  test_features.csv: d492584581c3d9c7d351b0b4977dc286
+  train.csv: cac28106d4d7292ed963553e235f928b
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_2:
+  sample_submission.csv: e57507fc941454d799d75dfdd6e4f9a8
+  test_features.csv: 4c1c956d82526cf464dd90815b2ba983
+  train.csv: 8db7aad74110968151d99c07bdf2e763
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_3:
+  sample_submission.csv: 60d34d0e7e97d735edf57b842bfa850b
+  test_features.csv: 8fa8bd803ebebece5dda71d67879fbf3
+  train.csv: 0e133495b1e1380c03475c5aa4a18795
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_modulo_4:
+  sample_submission.csv: 60d34d0e7e97d735edf57b842bfa850b
+  test_features.csv: 597775dc65e346ed6e83cd7f69daa10a
+  train.csv: 21b35f48b6f2e0e044f163cb505fb395
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_0:
+  sample_submission.csv: 05f7e545274eba48161a863a8254f698
+  test_features.csv: a5567b878a95eca704ce8918e2084a02
+  train.csv: 393e44d0d749c569fcfc145143a56caf
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_1:
+  sample_submission.csv: c7dcaeab4339d4b481f1564f3177d667
+  test_features.csv: 3c6a16d1e24d0f39ed9237a58745b1a7
+  train.csv: cd868c2beefba1f63752d801bcc4d6a6
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_2:
+  sample_submission.csv: 05f7e545274eba48161a863a8254f698
+  test_features.csv: 03ca77b79370e4c6839f8577671015eb
+  train.csv: 77918833f0074d6374eb4b6c83eae418
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_3:
+  sample_submission.csv: 4124d6de2bbf08b315efdd1ef981e430
+  test_features.csv: 4552f63680345518f17a98763b4e06c6
+  train.csv: 7e3f39e1cfd0c448dafeb4a8edc8da0e
+public-proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM-fold_random_4:
+  sample_submission.csv: 655dc6e7154325d00a5cc43a367fd81a
+  test_features.csv: 5a0eae2678acc7fd70377e5579915d48
+  train.csv: 88f48813acaaf2cd2d8e2ff211d3fe09
+zip: 53b3c9be428aac3724703a877c014f9c

@@ -1,0 +1,91 @@
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_0:
+  answers.csv: 32278f682176c9acbf2ecc4909eeda55
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_1:
+  answers.csv: abd5a030c6b2ac2b70ba9f003577c5ae
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_2:
+  answers.csv: 16815f5a7b4d3b572b52cd6e97bf97e6
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_3:
+  answers.csv: 86e77bb4b1ea4ae19628891b8ab394e4
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_4:
+  answers.csv: 7dcc68e36b293d1e3a838ed96dd73b99
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_0:
+  answers.csv: c64d72197bc7bee35321c088fb4ab376
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_1:
+  answers.csv: 72081adba3eee8ed7dcb3ca93fc3d900
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_2:
+  answers.csv: fe7d77421e74fea54e0b38f0a204d9f6
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_3:
+  answers.csv: d38acfb21e29014f2d661155cf6599cc
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_4:
+  answers.csv: a535a0fc911462edc0f9976ff174f366
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_0:
+  answers.csv: 976156af1f8171f194ad94e0f4b3e1d7
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_1:
+  answers.csv: c8fffa2f8c095dd3155b8768498952cd
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_2:
+  answers.csv: 2a0229b74baff60074f83896bc0921fc
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_3:
+  answers.csv: 46645cc5c65e08dc89a14e72d5997300
+private-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_4:
+  answers.csv: 333b3d58974e828d46710e04f9f3f4c0
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_0:
+  sample_submission.csv: c86b5f4d21c9ae1ea14b12dd229775a9
+  test_features.csv: 6e05af246316c21aa16e2bfdb00ffaf5
+  train.csv: b127379067a2362ee8c993f1d3755031
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_1:
+  sample_submission.csv: 374cb3962fa540d6a3095d891466273e
+  test_features.csv: ff64668561991dc8c3ba1df12ec6b02c
+  train.csv: 1439149022b12655b08bb3a33f93356e
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_2:
+  sample_submission.csv: b2ba2af689b2794204566005caa2a834
+  test_features.csv: a40a8087dfeace62b59e2c56b0f06190
+  train.csv: f2cdef77ceb33f0da602dc64d02a5033
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_3:
+  sample_submission.csv: 7f43103b6d5351eb9e2f141aae9b838e
+  test_features.csv: 113a01c26d9e617a21119cc2ac3f12f3
+  train.csv: 9378ef32cc0e5ffdd006f1d7f10948ad
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_contiguous_4:
+  sample_submission.csv: b2ba2af689b2794204566005caa2a834
+  test_features.csv: a0f03c9034b7b2a2f4f8d5a4cee89156
+  train.csv: b3e09da59a906e6d5501a7460a0869ac
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_0:
+  sample_submission.csv: a7fb5b007e5f77b3978e2ca0caac9aa6
+  test_features.csv: 2662c8318daee11e6e8980470ead8f8b
+  train.csv: 450fb14dd0f2ce3ce0ab79ab8dfdb78e
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_1:
+  sample_submission.csv: b2ba2af689b2794204566005caa2a834
+  test_features.csv: 52982c9e1aeff3753776dfa8aa0bed5c
+  train.csv: e878aec0962fd5fe8893a9cdf1bafc00
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_2:
+  sample_submission.csv: b2ba2af689b2794204566005caa2a834
+  test_features.csv: a808370cc6eb1b82fd416a0da12007d3
+  train.csv: 28855bc19746bf00068130401c5de264
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_3:
+  sample_submission.csv: 7f43103b6d5351eb9e2f141aae9b838e
+  test_features.csv: c424d87254babe9bdc31cb6765254327
+  train.csv: 7eedfbdd9470a0cf8e5b066c2e90df2e
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_modulo_4:
+  sample_submission.csv: 7f43103b6d5351eb9e2f141aae9b838e
+  test_features.csv: b4e76a4f2fb30fcac9106ea8fce76928
+  train.csv: 5c85186146913ce61fa6c3a7d168131a
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_0:
+  sample_submission.csv: 59e7f4757d1cffc23c5c1b05ba30d917
+  test_features.csv: 6f3ca5fdfcbd12f089ac6a999f5721f6
+  train.csv: d275ffca8c68ca91918bf0f31f7256ce
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_1:
+  sample_submission.csv: 32144810b2a407d59bc3e9f80a4932a0
+  test_features.csv: 29d70006ddeb2ea8ad5276fafe6f9efb
+  train.csv: 88289daa20ba24aa3698d7ed1dbc6c8e
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_2:
+  sample_submission.csv: 374cb3962fa540d6a3095d891466273e
+  test_features.csv: 58d89156765ac195abbeccdd48fa5f9a
+  train.csv: fe146039abb62c8154fe67068801edc1
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_3:
+  sample_submission.csv: be1680aa1a855f31bd10268d2086bd5f
+  test_features.csv: 86afaa7018c2c0aa2c7c46b8155269ca
+  train.csv: b48917ccefd97243b6ad76fa2220456a
+public-proteingym-dms/KCNH2_HUMAN_Kozek_2020-fold_random_4:
+  sample_submission.csv: 21ff40bed22aabd2f68224ce3af458b8
+  test_features.csv: 8161640dd23244f34cd69f8d40086951
+  train.csv: 90bbcb745bfd9ddf122246f15128d2e9
+zip: 53b3c9be428aac3724703a877c014f9c

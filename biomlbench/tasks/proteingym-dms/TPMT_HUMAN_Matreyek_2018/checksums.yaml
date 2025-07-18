@@ -1,0 +1,91 @@
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_0:
+  answers.csv: aa48053c33ae6744537a7000055ccd68
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_1:
+  answers.csv: b4759f359835fa3ba6af9147758b0920
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_2:
+  answers.csv: a87a0c15942f779d8a01d294763117a1
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_3:
+  answers.csv: c2c650d0192fa94893fbd6c15250d927
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_4:
+  answers.csv: 03552c6384fa2df07e83f2217b32893a
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_0:
+  answers.csv: 3833c8ec29b09fce2c24bbd952d95d98
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_1:
+  answers.csv: 5af2047d3c0f94cfc719419fdbb4106f
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_2:
+  answers.csv: 99421a414146fa3328318248d09a5e88
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_3:
+  answers.csv: 7e6def601ed7c1f2d64fdea59f30223e
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_4:
+  answers.csv: 3b30098df84b445ad70bb205bf40c836
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_0:
+  answers.csv: 65cfa56ab28a0b1f42002385c8c21833
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_1:
+  answers.csv: c02cb4fa21ace3548612632b4e53a952
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_2:
+  answers.csv: 58851b5780d728e2cc4b5320060b17d3
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_3:
+  answers.csv: 536349c0d1e4483850f4c9f1011c3da0
+private-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_4:
+  answers.csv: ba4a9591c63b9bdac0ed4d440f459854
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_0:
+  sample_submission.csv: f3bb1c681fc06fe6255365734d2485dd
+  test_features.csv: c55fbb4ce3404102a0c97a53425487b7
+  train.csv: 735f730bc1fe9cd93d36634361e756a1
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_1:
+  sample_submission.csv: df25ddcfa1346b832264d4b92c743aa4
+  test_features.csv: 8b6f85272e8c3444f02fde1662b990d6
+  train.csv: aa88f45cdf26540fbc57c528c6266b90
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_2:
+  sample_submission.csv: fa1c6c09d75a282fd3b9693a23e07485
+  test_features.csv: f4226ce38bdbb9704defb732e1890885
+  train.csv: d65bbd957203d404462f702531db8152
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_3:
+  sample_submission.csv: 2dd29f5a1fb9b3f55d3f070790d39d91
+  test_features.csv: 68de13ac0c636c23b13c72486ec6f782
+  train.csv: bb999ca89cc04255e31466e0df273f47
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_contiguous_4:
+  sample_submission.csv: 31e179f7bdb5aa03fd5bbded25f13d38
+  test_features.csv: 776366e47299dd0bdacf14cd58c95b9b
+  train.csv: 34556eac738b24f56e385eb73acfe7a0
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_0:
+  sample_submission.csv: 4d17d62f4e12e920f34d60eec9025005
+  test_features.csv: 926f2c7a45408ef207390d9d6443f11e
+  train.csv: 5d67e219f84dd6e0a1ef1b43e5851f99
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_1:
+  sample_submission.csv: 341e6ffa113a05d8ba37adc6e438d7c1
+  test_features.csv: 37942a5feb9d7aa6a492eabe88b65f82
+  train.csv: 6d8ec64b9d0e2528135155175d57b2a5
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_2:
+  sample_submission.csv: d35c5cc2bde4776fa8494ac627f91ecd
+  test_features.csv: 2d83983ca8754286b3009ea9f81cf1ef
+  train.csv: a36da29a1b1e5797da7604efc5a60d56
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_3:
+  sample_submission.csv: 77ea98bf11999792c651aaaee30a938d
+  test_features.csv: f9075454dcef8b23e46558673d3dfbfd
+  train.csv: 477369e206a17c655ba2fad1af846c8a
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_modulo_4:
+  sample_submission.csv: e37adef9bd25f1e5b5d4d7e927789152
+  test_features.csv: c4e6831d0c227d61e6044da06eb8fffc
+  train.csv: 3248b2039dbb64843875bb17d3c0d43e
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_0:
+  sample_submission.csv: b8ce8bba9847efa11ed0f47900d16ca1
+  test_features.csv: fdc7baa418664ad341522ac6c39d1bb9
+  train.csv: 538ab309bfb74bc28c2b8677f53e9b19
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_1:
+  sample_submission.csv: 9978191516587859708e3a7a999a5b55
+  test_features.csv: 850844d1b95c1d7ef123746e8f8a7719
+  train.csv: 1dd751e242d9f3e63ad16d103fe67b1c
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_2:
+  sample_submission.csv: affd3a0415e107dcfbaa601efb93877d
+  test_features.csv: 43cd2fb35fac829e8502872470b75283
+  train.csv: e7779a57898b6f2084a1f847a757b2a7
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_3:
+  sample_submission.csv: b6ee5037d038896c16afcc1f09f45114
+  test_features.csv: 5535e702e5c451968944688dc8a599a4
+  train.csv: 25b708134c2411acb521390e1c9be741
+public-proteingym-dms/TPMT_HUMAN_Matreyek_2018-fold_random_4:
+  sample_submission.csv: 5e5e974eaadff2da412c0a02cd03460a
+  test_features.csv: bf9978f6c1902982c49d69e34b9a1be8
+  train.csv: f7ccc7bb7c28a019711ba71924b17f64
+zip: 53b3c9be428aac3724703a877c014f9c

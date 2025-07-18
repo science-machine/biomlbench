@@ -1,0 +1,91 @@
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_0:
+  answers.csv: 7101366d673b5fd6d66c2fbcc043e850
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_1:
+  answers.csv: bbf7192927614b55e376f8bd8c42d017
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_2:
+  answers.csv: 1fe6563a89c75dc1a84ac2b91dc64603
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_3:
+  answers.csv: 2cb9d72644f74cffbf321af8cae263e2
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_4:
+  answers.csv: 8bc25b012e2a4e34fa042cd44e2fb7d8
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_0:
+  answers.csv: 346cd5f80686d15b7bdb2f9bc0c06d76
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_1:
+  answers.csv: d4d9ee9f88b730599e02f01cc8a1d475
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_2:
+  answers.csv: 5b34b4508ce32ea63ee7c283da6a3990
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_3:
+  answers.csv: 5a84e3364055e93df3e2d335544b31bd
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_4:
+  answers.csv: 273995ebeb4e094000c412ea4e1eac4a
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_0:
+  answers.csv: f75e383bf28db6aa96040e032c1248b3
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_1:
+  answers.csv: 7d071c8d107bf207b7bd1c6bd2dace3d
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_2:
+  answers.csv: 07e164547a25a8bb6710cde60b7668e5
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_3:
+  answers.csv: 1d79db1b1a3dede47f3fff8056f7c780
+private-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_4:
+  answers.csv: 08f53cddb5ee305714ab0aa7c373aa0e
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_0:
+  sample_submission.csv: e7e728b0ef00034de7234760741584d7
+  test_features.csv: 29e2be23f84ead6ca75aad7e34d6a3d3
+  train.csv: d7b2d69770d2a7ee49560f8463fb875d
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_1:
+  sample_submission.csv: aaa5f86436a2b7453db2f57cae6d9903
+  test_features.csv: 2696406b9c0ea6bf9675d23049acf6de
+  train.csv: a2ca49c4f4d5bdc402252161a322eaa8
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_2:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: 7c2d55d2f1a452bb5e3ce390fec2824f
+  train.csv: 88fa20296b005566fd73b10273847168
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_3:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: a01217f48bad773fe192ab335b2563fd
+  train.csv: 5565ad24ff5cec9de3e9d591659df5d0
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_contiguous_4:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: 5f40ed3e0ec2fd02fa6b491bf1047e3a
+  train.csv: 9777116d29956dd84dc5eb8133716997
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_0:
+  sample_submission.csv: e7e728b0ef00034de7234760741584d7
+  test_features.csv: 787b0a63ec1065586436dd8e2fab5c73
+  train.csv: 43abc996ba808be0abf59920edae711f
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_1:
+  sample_submission.csv: aaa5f86436a2b7453db2f57cae6d9903
+  test_features.csv: df431fb122715b2e51a82841f943de0b
+  train.csv: b125f4c5aba2846599ae54edf7aac1c6
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_2:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: f40a6e98e72d0e68e4901e269f331da5
+  train.csv: e28297dcc7b7c18dc4bbffd44859b782
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_3:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: bb939d0192acc4e5c8409b0f699a0b91
+  train.csv: 96ad0e2bb4f64668c71215dd14d41ee9
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_modulo_4:
+  sample_submission.csv: fdbebd9737316965859e1a719932860a
+  test_features.csv: 8352c678911e10669e14d7fef91b8ed5
+  train.csv: 47a6d7106346133b13d8f9afa14a5fc3
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_0:
+  sample_submission.csv: 666643e42b994ff7c5164676cdf2daf0
+  test_features.csv: 680425b8f17e5f7669419204d047b1a4
+  train.csv: aecf21099190bc01346eeb1673910e24
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_1:
+  sample_submission.csv: fe63b8c0108f36f5ac35fca9f5245ff6
+  test_features.csv: 39c045bf8455ac3eab6a28f303d2dd9f
+  train.csv: 79583af4afc37ba23b6d55e7f415c062
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_2:
+  sample_submission.csv: 8798329375d6e741a3feae350d7a2d27
+  test_features.csv: a888c4d68e5f5e2eed96a1bca2d6315d
+  train.csv: 57ee14db80498c614a4ad9d806c81ecc
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_3:
+  sample_submission.csv: e78da743661f7614943c696f9279ee6b
+  test_features.csv: 7e054f027f773a46d3e2448e9156be80
+  train.csv: 1312a7d71ffd7ac4cabde085184debfd
+public-proteingym-dms/A0A192B1T2_9HIV1_Haddox_2018-fold_random_4:
+  sample_submission.csv: 583e0765ff50419dfb136a5ad0af42ac
+  test_features.csv: 558dbcbe3d437bcfa2def535b7bd3402
+  train.csv: bc16fec138d9d1b336314953e49e0606
+zip: 53b3c9be428aac3724703a877c014f9c

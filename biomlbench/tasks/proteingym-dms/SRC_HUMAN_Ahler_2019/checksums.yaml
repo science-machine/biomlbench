@@ -1,0 +1,91 @@
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_0:
+  answers.csv: 5569cbc7cda06ff575fa816dc0424c98
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_1:
+  answers.csv: 49dcb8920cdddeb8401789a58785f97d
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_2:
+  answers.csv: 5d65be69e06b41ea8e5229b0bff2454d
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_3:
+  answers.csv: a64fae38e9675cf8b6d1a24f59fd0d07
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_4:
+  answers.csv: 58e8b1d2248867a6539f3e8a36c4eb13
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_0:
+  answers.csv: 18a96b0f8227bd1ffa597b247462e86f
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_1:
+  answers.csv: 46ccb9178c149c7351d30064a0c3347f
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_2:
+  answers.csv: 1a0d182fa6ec8d4c489a3c3aa1fc8462
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_3:
+  answers.csv: 6772f62b68b1600ef2883c8056507437
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_4:
+  answers.csv: ce6a80d335113d3e4141cab815288f41
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_0:
+  answers.csv: f501e641b28dccd4b27a901e0dc92187
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_1:
+  answers.csv: a6d0b5a7171bdb57ffd2561c510d3963
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_2:
+  answers.csv: d1861a1205646a11eb19efd2fe0b0fe3
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_3:
+  answers.csv: c95e92465924a2d07a5dae5d5d22c8d7
+private-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_4:
+  answers.csv: 9cc57db850149bf9c8ad694c5a021cfc
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_0:
+  sample_submission.csv: 5e5e974eaadff2da412c0a02cd03460a
+  test_features.csv: 7df39281682ea06f946d4e5d49c72b1d
+  train.csv: 0462cf7558f925ef57bfc7a378657c1a
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_1:
+  sample_submission.csv: 9294036caadfdb48369bf02f144c8d49
+  test_features.csv: 030b25e3fcc0062f26a158e6170a9d8a
+  train.csv: 5e401655ef52d861d2ca364461c267e8
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_2:
+  sample_submission.csv: 3ff3888d8182597089b6b7e5ef18cd51
+  test_features.csv: b6fe247339a1ca021250c1345eb5c451
+  train.csv: 84396f33a5ecde02b7f0d3c35424202b
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_3:
+  sample_submission.csv: 17d2ed4a9d8b874df728a0d22c71cabb
+  test_features.csv: 55db9a6337e1a80a79c6f14948daab03
+  train.csv: 05cc9e97708053223914d4ae9ca42b0b
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_contiguous_4:
+  sample_submission.csv: affd3a0415e107dcfbaa601efb93877d
+  test_features.csv: c0ddffd62d291aeb60d365374a080fb7
+  train.csv: c260b240eef62ab4fe2c6da45b8c0933
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_0:
+  sample_submission.csv: 6082a8a62a87fa0c42f51669e58cbb0f
+  test_features.csv: e43e1e45a7a047743313ab6114db9cdc
+  train.csv: 4be557441405705081b4df75d13b1850
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_1:
+  sample_submission.csv: 75f4200b58f86b5fa9d32b802fc36afe
+  test_features.csv: 879ca23cab2c4ab479ae01bc7dc8a9b4
+  train.csv: 532280745e8beac99457fe1bd06f0d27
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_2:
+  sample_submission.csv: 9e1330294a16be8d6f006c2fcc7e11eb
+  test_features.csv: a9ff3c5b498b4fe0ec6e47cb6dff539a
+  train.csv: 20218ed57fcbe3f07bb24b79ab624080
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_3:
+  sample_submission.csv: 475277c7949a5b681005d6749f0a4e02
+  test_features.csv: 921348dbdd1d86afba006cababf310ed
+  train.csv: c7f78e33b70ecdfe077fb6aa84e1992c
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_modulo_4:
+  sample_submission.csv: ce1517bdf5e576b9c75c3d91b5dfe7d6
+  test_features.csv: 7e63a184c7284e79339e99bda2d0782e
+  train.csv: 102641aebafb9e4523c21e7e2ab2a576
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_0:
+  sample_submission.csv: c3d9583b074a242a6790ac53ce83cca9
+  test_features.csv: 303cdc62b06d93a5edf595f5dfbfa88f
+  train.csv: 5bece8946611b2717c47b0c66bac2d48
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_1:
+  sample_submission.csv: 4525caa96e073f55a6fdd60a9396e67b
+  test_features.csv: 90df3f5cda3762c187cfd2a8a2d49380
+  train.csv: 1f6f47bbdb6d59a8ff8c3045abd6316a
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_2:
+  sample_submission.csv: 649fbc95386fbbf0799690ad830e9490
+  test_features.csv: ef05c675ca5c8fa6e91283983554fae5
+  train.csv: 46efae1358a691e9c7e8ff265a7ed18c
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_3:
+  sample_submission.csv: 88e89e7b854f8cd0bae5385a98c08501
+  test_features.csv: 93450cffc6c6dd4fe0110f75c56c776d
+  train.csv: 15c62aeebb1c787416b2a7ab108d295c
+public-proteingym-dms/SRC_HUMAN_Ahler_2019-fold_random_4:
+  sample_submission.csv: ac665b6a88fe537d549dea2cef2a20a0
+  test_features.csv: b6ee70b576068530bc8a7211f1179c3c
+  train.csv: 9de0b45bec4aff8291b0b775b5428063
+zip: 53b3c9be428aac3724703a877c014f9c

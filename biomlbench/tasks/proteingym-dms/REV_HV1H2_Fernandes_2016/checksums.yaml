@@ -1,0 +1,91 @@
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_0:
+  answers.csv: 55a9c3c25e34064e3cf6165f72795bda
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_1:
+  answers.csv: ccb3b4322116a210354148c3b8c228c0
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_2:
+  answers.csv: cde7a4d496ebef64eaf8a848ef31227c
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_3:
+  answers.csv: 4c671e949670ac86e7555d18cbdcc42f
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_4:
+  answers.csv: 5170a0430e2a79889f8673026e4b6402
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_0:
+  answers.csv: daf22512fe42289a802929a88ff5fa2d
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_1:
+  answers.csv: 7c2c25c31cd0f244d5e4862257fdb8f1
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_2:
+  answers.csv: cbef92654644b25cc05ccc94844fc300
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_3:
+  answers.csv: 5f2042f641319f952f26b8ef96e4feec
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_4:
+  answers.csv: 651342e97c56e53c6fafa8205bc4a3fe
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_0:
+  answers.csv: 884f21e686152b659a1b964d63d4dd8e
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_1:
+  answers.csv: 5a238de4ab901e9dae1b4e9c6760ad1d
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_2:
+  answers.csv: 2ed8b45fb8d5fe9a644d1eca2cb096a6
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_3:
+  answers.csv: 7fb9683d5bc121696db767877fdcce28
+private-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_4:
+  answers.csv: 5e9a8bf4436cb28de8fc0ff178e43a87
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_0:
+  sample_submission.csv: 65a60a178734df7b0e8cd3c7dca753b7
+  test_features.csv: 59f2f989463bbae285278592f744003b
+  train.csv: 7d2fce5094ae102957d7f88f51ed4023
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_1:
+  sample_submission.csv: 65a60a178734df7b0e8cd3c7dca753b7
+  test_features.csv: 075381cc811fa42ddaa507d6912b70d8
+  train.csv: 8a19bc0c98340f93cc8bef628241208e
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_2:
+  sample_submission.csv: 65a60a178734df7b0e8cd3c7dca753b7
+  test_features.csv: 2ccce8b21cb95527067de3c2d2ce626c
+  train.csv: 2f681b0632a87aea8e367fecb6c4a3ab
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_3:
+  sample_submission.csv: aa32f736736581fabc2a011a3b54c4f7
+  test_features.csv: 40cbd683a8fda6e2223019f60c711071
+  train.csv: 327a7c7a6d149e00d73cd9c053182b9d
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_contiguous_4:
+  sample_submission.csv: aa32f736736581fabc2a011a3b54c4f7
+  test_features.csv: 49e090b992fc393e5cee99dd34b4a192
+  train.csv: b74102c9b71f110eefe0077be88b4034
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_0:
+  sample_submission.csv: 65a60a178734df7b0e8cd3c7dca753b7
+  test_features.csv: 10cd7189b2954d1aab05519d6e51e7ea
+  train.csv: 63547d86201ecfe064904ecb1744a0aa
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_1:
+  sample_submission.csv: 65a60a178734df7b0e8cd3c7dca753b7
+  test_features.csv: e871ea74867f297adc4c6f754a0b4dad
+  train.csv: 566fe4280ec154b3d38ab5332ce0bbc5
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_2:
+  sample_submission.csv: 65a60a178734df7b0e8cd3c7dca753b7
+  test_features.csv: b8a8f88297b68d65800978fe2e9df8ee
+  train.csv: ca6553b6e68c2a3aa5e509489b379c49
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_3:
+  sample_submission.csv: aa32f736736581fabc2a011a3b54c4f7
+  test_features.csv: 5fc8f76481cb761d05fb947ce9e8ffd0
+  train.csv: 07976716e41a8f2f4622d33925409e97
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_modulo_4:
+  sample_submission.csv: aa32f736736581fabc2a011a3b54c4f7
+  test_features.csv: 0ee28ca22be9a727371e2d7df74652f4
+  train.csv: 3b6d7138d047c8be0943dbcafe738907
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_0:
+  sample_submission.csv: f42ebdad17f47ef2fd13d47b8c019fef
+  test_features.csv: b9ab7a26d74417704caed9e7658a504f
+  train.csv: 2f1cdb3423acbe6a87b9fa726770ca30
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_1:
+  sample_submission.csv: c2b06267e290e050421f17ac9417693c
+  test_features.csv: b74a14d502f1e3f106b696376be2b9fd
+  train.csv: 31d60b06f55dc9610cb7f10a233d76d4
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_2:
+  sample_submission.csv: 8e78cdfc322f0c8a8766e343d9908c4a
+  test_features.csv: 6123ef7754c3690050e46429b0e13d56
+  train.csv: c1a4cb21407567ce4b314ba81fa934ac
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_3:
+  sample_submission.csv: 238068fcdfe5c406d0704a963eed9935
+  test_features.csv: f83599b595c45a0c0dfbc0741ad0607f
+  train.csv: fdb46f65fdc21f5bc4b638b4d363e660
+public-proteingym-dms/REV_HV1H2_Fernandes_2016-fold_random_4:
+  sample_submission.csv: b3bab9b495bef38a28b6e24179e293e3
+  test_features.csv: 5363da4b39d733e44a7f7e26128ae57b
+  train.csv: db39c2edab0f94106f7b7a7e8a5c85ea
+zip: 53b3c9be428aac3724703a877c014f9c

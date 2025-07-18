@@ -1,0 +1,91 @@
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_0:
+  answers.csv: 1df866cac14f70c993efcfdda8a98044
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_1:
+  answers.csv: edb85a78addbbbc343295b228d768b2c
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_2:
+  answers.csv: 3b057e7646eff7f2e764372a236423b0
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_3:
+  answers.csv: cc2e4e68ada39db059c064ae1e065563
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_4:
+  answers.csv: 94bc3f1077649b7a118a640ad75adc2c
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_0:
+  answers.csv: 5b7549e8ecb191aa92e2057d15bdef69
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_1:
+  answers.csv: bd6c08ce1e3c0b6db74a8266a05d3f1b
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_2:
+  answers.csv: f8f757b3e9052b54887d7e5bd4fa2a64
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_3:
+  answers.csv: afad21bed09ffbc7fb56052fd018da03
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_4:
+  answers.csv: c468f0acf5f73c59fd47d75e2498e352
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_0:
+  answers.csv: 219c9206b78a44792225382c20276095
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_1:
+  answers.csv: 4e1bc977940daf80a63e7a50e52b3af3
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_2:
+  answers.csv: e642fc629c1a779fa7ebad04d7ccd8ac
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_3:
+  answers.csv: 8bb8970a6482a829c0f3fc55ad7e0a49
+private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_4:
+  answers.csv: 0adbd1abad07c28fb74fe9822325292c
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_0:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: 126d6bee5d8d10298dacb1eb8f0bd976
+  train.csv: 33a09c3e875a8463e685c62dc805be6e
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_1:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: a0f00216ad76f2c683a081a059564752
+  train.csv: e0d52a7d54a46c39fce9263487a43042
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_2:
+  sample_submission.csv: f63764bfa80ab3dd175af0929f3b0a26
+  test_features.csv: 54d8158b8c3927819a21aee922c7111a
+  train.csv: dd0b84d11e425717ba4b8bb46657eebb
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_3:
+  sample_submission.csv: 9f11bc6363524ff3cef57fbd9d002888
+  test_features.csv: c63c689e48f6d366bcd5e5eaf97fefc4
+  train.csv: f9a57fc0cd2d32a7a61a7df79a7cb1db
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_4:
+  sample_submission.csv: 6c7a3fbb381f67a5a4739054480ddbfa
+  test_features.csv: 913215f6c2617657a28dff7388f8e059
+  train.csv: 95c1352671649389f6178db89cb28e8f
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_0:
+  sample_submission.csv: f63764bfa80ab3dd175af0929f3b0a26
+  test_features.csv: 78feb843333fea7f8cc8b7639907230c
+  train.csv: 6449a98fa254c0c11c88b402b8c67e8d
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_1:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: e6d949ea4f86d5c081df2df73e42bce4
+  train.csv: 337a9cdf18f121f18735f63fbba1a860
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_2:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: 3740ee7846c2b2dd347dcf24e26ce6bb
+  train.csv: d72d2cd74921476f1f610d376c6591f5
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_3:
+  sample_submission.csv: 9f11bc6363524ff3cef57fbd9d002888
+  test_features.csv: 9a196926f8156eeb26e652e87d4c1325
+  train.csv: 61fc4287fdd954ece3fc51aad0384550
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_4:
+  sample_submission.csv: 6c7a3fbb381f67a5a4739054480ddbfa
+  test_features.csv: 8d178b088928eabb65de74183b79e64d
+  train.csv: 7fde9d3a2916387cdbf3f58d0a9a13a5
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_0:
+  sample_submission.csv: 0f8a195880a8c1da917f841b0bb471b2
+  test_features.csv: 9208eabd3ed2f5272f92456bf065ef0c
+  train.csv: 40985ab5f7889de53a7dcbab88d04d65
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_1:
+  sample_submission.csv: 4124d6de2bbf08b315efdd1ef981e430
+  test_features.csv: 0ce9dc358278f180f95886b99c505f28
+  train.csv: 329f868cd1e1c6bbce95e46f02d97252
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_2:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: 81b08dec440f64d9e9b6d4cd716606d3
+  train.csv: b0c256078151458041d1f65821c43da0
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_3:
+  sample_submission.csv: f52656bc21bc237ade7988595f4ffef5
+  test_features.csv: eb5bacac5da748f9ac10f82f1e8a0c1d
+  train.csv: 4c1903defafb794baca45f2aacd6443b
+public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_4:
+  sample_submission.csv: 27ed7f4e3601fe1bdad850eda06c384b
+  test_features.csv: 2567db0955a0688ece9da753c566b540
+  train.csv: e57a4c8538ddc455893c7390d2856d58
+zip: 53b3c9be428aac3724703a877c014f9c

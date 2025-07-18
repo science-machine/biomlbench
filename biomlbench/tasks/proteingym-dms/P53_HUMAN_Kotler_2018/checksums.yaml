@@ -1,0 +1,91 @@
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_0:
+  answers.csv: 988cdd7bd5d69da0310c8081be04d41e
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_1:
+  answers.csv: 63c1be55fd68bf540f94b19e6f5233b7
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_2:
+  answers.csv: 565992fa1b25f4e0131866865c2ebb32
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_3:
+  answers.csv: 7be7e6960c9d69cbcf3115ba81572dac
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_4:
+  answers.csv: 3ce7849b6297fe3975144794769725bb
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_0:
+  answers.csv: 1ad8bd9b00a5da58133802d337ad4247
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_1:
+  answers.csv: 2426e4058c195a21efc4ba5ae6085076
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_2:
+  answers.csv: 48c3f7a3b18eff0b409a103a48698ac8
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_3:
+  answers.csv: 1ea0292042e66e0069925689c94487bc
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_4:
+  answers.csv: fe97c44ad1462b8dddc6c4c6d6a7b3e7
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_0:
+  answers.csv: 96678413bde4b078c5541e823a0efe23
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_1:
+  answers.csv: 331ac55e0b4195ebc1677812f2ffabf9
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_2:
+  answers.csv: 9a4901936831afdc4b05161e5a340722
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_3:
+  answers.csv: 18266d5b7331b3e11f0f83475f2aec8f
+private-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_4:
+  answers.csv: 5c82128528cd6d8ff454ea5ee1f7a45a
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_0:
+  sample_submission.csv: ef671cb3653c10b9f49fe40ee2acef57
+  test_features.csv: 84f43d4adffe9e9170fb128f14d29601
+  train.csv: 43bfbe340bef6dbcb4f20aa6ab5d3297
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_1:
+  sample_submission.csv: f52656bc21bc237ade7988595f4ffef5
+  test_features.csv: 87592a577c39839fe17edd1f916d6d3d
+  train.csv: 93ef1654c89823dedfc81692d56a83d4
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_2:
+  sample_submission.csv: b9fe209fdb7babd76a0679b0a33ff562
+  test_features.csv: e77d2d59d4fdee1b2745f2a0241492b8
+  train.csv: e24fff08f561e20aaad26a85d65b0399
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_3:
+  sample_submission.csv: 31537f3903d98f548cca694d9d9bbde9
+  test_features.csv: cf9e58a833cd32e979f0fd318dab916b
+  train.csv: ec5c49641003561ce0a5d51033b0a796
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_contiguous_4:
+  sample_submission.csv: 4124d6de2bbf08b315efdd1ef981e430
+  test_features.csv: 9949fb4a31118bd5a4fb2927bd13b21a
+  train.csv: 7611ec41e0f6ffe6b031421170f45672
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_0:
+  sample_submission.csv: 354728128ae4e4d7f536be32a911c055
+  test_features.csv: 541b278847649c5fbcf7e65e8442dce1
+  train.csv: 0d5e03d8d7148958d7e8d076f669e8e1
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_1:
+  sample_submission.csv: eebe575de56db3a10c1cee93e2bec1e3
+  test_features.csv: 48140d8f71d90d32523a7de7c0325469
+  train.csv: b7552793f840bd0d4d7a54d8f5e360ba
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_2:
+  sample_submission.csv: 6c7a3fbb381f67a5a4739054480ddbfa
+  test_features.csv: 680fa2cff97563618f168c255d507002
+  train.csv: 7cd07a1d48f343efb7171687af1b9ac1
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_3:
+  sample_submission.csv: eebe575de56db3a10c1cee93e2bec1e3
+  test_features.csv: 4aa34ce90cbb10c8780b4d912bd5eac5
+  train.csv: 5490b2e1ec1f8095a44d6aaa39cbaf6e
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_modulo_4:
+  sample_submission.csv: f12336b301357777d4f20ee1555c0d37
+  test_features.csv: 7766f715e4563d996efafea29c41a7c6
+  train.csv: 38739614981e9a01943645df6edf8e7e
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_0:
+  sample_submission.csv: b9fe209fdb7babd76a0679b0a33ff562
+  test_features.csv: b749575ba01e34149cafb82ff0e602f4
+  train.csv: 1e118840c8ef47e2070bf97a3d321792
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_1:
+  sample_submission.csv: b34b56e82d1ef32c17fd6767f66f6087
+  test_features.csv: a6d23b094bb0c9485d2371d7eae87744
+  train.csv: 074cc6c54bb94f6de35ad7a66c06f649
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_2:
+  sample_submission.csv: b9e8a6f7abf7e2bff60e51b1721f2765
+  test_features.csv: 60841393d784f9ac4c478fa9812afccb
+  train.csv: 22d4a349ad2f43f0b1bb9554b7531633
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_3:
+  sample_submission.csv: 4124d6de2bbf08b315efdd1ef981e430
+  test_features.csv: e7ed1775ea3f6cb22e7c9772d8bfd2e1
+  train.csv: b9707f10ea7b7c8451c9aaecb28dbbe9
+public-proteingym-dms/P53_HUMAN_Kotler_2018-fold_random_4:
+  sample_submission.csv: 9acbcf31cda968537663fa6cf06df243
+  test_features.csv: 6e9778b1433c2b978112c67306aba122
+  train.csv: f8aa33097cad0536421da66c5993293a
+zip: 53b3c9be428aac3724703a877c014f9c

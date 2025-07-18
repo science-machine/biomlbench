@@ -1,0 +1,91 @@
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_0:
+  answers.csv: 926afa08fa99faa6ec7326211e1f9b48
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_1:
+  answers.csv: 322984638a4bc49067891530f6270332
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_2:
+  answers.csv: 3ea5c090dcb98f5ff18611f90a90415d
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_3:
+  answers.csv: 6495cf3a401d08150782359605cdb059
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_4:
+  answers.csv: bc29bde2a26de845323dfea5135f4342
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_0:
+  answers.csv: 38d1488bf6e9368516bdbd508a5986ba
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_1:
+  answers.csv: d939560ab97bb4c3e81400b471f13fbb
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_2:
+  answers.csv: 059e98e201f49996fb09ceb8d7c466a0
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_3:
+  answers.csv: a759dc7db0e58f642561e1aa69ca89e4
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_4:
+  answers.csv: b3a0a9e81d376eb8e56ec469a0d9d29b
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_0:
+  answers.csv: fae0caaf014806c87b97f37e00b33034
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_1:
+  answers.csv: 56479b40880f9bb1b78ffe04a1b8787d
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_2:
+  answers.csv: a67067286133b9db70167fb68bfc54a5
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_3:
+  answers.csv: be117d414aa46ef5652a5a7cbb06d99e
+private-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_4:
+  answers.csv: 794bb4c8f2254f65977fe2aaabb8d9f6
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_0:
+  sample_submission.csv: dff01443038d7387db4f908af8dae247
+  test_features.csv: 4bb628890c16ef63a8290f77504e1469
+  train.csv: b516ef959dca8ebd68abad6a34f5e146
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_1:
+  sample_submission.csv: 59fe0288799bae9322ea74ec996d7dd8
+  test_features.csv: 0bde040d5f4e88384c851a5dd9f69e06
+  train.csv: 916331a66f6989bb5ee42bf9e74416f7
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_2:
+  sample_submission.csv: 9666c6bd71c7502590dd094c74099dc4
+  test_features.csv: 57ac6b86edc2625d1b5fa9749268d995
+  train.csv: f3a956d20f5843b776caacdccfac985d
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_3:
+  sample_submission.csv: a7fb5b007e5f77b3978e2ca0caac9aa6
+  test_features.csv: 7fab01dc5b0840c6119cdaed516e3087
+  train.csv: 417392eab89054dc84d77d5ffb8e5972
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_contiguous_4:
+  sample_submission.csv: 3dfa4d7a22f84950fcb3df8d117544cf
+  test_features.csv: 4a68f5211f1f682b1e85c50d18ccd685
+  train.csv: 2feade9efb897cd73dcb04480d8d3308
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_0:
+  sample_submission.csv: 118f57892d810f60810bcffd5cf5c411
+  test_features.csv: a5a262a74f363e291854cfd2bad52954
+  train.csv: 0241c99ba0f9ce4579cecc47a5c87213
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_1:
+  sample_submission.csv: 61438db5990897c82de2c6e05fc66e48
+  test_features.csv: 28b504984585b224336a6d19147a9e11
+  train.csv: 4eb82937774efad4a721f59015b640b0
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_2:
+  sample_submission.csv: 9666c6bd71c7502590dd094c74099dc4
+  test_features.csv: 2e33753dc17ffe81022f7fccd8871bab
+  train.csv: 62ba9e5e3e9d4a55e0c7d7440e919579
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_3:
+  sample_submission.csv: 711211a6fbac666912ef834fda0850b0
+  test_features.csv: 2c3659ff50f71579cc406c18da9236e1
+  train.csv: 2630ac852f18a8ed9d6748ecb4f54e0e
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_modulo_4:
+  sample_submission.csv: 50ee1f9a7757f5e8ff89bea8b0651cde
+  test_features.csv: 8c71b0bcc2e711f9a5c3de2107cb3a4e
+  train.csv: 2d85f48469736b6beffc969b0a176e55
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_0:
+  sample_submission.csv: c86b5f4d21c9ae1ea14b12dd229775a9
+  test_features.csv: 4b974996d7de89baaba62ae42ad01b77
+  train.csv: 02c09574d3e26d2350b9e08584697ec3
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_1:
+  sample_submission.csv: a50bb191df04f3dab4d3619677f6b3f6
+  test_features.csv: e1ef7fcc148174e6394871a7056f8a25
+  train.csv: e173ec058d8b191b73918f17910eb212
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_2:
+  sample_submission.csv: 92f2ade299b9a0fab707c1038fa5469f
+  test_features.csv: 6a7e684fd948bd5196755aed211e4b43
+  train.csv: e84e40b9b165dfe32f3b8911d4af7c94
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_3:
+  sample_submission.csv: 916649fa1eaa9a2134aac5b3c4c14e1a
+  test_features.csv: 07f5347545446d788cff2b56fb669fdb
+  train.csv: 6fd77ba86b8ea6b93ae22b4feafafea2
+public-proteingym-dms/ERBB2_HUMAN_Elazar_2016-fold_random_4:
+  sample_submission.csv: 6d7ba3f49119efb2e89ffb70401dff09
+  test_features.csv: 7cdb364584ba7484a1232bc921e5646c
+  train.csv: d864c4ea580f61898087bb2df3ff30cc
+zip: 53b3c9be428aac3724703a877c014f9c

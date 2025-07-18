@@ -1,0 +1,91 @@
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_0:
+  answers.csv: 194ab49caa51e2d8e50e151220958ac8
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_1:
+  answers.csv: bdede01085ca5cff748163d062aad86e
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_2:
+  answers.csv: 9a9d3fcaa23f4a3b2c7df67c7724e50f
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_3:
+  answers.csv: 3297d6baf671609babdbae9761b3035b
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_4:
+  answers.csv: 1abee18158707169617dd9f7c3fe1f73
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_0:
+  answers.csv: 234fe4b8dbffd526df1cf46d7e7c46cb
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_1:
+  answers.csv: 74296ac3bc3e580c33b2a84f2550523c
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_2:
+  answers.csv: 05d4899819332426e8513da5b8c7397c
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_3:
+  answers.csv: 3eed470f442be3eed55d132c99cda007
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_4:
+  answers.csv: 919395260d7ff73d7e8673d191573839
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_0:
+  answers.csv: 1b48fc7a86534908759511f23c023fd1
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_1:
+  answers.csv: 5b4f3d47369b875335ee36d0a802daf4
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_2:
+  answers.csv: f03b3eb6f8a4ce35664450e9935a7043
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_3:
+  answers.csv: b0981dcaecaec6d23e817316d9a84044
+private-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_4:
+  answers.csv: 9c77a5da7cb7974bc69faadaa287bec9
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_0:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: f8b433d81388f4f8f50c6e0cf9df041d
+  train.csv: 423040ad2d74ee48190b3c4d3ba62f13
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_1:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: b408d0a86d63773433a17c8810e51018
+  train.csv: e457f39bc2aacb5b7c489ecc4da68960
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_2:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: e6a8dbcc03a077a98656a60d5feca888
+  train.csv: 4096e3683c068449eb17866aad49bab2
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_3:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: d04ce715362a890a6d92918a0990eed3
+  train.csv: cdae4e0c874c1e57479fbda2fa602b5d
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_contiguous_4:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: 5a608e406c8bfcccb55d9c31d22c83ba
+  train.csv: f24825ecde130aaa805a9483c2c277b7
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_0:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: c7f2e66be278443494151442f0b42f82
+  train.csv: b4ce3b798a257117edbceeda40bd5c0a
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_1:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: 6c501df797176380a3246adafcb16d91
+  train.csv: 148bf404650040f62c520e89f9140dc6
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_2:
+  sample_submission.csv: 3da788c896144720f4394a5202693824
+  test_features.csv: c6b3c6fa53010e3e46cb8b4c763169ae
+  train.csv: ce6dd55730e2a00e872f0cf8cb1761f5
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_3:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: 9db596d6bab57095b811bcc7065be5b3
+  train.csv: 10cd0fba1daa872f9e3877d75ed84d99
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_modulo_4:
+  sample_submission.csv: 9632e99968ea05e1c51e7362e6c26fe2
+  test_features.csv: 8a1ba967e1ca6f5bee4ba50b7c6bf5aa
+  train.csv: f511d20b91da1f73069eaa20136c6978
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_0:
+  sample_submission.csv: afcb47643a0063712cd3c2ea46e72090
+  test_features.csv: 1be2e1c71386d25af9f7071f4a7c62ae
+  train.csv: 3c9001657b976a2915ed7f7d475b9952
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_1:
+  sample_submission.csv: 724f364a439e9c15aeb7b198ecb80b95
+  test_features.csv: 4a7f32a140a1dc92d6eb7ca14e2c1fe6
+  train.csv: fbe51754c60ab55cfdde8e2a44b345cf
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_2:
+  sample_submission.csv: 3e7e97531c92d44ce1bbf8ca3ef2c077
+  test_features.csv: be53963b43e2b16157c920b3d9acfde3
+  train.csv: add307a1e81dc6ef89454a162bc2976d
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_3:
+  sample_submission.csv: dab173a538f852bf570a7d68435e7f16
+  test_features.csv: 6b2d8235d8bbb66dcdaf3c5b885b2c4d
+  train.csv: a3917337dc6e7e53c178c0d5218bfcc4
+public-proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide-fold_random_4:
+  sample_submission.csv: 3e7e97531c92d44ce1bbf8ca3ef2c077
+  test_features.csv: 389e37f073ee1b298f378773e8374df8
+  train.csv: d5f528795fca06cf2ce52fec4592b9e2
+zip: 53b3c9be428aac3724703a877c014f9c

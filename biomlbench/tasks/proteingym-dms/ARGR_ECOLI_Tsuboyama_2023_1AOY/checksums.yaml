@@ -1,0 +1,91 @@
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_0:
+  answers.csv: a0b38342d350efde0d5561da2353559d
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_1:
+  answers.csv: 7b6d6b7103b9cf9caf541d98eab24578
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_2:
+  answers.csv: 643b45575745dd2b6150d45814e8feac
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_3:
+  answers.csv: eca9d596302b85e5d637608318e19f92
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_4:
+  answers.csv: 9c223c86b7056eb1b9dc71a9e6cbe79f
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_0:
+  answers.csv: f4e3fa0450b260c8d9cd5c8ca500a24f
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_1:
+  answers.csv: 0f20717d12a70033c53ca06faa90efb6
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_2:
+  answers.csv: a4473b97b4746e28e61edac2dcba6221
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_3:
+  answers.csv: d8106c7f9cc0f4e0097d47ec98a30802
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_4:
+  answers.csv: de83e3a2423ec49071d2c5b5a0102c64
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_0:
+  answers.csv: ed4dc1c58ebe4a27a15800e5344b999b
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_1:
+  answers.csv: af3b84bcaa9811a7e8ce9c75390c055c
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_2:
+  answers.csv: c10e3aa1a9efd7980efcd0eb6cf17f96
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_3:
+  answers.csv: 1bf19c9529a3f2b188a6e93c62569f71
+private-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_4:
+  answers.csv: 1560eb9d1341388f9f5f4542073da23e
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_0:
+  sample_submission.csv: cff4cfa620a21256072cbc2e5b7a7dc1
+  test_features.csv: 8489bc4822c73c3d5b4d81a46de4e156
+  train.csv: dba07e924ac1d2652eb4702446891575
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_1:
+  sample_submission.csv: e994905aeaf460b20702b78a33200380
+  test_features.csv: a7a5e0a6832e81f53db37999a66cc007
+  train.csv: afbfde3d3960140d295dbf8b6cb678a6
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_2:
+  sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
+  test_features.csv: de29413547d3c9793178cdfcb68e9f66
+  train.csv: d1262378c640a9c25c343b21c414d33c
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_3:
+  sample_submission.csv: f96e9d6a162c6cb0301cd7829f1bcb9d
+  test_features.csv: e7c0789134b9f86ffe1d9f51c053a9c4
+  train.csv: ed94ad32ffc483baeb3499fcd6af4610
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_contiguous_4:
+  sample_submission.csv: 5ef32a98b6d8bbcb44f7fafefce6cb98
+  test_features.csv: 97009693338484a7de81e18df64eb6e9
+  train.csv: 80e33647744bcf453223f271fe442e38
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_0:
+  sample_submission.csv: beb20b491eae9cd4e23ecca7e321496a
+  test_features.csv: 014a49e5d464381ba713f3178c93ad39
+  train.csv: 9a95c58680aee5f8fd6e899296643bae
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_1:
+  sample_submission.csv: e994905aeaf460b20702b78a33200380
+  test_features.csv: 1df827981e321ba8eba2acd96f4d05ae
+  train.csv: 65fafaff0916fcf3f992dce558d44b97
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_2:
+  sample_submission.csv: dc166feef2a0cf042abd95a5cce3f3b6
+  test_features.csv: ce5d0658f3694e7d439b7c3b7e58b1ea
+  train.csv: f377c1231ac5c281bffa8219de4a222f
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_3:
+  sample_submission.csv: fdc7d0c7cf96014c113659772dc54f32
+  test_features.csv: 0e6bc3a22428daff2ed1151edc46b58c
+  train.csv: e095aabb32b1ec511977e616fb04b3e3
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_modulo_4:
+  sample_submission.csv: f63764bfa80ab3dd175af0929f3b0a26
+  test_features.csv: 22b23927d6e95b75e053f90458803d7d
+  train.csv: 0d55ba82ea5c9cd3afd76fff9bcb6b75
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_0:
+  sample_submission.csv: f96e9d6a162c6cb0301cd7829f1bcb9d
+  test_features.csv: 4a4bee1353ec9556503fd379f4d03f7b
+  train.csv: d7ff82c6fba4b5cc903d51b6d9c87d7f
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_1:
+  sample_submission.csv: 27ed7f4e3601fe1bdad850eda06c384b
+  test_features.csv: 73cb15d35a2aaf19bc7213a99fbb233d
+  train.csv: b23e96c4482b2d7cda5bdf47f3210fc2
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_2:
+  sample_submission.csv: 8a98e57db50f1a9ec03d5e43e5d1056b
+  test_features.csv: 5cda08bb10e4f717723490e7bb6a0439
+  train.csv: e9504e1d2190e9d1d1a1b55d4daa6d9a
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_3:
+  sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
+  test_features.csv: ce965a8e602d5967aeab6ebef7e53ac2
+  train.csv: c608b2c21b69cfea7659c1b746339fdc
+public-proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY-fold_random_4:
+  sample_submission.csv: dc166feef2a0cf042abd95a5cce3f3b6
+  test_features.csv: 3de1237e590cd8c4d0e073e0f51f2e25
+  train.csv: 7b35c06fb70b2b2eb36a9c8f87191df3
+zip: 53b3c9be428aac3724703a877c014f9c
