@@ -67,43 +67,24 @@ cat /home/data/description.md >> ${AGENT_DIR}/full_instructions.txt
 mkdir -p ${AGENT_DIR}/logs
 mkdir -p ${AGENT_DIR}/workspaces
 
-# Create a goal description from the task description
-GOAL="Build a machine learning model to solve this biomedical task. Focus on understanding the dataset structure, implementing appropriate data preprocessing, selecting suitable algorithms for the task type, and optimizing performance. Full instructions can be found in the instructions.txt file."
-
-# Create evaluation description based on task type
-EVAL="Use appropriate evaluation metrics for the task type. See the instructions.txt file for more details."
-
-# run with timeout, using the AIDE format with correct parameters
-timeout $TIME_LIMIT_SECS aide \
-  data_dir="/home/data/" \
-  goal="$GOAL" \
-  eval="$EVAL" \
-  desc_file="${AGENT_DIR}/full_instructions.txt" \
-  $@ # forward the bash arguments to aide
+# run with timeout, using the Biomni format with correct parameters
+timeout $TIME_LIMIT_SECS python main.py "$@" 
 
 if [ $? -eq 124 ]; then
   echo "Timed out after $TIME_LIMIT"
 fi
 
 # Copy results to expected output directories
-echo "Copying AIDE results..."
+echo "Copying Biomni results..."
 
 # Copy logs
 if [ -d "${AGENT_DIR}/logs" ]; then
   cp -r ${AGENT_DIR}/logs/* ${LOGS_DIR}/ 2>/dev/null || true
 fi
 
-# Also check the default logs directory that AIDE creates
+# Also check the default logs directory that Biomni creates
 if [ -d "./logs" ]; then
   cp -r ./logs/* ${LOGS_DIR}/ 2>/dev/null || true
 fi
 
-# Copy the best solution code if it exists
-if [ -d "./logs" ]; then
-  find ./logs -name "best_solution.py" -type f -exec cp {} ${CODE_DIR}/ \; -quit
-elif [ -d "${AGENT_DIR}/logs" ]; then
-  find ${AGENT_DIR}/logs -name "best_solution.py" -type f -exec cp {} ${CODE_DIR}/ \; -quit
-fi
-
-
-echo "AIDE execution complete."
+echo "Biomni execution complete."
