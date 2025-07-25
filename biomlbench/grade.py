@@ -3,7 +3,6 @@
 import json
 from datetime import datetime
 from pathlib import Path
-from statistics import mean
 
 import pandas as pd
 from tqdm import tqdm
@@ -113,24 +112,35 @@ def generate_task_report(
 ) -> TaskReport:
     """Generates a task report for a given task with a given score."""
 
+    # First, calculate the properly aggregated score with NaN handling
+    valid_scores = [score for score in scores if score is not None and not (isinstance(score, float) and score != score)]  # Filter out None and NaN
+    
+    if valid_scores:
+        # Use mean of valid scores (ignoring NaN and None)
+        aggregated_score = sum(valid_scores) / len(valid_scores)
+    else:
+        # All scores were None or NaN
+        aggregated_score = None
+    
+    # Get leaderboard and calculate rank info based on AGGREGATED score, not individual scores
+    valid_submission = any(score is not None for score in scores)
+    task_leaderboard = get_leaderboard(task)
+    is_lower_better = task.grader.is_lower_better(task_leaderboard)
+    
+    # Calculate medal info based on the aggregated score
+    rank_info = task.grader.rank_score(aggregated_score, task_leaderboard)
+
+    # Process human baselines (check each dataset)
     human_baselines = []
     for score, dataset in zip(scores, task.datasets):
-        valid_submission = any(score is not None for score in scores)
-        task_leaderboard = get_leaderboard(task)
-        rank_info = task.grader.rank_score(score, task_leaderboard)
-        is_lower_better = task.grader.is_lower_better(task_leaderboard)
-
-        # Check human baselines if available
-        beats_human = None
-        human_percentile = None
-        if score is not None:
+        if score is not None and not (isinstance(score, float) and score != score):  # Valid score (not None or NaN)
             human_baselines_path = dataset.public_path / "human_baselines.csv"
             if human_baselines_path.exists():
                 try:
                     human_df = pd.read_csv(human_baselines_path)
                     if not human_df.empty and "score" in human_df.columns:
                         beats_human, human_percentile = calculate_human_performance_metrics(
-                            score, human_df, task.grader.is_lower_better(task_leaderboard)
+                            score, human_df, is_lower_better
                         )
                         logger.debug(
                             f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}"
@@ -139,26 +149,26 @@ def generate_task_report(
                 except Exception as e:
                     logger.warning(f"Failed to load human baselines for task '{task.id}': {e}")
 
-    # By default, we say the model beats human if it beats more than half of the human baselines
+    # Aggregate human baseline results
     if human_baselines:
         beats_human = (
             sum([1 for beats_human, _ in human_baselines if beats_human]) / len(human_baselines)
             > 0.5
         )
-        human_percentile = mean([human_percentile for _, human_percentile in human_baselines])
+        human_percentile = sum([human_percentile for _, human_percentile in human_baselines]) / len(human_baselines)
     else:
         beats_human = None
         human_percentile = None
 
     return TaskReport(
         task_id=task.id,
-        score=mean(scores),
+        score=aggregated_score,  # ✅ Properly aggregated score with NaN handling
         gold_threshold=rank_info["gold_threshold"],
         silver_threshold=rank_info["silver_threshold"],
         bronze_threshold=rank_info["bronze_threshold"],
         median_threshold=rank_info["median_threshold"],
         any_medal=rank_info["gold_medal"] or rank_info["silver_medal"] or rank_info["bronze_medal"],
-        gold_medal=rank_info["gold_medal"],
+        gold_medal=rank_info["gold_medal"],      # ✅ Based on aggregated score
         silver_medal=rank_info["silver_medal"],
         bronze_medal=rank_info["bronze_medal"],
         above_median=rank_info["above_median"],

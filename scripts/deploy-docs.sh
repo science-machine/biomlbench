@@ -16,4 +16,4 @@ aws s3 sync site/ s3://biomlbench-docs/ \
 
 
 echo "✅ Documentation deployed successfully!"
-echo "🔗 Your site should be available at: https://biomlbench-docs.s3.us-west-2.amazonaws.com/index.html" 
+echo "🔗 Your site should be available at: http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/" 

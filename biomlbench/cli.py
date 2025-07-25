@@ -271,7 +271,7 @@ def main():
     )
     parser_run_agent.add_argument(
         "--n-workers",
-        help="Number of parallel workers for multi-task runs",
+        help="Number of parallel workers (applies to datasets within tasks and multiple tasks)",
         type=int,
         default=1,
     )
@@ -297,6 +297,11 @@ def main():
         help="Path to the directory where task data is stored",
         type=str,
         default=registry.get_data_dir(),
+    )
+    parser_run_agent.add_argument(
+        "--missing-ok",
+        help="Skip failed runs instead of raising errors (allows partial results)",
+        action="store_true",
     )
     parser_run_agent.add_argument(
         "--output-dir",

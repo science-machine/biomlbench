@@ -327,6 +327,7 @@ def generate_submission_from_metadata(
     output_path: Optional[Path] = None,
     rel_log_path: Path = Path("logs/"),
     rel_code_path: Path = Path("code/"),
+    missing_ok: bool = False,
 ) -> Path:
     """
     Generate a submission.jsonl file from agent run metadata.
@@ -340,6 +341,7 @@ def generate_submission_from_metadata(
         output_path: Path for the output submission.jsonl file (defaults to same directory as metadata)
         rel_log_path: Path to logfile relative to run directory
         rel_code_path: Path to code file relative to run directory
+        missing_ok: If True, skip failed runs; if False, raise error on any missing submissions
 
     Returns:
         Path to the generated submission.jsonl file
@@ -356,8 +358,15 @@ def generate_submission_from_metadata(
         task_id = run_data["task_id"]
         dataset_id = run_data["dataset_id"]
 
-        # remove the dataset ID from the run ID
-        run_id = run_id.rstrip(f"-{dataset_id}")
+        # Remove the dataset ID suffix from the run ID (fix for critical path bug)
+        # Use removesuffix() to remove exact suffix, not rstrip() which removes characters
+        suffix_to_remove = f"-{dataset_id}"
+        if run_id.endswith(suffix_to_remove):
+            run_id = run_id.removesuffix(suffix_to_remove)
+        else:
+            logger.error(f"CRITICAL BUG: Run ID '{run_id}' doesn't end with expected suffix '{suffix_to_remove}'")
+            raise ValueError(f"Invalid run ID format: {run_id}")
+            
         run_dir = metadata_path.parent / run_id
 
         log_path = run_dir / dataset_id / rel_log_path
@@ -377,13 +386,43 @@ def generate_submission_from_metadata(
                 submitted = True
                 break
 
+        # CRITICAL: Only include successful runs with valid submission files
+        # Failed runs should NOT appear in the submission file at all
+        if not submitted or submission_path is None:
+            if missing_ok:
+                logger.warning(
+                    f"Skipping failed run from submission file: {task_id}/{dataset_id} "
+                    f"(no submission file found in {run_dir / dataset_id / 'submission'})"
+                )
+                continue
+            else:
+                raise FileNotFoundError(
+                    f"CRITICAL: Run failed for {task_id}/{dataset_id} - no submission file found in "
+                    f"{run_dir / dataset_id / 'submission'}. "
+                    f"Use --missing-ok flag to skip failed runs instead of raising errors."
+                )
+
+        # Verify the submission file actually exists and is not empty
+        if not submission_path.exists():
+            logger.error(
+                f"CRITICAL BUG: submission_path was set but file doesn't exist: {submission_path}"
+            )
+            raise FileNotFoundError(
+                f"Submission file not found: {submission_path}. "
+                f"This indicates a bug in the submission detection logic."
+            )
+        
+        if submission_path.stat().st_size == 0:
+            logger.error(
+                f"Skipping empty submission file: {submission_path}"
+            )
+            continue
+
         submission_lines.append(
             {
                 "task_id": task_id,
                 "dataset_id": dataset_id,
-                "submission_path": (
-                    submission_path.as_posix() if submitted and submission_path else None
-                ),
+                "submission_path": submission_path.as_posix(),
                 "logs_path": log_path.as_posix() if has_log else None,
                 "code_path": code_path.as_posix() if has_code else None,
             }

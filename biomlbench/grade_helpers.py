@@ -137,6 +137,20 @@ class Grader:
             score, (float, int)
         ), f"Expected `score` to be a `float` or `int` but got a {type(score)}."
 
+        # Handle NaN scores explicitly - they should get no medals
+        import math
+        if math.isnan(score):
+            return {
+                "gold_medal": False,
+                "silver_medal": False,
+                "bronze_medal": False,
+                "above_median": False,
+                "gold_threshold": gold_threshold,
+                "silver_threshold": silver_threshold,
+                "bronze_threshold": bronze_threshold,
+                "median_threshold": median_threshold,
+            }
+
         gold_medal = score <= gold_threshold if lower_is_better else score >= gold_threshold
         silver_medal = not gold_medal and (
             score <= silver_threshold if lower_is_better else score >= silver_threshold
