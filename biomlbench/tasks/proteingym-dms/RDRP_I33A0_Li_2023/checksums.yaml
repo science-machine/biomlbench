@@ -31,61 +31,61 @@ private-proteingym-dms/RDRP_I33A0_Li_2023-fold_random_4:
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_contiguous_0:
   sample_submission.csv: ebfc8d1593edb0c4de061060f7d2e95c
   test_features.csv: 19b25e0a3b9623bf6aefab31f212efad
-  train.csv: 539b2bdffaa0cac1ceead2c9a551ab3b
+  train.csv: 92e11ce9be9dce50d5eae59667b8886f
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_contiguous_1:
   sample_submission.csv: ebfc8d1593edb0c4de061060f7d2e95c
   test_features.csv: 8f9e6bef966290e009585e7826f0dd7b
-  train.csv: d2983704b5e3d9d636d12123d4bec7aa
+  train.csv: fc4a6dc4645b8bdd5b02c70a1d8a33f8
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_contiguous_2:
   sample_submission.csv: 75d71bb25baab7c8b8d04adb120e3eb6
   test_features.csv: 61af74f6b5086b025418df40037ddb5c
-  train.csv: 93edcd1c0156ba8d925417a99c0e8265
+  train.csv: 30e73c706f99b59087c199d6a6fb14da
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_contiguous_3:
   sample_submission.csv: aa544041197a0d7e32d473b341e263b5
   test_features.csv: 54782865180786dfde6643949c5aabd6
-  train.csv: 63a531ed84b6c861a8737b5e149d4a01
+  train.csv: 6c87bfc90e81772fdd307dbf0cc7979c
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_contiguous_4:
   sample_submission.csv: 41dd31c925a9c7b5a50db6b8e6618328
   test_features.csv: 4c40786cacb5598eeb2e8d87c3244035
-  train.csv: 58106c0112e192314a0583549ef9fe90
+  train.csv: 1336f391ed9e4115f8dbd749e1b6a317
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_modulo_0:
   sample_submission.csv: 65e00d0d96a2f927d44c0b44887fce32
   test_features.csv: 71c9e80e57ae8f3aa5a0567417473ce4
-  train.csv: 88d6544132f213da024d0492ed56ceb9
+  train.csv: e1daa39d69dcca2f575db49be65e984e
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_modulo_1:
   sample_submission.csv: 76d3f8ccf65f791cc7aac521fba2f93b
   test_features.csv: ee48fd7a7a2830e6bf19fc2e4a666fd8
-  train.csv: c4d97dde94e6e068919744090debe62f
+  train.csv: 56ac77aadf9c5f595e85ca965937488f
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_modulo_2:
   sample_submission.csv: 10d22f771f97efae224ff9d732509ccf
   test_features.csv: 4fb330be5a9c2b272be0031d4c9cd77d
-  train.csv: d1cd7e2af3a1e2c64320122827788823
+  train.csv: 58beb1d23b5b4b9491b5d1b3228b1a70
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_modulo_3:
   sample_submission.csv: 75d3e51d46ca642600ae8c909790eed2
   test_features.csv: daf0e1e0137127a4f0d237b4a731247c
-  train.csv: 1283406ab7ab8eeb2d2a5ae1be895bfc
+  train.csv: 78a76ac8de4126cd39b2a4201b12bef0
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_modulo_4:
   sample_submission.csv: 8c6e8b9070365c42eefd591374c48d75
   test_features.csv: 852e98535620ab396046365c23ae371b
-  train.csv: 71a778e95f0d40ed886152f9f270d8f3
+  train.csv: 6158d047f51262bfc5aea24d2035d9a3
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_random_0:
   sample_submission.csv: 8c640f0d1d175eae65e55301ce0bc7b0
   test_features.csv: a4c7706bc98e73b754f51d60191b6a75
-  train.csv: 3e8162c135e1108f32324f5b89d502ef
+  train.csv: 9189696c9b56bd2ef7efe218327788c3
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_random_1:
   sample_submission.csv: eb2694ca3e5e0269d6646d3e43ca0232
   test_features.csv: f482a7217e79c0e647c39715cd624d58
-  train.csv: 4b0df05758cbbc2beb23a9013e81eeb8
+  train.csv: a72fbd918f3da116f33c0ec8ed2add7c
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_random_2:
   sample_submission.csv: 5cec4677d253188f1728f95e2dd4b67c
   test_features.csv: 3cbc8cdbc8941f3fd2447bfe484db030
-  train.csv: 2c9d7a8a99c8d2c4906c0c56b70a7f94
+  train.csv: e0fe52f9ce05003fc975b089c2c777d6
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_random_3:
   sample_submission.csv: e9efa92c8dfa89625137258bab826977
   test_features.csv: 4bac0be663feb6618032281c53ca7c16
-  train.csv: 31a1416728b25672d8a710ebb14ff405
+  train.csv: 40fd2f7600e5b952c8f8fc5fb2a204db
 public-proteingym-dms/RDRP_I33A0_Li_2023-fold_random_4:
   sample_submission.csv: 238483edfbac50ae60a46f55dbd32a40
   test_features.csv: d6a04ec668e007dd8dceeaecdf9a3401
-  train.csv: c5fd954a6341258b5fec553340e4a2c5
+  train.csv: ff6dc7083315b2f85790c71c13cbcaa4
 zip: 53b3c9be428aac3724703a877c014f9c

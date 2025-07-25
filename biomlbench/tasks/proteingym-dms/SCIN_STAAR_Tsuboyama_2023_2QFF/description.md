@@ -31,6 +31,8 @@ This task uses CSV files to store the amino acid sequence data and fitness score
 - Sequence column: `sequence`
 - Fitness column: `fitness_score`
 
+The first row of the CSV file contains the wild-type sequence in the `sequence` field and a missing `fitness_score` field.
+
 ## Files
 
 - `train.csv`: Training data with sequences and fitness scores

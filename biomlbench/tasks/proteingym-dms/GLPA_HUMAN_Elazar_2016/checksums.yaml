@@ -31,61 +31,61 @@ private-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_random_4:
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_contiguous_0:
   sample_submission.csv: e622d6a29c098b4aefbda5524900df32
   test_features.csv: 3b72b42842cde7bbe5416504c1cea64e
-  train.csv: 7506c0549a5ec39d8137e9c77ce44ee8
+  train.csv: 1da3f9a09788d2e6628d5367a07897f5
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_contiguous_1:
   sample_submission.csv: d887c3631930806007256717076eb737
   test_features.csv: 9699e7483a36be86a0a3dbff016bb5dd
-  train.csv: 26e8f6599a0d854ebfccddfab7b6868c
+  train.csv: 8b8c34c7e695f434dda2aad8608a473b
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_contiguous_2:
   sample_submission.csv: e783784cd12761411c29ce3c83e6c46b
   test_features.csv: 6de88ff6a548de713f8a8fb9be95d429
-  train.csv: 93528004b6efb5ec7cd60eabeafe84ce
+  train.csv: d0cdca6a6c7c1e20b51c2ad955ea6712
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_contiguous_3:
   sample_submission.csv: be1680aa1a855f31bd10268d2086bd5f
   test_features.csv: f1bb261108ce6f5dda0b65d1976b8864
-  train.csv: 8d5ee455f8c52908f03b136f5fb01d57
+  train.csv: 04ef0ff99fcfa959a8ad8505b82164c3
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_contiguous_4:
   sample_submission.csv: 6749758d1d077790ba270f23d2a52a36
   test_features.csv: c9c6597f113738cc7661b7034ca96055
-  train.csv: 7de00d941a1b74f80ff0dd98c082769b
+  train.csv: 052c4d785a41353881d5ee8ec2d87f41
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_modulo_0:
   sample_submission.csv: 17f25b53622516ebd10e1fe59f319f15
   test_features.csv: e3bea984b31a0dac4f53bc7314c6919a
-  train.csv: 3c2df7f1e7ca8255dab769d66b5ffa0e
+  train.csv: 69b1efb9bf864c56241603bd1a4a2a9f
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_modulo_1:
   sample_submission.csv: e622d6a29c098b4aefbda5524900df32
   test_features.csv: 7b051b5b836dc49eeb13c6c4490348c0
-  train.csv: 6cecd6972996d54e414ad0fc922c7c9f
+  train.csv: d273bd66f92743a88dc0b817f7af5f5e
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_modulo_2:
   sample_submission.csv: 32144810b2a407d59bc3e9f80a4932a0
   test_features.csv: 145bac87601045367f1510cbadaf3e8e
-  train.csv: a7da1047e29c0e784d3f708e09144423
+  train.csv: 9259b4c0f4f272ed336688f8ebd4d9ea
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_modulo_3:
   sample_submission.csv: 6749758d1d077790ba270f23d2a52a36
   test_features.csv: aa07169363f42db136d80de0849618f7
-  train.csv: 1f1c38b343ce7af6f3ca17179eecb4b4
+  train.csv: a11605ab1823d715a6d3656c041fbc3f
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_modulo_4:
   sample_submission.csv: 6365c0f7c9815df218f19f3b54eecc29
   test_features.csv: 4b31b832aed3240c923435e48563a589
-  train.csv: ff1f4dd02e7c66eae0fb8998a2257a3a
+  train.csv: 97e32236ef17918d19b1ee8e2debaa62
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_random_0:
   sample_submission.csv: 9a9ec031cd6e6abfd4a9c4677508ee02
   test_features.csv: 154268df4a3695414a83cae5e0c438bb
-  train.csv: 528c75e7beb67aa781cbd1dce39fa53f
+  train.csv: 1266263a2bd85d062cc0b6f9220c15f2
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_random_1:
   sample_submission.csv: c86b5f4d21c9ae1ea14b12dd229775a9
   test_features.csv: d42510ff3b314def0b9284fb3c176edc
-  train.csv: d710d930ed873dc2ea97c721c095e876
+  train.csv: 34239afe0e47ab257b75aea75c5a9530
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_random_2:
   sample_submission.csv: f93371021cf30bbdad55e15c6e2f2d13
   test_features.csv: f851df46dd72ed68c319418a48d808f1
-  train.csv: abd7141cd62bbab4fa9812da453d987d
+  train.csv: 3e2dc08b1e95a7a4a603f30b6ba18201
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_random_3:
   sample_submission.csv: 916649fa1eaa9a2134aac5b3c4c14e1a
   test_features.csv: fc6ea5e9fe837104dac38beb8390d9e1
-  train.csv: 2e2c73a78a36c83c9e0ad147e8a4d3ec
+  train.csv: 32231dd693f1f5ead083eded11455baa
 public-proteingym-dms/GLPA_HUMAN_Elazar_2016-fold_random_4:
   sample_submission.csv: 41563136ec73fa362f7e1eb6d9ace139
   test_features.csv: 760e8dd8edea1b44849bef865e17770b
-  train.csv: 4eba747391f71bfd82d50f6676b60db4
+  train.csv: f3f11e3badea49a16ccb2e675ddcd544
 zip: 53b3c9be428aac3724703a877c014f9c

@@ -31,61 +31,61 @@ private-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_random_4:
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_contiguous_0:
   sample_submission.csv: 9208a2d62942fd0ac2c54b73094c7753
   test_features.csv: bc08dcbf44974bbd306a1a8e2edddd2b
-  train.csv: 25fa34b3802e28739afc5007b27b59a6
+  train.csv: 928028ee6822c6e6a00004395fba066a
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_contiguous_1:
   sample_submission.csv: aae0a2088398d7177403e7f46d91905b
   test_features.csv: 22c18cc1a13d47ddf697cd0e7dd86873
-  train.csv: 7dbe81608ad65c1a8a6932c064b5b6d8
+  train.csv: 9c21b743040ff1d14550959480019f89
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_contiguous_2:
   sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
   test_features.csv: dfe0d967320606c123f4cdab4f85ccc4
-  train.csv: 0db6c66a62897a459c80e2d43c5346b0
+  train.csv: d151ad3572e57491a96492b618e5fca4
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_contiguous_3:
   sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
   test_features.csv: dc4b4d3afd0c063561878e11c7bf3cd8
-  train.csv: bcb3c845ca8c1fb46cf828d566a2a8ae
+  train.csv: 59706ff11c76dde7bdb74cbd2fc6729e
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_contiguous_4:
   sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
   test_features.csv: da4dfd85a58f156867fa4c64c7554cdb
-  train.csv: c427c54038a15ac86d206db50d3cd1ba
+  train.csv: 89473bc139740e4b08ba78514fe9a271
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_modulo_0:
   sample_submission.csv: 9208a2d62942fd0ac2c54b73094c7753
   test_features.csv: 27a67ca0d7d878d19bc2fe8972395a96
-  train.csv: ecd2363e27c75dbaa5e1bc4b85fa75d6
+  train.csv: b639189293c64e3808ab474e7fa1aa03
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_modulo_1:
   sample_submission.csv: aae0a2088398d7177403e7f46d91905b
   test_features.csv: 5b5f0bd06cc4137a746af97fd8cac33e
-  train.csv: 0ca0abb55d3eb53a29703244a739cbe1
+  train.csv: 906c5fed1e54d0c7754bf95ff0f0a030
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_modulo_2:
   sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
   test_features.csv: 47a598fe4085c10c6a2066410326b899
-  train.csv: 9c6e3cd70657aa14c071d01b5fb28e1c
+  train.csv: edda47dd47854420cff69c73f0b88d5d
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_modulo_3:
   sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
   test_features.csv: b7978a03ee4fee391125706347534b76
-  train.csv: 171f542ba28eed5ce4873c796af6a222
+  train.csv: e85317e18937f49ef4af0c56cc1975d6
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_modulo_4:
   sample_submission.csv: 5db665effb4ffcdb23b7ef2775d695f6
   test_features.csv: 146942629c7cd4b68c91bfd1579fc0fa
-  train.csv: f9feb0c5a3c2dcf99f5d076134203b5e
+  train.csv: ee46b6547927af259d5d1cceb52302d1
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_random_0:
   sample_submission.csv: d69a778a5aefe416aa93c63c781c84a9
   test_features.csv: 9d75345ac85adddfaddc17d3447aa043
-  train.csv: 7316eb261d1b8e30b05d1ea4cf22aa02
+  train.csv: 856c8cc03c087a8435356b5a077e5fbd
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_random_1:
   sample_submission.csv: 28cd0b47a5c73a3c6b9814bea57f6c68
   test_features.csv: d1e0f6e581b12e9316eebcecaf72f76e
-  train.csv: fdc5079b5eb45997a2219f192303fa99
+  train.csv: 9655028bfa80868e62e20ab6b1749a5e
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_random_2:
   sample_submission.csv: 44a634dbc6093d341f2b5e9d0603fb4d
   test_features.csv: 44ac759402f6b4fd08102d04d8b22f07
-  train.csv: 3c4098cd4ce33a1aecfb0b25ca33a26e
+  train.csv: e596e3d0ac2d7941114ec7b1f202287d
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_random_3:
   sample_submission.csv: beb20b491eae9cd4e23ecca7e321496a
   test_features.csv: 12467125983be0972cdf0c3ee157f919
-  train.csv: 3b91c5eef43abdbc50b53fef611d4f57
+  train.csv: 3db682196616168c153a1a19dfafa117
 public-proteingym-dms/IF1_ECOLI_Kelsic_2016-fold_random_4:
   sample_submission.csv: cff4cfa620a21256072cbc2e5b7a7dc1
   test_features.csv: 4f7af2898da5a95923a882a30d164f6c
-  train.csv: 52f38ba82796459be5265f8e650a62bd
+  train.csv: 22987741ec2b61c103e8c238c408873c
 zip: 53b3c9be428aac3724703a877c014f9c

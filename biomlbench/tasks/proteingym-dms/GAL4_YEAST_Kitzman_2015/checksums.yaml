@@ -31,61 +31,61 @@ private-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_random_4:
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_contiguous_0:
   sample_submission.csv: c4c4dcd2af43c193cfec2ce2af9259e1
   test_features.csv: 4431edb25673b0f4c11fe2abec73e900
-  train.csv: 8d880bf3f0a55beba3c83e6e4bc6ea5f
+  train.csv: 3198ceae76888d13a35c1c9774423bfc
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_contiguous_1:
   sample_submission.csv: c2ed3e50045474dd61d38af75eca2e8c
   test_features.csv: 3625866974f015c3a2358b3ab76156a8
-  train.csv: ba1bec0911021a941cf673e47eb4531c
+  train.csv: a2c34ef45e2bfe4d108a11c52366922a
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_contiguous_2:
   sample_submission.csv: 0f8a195880a8c1da917f841b0bb471b2
   test_features.csv: 0ac1e8a04a52b236264e5a9eef841f11
-  train.csv: 28badb450831cba25bdfb59de990fe82
+  train.csv: 97c9017893ad069d96deefeecae06994
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_contiguous_3:
   sample_submission.csv: c4c4dcd2af43c193cfec2ce2af9259e1
   test_features.csv: 9e8589b21e5ae0e74c5f2207788f18b8
-  train.csv: 71fbaf6df4f5e986ed804b7ec708037b
+  train.csv: 4b63e040ac9942632679cde94aa4762a
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_contiguous_4:
   sample_submission.csv: 4124d6de2bbf08b315efdd1ef981e430
   test_features.csv: e21d2256b6fbcdabcc491737a3c24c9d
-  train.csv: f854123e643e56dd4648169c57049f9d
+  train.csv: ae1fc70b8c1c84af19235bcbc50506e2
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_modulo_0:
   sample_submission.csv: a302870b9b83a2b4e8faae6cbc03c38a
   test_features.csv: c33cba82d78b89622176fcbeb5c1bf63
-  train.csv: 3e4d5db7f26f356119668c527c3825d3
+  train.csv: 3909bab6456f79be0811b06309539f0f
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_modulo_1:
   sample_submission.csv: 0f8a195880a8c1da917f841b0bb471b2
   test_features.csv: 268fc18bf8342a874f5bdf1ce861f6f3
-  train.csv: b963fb51ba7c052fcd692be063c6be23
+  train.csv: e5a7503e007319cb6bdf22da93eee921
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_modulo_2:
   sample_submission.csv: df274269414fcabda1786df22e9cb87d
   test_features.csv: ffc65cfcb722819bedd6313e7cb6cedf
-  train.csv: 02e052c6f1aa3fa89e237f4af09c3d74
+  train.csv: c7d6ab966eb15e808e3cb859b1f43003
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_modulo_3:
   sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
   test_features.csv: d0fc8baa751d328559b3ecf682cec4c3
-  train.csv: 2c4d3b993ae2c0787b34692d838ad8ed
+  train.csv: 5a2cbfef6bc99e34a3908cd06b552f2d
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_modulo_4:
   sample_submission.csv: b538dfbecb705b60d1a15d07e24c0507
   test_features.csv: 99352a06a46329d109535f65aa3d3047
-  train.csv: 007d857d3fa391709251d8c751a8d4dc
+  train.csv: 614b9fa752cedd974e6f58b3897b5333
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_random_0:
   sample_submission.csv: 7deebcf49f1a991068890e33cdc3f867
   test_features.csv: 9ec20e78b0b965e1717ca83c86c15194
-  train.csv: 54a2618bed12d09c297e216370512cc2
+  train.csv: 3d2bd6b0ed52203a0c156f52d938f096
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_random_1:
   sample_submission.csv: 567cd9111bbe3a5e1c2c51c5c96d1aa4
   test_features.csv: b4c781435737479b18511f6de3279680
-  train.csv: d66556224139f633d1c481728e266943
+  train.csv: c6b80e7c5659fbac4af7a9857187afa9
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_random_2:
   sample_submission.csv: e0e97cb74243a1ce2bc64df878357ef4
   test_features.csv: 12b1e04cd28c28f155e3ef9d1d50aa35
-  train.csv: fb1f00f67b3d3e3f86a73ebc4c50bfa1
+  train.csv: 6db1e4ffa87f85503bf312fca159a4a8
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_random_3:
   sample_submission.csv: fef3a20f633c03d0e6a19d2a50df2a46
   test_features.csv: eaaa636437e10c0ff3e68f7888a98e97
-  train.csv: 4d3dafd64a5bc3c8c37bf4cb38f01f12
+  train.csv: 4dde6632088bce9ce4de24bb75bf299c
 public-proteingym-dms/GAL4_YEAST_Kitzman_2015-fold_random_4:
   sample_submission.csv: a302870b9b83a2b4e8faae6cbc03c38a
   test_features.csv: 716e02ea3b9d2d096ff99b13908cfea6
-  train.csv: 6824e6e4d1402a309cb3c03dfc565225
+  train.csv: e13c0ac45f292734da32f1ef942b8061
 zip: 53b3c9be428aac3724703a877c014f9c

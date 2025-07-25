@@ -59,7 +59,7 @@ def download_and_prepare_datasets(
 
     assert is_valid_prepare_fn(
         task.prepare_fn
-    ), f"Provided `prepare_fn` doesn't take arguments `raw`, `private` and `public`!"
+    ), f"Provided `prepare_fn` doesn't take arguments `raw` and `prepared`!"
 
     # Ensure leaderboard exists
     ensure_leaderboard_exists(task, force=overwrite_leaderboard)
@@ -86,10 +86,9 @@ def download_and_prepare_datasets(
 
         # Handle zip file extraction for sources that provide zip files (like Kaggle)
         if downloaded_path and downloaded_path.suffix == ".zip":
-            if is_empty(task.raw_dir) or len(list(task.raw_dir.iterdir())) == 1:
-                logger.info(f"Extracting `{downloaded_path}` to `{task.raw_dir}`...")
-                extract(downloaded_path, task.raw_dir, recursive=False)
-                logger.info(f"Extracted successfully.")
+            logger.info(f"Extracting `{downloaded_path}` to `{task.raw_dir}`...")
+            extract(downloaded_path, task.raw_dir, recursive=False)
+            logger.info(f"Extracted successfully.")
 
     except DataSourceError as e:
         raise ValueError(f"Failed to download data for task '{task.id}': {e}") from e

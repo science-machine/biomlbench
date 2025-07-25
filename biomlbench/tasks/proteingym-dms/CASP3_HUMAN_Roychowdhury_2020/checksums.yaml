@@ -31,61 +31,61 @@ private-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_4:
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_0:
   sample_submission.csv: dc549043cb8cf390c4f1bfcdc9389dd4
   test_features.csv: 889ce710e3c4942a39fa3815a84bea08
-  train.csv: 3923a78582b5b410f8fcfbe2997a9692
+  train.csv: d4708d7f5f0aa07cd0bbca5170f4a13e
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_1:
   sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
   test_features.csv: 72e5f6ae973b5233edae009258fb0a3f
-  train.csv: a374668f418130196c8ca7a6901fd3a6
+  train.csv: bf39a3cd1eedc23c8fcaf7ff53efc9bb
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_2:
   sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
   test_features.csv: 41ef4f3c8f6ddce14d1ab10844810c2e
-  train.csv: b1495d67e1c3af362f419e2a769344e4
+  train.csv: aa0acc9cb9fecd2fa53434a8824f34fc
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_3:
   sample_submission.csv: ec754a033b9ad2bed8571ac9afbe1f6e
   test_features.csv: 9e5d73e4362b75b697022db4d5c5e557
-  train.csv: c1079fd4ae868ea334d3e0016ebf7d18
+  train.csv: 802b1ddab843188d28e26e062eec92cd
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_contiguous_4:
   sample_submission.csv: e5960de167c2dce50d0282203c94c732
   test_features.csv: 9be9e329e8443db0b0089294e203680b
-  train.csv: 71fda2324a0ad6d09cd2aed8d969b477
+  train.csv: baf9009b1ec5b738216cc65cdd407e02
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_0:
   sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
   test_features.csv: d378e22fe6e4e89e967efab0577b24ad
-  train.csv: 31202e632b34d69d02bfd53200878acc
+  train.csv: e8e339b5c8fd7cc8ccf1679e617677a9
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_1:
   sample_submission.csv: 2564be7048e0e9be88182a1962b462b4
   test_features.csv: db0b2a096bb30bb51978a771ad446f22
-  train.csv: 29d266afbb8f4ba40db38d214268c946
+  train.csv: 0a120dbead038c001bd3f57c7f2aa435
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_2:
   sample_submission.csv: d2670a95435ded42582906fb7bdb0ba8
   test_features.csv: a91f931ccdbbf43adf25d80d76868678
-  train.csv: 5199e8c22fc05dfa6625499834818472
+  train.csv: f9f744484ef529dd8932378d1f7cbfe3
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_3:
   sample_submission.csv: a5cbd575ec412c8b6690f3353b505222
   test_features.csv: 932b3999ce734a1c54d626890baa8a06
-  train.csv: 18736b033f37a463e2a5c287e5a6f3cf
+  train.csv: 49ad93a27c20e4ceb11c2a4dd20f56a4
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_modulo_4:
   sample_submission.csv: ec754a033b9ad2bed8571ac9afbe1f6e
   test_features.csv: f368cef7de83732ceb9072c6c599573e
-  train.csv: 6f6f4bb9c89fc8d3eca07210beb93ebe
+  train.csv: 4a771b981e15bf5bde498a86aea5f0b4
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_0:
   sample_submission.csv: 77a3cf21c3dabe1d9561e94dc0065f26
   test_features.csv: eca9901072ccfdf17470bfda152387a8
-  train.csv: 256078753f403b4818d24b8c28f47dc6
+  train.csv: b391648e723d3e15d1a3073544b88b50
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_1:
   sample_submission.csv: 686c1f3a5087c39131aad8f773826263
   test_features.csv: 706829a43c8a062316d7e7f0f7e7cdbc
-  train.csv: 8413bbd7f3e01ce46d67d09b78aaa37e
+  train.csv: c30bcde4141e15ca479922921e8ba13f
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_2:
   sample_submission.csv: 45e4024e3856dedaa81471afc321f8d3
   test_features.csv: dc89aac7acc85016f4b8e0722a0b6550
-  train.csv: bb8768555c0c73308d4828b2355d5549
+  train.csv: 218ba07d7af03f0c2d612512d94a0d54
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_3:
   sample_submission.csv: e640ca07896f2e3852eeb0d4a2739cf2
   test_features.csv: 415f7bfe12091fa3a16b4aad4e13bcd7
-  train.csv: cb9398fde154bcd5c2b1e3abb3b2efd7
+  train.csv: ed577094097c681066d2447a045c0f66
 public-proteingym-dms/CASP3_HUMAN_Roychowdhury_2020-fold_random_4:
   sample_submission.csv: 4928c513cba19930e3fd774a6260a54d
   test_features.csv: af4ca7df029e8e57440f6124e7daeadf
-  train.csv: 5ce5d8cf42198315457aeb98a0bc2acd
+  train.csv: cadad716728e278a25780ebd0a6f40db
 zip: 53b3c9be428aac3724703a877c014f9c

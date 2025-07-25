@@ -31,61 +31,61 @@ private-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_random_4:
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_contiguous_0:
   sample_submission.csv: 3963f533342de66c7d0c5dbea5d1ddd1
   test_features.csv: fb5ec86f3a51c705d734571ad5661381
-  train.csv: 2fefbe3282aedea819a95ad2a6d8d852
+  train.csv: ddab59b39fe5966d77a1ccec9647b444
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_contiguous_1:
   sample_submission.csv: 0bd025e6c4ddbb80198ade39d095cc05
   test_features.csv: 090f6da792a79e6c6ada339b6f4daaaf
-  train.csv: d0b9d5ccfb146291584e79c2a94d05e3
+  train.csv: cb447af5a9fc3afd64dacbcff3a5b6b5
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_contiguous_2:
   sample_submission.csv: 0a76406c13b3aa458c9f637bdcf21987
   test_features.csv: 32d0d0db976e7f4ba12ec82397f83687
-  train.csv: 98ebf0491df1d725d843d1c80c237baa
+  train.csv: 65a144836d3ab01315b4c5cb1bbb9baa
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_contiguous_3:
   sample_submission.csv: 6e0be50dfb69124eff9d17f2ec4dd702
   test_features.csv: 70c11f464bfc4ffda545a60bb0dd5bac
-  train.csv: 6ea5ab64c5ca60845d79e9c6d6a04e1a
+  train.csv: 8c7cc6b880451aa8e2d7c52e57d7bf12
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_contiguous_4:
   sample_submission.csv: 02c7ca7083effcd1cb79dcecfd779d43
   test_features.csv: b1753277bfaa9bb2234d2f72a74909a7
-  train.csv: 8ae06851d89251b5f6c9997c5a1f95c7
+  train.csv: ac71eaefec0dee450e6e75f42c089264
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_modulo_0:
   sample_submission.csv: 88859f789cb12b471c3e1bc98931a849
   test_features.csv: 44170a210014b30f2f5e09d2dc01daed
-  train.csv: 8fed88f70148e30f37f950bd5ce43854
+  train.csv: 656ec1b9b7540457758397bbaaa39001
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_modulo_1:
   sample_submission.csv: e9e16324057e9f06e1df6094dc6ac575
   test_features.csv: 0aae7d654e423f3437c861d51eaa97b5
-  train.csv: d1d7042427f397d5da9cc0a9a1cc36dd
+  train.csv: aaf53d2f9786995ab281fcc843ca4d36
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_modulo_2:
   sample_submission.csv: 77a3cf21c3dabe1d9561e94dc0065f26
   test_features.csv: bdd71a227d76a9c0cf998aa082e4f786
-  train.csv: 9a003afc8c2efac512dc39d856b86cf6
+  train.csv: b153620bb5cb93fe64ed5d774d11bc2e
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_modulo_3:
   sample_submission.csv: 099aa3c778282bd88f5823861c405854
   test_features.csv: 7caf144293885360dfac694bc1a002dd
-  train.csv: 89a30fa4f51df3daebf7088db87ce869
+  train.csv: 8b8f9f64b38f46f81eb445320334d7d1
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_modulo_4:
   sample_submission.csv: 8aa472f3e25fb0a26044c7c64ff5a142
   test_features.csv: 7312982c804a1ffe4b6c462039421c25
-  train.csv: 1d9e023ccac9ec98245d00e41d680bd4
+  train.csv: 1844749ca5663133e59b26b188b8e993
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_random_0:
   sample_submission.csv: 5835d90791e5748d6c6d461443592ba1
   test_features.csv: c77b3f172d298cbf29c2baab662a5906
-  train.csv: 64b07135934851b36a6ce961a8547cfe
+  train.csv: a7f233a07a8f6987e5f91a31f196f95e
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_random_1:
   sample_submission.csv: 88859f789cb12b471c3e1bc98931a849
   test_features.csv: fe937fba34b07e787b4d5f4743a90563
-  train.csv: 9c8685e78ae2332f48cc116cb48020b8
+  train.csv: b7facda174def8afb08edd0d97280a1c
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_random_2:
   sample_submission.csv: 0a76406c13b3aa458c9f637bdcf21987
   test_features.csv: 7536ea39ea1383cbbff32f37fc451d39
-  train.csv: aa9d3391e9b84a4528781016405a1110
+  train.csv: 0805b9d672e0754f17767833266e0f55
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_random_3:
   sample_submission.csv: a205d95aba2016cc853d751a86739ffc
   test_features.csv: aa34b5e3a9b78df495e0a4515012ad65
-  train.csv: 4615c30a8098ef6d1a554e971041ba32
+  train.csv: 7ad5be71b20fc4f1dce3051f2fc946b6
 public-proteingym-dms/CCDB_ECOLI_Tripathi_2016-fold_random_4:
   sample_submission.csv: b856fcd5909bc15900dbd85a86c1d6be
   test_features.csv: 449f5f07754b0b210955dd81c086217a
-  train.csv: 878dd7a79c8c70f72d17de18f61e5b7a
+  train.csv: d9bc40798b1d1aa1eca9b42ce545d096
 zip: 53b3c9be428aac3724703a877c014f9c

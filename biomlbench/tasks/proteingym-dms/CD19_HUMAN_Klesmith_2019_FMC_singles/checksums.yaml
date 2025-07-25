@@ -31,61 +31,61 @@ private-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_random_4:
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_contiguous_0:
   sample_submission.csv: d39b0f1b3fb0c7b5f12dc8a2b9eff910
   test_features.csv: 5b7992228bc7c4c2dbc274ae8a7cfc5c
-  train.csv: 7a4cebf4454112401583317d7d4487ed
+  train.csv: 1457cdc10bcbd2404683989f3bcedf9e
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_contiguous_1:
   sample_submission.csv: 39820ad35ebf82b5f23aed37487bdd02
   test_features.csv: d44873dbd48b8c54694b4402a42b0e52
-  train.csv: bcbfc0281f9b044342c6ba870cc8bb88
+  train.csv: cf23e0dcf3141680e84edf6d555b9f56
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_contiguous_2:
   sample_submission.csv: 6d6c4df897eccce7699613b5c5870c77
   test_features.csv: e9e6825eb6390eb79e72ef77087de40c
-  train.csv: 2f6bfe4e2fd509c5819d8670f797e26a
+  train.csv: bdc5e65d14ef99f8855f6800f64d0ca9
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_contiguous_3:
   sample_submission.csv: 7ead620e73270acf4bf9228d8d13804a
   test_features.csv: f5d4368b910da5126cc4b28bbe965a4d
-  train.csv: afc26f463886881b0faade8daa6df593
+  train.csv: e8b8d1cc5291056e1106525c1bc122d4
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_contiguous_4:
   sample_submission.csv: 9978191516587859708e3a7a999a5b55
   test_features.csv: 9b87954f336606950c9ec958064107fa
-  train.csv: 318ca3e01daf512afdfcfd75946e9c97
+  train.csv: 7580e931f0b37ab39f86471af70b9298
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_modulo_0:
   sample_submission.csv: b6ee5037d038896c16afcc1f09f45114
   test_features.csv: 9fb301030cc7c2035cb7a03d66892c96
-  train.csv: fcad25ca1fdfaf9c1a840aa099782670
+  train.csv: c87c80095dfaef8f632842787a5f9a66
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_modulo_1:
   sample_submission.csv: e37adef9bd25f1e5b5d4d7e927789152
   test_features.csv: b17a13d30b7064a9be69827b846ca5be
-  train.csv: 89b26c4546225370afdecc613361bd50
+  train.csv: a55223759eb7e3d9e4b07a51cb8c3045
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_modulo_2:
   sample_submission.csv: 132799db17649c0f9f839198c5504045
   test_features.csv: 7d06f435f468904e75054d29e9a483b1
-  train.csv: 4d68f2dbfeae324c03f550b5c6f713f7
+  train.csv: 1f7b5f8f8483d4f392a8b15651b8fdc8
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_modulo_3:
   sample_submission.csv: e87f99fd0fc9203d508dc8036e1be4cb
   test_features.csv: f58b7f35537643a29f67ed18d70b6e3f
-  train.csv: cd093a4f8d224b205676ad547b034c73
+  train.csv: f27bbc2c5b67f7d28d376b41ab464e87
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_modulo_4:
   sample_submission.csv: 7a95d1e7f5601c763b2697582665f193
   test_features.csv: 473fadabc7760ad905b9ffce04d231df
-  train.csv: ee495685c311b66b001b1b62937598b0
+  train.csv: 81ad0cd188242385df9a77139db47c0c
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_random_0:
   sample_submission.csv: 7f5bff62000a22a34b54ee940398a71c
   test_features.csv: a58efbf719b894adc79a50cbba5f2ec7
-  train.csv: 02a2936d3ad6d1ea21f8cfb07e5c7f26
+  train.csv: 085dfaf3b11127e8bb36ed3e737cbe8c
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_random_1:
   sample_submission.csv: ecc347bfad76a7b58fd2477d2f78b1a2
   test_features.csv: f5779d2d3aec3e6707c6141c1ecaaea1
-  train.csv: a5bdf10d0e750b0f2de798b63df5eea6
+  train.csv: 41e3b875428811a5e1db618577bf2d27
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_random_2:
   sample_submission.csv: a0ed28d4c8030bafa3602a4edda92e62
   test_features.csv: d1b45c1d7b714c0e9486c1aa70857621
-  train.csv: 03abc4104e6d18447c0b19d7174305ce
+  train.csv: 62d5230c7f63ffbd78a46ea61649f1d9
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_random_3:
   sample_submission.csv: 163068a9c1672ab75252f5adaece7226
   test_features.csv: 705b810131876ce00c51ffb8f0ce748d
-  train.csv: e6d6ac6b3a87f244c3ff56865c93361c
+  train.csv: 4650dab9c81615158e581d7252b5f32b
 public-proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles-fold_random_4:
   sample_submission.csv: 8c483030e59ace9c51dc05581499f959
   test_features.csv: af486d107356f31537d01b1d80977bd8
-  train.csv: 1e0bb4db417a5f4508d94639ce669b44
+  train.csv: 5f4fbb492ea8e7fd38941081f6c26a9c
 zip: 53b3c9be428aac3724703a877c014f9c

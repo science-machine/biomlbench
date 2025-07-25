@@ -31,61 +31,61 @@ private-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_random_4:
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_contiguous_0:
   sample_submission.csv: 28fafbfc69428d1a6ed02d1e0f5ffe0b
   test_features.csv: b20d08a6393833a9288b5054e89cde1d
-  train.csv: 8704b42e7f742f3d4403a3a5f8ee45db
+  train.csv: 837c367d452b67d0f13f2784ece6ce02
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_contiguous_1:
   sample_submission.csv: 70dc05bcf5489e38527b9c4e8a23ca47
   test_features.csv: 9c53c06ef6a600a9ecd13df590d917e0
-  train.csv: 044c2b95c5437784822a0e272252b3ce
+  train.csv: 9ca52b6d265fc9fc7af400b13227b698
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_contiguous_2:
   sample_submission.csv: 1175364ec5664ffff2bf567a357c1d2e
   test_features.csv: d15ec34b861d38ed095ac1f8b4bd2598
-  train.csv: f3a5057dceffd0daf76dd29fa8669aec
+  train.csv: 008b70fcf4ae71526bf3e56a71c060cd
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_contiguous_3:
   sample_submission.csv: fed2adedd4fd3ac2eb40b8d78dd321a8
   test_features.csv: fb7808a509b48c38865628f6392813bf
-  train.csv: 2c46374f2c148faaa5ba30d4e4bd48b1
+  train.csv: e54824ee7ff80c079b35d46cd6e94f61
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_contiguous_4:
   sample_submission.csv: 33a8d2a0073fae1989ba3872ef222a81
   test_features.csv: 5f30736992763701cb6a059b4df7aba6
-  train.csv: 3f2e6c5b4aa9962454f0d86363d15fb8
+  train.csv: 5a2ad05c3fcc15038aa2786f1a7787ec
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_modulo_0:
   sample_submission.csv: 204dc8634e45d7382d5d5e04662708bd
   test_features.csv: 6c13d9bcd004261d52f0830c736ee465
-  train.csv: e64366b5539159af1fbe0c9caf7dfa6d
+  train.csv: 9042ba2350d5f98537d273f4cc244640
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_modulo_1:
   sample_submission.csv: 70dc05bcf5489e38527b9c4e8a23ca47
   test_features.csv: f4241de1cd24e570f4581071234fbc37
-  train.csv: cee55d5441cc08eb7e15d03a11c49e51
+  train.csv: 300abc05e83579545d758e2d2afd1595
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_modulo_2:
   sample_submission.csv: ab2eb2418aa909a046a42612de7570b8
   test_features.csv: 8c04c005a026cc70a3395ab4cb0e0fe6
-  train.csv: f0007842f19bf220afb18c149512c133
+  train.csv: 1a0662e6feee53ed548c10c9e81603f1
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_modulo_3:
   sample_submission.csv: c25f07d6fc8a122f46f7f70caf9b3c9b
   test_features.csv: a10d5280c45078c3c7b89a48bc2d8fcd
-  train.csv: 4ee6aebdba7127d879345afe9e48fe0d
+  train.csv: 0dd04ac5bf4e48266a2ff9ec87f0395d
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_modulo_4:
   sample_submission.csv: fed2adedd4fd3ac2eb40b8d78dd321a8
   test_features.csv: 6eb7f53a55e6f7988b69f87065269644
-  train.csv: 246742f3c7c0149464c31e340ae26ca9
+  train.csv: cfd09bb44804ef9b41291f7c0b8314a9
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_random_0:
   sample_submission.csv: 70dc05bcf5489e38527b9c4e8a23ca47
   test_features.csv: 99162d15048873a046440d92202ccecc
-  train.csv: fc2d7c120067f9cb452f401d8b013d6d
+  train.csv: c516df1846b312d57cb3ad76443521b6
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_random_1:
   sample_submission.csv: 3674a09ee506e82435c5af5567fd006d
   test_features.csv: 005ca2cd7d0b52356cf6cbf2265cf8e8
-  train.csv: 083edfa3fade5677111d6f7c9925b3d3
+  train.csv: c9953405d9b2aea7757e99ae12aee4f7
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_random_2:
   sample_submission.csv: 138ccbab9c3f82cada7c80b4c8e4f078
   test_features.csv: b43d6603d65128b32fc2acd43c166694
-  train.csv: 0e4d573dd8016f70dfd991c45440aa2a
+  train.csv: 6f773fbec4618514092f37977c02e327
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_random_3:
   sample_submission.csv: c29639c46eabf27e08011a98c234885c
   test_features.csv: 4346a46cd52563799b343a393f5a5cc8
-  train.csv: 59930ff6e36626d8ffffb64401e4b04d
+  train.csv: c65c53b65c0cd3bd460288e369a097a4
 public-proteingym-dms/SYUA_HUMAN_Newberry_2020-fold_random_4:
   sample_submission.csv: 28fafbfc69428d1a6ed02d1e0f5ffe0b
   test_features.csv: 08107d8fac3681f3669f499585299a73
-  train.csv: 5e2f0fe360ce559e37a31e9a31839644
+  train.csv: 40e101d54e3fc6f3e004fc9352548046
 zip: 53b3c9be428aac3724703a877c014f9c

@@ -31,61 +31,61 @@ private-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_random_4:
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_contiguous_0:
   sample_submission.csv: 27178e3895fcae2fb1aee813b173255a
   test_features.csv: 5ef5fb1a73ac301cea61093c57e046f1
-  train.csv: fa14bc89b55505b8d9ce39a361960e02
+  train.csv: 4769752f0a88d2b5404e437cf9472943
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_contiguous_1:
   sample_submission.csv: 11c4149c1600f93eb5d5b339f62561f9
   test_features.csv: f28a71c52040ded77dac3cf65d18807d
-  train.csv: 46e599bce17b4bedaff01bd805d0b88e
+  train.csv: dee24f0e8d40607a3cbb8fb378f733c8
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_contiguous_2:
   sample_submission.csv: 0a317fd92c7e8defece3e91f50568881
   test_features.csv: f3a7b34ccb95ed2c981f73f79cf2d2da
-  train.csv: 46cd7f08f1ca564a7ba8043d96280ece
+  train.csv: 553e64d2875e1b533e1dfba889529832
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_contiguous_3:
   sample_submission.csv: 417b63d72c85f23b72a3c81e73c6e7f1
   test_features.csv: a143d2c6d15bb4ae1d20e9adc8965eff
-  train.csv: 69f72af9cf1b2b6aeb664ac2bd706ba8
+  train.csv: 2de7d0acf4537757268aa1ced9ba7c26
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_contiguous_4:
   sample_submission.csv: 4c894cab0afd246b20e0959ce35cf037
   test_features.csv: e318ad86004c9e9defdb68a6b2fb2975
-  train.csv: aab7c1e2104b65a300fb498fb47eed7c
+  train.csv: 6def8b6a5d1584e9b0b67df55af33209
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_modulo_0:
   sample_submission.csv: 5b4ba7c1db9e6be8bc625af96bfe64ea
   test_features.csv: aedbc6272d93854274cf2a3f2749d3f9
-  train.csv: 948d86473f80b09d3dccbabb34075d86
+  train.csv: ca41f12ed89c8facbe62e389209638ab
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_modulo_1:
   sample_submission.csv: 93785de2aad990034cbc0ade91af6a77
   test_features.csv: 3a728c10c21c1f201e7384f706485dbf
-  train.csv: 0be677c4ca5e1061c1f6e0d399bf67a9
+  train.csv: 377939b55702bf0c4344cb56d9d25a6c
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_modulo_2:
   sample_submission.csv: c5ec21b12b7a6fe00c167d2bdb2e1865
   test_features.csv: 1799140d0212ff2057298249cc47d07c
-  train.csv: 1712fddddc854884ba2c945af0d78bbb
+  train.csv: d637422f34f320e6aa3171543f6bf74f
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_modulo_3:
   sample_submission.csv: b938645798e689e84f44255f819b1964
   test_features.csv: f7a5f40e7c1b886cf889c293a2d5eee6
-  train.csv: f642fd463d51716562e6ac4135cce188
+  train.csv: c09978f2bce465a8e4a1dcf054f18171
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_modulo_4:
   sample_submission.csv: c1737e962d7069af9f280612a2d9e46b
   test_features.csv: db517134978a69518102b82d5072b8b8
-  train.csv: b23098a1d2903e43c2cc251fb29a2715
+  train.csv: 5a5e5945ab07d902f4978d9efd39b0d1
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_random_0:
   sample_submission.csv: 0775bc3484c211d86e655534839b4f48
   test_features.csv: cd4c14de7b762f368669118d9a403593
-  train.csv: 8cfae715a13555da8a399631c8800ee5
+  train.csv: 693bec7f6ad063a7a5da071609aedb7d
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_random_1:
   sample_submission.csv: fe17540e280cd7c6c27dd81d244a445d
   test_features.csv: a6e92ba72e70b7a68d026a11f6a05476
-  train.csv: faaa70eee5bb0a99e274770f4bc2fad9
+  train.csv: 013640e73f5fcf1f7005381a2df4d082
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_random_2:
   sample_submission.csv: 5332ac879238e086c2f25708c710c3d3
   test_features.csv: df49e946946ec8d10491f2037cef51da
-  train.csv: 6d45681dc77319c72706f512abea14b8
+  train.csv: f1861ab57b813e7f050de1751f8c28f9
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_random_3:
   sample_submission.csv: 5bd6ce2ad246e38ac0dddf2b23061759
   test_features.csv: f60423b50e7d004baf91057bb06a4fe3
-  train.csv: b789607024e297d3336599889bfabaa3
+  train.csv: 7deb7780bafcd45f4f71989be8d539d8
 public-proteingym-dms/OXDA_RHOTO_Vanella_2023_activity-fold_random_4:
   sample_submission.csv: 40710f07f9c516a7f600333587025018
   test_features.csv: 60fb60abf536e7a73d25406a4a7652b8
-  train.csv: 29987c31973bbadcedd762b10109b245
+  train.csv: acfc024fd3642bfef598665874871293
 zip: 53b3c9be428aac3724703a877c014f9c

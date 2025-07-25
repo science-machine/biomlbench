@@ -31,61 +31,61 @@ private-proteingym-dms/MET_HUMAN_Estevam_2023-fold_random_4:
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_contiguous_0:
   sample_submission.csv: 7ab4a139611da48baf823f798ee7ca82
   test_features.csv: f4473c5d083662c2848bd8ef5864c8c5
-  train.csv: f329dc2103ec7e1eb7548fc775da0ef3
+  train.csv: 79eb0b3a89d96788ea4106f59952e914
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_contiguous_1:
   sample_submission.csv: 7ab4a139611da48baf823f798ee7ca82
   test_features.csv: 522c180524371327c14b68bb543531d7
-  train.csv: 0c98a66e97a6c7ecd901404962081091
+  train.csv: a2666187435cc96fca992f22360380c5
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_contiguous_2:
   sample_submission.csv: 1b7155f55687fae9cf32bc25f7671133
   test_features.csv: 2e609f4d31544ce690215d9b4615cc06
-  train.csv: 367fd776d59c2ddb3823dae9d96738d9
+  train.csv: 7ef04a96f09b1a0557bc2cc72989e336
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_contiguous_3:
   sample_submission.csv: 08f1ec2e1462ab80c8b5a9d4831dcf8a
   test_features.csv: 397dadd69cd411b16efae7db00eb5f96
-  train.csv: 01e4495a06aa3d3cb6a655953a754bff
+  train.csv: ecf0286b76ff1cd5a26cc3a3884c4524
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_contiguous_4:
   sample_submission.csv: 5a8172d2bc61945703d6806714cb153e
   test_features.csv: 1da9d73b15c3ef8e781fe3445a61337a
-  train.csv: 0cf19887f5efd2cc43044b5f206b9b9d
+  train.csv: 9a0b102de294350dd16fcc89e041862c
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_modulo_0:
   sample_submission.csv: 1de7a961d16c3938cd8b724781bc7344
   test_features.csv: e6ae50d7c1ad8b23feead8a58b4b175a
-  train.csv: 9f66633d3d3eb41ffcd9cfa68e3a7b25
+  train.csv: 857e250a52e09d753a69531442218830
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_modulo_1:
   sample_submission.csv: 8b84c453b63cbef02eb6ceeb97a4abdf
   test_features.csv: c04e3613a9e48ea493a8681c0ef3946c
-  train.csv: 562aaa5832cde4abf49542d00f8bfab2
+  train.csv: aaea9283d3cea55afd511214990913bb
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_modulo_2:
   sample_submission.csv: e215249516929d9771879b88683073dc
   test_features.csv: d2f1e212c8c24517f62459931dd7a173
-  train.csv: 1fe09f3cf74cc76acc8d5b3653cc6faf
+  train.csv: a90e270106525f724777112dd058c48b
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_modulo_3:
   sample_submission.csv: 009072fa4deeae8b0da8df63cc387cd0
   test_features.csv: b1b72716ebbb5d371beaebdeb3167185
-  train.csv: f44700a7efff7516d987f58a8cf780c4
+  train.csv: b28ecf1e0830c54689efd6528d8c5e09
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_modulo_4:
   sample_submission.csv: 36dc77d71a949a07596ee31914fed757
   test_features.csv: f6657bbacbcb8da708813b34148394e5
-  train.csv: 79aafe412bf6aea546c0d3ee94dbcfe4
+  train.csv: 0f98c1ec81c839cb0c2fc414a8082d3f
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_random_0:
   sample_submission.csv: d4090050fe6fc38c72b564ace7f1ca32
   test_features.csv: 0cfc9a8808930c73394de22357dc5f2a
-  train.csv: 507dda8104dcd1e210449897a349b787
+  train.csv: 461b932c22843df240439eda84f564e4
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_random_1:
   sample_submission.csv: 6f652a5d0a6434ad0ce1b0ee0155bade
   test_features.csv: ea024dc239e808a1c7a7efe1002d646b
-  train.csv: c1978dc63f1283f07202a86003f7da23
+  train.csv: f79294d6a05e1744f075d7250f6541e0
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_random_2:
   sample_submission.csv: ce7aee5f9a3dfdce9743b43c5924ab22
   test_features.csv: e82041721ddffde9dc49bdb27a5c2e58
-  train.csv: dea8d44831b29976267619515d8ae6fc
+  train.csv: 92440a90fbd0658f0811fc2780f34f55
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_random_3:
   sample_submission.csv: 80f2e11b5c154cb307e5bf95498e0385
   test_features.csv: f2298db2f768563257074289f62d226e
-  train.csv: 64a49c343de54d726523ed64c9112cf8
+  train.csv: 9a4d709365a4f0dae62081cf3a8e494a
 public-proteingym-dms/MET_HUMAN_Estevam_2023-fold_random_4:
   sample_submission.csv: b0a5b774c481931dc25ff3b09d039ccb
   test_features.csv: 9791c40f35f4f7164dad02f1184dd871
-  train.csv: 63aecec087fb2773cb90a5541c6bace5
+  train.csv: edbbd7a9e445161cf11188db42597723
 zip: 53b3c9be428aac3724703a877c014f9c

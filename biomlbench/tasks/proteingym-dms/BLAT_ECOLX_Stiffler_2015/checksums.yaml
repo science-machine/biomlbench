@@ -31,61 +31,61 @@ private-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_4:
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_0:
   sample_submission.csv: 9ff741ef36883c2911f6639c33cff800
   test_features.csv: 0fdbe7e7129e106e83f352c4f5ca140e
-  train.csv: fdc8d19c11a25d6d906affeb82cb3a16
+  train.csv: 4111a7c02da9b1359159ab5944ca93b1
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_1:
   sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
   test_features.csv: d630c4cfa9cef66eb87608ac616e8a25
-  train.csv: b86c6b171662a9357e4267255f0a640b
+  train.csv: 9b2263e3179c68d6e75a90e3eb1450dc
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_2:
   sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
   test_features.csv: 454f64affff5dbe477ec3a459b438682
-  train.csv: 3295f6211958e15aa58928ae0c1717c8
+  train.csv: 62cd5d0e99b0acc90a46ff54f3672a80
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_3:
   sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
   test_features.csv: 0ca82bc43f761ac5790f1dd96f2fa76e
-  train.csv: 55df3cf32ce488728ed4dc47aee9d0c0
+  train.csv: 4117a614fdb2c82f8c48c40df1b91285
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_contiguous_4:
   sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
   test_features.csv: f76653f9d521bbe7286ddd0263974dad
-  train.csv: 5ae545ee7a31f75a4dfe764ee945e480
+  train.csv: b2882660b761c0fe732a7dc34fda44ff
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_0:
   sample_submission.csv: 9ff741ef36883c2911f6639c33cff800
   test_features.csv: 0bf33b68eace4c011990310717029d1d
-  train.csv: 893770e0fb848e8d6eefb2f85c0dd5d8
+  train.csv: 760088e7803c98664bfe4934b128c8d4
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_1:
   sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
   test_features.csv: ef0014f3a424ab7e0c46b8e0b33aa454
-  train.csv: 75d054a8aca028dc6def2446e56b21cf
+  train.csv: 5a4a35f8c7274068aeaf9bd280258456
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_2:
   sample_submission.csv: 1708392d227a52ddd8b0e4038458f76d
   test_features.csv: 46d3d634fc0558f50d4f8dfe97a4d4c0
-  train.csv: 49ade8c16cfaced1d48f6ccee63db5f4
+  train.csv: 0eb06e008d97bf1266db2f32bd5cf972
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_3:
   sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
   test_features.csv: bcf9de05c2e196903713131391e3cf2e
-  train.csv: 3fbecf9de2387b3bd0ac1b29b476f836
+  train.csv: eb92fb66f8b88b40c53b7afdb33b289c
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_modulo_4:
   sample_submission.csv: 79921d96417fd2e8cce55927ccb1f366
   test_features.csv: 192b8f4c25b9fa314e283dc1652f7a55
-  train.csv: bb45f6a4ffccae5a6c1c2422801fb345
+  train.csv: 023315b802f774d51ec9d4c2279dee62
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_0:
   sample_submission.csv: b81dbd87cfebb350f8220069c2f721f4
   test_features.csv: d802d64bbba0e0fca8fc8fcf47d8f808
-  train.csv: 9ba7451962f70bc2ff87bee5e718c757
+  train.csv: dc18ec9c1dc76c7e5e3aa34f8c1a7cf9
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_1:
   sample_submission.csv: f7cce3c4d1bf6e0f21a1619739f83311
   test_features.csv: b640675598a978882d9b4f0230afc30f
-  train.csv: 3aec788f07e7652f230fad29eb525d97
+  train.csv: 14251ed5c49687595b233ecb6e7db81a
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_2:
   sample_submission.csv: b81dbd87cfebb350f8220069c2f721f4
   test_features.csv: a3c49725532175eee8b02791b4283b9f
-  train.csv: cc34a1c49aa6dabfbfdce3051ddc12f7
+  train.csv: 057230e8eaf6e34482107f78a81de7e1
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_3:
   sample_submission.csv: 49fa8912487b1ca6598d56fa297b4e23
   test_features.csv: 6f591c79e9b0ae156009c1de56c2a360
-  train.csv: fead14aae50879ee51a53c54e6bcdb8c
+  train.csv: a2d84070a600ff8cc5f246226666039d
 public-proteingym-dms/BLAT_ECOLX_Stiffler_2015-fold_random_4:
   sample_submission.csv: b918a5ceb79f8191990db5b384c5de3d
   test_features.csv: 91069bf0a654c085e8dc29acaebad366
-  train.csv: 3b21c3abb38b36675aaa8f887e467202
+  train.csv: 5faaab76aafec30e2610f5650399119f
 zip: 53b3c9be428aac3724703a877c014f9c

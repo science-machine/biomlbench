@@ -31,61 +31,61 @@ private-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_4:
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_0:
   sample_submission.csv: 84c3901e9edce9f5c81384faa11bc4fd
   test_features.csv: 1584542510a05b38804591430a72ac76
-  train.csv: a0858a97a82746d818126b4d3cefc3c4
+  train.csv: dfc9b230ad5183a1899c5c5fdca32e80
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_1:
   sample_submission.csv: caa4e7bcc2f71e9e9866f506785c3e2d
   test_features.csv: 7c768740fb1fa586144c8c63f18956e7
-  train.csv: 539ba25e3b474b3e457ffedc96df0429
+  train.csv: f56b3fbb15d07e0dd4271f63e8a81db3
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_2:
   sample_submission.csv: 850804a6d2276320c0ba1c7aa0f1096e
   test_features.csv: b6bdf2a4573fbd4402a516f27c07a617
-  train.csv: 7aba0f736584e7d8f70fa6b570cd1678
+  train.csv: 28afc93ea7a0dc875797bc556ee3de63
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_3:
   sample_submission.csv: e3dfb84ff045dae9ba670cfc3f5b950c
   test_features.csv: f90f1da456e74e3c06a3f3ec0d22386d
-  train.csv: 682e1c4b9a24848f93d8a51dcc4003b4
+  train.csv: e89f924839199104e233d5f3a6648262
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_contiguous_4:
   sample_submission.csv: 4e3a0d4e271467484a73aa274232dfc7
   test_features.csv: 90a5761a2f2ceb9b7a5ff92edd5d7873
-  train.csv: b1986d2c74be78a32a1bba3de635b53c
+  train.csv: e559805975e7dc98d9f8cdf31a1f2025
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_0:
   sample_submission.csv: a604017365b460e6f2b85d325f799602
   test_features.csv: 8d4b9abc34a8425c71a33dae99cd9cc4
-  train.csv: 9b7619911355950d444d3c7ea88173e8
+  train.csv: 91ceeab9b9129b7f697cb35c9c75ee13
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_1:
   sample_submission.csv: 8d0de74952e5993c68c6ad69b042ebe4
   test_features.csv: 1d7929a63447f971079e78f9e329421b
-  train.csv: 9281c5fe5f7e7575d8fc93078f0ea6f2
+  train.csv: 905037c7e663004bb994ce2839a7020c
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_2:
   sample_submission.csv: 7031f4974617f5c189406356ce98f7e6
   test_features.csv: 43da5c2c0cc3415fbc07f0a1d59812e2
-  train.csv: 8a89c4ac5205aac30577d8f0c259d7d7
+  train.csv: 285418226c2ea49f7ab2133cf82e9b31
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_3:
   sample_submission.csv: ff0189056e99b8ce18cb53f8e43e2ecb
   test_features.csv: a65c18760e822bdd4a513fd0e6ba9e16
-  train.csv: d23e543a6a8bd0e2ba938f5d75f3f177
+  train.csv: 7d0680c071a73cde074bbf1c823ec2c9
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_modulo_4:
   sample_submission.csv: 33d33fe6baf0c296d8347f471e9a6b81
   test_features.csv: b9920a387031d16697e4b72477164cac
-  train.csv: 64576891f759cc303073832255f36371
+  train.csv: 2ea86e4fc5cb11e2b991503dcac65056
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_0:
   sample_submission.csv: 4792e2b5c578568aafb1a30b0f007796
   test_features.csv: 0bdb2e9bf302fc477f46d34aec117643
-  train.csv: a9b050a370fefee331bd25a32c0c026d
+  train.csv: aa2919d31b45d498f319eafdd5ecbac4
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_1:
   sample_submission.csv: 84c3901e9edce9f5c81384faa11bc4fd
   test_features.csv: 2a777ef536966ceac0521be5b6777b50
-  train.csv: f4002816d60de497915117771054b103
+  train.csv: 5e5b3cd95c0d9dac6056f9560a5db421
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_2:
   sample_submission.csv: 6a9bdd52fd2a40ebb918c0900c8285b9
   test_features.csv: d2216e94a8dd38f5fce0f7e1a876df3b
-  train.csv: c9fb382e5a44670080dbf2059a57cc23
+  train.csv: 77ac6acf4ab2fbffefd74487d7dfeafb
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_3:
   sample_submission.csv: 6b4aba7767b201b03a9f98a5336b2d1b
   test_features.csv: 0c76fbaadf78040f841524547db0e3a7
-  train.csv: 56cfeb713fdc115e2a46602f2dae4c71
+  train.csv: ad48120f216ff35c0c30a587600dbedc
 public-proteingym-dms/NUD15_HUMAN_Suiter_2020-fold_random_4:
   sample_submission.csv: 547671bc5d9f439efb55bb5971d0a63a
   test_features.csv: 37afa67c3997f71ee38ffda4f6593738
-  train.csv: 088d2ff4f5218375867630f720091496
+  train.csv: 9b7b0bb3b498442e7c098987f269cb8f
 zip: 53b3c9be428aac3724703a877c014f9c

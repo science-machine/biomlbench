@@ -31,61 +31,61 @@ private-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_random_4:
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_contiguous_0:
   sample_submission.csv: 77ad0615cbf320eb34017721ad3f5bb3
   test_features.csv: 8e83836d3611c4da4f0b0aeda703ec1c
-  train.csv: 264f6b4e82a116762bc2e64a9838ca0a
+  train.csv: b7c5ef608e4f4a38e079d541bc879e54
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_contiguous_1:
   sample_submission.csv: 77ad0615cbf320eb34017721ad3f5bb3
   test_features.csv: 253cb2a90f61317387b046e9e235c198
-  train.csv: b31f774006128904d7ecdd2570755f33
+  train.csv: 995d189c814aeb57c42d1ddaae5b9d8b
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_contiguous_2:
   sample_submission.csv: 77ad0615cbf320eb34017721ad3f5bb3
   test_features.csv: 881e9a1d4d2b3a31cdefb57454bb378e
-  train.csv: 97acff3915f91287adb0d8bf8ad8a30e
+  train.csv: 71ecee618555e19d7a5ce90a904fb439
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_contiguous_3:
   sample_submission.csv: ddb466b5850ab0e9164cfa8b320a909e
   test_features.csv: 140699482f889d9c8e2912acc174e6f3
-  train.csv: 5b1f6462c2d93d0c57f19bbd6d355675
+  train.csv: 1b53a9efe468aa4357cb472790d0208e
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_contiguous_4:
   sample_submission.csv: ddb466b5850ab0e9164cfa8b320a909e
   test_features.csv: 01084dd904e7704e0b8ac9f7b53f6b52
-  train.csv: 8665eded82827d36d0bbdbb250269487
+  train.csv: 02db83edb77320177de482ddee2f26da
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_modulo_0:
   sample_submission.csv: 77ad0615cbf320eb34017721ad3f5bb3
   test_features.csv: a94130ff5ca7d18daf6045576f907268
-  train.csv: 148873f8bada6d7aeab0e55d3485199a
+  train.csv: 79757e0b4ef3cab117051a049bc9021d
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_modulo_1:
   sample_submission.csv: 77ad0615cbf320eb34017721ad3f5bb3
   test_features.csv: 462687d16870d5751cfb4ca75dff4358
-  train.csv: 1d2b89dd56889e15fbcc1be2ad0396c9
+  train.csv: 8dcf62ef6d3e1e740cbe089f9988dc50
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_modulo_2:
   sample_submission.csv: 77ad0615cbf320eb34017721ad3f5bb3
   test_features.csv: 90500a843d0fa5062a9a2dece137a38a
-  train.csv: 4aa997bdea62d6bd1ff3f21139383a99
+  train.csv: 4f7e910ceafac3257eeea9b1be0a1b94
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_modulo_3:
   sample_submission.csv: ddb466b5850ab0e9164cfa8b320a909e
   test_features.csv: d6f30e6358bcffb86fd3500ad8c6eb19
-  train.csv: 639a9cddc292c62d275fff2cdb276b63
+  train.csv: 81fa8055e3bb79620bcb09cc7fc34079
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_modulo_4:
   sample_submission.csv: ddb466b5850ab0e9164cfa8b320a909e
   test_features.csv: e63a41a4d1786ca056e86046c8e39d8b
-  train.csv: 27670acd1411a7ab12d215b5fb40ce52
+  train.csv: 6f1edd9949fddab6641b0db08304b059
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_random_0:
   sample_submission.csv: 8efca74a0b89a2c2b1e91408f59ca1b2
   test_features.csv: cca1a50588b9f6510a7d2baf37672361
-  train.csv: d6ef5d64915b8b4f6318b8340355518b
+  train.csv: a268f8e4df821b7d6be9fbdc228c6867
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_random_1:
   sample_submission.csv: cbf3f642612b80a4f265e7958185e510
   test_features.csv: 88fc364cf00de291b1c8ab912a85f2ad
-  train.csv: 99c505eded0468e8d75dbb7e7a7ce277
+  train.csv: 92cc4d8621edb2445a997fba80e8aefe
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_random_2:
   sample_submission.csv: 49b3507cd5ac6c2a7e9b4f95b716b725
   test_features.csv: 419121c158f4934104de42ed2fc802f2
-  train.csv: 5e570080ad59cd6d9cab776db76a9710
+  train.csv: beac97c926895fc906e8d3c7c016e651
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_random_3:
   sample_submission.csv: a873322bc0963828ef9535211b9ae489
   test_features.csv: 3d8cfc5255c5e25f24b6819b6d0d6717
-  train.csv: 84b7188526af6e3c253dde9b80b050e4
+  train.csv: 35fa749dad951cb7547f729076f8d35a
 public-proteingym-dms/CCR5_HUMAN_Gill_2023-fold_random_4:
   sample_submission.csv: 06461864e1e980fc2517045e546231be
   test_features.csv: 2b64acca47f41c912d2c9274b68e8c01
-  train.csv: 59c54fb89a4cf043f2094f0ff294d493
+  train.csv: 09b4716d815c90efa75e8e57b1282243
 zip: 53b3c9be428aac3724703a877c014f9c

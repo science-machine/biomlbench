@@ -31,61 +31,61 @@ private-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_random_4:
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_contiguous_0:
   sample_submission.csv: 70d705e65df98e8edebc8d9ca95a61d9
   test_features.csv: 7ad04dcc2d6d8b6efb2135d8322da40a
-  train.csv: 925eb4cda23d4494136671fddf3febd3
+  train.csv: e85868f51c956dc602072b8905ab042f
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_contiguous_1:
   sample_submission.csv: 2a72b7cec607ede4e53780d152fb5478
   test_features.csv: 9a08e4f3c3ef5fa221cc4745b41914b7
-  train.csv: 984a947a94e4114cc1899726e1d23c43
+  train.csv: e0fe6b0cabd59e88b50d26c742ac58c3
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_contiguous_2:
   sample_submission.csv: d069a89749a4180e8fc6efc720f35ee0
   test_features.csv: 4b565433cc85f51845e2ecc48e35612b
-  train.csv: ec69fc5a6ca2b94a930ea54d27e15b85
+  train.csv: 6d7250a2b049b9e5e89c15cd1b1d1bd0
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_contiguous_3:
   sample_submission.csv: c2e9ea7bef8c6a92954de68a41fe2ad3
   test_features.csv: 62b109b7a4d819afdb6e8ddf32e88c25
-  train.csv: 452c0a08fb9d215bee1bf2c9204ff802
+  train.csv: 9f4e5aae02df85d634da6318cf3a5b61
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_contiguous_4:
   sample_submission.csv: 4637d62bafc217f29c751ab2b3025a8c
   test_features.csv: f0ccaecfe8bbaa3bd4492978905406dc
-  train.csv: babba9f285ab256fd0571f2d83e2dcac
+  train.csv: 2ed9801f107c88ff12be1882c8d459f6
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_modulo_0:
   sample_submission.csv: a84cf3cce4bfa09cbd571391356a1f3f
   test_features.csv: 93ae19bb644ce010b54117e2f2649812
-  train.csv: 49df3586107331dfde6842fdaa3efc8b
+  train.csv: 60e8dd90e43474f6e25459d29ee939c8
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_modulo_1:
   sample_submission.csv: 2a72b7cec607ede4e53780d152fb5478
   test_features.csv: 4781ccba9927dcd0884459e3cf4049d3
-  train.csv: fa962f21aaa1f00e98deae9fbfd04c3a
+  train.csv: 9df8afbc69479f8c4a0dc824d989763b
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_modulo_2:
   sample_submission.csv: 4c1abbaca95e2f6b7ae3f96f7d896ca7
   test_features.csv: f559bf6728d31e16ed1f1e0b569fbd54
-  train.csv: ad29ff6c72e9624fc2efe76a39f4f8d7
+  train.csv: 4cecd56f6c7c35fe1ff533104feb0fc1
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_modulo_3:
   sample_submission.csv: e0863506f4aac62c27232698a80d5952
   test_features.csv: 43452a9f416ec99b60f75a050ad9ccf6
-  train.csv: 830128a76a522975dea28a2e37ef3e3c
+  train.csv: 0380677bf3cce4da4533701968b2202a
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_modulo_4:
   sample_submission.csv: 9745d1c61ed58ecfd8765b6138185443
   test_features.csv: 4b80d67e35b719dd3526305d713b81c9
-  train.csv: a53aefc36704aed59200358591aff2f0
+  train.csv: 883abb7b7303d170446895a7fa8bf85d
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_random_0:
   sample_submission.csv: b68fc586e6a0497f69c6344a4a66241a
   test_features.csv: aabb0cbcd6c578685aa9dee0aec58da8
-  train.csv: 07a34d424e70aabc3493fd366b2e6c7f
+  train.csv: 7693446439aeb9aac51c83dd1f69fa69
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_random_1:
   sample_submission.csv: 093e37cb490be410a93b527fdcc428bf
   test_features.csv: 7ba3f0eb7da93f998d28667c3c0bf135
-  train.csv: 78695cf2485a9510e4ca17640657a1ec
+  train.csv: 6b7846f54f3a84168e3fd5d63e889be0
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_random_2:
   sample_submission.csv: 3787843f5c69b2c18db52721615e4e4b
   test_features.csv: 0d7c6c46586441e79bd175142118c8e8
-  train.csv: e3020a7f1c18e11b5cfcdbe5d8cac3e9
+  train.csv: 61a1e7b8462063ed1d6226dae6d7d9d7
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_random_3:
   sample_submission.csv: 70d705e65df98e8edebc8d9ca95a61d9
   test_features.csv: fccc54de3a992b42ef62d59375b85352
-  train.csv: a44eb6c5f1810a30d56dad4b3b58b563
+  train.csv: 2be6d7d45dab1fd837d022162b562be7
 public-proteingym-dms/CAS9_STRP1_Spencer_2017_positive-fold_random_4:
   sample_submission.csv: a01639107671b4463f24fcbc62f9bb6d
   test_features.csv: ba31a5a6b1e268b7013e4604fb5658ef
-  train.csv: f6ccc7fd94c097a4b86dd464abd08424
+  train.csv: 221213ebf328f0c5682e7a2dbd9ac686
 zip: 53b3c9be428aac3724703a877c014f9c

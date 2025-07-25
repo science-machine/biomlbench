@@ -31,61 +31,61 @@ private-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_4:
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_0:
   sample_submission.csv: 98bff0d704fdad0dc944aec7cdf83f42
   test_features.csv: 030ef0bc8f2070d98fd94dcb0bd6fbc2
-  train.csv: e01de80fb5bf97c2784286c8c5ed40bd
+  train.csv: 5eed2626d9e9e25e8e9651cf1a98b369
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_1:
   sample_submission.csv: 4e518b3de1d285fa75581cfa62a049b4
   test_features.csv: 6ed52dc1b252a83a4f46bb0e1433825c
-  train.csv: f368457b78fd33a77bf4e00da8921404
+  train.csv: fbe4ef3bbb81b57a529f8d7c440b811a
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_2:
   sample_submission.csv: 8bd5a132b2ae675f26e3b39d6b7f9114
   test_features.csv: 9fb765e2a1a15481e23fc77f28644304
-  train.csv: 8d02dc74f583e919b02b656e8ab46a47
+  train.csv: 383b66a78f67b4ed439242fdb0fcc9df
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_3:
   sample_submission.csv: 8edafb203ca48f47597ebee1ded80995
   test_features.csv: 6328ec49d9140baea627c818ef724060
-  train.csv: a8948b0db268bb58161b8ba98284045f
+  train.csv: c1c70a01a606dde1dabba27b524112cd
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_contiguous_4:
   sample_submission.csv: 50ec9e40ac3264782b2b13a912466990
   test_features.csv: 69e3283ca4148ee906b8a217a87a9ccb
-  train.csv: d43afad692c9334445f714b3807a95cc
+  train.csv: 9977a88270e199a31ba3120dc5333850
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_0:
   sample_submission.csv: 50b0d1b62a36cffb2b19a4da8abcd2e3
   test_features.csv: b75fb31e711444f7c4c29f0564c0ea32
-  train.csv: e1efdb1b2d241fb6de2010a564d0ba16
+  train.csv: aad5e2bacf44b049349c440728d8dd9b
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_1:
   sample_submission.csv: 50b0d1b62a36cffb2b19a4da8abcd2e3
   test_features.csv: bde7ebe0950c528cabb594f72606e4cc
-  train.csv: ac7586ff4f36e519e293053f78948ca3
+  train.csv: e02daee3c441c1a3f49de0eec418500c
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_2:
   sample_submission.csv: 0b573cb9a6d1e984a18dcbb1d95081ac
   test_features.csv: 44ab593dd55be6902c2f80703ccc501e
-  train.csv: a4d2a07a9c5c752453bf1b116babbc53
+  train.csv: e4e4169046b954beeba06f71feeb7615
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_3:
   sample_submission.csv: d6b1b0d890296ebd201bfebcec40455c
   test_features.csv: 257d8ee5ee3864560c6541fffd6bc441
-  train.csv: 2d6e14af659aa8c5a033d213ab2165f1
+  train.csv: 95834913640132267140040d7b1186e2
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_modulo_4:
   sample_submission.csv: 335f607406efbd2709546ddadd00920b
   test_features.csv: a52c72a48c57fa74f6967d9db95a85ec
-  train.csv: cdb5c4911931cdfa1d8d1bec70a4b099
+  train.csv: 594203a5e01c05936ed013adf5cd14b6
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_0:
   sample_submission.csv: 688a48b3b6fea15ae15848a310ffda1b
   test_features.csv: 963cb0ba0cbe5058c7728a5544d8c574
-  train.csv: 96e7e7a5cb4aa75e0776484cc983840c
+  train.csv: eda4b8898a5ff4bb9b6b1e17d3ef32c4
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_1:
   sample_submission.csv: 53239dd1af10ced72a20426e918c0978
   test_features.csv: d959bd7a6ac4b4c60237ac2783536ece
-  train.csv: e38dfb56e39f00dbbf3b82cbc1dcdf0e
+  train.csv: 6c75cdea809a8fe9bc14edfc89792010
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_2:
   sample_submission.csv: 5d62c09b4024aff2181578ddccbc3cf3
   test_features.csv: 2aff499dec484bbbc7e4ef2890fda413
-  train.csv: a4269a70ab0f9681008735839f77035a
+  train.csv: 96510d92deb31f7386ec5e4b66ecb577
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_3:
   sample_submission.csv: 2ee799bfa4a4270dbf38553c234dc0f3
   test_features.csv: ed099663abc895f6f7d76d7d074b6299
-  train.csv: 9929fbc5c893b9c9e3835d7330573a3c
+  train.csv: 4c89a8e4d2e960fa119e96ea8f8f28ba
 public-proteingym-dms/POLG_DEN26_Suphatrakul_2023-fold_random_4:
   sample_submission.csv: 94b0fb0d631ff1a0d047ca12855e83b0
   test_features.csv: b50f0fd259650fb7b24c58258b74a5b2
-  train.csv: e819a2201af08e8331a8b86ab50013c4
+  train.csv: 7210b27f1faf39a96707a23ff443634b
 zip: 53b3c9be428aac3724703a877c014f9c

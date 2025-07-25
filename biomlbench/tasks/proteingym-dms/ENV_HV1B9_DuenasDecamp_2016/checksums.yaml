@@ -31,61 +31,61 @@ private-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_random_4:
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_contiguous_0:
   sample_submission.csv: 52794d813f9503582c0f795e5fb74935
   test_features.csv: bcd92207abdef8ea8b292f267d766560
-  train.csv: 49685e5a276a922a1e0cf0250bf97a4a
+  train.csv: 55a0fde9e935aaa5b18a95dc408fe4e8
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_contiguous_1:
   sample_submission.csv: d9f9530027f504598848cd79b9bcfaae
   test_features.csv: 578970da9d2437b1c857b2e27c257385
-  train.csv: 26124f5db61e405e42c10b23bca1a263
+  train.csv: 52b867bdaa80ed92a279dcca41c5b1fe
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_contiguous_2:
   sample_submission.csv: ab9b1256bfb67f743492ababa361f599
   test_features.csv: 774876a4f3b9d57915135532c13aa296
-  train.csv: 27290d5c5a902ace58b5882b8b2c00ad
+  train.csv: b2977c462c933206fb14141a0f09b11b
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_contiguous_3:
   sample_submission.csv: d9f9530027f504598848cd79b9bcfaae
   test_features.csv: b71f4a074995a89341586b8028c034f6
-  train.csv: 1b998fc67d436f2cef80dce0e1a57602
+  train.csv: eca22f6430b2725319ece2c55b632d10
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_contiguous_4:
   sample_submission.csv: d9f9530027f504598848cd79b9bcfaae
   test_features.csv: 5d642944bb594e75768bc3ffbdb2f0e2
-  train.csv: 1880fa4d91700452d709bf11ca4fdfac
+  train.csv: ad63e9e83b602d65f92708adabc05c80
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_modulo_0:
   sample_submission.csv: 59fe0288799bae9322ea74ec996d7dd8
   test_features.csv: 803afa3abad5bc6fb4e7f8211272345d
-  train.csv: 0bf09beb9b145c8bf24d78e58fd0f812
+  train.csv: e708d2b90e2bba445f1f803f505e204d
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_modulo_1:
   sample_submission.csv: d9f9530027f504598848cd79b9bcfaae
   test_features.csv: bf3776b922d1b4dae2afc6f9cdf24d9c
-  train.csv: d7eb4cfb4d9e40068efe3e3b26f75009
+  train.csv: bb0b59458f4959957ac45e539b364e8f
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_modulo_2:
   sample_submission.csv: d9f9530027f504598848cd79b9bcfaae
   test_features.csv: 0bb5c1102d5a73c8a718c1b401792d9c
-  train.csv: 86424af8bf518eebc31b326b2ea2249c
+  train.csv: 79c6841afbeb9cc8fcadbca08805c115
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_modulo_3:
   sample_submission.csv: d9f9530027f504598848cd79b9bcfaae
   test_features.csv: e05ecafdd0eb3721dbf370d0501de7c5
-  train.csv: 228719a31c13922d92d436f4dacd998b
+  train.csv: b7b8c688255b828ab1a01844682c6c10
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_modulo_4:
   sample_submission.csv: a50bb191df04f3dab4d3619677f6b3f6
   test_features.csv: 7c5bffa3277315d498d511c7135c9705
-  train.csv: 1ecd5914aa5ab47d3792739cbccbf979
+  train.csv: e2621a2d364d3de5d20bb29a18c30c8c
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_random_0:
   sample_submission.csv: f8c0c8b42229296904715c5332316fb7
   test_features.csv: 10a48a859e4a6360d8a83bea5e031cc9
-  train.csv: 2ae5356dddc0bc4dc348e75e8ce5570d
+  train.csv: a44318fa1ff3acd2064020f57559a5e2
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_random_1:
   sample_submission.csv: ab9b1256bfb67f743492ababa361f599
   test_features.csv: aa9282dd1167de56804ba1a9a1bfa640
-  train.csv: b56e1008021873982100ad92857de030
+  train.csv: 396370f32f8b535fc3b4528715e9ecc9
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_random_2:
   sample_submission.csv: 52794d813f9503582c0f795e5fb74935
   test_features.csv: 8ddac9ab4c510331495d3dcc7046b914
-  train.csv: 917d066a93eeb0ad474a1df6bf659a71
+  train.csv: 040374aa653088fba041c4da93cc64b0
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_random_3:
   sample_submission.csv: 52794d813f9503582c0f795e5fb74935
   test_features.csv: 5a79045ef53f6b129c8b4cc27a214be5
-  train.csv: 8a9858d88bf1947b892f9eb7a8501405
+  train.csv: 95e9968f16178af653c5c6b8155c4735
 public-proteingym-dms/ENV_HV1B9_DuenasDecamp_2016-fold_random_4:
   sample_submission.csv: 52794d813f9503582c0f795e5fb74935
   test_features.csv: d1eb649adb323e80eff7712ee873dbb5
-  train.csv: ac148389a0f45626790ced15c87a8740
+  train.csv: f388a79fa91555df35095cac96566b34
 zip: 53b3c9be428aac3724703a877c014f9c

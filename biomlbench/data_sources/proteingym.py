@@ -20,11 +20,13 @@ class ProteinGymDMSDataSource(DataSource):
 
     DATASET_URL = "https://marks.hms.harvard.edu/proteingym/ProteinGym_v1.3/cv_folds_singles_substitutions.zip"
     LEADERBOARD_URL = "https://raw.githubusercontent.com/OATML-Markslab/ProteinGym/refs/heads/main/benchmarks/DMS_supervised/substitutions/Spearman/DMS_substitutions_Spearman_DMS_level.csv"
+    METADATA_URL = "https://zenodo.org/records/15293562/files/DMS_substitutions.csv"
 
     def __init__(self):
         """Initialises the ProteinGym DMS data source without cached paths."""
         self._cached_zip_path = None
         self._cached_leaderboard = None
+        self._cached_metadata = None
 
     def validate_config(self, source_config: Dict[str, Any]) -> bool:
         """
@@ -49,16 +51,17 @@ class ProteinGymDMSDataSource(DataSource):
 
         return True
 
-    def download(self, source_config: Dict[str, Any], data_dir: Path) -> Optional[Path]:
+    def download(self, source_config: Dict[str, Any], data_dir: Path) -> Path | None:
         """
-        Download ProteinGym DMS substitutions data.
+        Download ProteinGym DMS substitutions data as a zip file of all DMS datasets
+        and a metadata CSV file.
 
         Args:
             source_config: Configuration for the data source, must contain 'benchmark_id'
             data_dir: Directory to download data to
 
         Returns:
-            Path to the downloaded zip file
+            Path to the downloaded zip file.
 
         Raises:
             DataSourceError: If download fails
@@ -68,6 +71,7 @@ class ProteinGymDMSDataSource(DataSource):
 
         # Define zip file path
         zip_path = data_dir / "cv_folds_singles_substitutions.zip"
+        metadata_path = data_dir / "DMS_substitutions.csv"
 
         # Check class-level cache first
         if self._cached_zip_path and self._cached_zip_path.exists():
@@ -99,6 +103,15 @@ class ProteinGymDMSDataSource(DataSource):
 
             # Cache the path for future use
             self._cached_zip_path = zip_path
+
+            # Download the metadata CSV
+            response = requests.get(self.METADATA_URL)
+            response.raise_for_status()
+
+            with open(metadata_path, "w", encoding="utf-8") as f:
+                f.write(response.text)
+
+            self._cached_metadata = metadata_path
 
             # Return the path to the zip file (framework will handle extraction)
             return zip_path

@@ -31,61 +31,61 @@ private-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_random_4
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_contiguous_0:
   sample_submission.csv: 824aa4e7a8b020444a224ee7e97a9e6c
   test_features.csv: 7996ed5099d81d1399f245795ac48fd4
-  train.csv: e1dfba5859e49361fe7cbe741e885f47
+  train.csv: 6f63708df15431c989f807397574c703
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_contiguous_1:
   sample_submission.csv: 824aa4e7a8b020444a224ee7e97a9e6c
   test_features.csv: 7a2ee67c007bec2dbd8e50e9b0e73e9d
-  train.csv: 9c76183301de7c05375533a49717001d
+  train.csv: 5f7f4338ea7a93de3d4f964a6d129142
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_contiguous_2:
   sample_submission.csv: cc31b34be69d67efc648fed252a2b98f
   test_features.csv: 718fc4f0b330022ce22fe13d8f3cf6bd
-  train.csv: e0a0d83efbc4bbca05ec45ea3d8c81e5
+  train.csv: 28aef7e5b1185702152da27ed702eb7e
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_contiguous_3:
   sample_submission.csv: 3630691bbbae6e978fdfdad9a680b095
   test_features.csv: c75b57ca1eeb3348fd534dca33d8d73c
-  train.csv: 2eac0becce9d87b4e4be3356346a4b2c
+  train.csv: ce303df73282fb697d21396734a2bce2
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_contiguous_4:
   sample_submission.csv: 65a60a178734df7b0e8cd3c7dca753b7
   test_features.csv: be3da3fba4b24100af163f22b634ecc3
-  train.csv: ca43264a9478f77feb48aeba360e7cd5
+  train.csv: e936973015822cc1b3351b1fd6f9928f
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_modulo_0:
   sample_submission.csv: 824aa4e7a8b020444a224ee7e97a9e6c
   test_features.csv: 4e5c403d846f0c1fed1391e0ea32cc2f
-  train.csv: af822964abde07da9b877679b550ce3e
+  train.csv: cc84ad561d8b09c44083ded5699a1f69
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_modulo_1:
   sample_submission.csv: cc31b34be69d67efc648fed252a2b98f
   test_features.csv: eed32251268fa4fd4708332af7b41704
-  train.csv: 78cfbe454ea1aa85650b042596dcb342
+  train.csv: 449695153537cd3740abc82e109c047a
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_modulo_2:
   sample_submission.csv: 94adcd471b6ab34e6bf7bb6c53aa337c
   test_features.csv: 20af490c80a1e102241102d5b71ae0bd
-  train.csv: 2a06807757aef3181ae57fff10d5e993
+  train.csv: 5ec245653bfa2df797f017a0119e3372
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_modulo_3:
   sample_submission.csv: 4146adf1a398130b41a2eaa2f23f6a25
   test_features.csv: 26544cc0773847013bf53622b316b2c9
-  train.csv: 7bbff44979764d0fe8774caf9cb56f03
+  train.csv: ce95886b0cff766f995ad780cb960794
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_modulo_4:
   sample_submission.csv: 55f46e366fba0aca5c76322afbd5628e
   test_features.csv: 84418b7476f64987666f58e73433a97f
-  train.csv: 2fb52482f2a1b53eebcbf40f5cc019b9
+  train.csv: d75b036b204af9902d2c71466c8c4d29
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_random_0:
   sample_submission.csv: acad52dacd996c0423b8747e28127ae1
   test_features.csv: 1f68e93e4d2ff719cbdfb2e91f820d2c
-  train.csv: cdd95923c72726715ce0f36f3ff097a4
+  train.csv: 1b0363c3a555476883ede1c351731a8a
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_random_1:
   sample_submission.csv: 7b3a9165d43595d0b7afabfa4dfc9954
   test_features.csv: 6f5b9eacb8ed3f7951a7f5fc2c269f5b
-  train.csv: 44fda70187d90541f9c0a25c233ed246
+  train.csv: f49f92b0ab94575e5826d86d4ed2895f
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_random_2:
   sample_submission.csv: 4285427552d55fa516aa6a4d5e3837a6
   test_features.csv: f707fad41fa679d511b4a8e53242e093
-  train.csv: 85fcd5284f4427f7e77b381fb1830db6
+  train.csv: 84979e4b5ccde871906450399b88a5ce
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_random_3:
   sample_submission.csv: ec76241d19d5c1d1bdebc220d0f56e27
   test_features.csv: af98093a848ec6a803d0c81127cd605e
-  train.csv: 5e515f13be6af60ac73802e3227813ea
+  train.csv: af13c85569bda34e84552f53f030ae43
 public-proteingym-dms/HSP82_YEAST_Cote-Hammarlof_2020_growth-H2O2-fold_random_4:
   sample_submission.csv: 68a8d590b63583dc148a58230dde682e
   test_features.csv: bdc7f7f8f60b54d0a013fba010519316
-  train.csv: f2f0dccb1e49fc92d0c6834edaab07d6
+  train.csv: 2758f22a0516affbdcbbbf503336f2d7
 zip: 53b3c9be428aac3724703a877c014f9c

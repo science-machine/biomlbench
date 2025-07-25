@@ -31,61 +31,61 @@ private-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_random_4:
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_contiguous_0:
   sample_submission.csv: a9f0bde22df75e384c615c84f548d5a4
   test_features.csv: 24f40b9b1dc0132dd4e6ac9814c3008b
-  train.csv: 41a3cf781ec919d81d52d2406ce8e6ba
+  train.csv: 24d67bf055948c36dd068ebf0ccffdc4
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_contiguous_1:
   sample_submission.csv: 79f847411a0ce127407acddab186ad6a
   test_features.csv: 6685cdbaf9055ad2952051512efec94c
-  train.csv: 7168592a6919e2747e54a796f6092f56
+  train.csv: f076fd2cfea273928f8da4aeea1a05b8
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_contiguous_2:
   sample_submission.csv: 3bc60175269455eb933d23ee38195536
   test_features.csv: 0744d54946c4fe6b5899bcd57c2dc113
-  train.csv: fee655310c2ffef00654317cc3fbe801
+  train.csv: edd9df8ed31c860c984df5e902cf6395
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_contiguous_3:
   sample_submission.csv: 38bc2f1e9bee1655d64a1acc496bf97b
   test_features.csv: a871c791b942e296b9e4ae54a76d3056
-  train.csv: 613ac63f0e8808f25d48fe828d419232
+  train.csv: a5503a801680bcb6b05efac6ebbb9fe1
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_contiguous_4:
   sample_submission.csv: e215249516929d9771879b88683073dc
   test_features.csv: d25fa0e3a2436da07d236b16c8601604
-  train.csv: ac0a813e54494cf81d6b1f585488d8e1
+  train.csv: ce004f5195fa935e9470ee1edcb2835b
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_modulo_0:
   sample_submission.csv: 66b72066b6949f17fc974d577d4f1f85
   test_features.csv: b01805f5f2ba1efbde8118cb81ead572
-  train.csv: 2572b0d1a871b8dcb10a1218fc2c7b05
+  train.csv: 88086fb15122e7a7b9956396de792060
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_modulo_1:
   sample_submission.csv: e215249516929d9771879b88683073dc
   test_features.csv: 5ca0a26cb48575117e65b9b3ca242bc3
-  train.csv: 878f476ae209d1391e4b750246d3a2cd
+  train.csv: 247d0512b9c89fde175b8ef8fd788991
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_modulo_2:
   sample_submission.csv: 60164f0f75f58a112b62e6e78ed4ed28
   test_features.csv: b8d91c3326ba6ac9aca6f520d06064d4
-  train.csv: c20d4955f88cda8a9ece90e37984ccb4
+  train.csv: 77a892d5313a89ea757e5e496a36c85a
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_modulo_3:
   sample_submission.csv: 986e272a51460db3ec2b7db970fce48f
   test_features.csv: 58b92112f94bcb177d02704b1df25753
-  train.csv: 0d35c0d228a88c08955b4366e643cdf7
+  train.csv: 16015027a244b820f66f43ae8c409e7b
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_modulo_4:
   sample_submission.csv: e6c95901da823b36fb8520659137f4ec
   test_features.csv: 24c1a3bf2e599e58e4e086b6586b06a1
-  train.csv: 9c8cee3964e7a0f3e3aa7f39f458d3e3
+  train.csv: c804777d50f68743af9e6c36687a2434
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_random_0:
   sample_submission.csv: e5ff113083f3c67a59de6fa20c7f3d28
   test_features.csv: 3d4a244960f6b1ad7dcbd4dbdaea4781
-  train.csv: fe62b4033366d1f52185398cc0147112
+  train.csv: 403b7d07812399604cae484c9e16e95d
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_random_1:
   sample_submission.csv: 3bc60175269455eb933d23ee38195536
   test_features.csv: 4369b8d13b9bfe538ff6e37531f4e941
-  train.csv: 6f7bb2322d153f020f3c58aeb498c9fe
+  train.csv: 47101795198f5f227fc60d70fc233ff6
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_random_2:
   sample_submission.csv: 1f73d18dc1a791adfa738d064bcefec6
   test_features.csv: 4da3fa9e7560e853c80260373332e377
-  train.csv: d172f38892fe7dbfe4da10ec0dcd41d1
+  train.csv: bab4c44e4bdd9f9608e49dc6ecdb8f90
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_random_3:
   sample_submission.csv: ff59053d254f9f7de116554141661722
   test_features.csv: f231f688f4ae5e41a5ec2ff74ecfa7ca
-  train.csv: 9ea8464f2265687f2361a193ab078e14
+  train.csv: c410ba985c2aa811702926417419da5f
 public-proteingym-dms/PTEN_HUMAN_Matreyek_2021-fold_random_4:
   sample_submission.csv: 7389dbeba191ec7d1199a86af7df768c
   test_features.csv: a8b30d8ced47d2ebc26046010e379e6c
-  train.csv: 804d41b0df661d1cd168a050bfe08dd5
+  train.csv: 765729345a1809b736f5da64e78f1739
 zip: 53b3c9be428aac3724703a877c014f9c

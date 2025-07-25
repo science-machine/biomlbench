@@ -31,61 +31,61 @@ private-proteingym-dms/ANCSZ_Hobbs_2022-fold_random_4:
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_contiguous_0:
   sample_submission.csv: 894e17a52fa84992742915b56783529f
   test_features.csv: be4032f49a1a57f8caaf9685f00ad412
-  train.csv: 673e965c3cff4ee4fa175995601ee34e
+  train.csv: ce7956743aaf8d4003841035532bf68a
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_contiguous_1:
   sample_submission.csv: e7ce33b57c3b58c90f743074d3a69e4b
   test_features.csv: 02c6d788928296c59f5bb8e0f4c1f7a7
-  train.csv: 0673db8bb803d36eed1ede6893c7270c
+  train.csv: b975cc8ade0f091990d4ee93dfb979ae
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_contiguous_2:
   sample_submission.csv: d37bb71326b9116ab8b681fc578c63b0
   test_features.csv: 6e10492d7cc28fad2b184888a8eda941
-  train.csv: 57cdf5eb9205afd748b4cad0f3e78ddf
+  train.csv: e3df72e4a1a9e6ccca1b341e2c35f891
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_contiguous_3:
   sample_submission.csv: 9c59c629514087f7ea00f7f177428465
   test_features.csv: 9ed8c6bfb894ed0fc20f00adbd2e35a5
-  train.csv: da69a61c2cb521ddda5d5a3bf28c0ccf
+  train.csv: ebb170fc048cb83378d2690515727abc
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_contiguous_4:
   sample_submission.csv: 3652c89708b4dc9827aada71bc37c77f
   test_features.csv: 90c75206fae4b514ccd033c5129c5c10
-  train.csv: 87cbf889a59f357b39cbfd80420cd74d
+  train.csv: 8e43d41e5b851247ab9feac418203427
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_modulo_0:
   sample_submission.csv: 4a52995b6b7774a372bf47042c3d05c1
   test_features.csv: c4204c1a59d1bdb80e1dcfc119800858
-  train.csv: 7fd098f8cedb0cfca3adb6610ae45169
+  train.csv: 57dadb32d7571a170d926c801e3f4eb6
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_modulo_1:
   sample_submission.csv: db355af45fbee43e5841b0e0e587a685
   test_features.csv: 13059ee3639f397fabe3c45a539bf70d
-  train.csv: eccbd761e57dd043af064d2765e44e7c
+  train.csv: b06fc828b0a0acca7a00484c2befab0c
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_modulo_2:
   sample_submission.csv: b631282e56ac308bde15489f1a7270e6
   test_features.csv: 25d908b6a222d458ae91b5ef395a0247
-  train.csv: fd685078ae2adf09f136f45fa016e27d
+  train.csv: 12bc452c69a112a7fc4ec1e8a4e6766b
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_modulo_3:
   sample_submission.csv: b631282e56ac308bde15489f1a7270e6
   test_features.csv: d1e2ceb24ba3f419b43a7d7122afc957
-  train.csv: 153600c80eda4abf9bd6b1f83110e98c
+  train.csv: 469ac69e34136ceb3b04793eda087bd2
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_modulo_4:
   sample_submission.csv: a06073fbadc48e147d2647fe06800271
   test_features.csv: ff1b6f09373c0eb3bd3a5bac952292af
-  train.csv: bb1a4bf1dc0fa9f40f414c4924b460ef
+  train.csv: c4859bcc91cc8063cfb40e607314eacf
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_random_0:
   sample_submission.csv: 4ab8f3f8556615c95b4cd0fa34fa2998
   test_features.csv: 4d51f4e28fccc2f489e2b5562889f968
-  train.csv: 637c771fc516d9f81d5a5e5b27c4fad9
+  train.csv: 7dff8213d339b35f3e1ba0c6b9b69dde
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_random_1:
   sample_submission.csv: 5aec50a9f79f6621d1b60d27aa0060ec
   test_features.csv: fb72a9d05ccf7152cfc2b045b89e0e75
-  train.csv: d9869ab7399e008db736209ee9fc5f0a
+  train.csv: e4ea9da73b08714d2eaeaac664575324
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_random_2:
   sample_submission.csv: 70956cdd8316de4281604b85c7d6e745
   test_features.csv: 7ad1afbefb057f8e51761b7ad300c421
-  train.csv: a00bc2a132d3acc2372cf4b1445f3ba0
+  train.csv: 50ad3acf75262016ecc3b5a9e65a3c32
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_random_3:
   sample_submission.csv: f40f66a1cdadbdf4c3a15cd687b97303
   test_features.csv: 8b71934e2d61f0d639f0b43b2ec7af50
-  train.csv: ae1e55e31f0c18a6e2c2fbb6deb81ce3
+  train.csv: 064cc8979ecf568844eaf4970af9a319
 public-proteingym-dms/ANCSZ_Hobbs_2022-fold_random_4:
   sample_submission.csv: 69b431cdef93458f29804ebef934b0a8
   test_features.csv: 07eb0be348ab716bd3b1726859c11e53
-  train.csv: 45efeeba87e9a03bddb66551d1d51b54
+  train.csv: c7b20f8fbc4cfb6bcecd85f7396427a5
 zip: 53b3c9be428aac3724703a877c014f9c

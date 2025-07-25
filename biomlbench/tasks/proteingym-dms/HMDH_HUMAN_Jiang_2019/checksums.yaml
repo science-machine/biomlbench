@@ -31,61 +31,61 @@ private-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_4:
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_0:
   sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
   test_features.csv: a5918bf6a995fb52d4be6e98de1f282e
-  train.csv: 8c78fb569d23d968a7a77740cbffe4c1
+  train.csv: 1dd0f18e6bf30b1d6413945ed7b16e39
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_1:
   sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
   test_features.csv: a0012040bf23823e78e1d91065f26e0a
-  train.csv: 83b64ee8b8db96f2435f9d0256672c41
+  train.csv: dcb27b4edf662dbb9eaa9f486024f4c8
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_2:
   sample_submission.csv: bdb45082d5722f3204790867cde4c941
   test_features.csv: 9fb62be6decd84bcab7e79b0712b508b
-  train.csv: d3dc9436718a77f8587d0d28cb7ae7d6
+  train.csv: 7088bd08e5b0ac2aade0b583e2b00b33
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_3:
   sample_submission.csv: bdb45082d5722f3204790867cde4c941
   test_features.csv: 5e94e04a7a10587979a96509f993c128
-  train.csv: 33100a7cf1a191cef1baf5a63a646918
+  train.csv: 70bfd3966ffefd673e9d33e7968407f5
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_contiguous_4:
   sample_submission.csv: bdb45082d5722f3204790867cde4c941
   test_features.csv: 1d9651c5bbe8f5c0a9000a885d7ff7ef
-  train.csv: f1aa0108887cfd1eae7394f669e9ccf1
+  train.csv: a13217d95a5be4c075f71ada2c7d6692
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_0:
   sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
   test_features.csv: 664668cb5b0ed5261bb293848430a958
-  train.csv: 8f3fa6272f6c8458b9d67efb37d2fe71
+  train.csv: 135ba176243168f004e963d3655de550
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_1:
   sample_submission.csv: a1e30798603ecfcb6589268fcdbc4cbb
   test_features.csv: d8b9b3abcecea45769f04b582ae55222
-  train.csv: 09624c41eae371e7a9f497fa08f1f1a2
+  train.csv: e46efc6f3f5af545dba061d01db8726d
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_2:
   sample_submission.csv: bdb45082d5722f3204790867cde4c941
   test_features.csv: d72f283bbe85ac1d70fffe367ba5bab3
-  train.csv: 62c83ac3c6615a75aa630368628a2a95
+  train.csv: 586b44799c0c59b8fc55b63742fbc639
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_3:
   sample_submission.csv: bdb45082d5722f3204790867cde4c941
   test_features.csv: afee141924280b36ad5dee2caffbf8b4
-  train.csv: 17c788092feac345217ebc652b556e99
+  train.csv: fc5f52a52f1e86f28e6bf1f19ac0ca04
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_modulo_4:
   sample_submission.csv: bdb45082d5722f3204790867cde4c941
   test_features.csv: a4827b6c44ab8d01e6a826f53e62e430
-  train.csv: 38afa0d433e789a6fadc582f89e7d1bf
+  train.csv: 62ad09679f37926fa2b38525aafcbef4
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_0:
   sample_submission.csv: 8a090dbd2a754bce42cec4e2ac05f6e4
   test_features.csv: 632ac8d39fc6c205141ceb6ec10cf6bb
-  train.csv: 787c0591e6fb52aafb651041e6301873
+  train.csv: c9d05ecac8b7b18de0ad5811a566b2d8
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_1:
   sample_submission.csv: eae50eccc64f085c832fd0e856d86eeb
   test_features.csv: 5a93f3297d511c8a708fc6ad596a2f2a
-  train.csv: f39bbee6de5752fdd9bcb840b5994ed5
+  train.csv: eab05a5916012d80782bb5a685fa8bd8
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_2:
   sample_submission.csv: d19f389986b6e34f17a18ec0b5280da8
   test_features.csv: 9d65026bf289a9dd41f170ed2060174a
-  train.csv: eab6e8311e3b671e2e813627b5e87895
+  train.csv: 624bad4cd3eead2e57e49e3c36c935fb
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_3:
   sample_submission.csv: d19f389986b6e34f17a18ec0b5280da8
   test_features.csv: 760cf18225d32756b0b954d1bdfd0863
-  train.csv: 6bf66455b0e07d57acc64806be063f4e
+  train.csv: b289cd240eb0d0234c3c3802640cb01c
 public-proteingym-dms/HMDH_HUMAN_Jiang_2019-fold_random_4:
   sample_submission.csv: 436a73fc21049b29c4a26473c85c53dd
   test_features.csv: 3252d1711fe21c4ba34f0e56864b7b00
-  train.csv: b557c19de3998e8206aa5053137f6466
+  train.csv: 92b1eb10cc9d0e9c7982a02272ff4f86
 zip: 53b3c9be428aac3724703a877c014f9c

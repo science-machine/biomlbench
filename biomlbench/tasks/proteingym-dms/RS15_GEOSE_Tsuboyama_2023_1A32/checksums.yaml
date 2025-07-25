@@ -31,61 +31,61 @@ private-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_4:
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_0:
   sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
   test_features.csv: 126d6bee5d8d10298dacb1eb8f0bd976
-  train.csv: 33a09c3e875a8463e685c62dc805be6e
+  train.csv: 198af55e9721d8142b1ec222fd5ee12c
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_1:
   sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
   test_features.csv: a0f00216ad76f2c683a081a059564752
-  train.csv: e0d52a7d54a46c39fce9263487a43042
+  train.csv: f3649f66c078f11e707ef9805dbbb2d7
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_2:
   sample_submission.csv: f63764bfa80ab3dd175af0929f3b0a26
   test_features.csv: 54d8158b8c3927819a21aee922c7111a
-  train.csv: dd0b84d11e425717ba4b8bb46657eebb
+  train.csv: ab3481100a743e6c478728fe9d77edd0
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_3:
   sample_submission.csv: 9f11bc6363524ff3cef57fbd9d002888
   test_features.csv: c63c689e48f6d366bcd5e5eaf97fefc4
-  train.csv: f9a57fc0cd2d32a7a61a7df79a7cb1db
+  train.csv: 9aec400fc87f3d067e3b1bc24e60e807
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_contiguous_4:
   sample_submission.csv: 6c7a3fbb381f67a5a4739054480ddbfa
   test_features.csv: 913215f6c2617657a28dff7388f8e059
-  train.csv: 95c1352671649389f6178db89cb28e8f
+  train.csv: 4e5c03818d7439f5fdd3e86fd6400d85
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_0:
   sample_submission.csv: f63764bfa80ab3dd175af0929f3b0a26
   test_features.csv: 78feb843333fea7f8cc8b7639907230c
-  train.csv: 6449a98fa254c0c11c88b402b8c67e8d
+  train.csv: 5eddda8b42281510cf40ab9c0e3d4ed9
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_1:
   sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
   test_features.csv: e6d949ea4f86d5c081df2df73e42bce4
-  train.csv: 337a9cdf18f121f18735f63fbba1a860
+  train.csv: cfbf9ad43feba453511f64428990dbe9
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_2:
   sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
   test_features.csv: 3740ee7846c2b2dd347dcf24e26ce6bb
-  train.csv: d72d2cd74921476f1f610d376c6591f5
+  train.csv: b2ae1d6f70616d10c521289f74d12c9d
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_3:
   sample_submission.csv: 9f11bc6363524ff3cef57fbd9d002888
   test_features.csv: 9a196926f8156eeb26e652e87d4c1325
-  train.csv: 61fc4287fdd954ece3fc51aad0384550
+  train.csv: 4c559816f99bebe6bc839c71bad21a6b
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_modulo_4:
   sample_submission.csv: 6c7a3fbb381f67a5a4739054480ddbfa
   test_features.csv: 8d178b088928eabb65de74183b79e64d
-  train.csv: 7fde9d3a2916387cdbf3f58d0a9a13a5
+  train.csv: fa68673db742eb413d2a361004959708
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_0:
   sample_submission.csv: 0f8a195880a8c1da917f841b0bb471b2
   test_features.csv: 9208eabd3ed2f5272f92456bf065ef0c
-  train.csv: 40985ab5f7889de53a7dcbab88d04d65
+  train.csv: 36fc2d9802a82c28bc5f5b9d2fd0edcb
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_1:
   sample_submission.csv: 4124d6de2bbf08b315efdd1ef981e430
   test_features.csv: 0ce9dc358278f180f95886b99c505f28
-  train.csv: 329f868cd1e1c6bbce95e46f02d97252
+  train.csv: 0a81afa1c4e02e42719fb6c6874ff88b
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_2:
   sample_submission.csv: 81a1906a160a3301cad6c8098fa506c3
   test_features.csv: 81b08dec440f64d9e9b6d4cd716606d3
-  train.csv: b0c256078151458041d1f65821c43da0
+  train.csv: d852386e7839c58364e8b0e62a00811e
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_3:
   sample_submission.csv: f52656bc21bc237ade7988595f4ffef5
   test_features.csv: eb5bacac5da748f9ac10f82f1e8a0c1d
-  train.csv: 4c1903defafb794baca45f2aacd6443b
+  train.csv: c82ff342ccce1a6b3e2a7c94cbeff1d6
 public-proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32-fold_random_4:
   sample_submission.csv: 27ed7f4e3601fe1bdad850eda06c384b
   test_features.csv: 2567db0955a0688ece9da753c566b540
-  train.csv: e57a4c8538ddc455893c7390d2856d58
+  train.csv: 2eb61828a52758071489583a885499b9
 zip: 53b3c9be428aac3724703a877c014f9c

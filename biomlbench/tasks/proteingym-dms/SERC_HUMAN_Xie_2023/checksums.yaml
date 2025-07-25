@@ -31,61 +31,61 @@ private-proteingym-dms/SERC_HUMAN_Xie_2023-fold_random_4:
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_contiguous_0:
   sample_submission.csv: f7edbe2ec8ff594653e11f7b9ff86e2b
   test_features.csv: 0e09f17081aadc6766487be5a4591b76
-  train.csv: 0d9ec920bfe8ed86f110689c39e7c41b
+  train.csv: 6dc0c5faac8efcf2cdd33c52cce28002
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_contiguous_1:
   sample_submission.csv: 0ba81bb6479daabb113581f41c39eea6
   test_features.csv: 08fb7a09d5c811afc0f29d197fc13e78
-  train.csv: e18dee60bf7f607ea23ca417c7b60c28
+  train.csv: 7084263b5fa1e0c537fd695e69191af5
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_contiguous_2:
   sample_submission.csv: 317ad2813331ec05769201e51e20bdbd
   test_features.csv: dad1a5956e040b58eb92b9e7b11ba2b1
-  train.csv: 1f6dbc7e474d963b2e1106ebf8c1cb12
+  train.csv: 0dd4fd19f78781c83b0d2dcaa4494416
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_contiguous_3:
   sample_submission.csv: c954e3ffe54cf5791cd899f79995765b
   test_features.csv: 9df62563396740077871c2c2c96b9f74
-  train.csv: 10fa66fdcb37d4d32ccff1b285e381aa
+  train.csv: 1a9b82c19902991bd7769dab84fa4073
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_contiguous_4:
   sample_submission.csv: 317ad2813331ec05769201e51e20bdbd
   test_features.csv: 875e5e3367b5ef5206b08fceb50ef3ab
-  train.csv: 48e7aee64939005f0593340197e00544
+  train.csv: e976653ef2699c5c1adb2bfd2c1c149a
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_modulo_0:
   sample_submission.csv: 0e09e06026d6e003cb45ddc9c94030c2
   test_features.csv: 4e3ede92b4f920286e58765bbaa2b861
-  train.csv: 20eb28ae813a6be9b5118134217bde5f
+  train.csv: ba84fda11ed74270a3b4aada92da8e97
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_modulo_1:
   sample_submission.csv: f3ee75fe3183ba8ce3a74c1d2ce8242c
   test_features.csv: 1649067fce404fbfa071a4f900521357
-  train.csv: a92a8f1614fdbce30c9d83d2f1b452a0
+  train.csv: ec7903e2f61e0cf88886a97cfdd8750e
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_modulo_2:
   sample_submission.csv: e3decf69d3678db53409ca7348ba0230
   test_features.csv: 257daaeec89c47ff11c0298685ca1629
-  train.csv: b3e44856540a1c7a61a32a86a40a9c72
+  train.csv: 05339fbf18780698c8debdf4f74bb76a
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_modulo_3:
   sample_submission.csv: 7a4aca83d5af8009ea7b4db8b36b6f2d
   test_features.csv: c8132fed9a3adab09649c673536f8235
-  train.csv: 3f696d11c0e8e7a884695410a8cf3a21
+  train.csv: ddfee9f8bddef6575692808e93f9588a
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_modulo_4:
   sample_submission.csv: 7a4aca83d5af8009ea7b4db8b36b6f2d
   test_features.csv: f2b777530414cb93b139c2763ce24ab4
-  train.csv: c8ecc57a3e10b69455fb1771abe65f30
+  train.csv: 9edda291fa8295daf77526866ebfc44f
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_random_0:
   sample_submission.csv: 817afdacb6888ae7df9193a14de952d9
   test_features.csv: 39eddb97691fcc266f5c0ec54b18a9f8
-  train.csv: bc7e7cb0825ea086b812d331086b352b
+  train.csv: b45cf687170ce8d0b47a71ced9352034
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_random_1:
   sample_submission.csv: 19988f2c897921a8e8d12d8ca39b4148
   test_features.csv: 2447c5bd640d3c362d24a06d429596a1
-  train.csv: 5f250477e19d2fe8ecac6e2e0648e52a
+  train.csv: c0e5d10e8ff6c8297d70855f5353c803
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_random_2:
   sample_submission.csv: c995024364afc6221fad05eb3598b5df
   test_features.csv: cb5f94e9f80963cd295ba9701ce1eed6
-  train.csv: 62dc97bbe709ade26a267adda3d06460
+  train.csv: 36ad985771d2f279eaf2e6c2a1d1fe80
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_random_3:
   sample_submission.csv: 49902cf9a94277aaf803b8aaa575c9ca
   test_features.csv: 3f0228a312fbb40b5c62527bbe3ea336
-  train.csv: 36ca536d95c805bc16de4e06243b54fb
+  train.csv: e44b8e7635161cf44910d016eb523b41
 public-proteingym-dms/SERC_HUMAN_Xie_2023-fold_random_4:
   sample_submission.csv: 2709de2ae94a32df72723c43119d0f93
   test_features.csv: 7e8ced53bda9dab3353991e63c28f224
-  train.csv: 03f42468ffdcb695e58ec8842d87e199
+  train.csv: 5ccd7fa47284ebeca7ba62ece3d5cdbd
 zip: 53b3c9be428aac3724703a877c014f9c

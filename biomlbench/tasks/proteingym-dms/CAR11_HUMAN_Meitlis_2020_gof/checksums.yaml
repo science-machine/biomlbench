@@ -31,61 +31,61 @@ private-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_random_4:
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_contiguous_0:
   sample_submission.csv: d4578ea084ff4c9741fc616923726972
   test_features.csv: 39894bab1db479399837ae939dfb705d
-  train.csv: da0e3496eee1a0ac07fabaefde9272a7
+  train.csv: a4ef855044a5a7d25a1b42e59b1aaa91
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_contiguous_1:
   sample_submission.csv: 2397e524c4f7fdb33803d22fc12ba2a8
   test_features.csv: fddea5259fb5a9fda60c6eff42e7d008
-  train.csv: 5ab9fc322ff4eeab586d137356f020d8
+  train.csv: 2b55faba02d8f0ee5b1e814d3555ca59
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_contiguous_2:
   sample_submission.csv: c25f07d6fc8a122f46f7f70caf9b3c9b
   test_features.csv: 2de1f5b7018092aa1c8ca204b8dcd40c
-  train.csv: 5c66e798c93064d1211652d74e0a685c
+  train.csv: fa41756745e102f80f3e6701d47deb51
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_contiguous_3:
   sample_submission.csv: 02f876b5c73da1f5f173cd8af03d4da4
   test_features.csv: 3478d170cd493d82de64fdb763668340
-  train.csv: dfb8b32a072a08a1466548fec60c07ec
+  train.csv: f931451c8ce6424476e8b806a772679d
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_contiguous_4:
   sample_submission.csv: 3674a09ee506e82435c5af5567fd006d
   test_features.csv: 8ac124e9d96d601de5cf4819177135aa
-  train.csv: 9f9e006cd5a5a57a969034ff4bbc4b17
+  train.csv: bf5d0259061246e01e9fe49067094048
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_modulo_0:
   sample_submission.csv: 3e84a84394c8ccc52b47bc8ecb880e02
   test_features.csv: 47837a58d63cb06c5508ca42cc986910
-  train.csv: 19d15d7ad2a83174225532e7e5224c58
+  train.csv: 1c8ade03a15830a61b61ad49498466df
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_modulo_1:
   sample_submission.csv: 3c4b4c9c3de8b82da12e50926f882058
   test_features.csv: d4167ee25e57b5077015809b85ece34c
-  train.csv: 63ec02cdda692962d0093b326f229e73
+  train.csv: 2f43f5ba85a1a6653c725dceae5a0a2e
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_modulo_2:
   sample_submission.csv: c6da3ca61fb4609fef4fc8161ac04105
   test_features.csv: 6623f9fdf4ecf50236a3253fd3427676
-  train.csv: 79586d36da948675edacefb801da2e15
+  train.csv: ffe3e7402e8648a2dd7040d3d2d3cb68
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_modulo_3:
   sample_submission.csv: 898c661f30526bdf80190b088178f5e4
   test_features.csv: e871e438f095081da53b836d3dfe7720
-  train.csv: 3149101b4265964777307c352db17d32
+  train.csv: 4a30e2ce3d7e01b5cef863f905634863
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_modulo_4:
   sample_submission.csv: 703372d6c8f7714443bff999c590938b
   test_features.csv: 76917f17049b189dfe3eecc1ff94ab76
-  train.csv: 80dd2aba9cd95c2b1cc20f86626177ff
+  train.csv: edf5bd2307f1e6f01796683527aac905
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_random_0:
   sample_submission.csv: 1f59007c8cc60694dd2967e03141c470
   test_features.csv: 58883ee5dbbb97c5c4f0f2130e328ec4
-  train.csv: 13382dabbb3c271f8b7f8cb0ac442508
+  train.csv: 7088e71096d082431d59da493ce28aa2
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_random_1:
   sample_submission.csv: 703372d6c8f7714443bff999c590938b
   test_features.csv: a54b0cf752f9cc28beb14afff9379484
-  train.csv: 34d04bdf3d5cd611392b5327afd9c93b
+  train.csv: e36c1da35cf3507dd572d9fd7ed56841
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_random_2:
   sample_submission.csv: a2105294a60b381ce576d22be9ae5e32
   test_features.csv: 2a1a2b195c4cdc16774e19a80fe94746
-  train.csv: bdcdc6cf7d7959315723cfab159e5693
+  train.csv: 86b5f01d179044f78780f9fcfaf8b899
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_random_3:
   sample_submission.csv: f08e71b14e50c85455a5704bc2f8e6c1
   test_features.csv: 6c9e6fa3dc98ac3479ee7448eade607f
-  train.csv: d6896c71d737293fdd3fafa270d9380b
+  train.csv: f9ddacc335fa48d9e750b74fdf39c3bc
 public-proteingym-dms/CAR11_HUMAN_Meitlis_2020_gof-fold_random_4:
   sample_submission.csv: c25f07d6fc8a122f46f7f70caf9b3c9b
   test_features.csv: a25e2abacb25328fd8b24693c3c1eedf
-  train.csv: 75b2763460f113690aff8ebb66076cb9
+  train.csv: 5d561ef0a8b839a3cd21c2ee08643298
 zip: 53b3c9be428aac3724703a877c014f9c

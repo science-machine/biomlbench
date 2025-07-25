@@ -31,61 +31,61 @@ private-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_random_4:
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_contiguous_0:
   sample_submission.csv: f3ee75fe3183ba8ce3a74c1d2ce8242c
   test_features.csv: fe898e7a0c3e9b0742ddeeac4f5e9621
-  train.csv: c5c9caaef11d53fdae8c804b5a2f614e
+  train.csv: 2bfe754cc868e740c277c4af2b2075d1
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_contiguous_1:
   sample_submission.csv: 61272b6a5f95b8e2044ffc74bd280d33
   test_features.csv: 84171a16ca71a3787587b0960b570d30
-  train.csv: 4b7210e90fd2adaabdcb717d6a2b69d5
+  train.csv: 549d9bec3d12000e9a245a8c4d8fea20
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_contiguous_2:
   sample_submission.csv: 56d75d1b50a91071e49a54151b512da0
   test_features.csv: 874bcb67672bd7ff6af718c2e59e7860
-  train.csv: 329cdf83aedc6b9117e582390a9a47e9
+  train.csv: d197cb32117c5f6ca10b4e9e472a4e4b
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_contiguous_3:
   sample_submission.csv: 6c9249e5d9ca8a692bd396368a8e308e
   test_features.csv: 19e156c03c0eedb718052066fdc4a495
-  train.csv: 896135e3858093fa939f5fc0bd5844ce
+  train.csv: df5a852f9962d025ab6c63cb0fae09e6
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_contiguous_4:
   sample_submission.csv: ac554f90798c3398c955c6265eb8c999
   test_features.csv: ce6eb63d3f410e85ba6ac97765578cc0
-  train.csv: 1c2327d0327f9de8d67232567648d5cb
+  train.csv: 5b39b7d1d6707c4cf03207b370b2b5a8
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_modulo_0:
   sample_submission.csv: 15fa2ea56c83628cdae9af13471fd36b
   test_features.csv: 4fe9cdb7b1d63d6e0fe96d453faf59fe
-  train.csv: 958ebe4f92120d4fce3ea023467a6830
+  train.csv: e50469bc51a55c2bf7a41d38ff1e255b
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_modulo_1:
   sample_submission.csv: 3963f533342de66c7d0c5dbea5d1ddd1
   test_features.csv: 9dc7b4f2ee7025a018bbf80b01fa967e
-  train.csv: da7d2b29f8cd587c798737e2282b5e18
+  train.csv: 150ecf848fe98c9554a1b20056eceac1
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_modulo_2:
   sample_submission.csv: ac554f90798c3398c955c6265eb8c999
   test_features.csv: 2164cded08a04624c2c61549d55174cf
-  train.csv: 33b8a77b6ab885d7406ede90832bd6bb
+  train.csv: d3c008c86854f518c8b5f13dc86a1809
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_modulo_3:
   sample_submission.csv: dc1f36dc0e862faff1ba392931516708
   test_features.csv: 1fe216b0d4f4fd69aca6485196a244a0
-  train.csv: 60025106827c37bf1a1137a3d38578e4
+  train.csv: a60624c1e9871ab669cc99bd58981617
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_modulo_4:
   sample_submission.csv: 2564be7048e0e9be88182a1962b462b4
   test_features.csv: 7404643e197af1a96ccbe77190c3af7d
-  train.csv: 4a117594e10913b0254e66f69fb64bfd
+  train.csv: 6f805aafcba9ea83fb09efbebfba6c58
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_random_0:
   sample_submission.csv: e66074401a18d74ca9fd702bf502e92c
   test_features.csv: 194bb4685d11d6e257e0fa084936c72c
-  train.csv: 8ac285deaf3bc2459a10b405245a188a
+  train.csv: aed3b5dbd8013cfca298c0a7fd36869a
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_random_1:
   sample_submission.csv: 56d75d1b50a91071e49a54151b512da0
   test_features.csv: fc7823221a74cba2c3c1b47a61beb2b5
-  train.csv: 407717acc1f7949193f510d220f50ef6
+  train.csv: 8ccffa9045f24951391ed1000cc00150
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_random_2:
   sample_submission.csv: 3113458dbb123e1a3122131754358bf5
   test_features.csv: 6351741d18b1262eeb40280b12ba8cc3
-  train.csv: 602436767bffaec38ba19a6c316a8434
+  train.csv: 72da5f96e83765d2f825be8020e08738
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_random_3:
   sample_submission.csv: ac554f90798c3398c955c6265eb8c999
   test_features.csv: 0461c5ec6e8c595986f242071ae3b423
-  train.csv: 90976fae757deb2653b21da154a60d79
+  train.csv: cb3ca6fb22fc2a55ddf935b70e204fbc
 public-proteingym-dms/SUMO1_HUMAN_Weile_2017-fold_random_4:
   sample_submission.csv: 70fcc450d1b65cf42fd9ab7614f3f244
   test_features.csv: a99075e8420af0ff5c1d7a8ab17bbd31
-  train.csv: 1c32194f8633ec06d030c3f025de04ab
+  train.csv: 6e5d6d1870ef39b2b8f1b6f9db11ee2c
 zip: 53b3c9be428aac3724703a877c014f9c

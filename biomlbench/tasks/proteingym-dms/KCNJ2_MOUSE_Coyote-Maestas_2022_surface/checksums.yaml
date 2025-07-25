@@ -31,61 +31,61 @@ private-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_random_4:
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_contiguous_0:
   sample_submission.csv: a688c6025d08ea76a928af47249071d8
   test_features.csv: e7e36ae244cf1bc5e7466aca6e870de5
-  train.csv: abb9d003000de3a2e73f5895517bf068
+  train.csv: 3434b5af4482facc361183f384554544
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_contiguous_1:
   sample_submission.csv: a2ced6a28cd1345ff8004c94adbd8b3b
   test_features.csv: aad39d553211c94447d3ed1195df0ec1
-  train.csv: 2dbda4234a9b13a2584322cd52a2980f
+  train.csv: 6f920287daf16dbd6d538e1d77cdc332
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_contiguous_2:
   sample_submission.csv: ba43ceeb452daf977435d5c63bd9ad56
   test_features.csv: c7d8e67c529ea0635829c86cbe1cf75d
-  train.csv: 173acacac6692e0858a81f0728ac5931
+  train.csv: 54321bbd2a0d82c4c6994e74b1f31952
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_contiguous_3:
   sample_submission.csv: 339984aa81f4f67af5f7a9b2f6561f8d
   test_features.csv: 84dd451275d1fe065ba223edc24f1cbc
-  train.csv: c974d24001223d1fd07f0254b75cb81a
+  train.csv: 265f020023c5198e19961ff25c9a2d50
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_contiguous_4:
   sample_submission.csv: db9e513e63c434cc8e7faecb518b65f4
   test_features.csv: 0514dd183a82339ae9344638f7dc2e21
-  train.csv: 2284e4bda94e8af1aab491b85ceb7cbc
+  train.csv: e5311b2357291ac3e1dd4e7d8ec171c6
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_modulo_0:
   sample_submission.csv: 91abe8df9a235a67ef8efbc6a8d12234
   test_features.csv: 8f46d87056c96cbb43efe74baf042e9d
-  train.csv: 180e7dba46fb6ed6779a1ce8b0e71f1e
+  train.csv: 01e94d742857a1c6f8a49ce41b345b4f
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_modulo_1:
   sample_submission.csv: 20851e9a73cf3da5e49ffede98040e8d
   test_features.csv: 7a6b6a96cce66d7404b707ea1b0161bd
-  train.csv: 76658da553925f28456a1c42ab7d6e36
+  train.csv: 4e050b3a71f7672878d86482d5747c61
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_modulo_2:
   sample_submission.csv: 2c5635950b349331b2031fd62247eae5
   test_features.csv: 2920eab131edc83f5f7621663932e5ff
-  train.csv: 7d10bae992c4f945b6b6cf181c40f778
+  train.csv: 5a31540a8c49a55319fe417869a3439d
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_modulo_3:
   sample_submission.csv: b861d545cbc6205847e1cf66d9f32b3c
   test_features.csv: 05da1042161dab9bc7721c9d0140b878
-  train.csv: 80aae92c17617a5fc6dba693058acb4f
+  train.csv: cebcab221f2762d30363930614781f70
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_modulo_4:
   sample_submission.csv: 0cb6475690e34b4c61c18815553f2f6a
   test_features.csv: b92a87a33e865c00c8afba07ad5031cf
-  train.csv: ddb711710624b1e2a9eba19d50472aa1
+  train.csv: c2102ce6a75679a45c0fddd15287f6ac
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_random_0:
   sample_submission.csv: 58763235440c497b8d2bcf311dbcda2d
   test_features.csv: bf4a445b97ccd67a49339acd5166c3a8
-  train.csv: 553c3b9382738349c860457635a7be7c
+  train.csv: e7564f77dc91ede9750d13bb87e47fd6
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_random_1:
   sample_submission.csv: 72571e2f517a3841011b1b28839ab1ac
   test_features.csv: 8db3f0d5679b0e7173ff1d0753bfda9d
-  train.csv: 461f9c157d8f9b00468edc32022cf110
+  train.csv: aaec2f38c551f92c6293427d745077ef
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_random_2:
   sample_submission.csv: ee29695becc73904f33758976667b274
   test_features.csv: aa34c8fccbfcf0e664500e66d0ed9d40
-  train.csv: 9a8c7f6c84d377347223ae0b91c56a94
+  train.csv: ec74e09db1bd19f23c90ce3bc9e062ef
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_random_3:
   sample_submission.csv: 0010fa3a9c1e77b196025fd44e3ca935
   test_features.csv: eb5db8c5540b7f0702a2d250bd6cd0fa
-  train.csv: be337f0967e18915799bc0a226f4fa5d
+  train.csv: d6502c0bafbb93c9d1a3bc383d34d374
 public-proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_surface-fold_random_4:
   sample_submission.csv: 74b4124da1335cf53734550694765c70
   test_features.csv: 61413a4f58454ab757e787556ebfe140
-  train.csv: 9baaaebf967244a8de8b6a37d05ea376
+  train.csv: 1a72d6685a08b58d55501a59c5706523
 zip: 53b3c9be428aac3724703a877c014f9c

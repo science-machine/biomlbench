@@ -31,61 +31,61 @@ private-proteingym-dms/TRPC_SACS2_Chan_2017-fold_random_4:
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_contiguous_0:
   sample_submission.csv: de455c298efd5e0f8ace0f368078ebee
   test_features.csv: 777fc05755f9aed096ae104a14b181c2
-  train.csv: c5a994b79c7cf574025ae881624d80da
+  train.csv: d322370d253e6ebf3ad2c44f63e24c87
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_contiguous_1:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 711a7c40d6bce69d6c00fb4ed59190e3
-  train.csv: d65446eba3a3a02f9b02a55bcf73be06
+  train.csv: ee70f22eabe131a52f3b2bb144329251
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_contiguous_2:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 9f38e3b094f56f87f5fa361af1cf74a9
-  train.csv: e38fa0056fa2f79ab255d3236f393b44
+  train.csv: d741814abff8caed34260d8dc29b5d14
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_contiguous_3:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 89fd4a1a483fb9fbbc48425de7955164
-  train.csv: e611dd9115ff2059990255fd060198c8
+  train.csv: c9ed8b74cc4897f78bf1d90afe5eca5c
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_contiguous_4:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 3c6da51c7ca6e4a3710d101284a780bc
-  train.csv: 405e565d121893218d9f258b6c2c3705
+  train.csv: ed789d2a8bbe1c1d5c728e94e1cb9aac
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_modulo_0:
   sample_submission.csv: de455c298efd5e0f8ace0f368078ebee
   test_features.csv: 91b9f47aca8446add0ae32b3d4eeddf2
-  train.csv: ea74e6646461919bc9a516a8409ac817
+  train.csv: b66f524e7fdd436d88ad002088a7e3ac
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_modulo_1:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 3aa7b6b8f5555ba1a1d85369c81671a4
-  train.csv: 5b076ffd3714707e88712d3575486f12
+  train.csv: 6eda88330586ad4906af43915af827e0
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_modulo_2:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 7b8f57ff7eb5a6c481e9da83be0f9d8b
-  train.csv: 41878aec31fe2d78cd8b1a9a379a86d7
+  train.csv: 1015ac850523d6664de36408610d56eb
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_modulo_3:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 7d36d63085336189819d6bf3b2822813
-  train.csv: 9218db2857aa6fa95674d70d605361bf
+  train.csv: 24fb73715640c946a02720c8d1547fa5
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_modulo_4:
   sample_submission.csv: 986e127a9ab30f95e63786ff61db23b7
   test_features.csv: 7084045509ec4f5c44e76d4e8727eabc
-  train.csv: 94c70f02a48e2908a2e4b9913bb1051d
+  train.csv: 47c70360f7d6e3a1e8397523de9bf189
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_random_0:
   sample_submission.csv: 891834b80496406d151054b368938fce
   test_features.csv: 90786d0ed4a4b40baf384d70dfae2ddb
-  train.csv: 8cc75c851a6ce9766ccef404f7163006
+  train.csv: 9c320d554c287039ac009900654e86f1
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_random_1:
   sample_submission.csv: 6f6be26d077ace16ddc10c61002ecd41
   test_features.csv: c1162bb5428b753290f4a6d0e72e69ad
-  train.csv: 4d39c1a83ddbe30f6fb4be2db28f2c7b
+  train.csv: 3574f7ceeaa14ccc0cf3cf3b1977eb57
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_random_2:
   sample_submission.csv: 44a634dbc6093d341f2b5e9d0603fb4d
   test_features.csv: fbfa32acad0d0adea75c8e07978869b0
-  train.csv: 5343e74efa45ec8cd7bb4445630262e7
+  train.csv: bb72ef60dedb6a58bf661023735785fc
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_random_3:
   sample_submission.csv: b3aa3b1615336814c1eec7f319878568
   test_features.csv: 44634f397b4b8e3976acb2b17541e213
-  train.csv: b1972d44e0a945228fa9cc1a4626077a
+  train.csv: e82a11e93ebe9cdbda73530b365eca6d
 public-proteingym-dms/TRPC_SACS2_Chan_2017-fold_random_4:
   sample_submission.csv: 47025eeb881dd5149c25359d7e7088cd
   test_features.csv: 896263d13fccc3dd0f57593ed07cbe1a
-  train.csv: 6ad667b395e6f2691a87ef53e3acf47c
+  train.csv: 0b9445e9e61ed6bfe6910f3943081c68
 zip: 53b3c9be428aac3724703a877c014f9c

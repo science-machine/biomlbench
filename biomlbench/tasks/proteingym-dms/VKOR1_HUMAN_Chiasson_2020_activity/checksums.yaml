@@ -31,61 +31,61 @@ private-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_random_4:
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_contiguous_0:
   sample_submission.csv: 976c8a47c398963d6d21500b7199bf10
   test_features.csv: 86481c8147a0b5cd45c6da006fc2ef34
-  train.csv: 41dcc4192f6a7024f07c7c509713b81b
+  train.csv: 47b381276e3e6f598fdf5d4818462388
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_contiguous_1:
   sample_submission.csv: c4003d580f719ae2e4720ccebf3a6ef9
   test_features.csv: 8f9afeed4057468c24dd9207473b1d1b
-  train.csv: e8a63522f24255eaffd39360ac8128a9
+  train.csv: 244d7168b0dac9040fc591488dc94dd2
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_contiguous_2:
   sample_submission.csv: 1a1fe78dfb41179d64cbfee7a9fa824e
   test_features.csv: 243ba6a32b3bfc25733bf5010c0df6df
-  train.csv: 156613f5dca886cf327637d6a8efaa68
+  train.csv: 2c46a01a6c90d46157f2bfbe7216992a
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_contiguous_3:
   sample_submission.csv: a320c84586f23a2093b8931374602d70
   test_features.csv: ef1dfe74dcc3ee327fce3b551dd1526b
-  train.csv: 01d6f55735f655c812e5952e1deed045
+  train.csv: f11dc73240b97d189c23912b9e3f0502
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_contiguous_4:
   sample_submission.csv: fe6efeb069f634e9f5978e2909af4120
   test_features.csv: 53d38653c24a65524ddfddcc599f80e4
-  train.csv: 1ddaee448835946d37030a7ee9239d9c
+  train.csv: b1f11125007563f2462d5dd67d9c7f48
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_modulo_0:
   sample_submission.csv: 9736ab4d20a5d4996fa3479e13ebb8fd
   test_features.csv: 50d6a9cb098ea2c65acb0d76f2c1f4de
-  train.csv: 30f273ad2c63011f0599b354064136da
+  train.csv: 0141adb9838fb9efa90107c8bbb052ba
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_modulo_1:
   sample_submission.csv: fbc03db6271734772602c59e809ed9f5
   test_features.csv: eca99ae6d728b7146f73d15bbec291c0
-  train.csv: 18d2b315d4afa352787a53988771aa07
+  train.csv: e2c293f50216b98b9ec86615589bd47c
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_modulo_2:
   sample_submission.csv: 50742d6cec0f448c9f28223d0608ee14
   test_features.csv: dc98ad53adcce684b42be0403db9bfc6
-  train.csv: fbdeb67d357646d9f9e37958b3be5461
+  train.csv: 4f2a4b28c7a8bc30347c747084c5ed8d
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_modulo_3:
   sample_submission.csv: 0f8acb5d15a3442651b1472bf4e2ca14
   test_features.csv: ddbf73dc3be98f7b6b8c261c735a32f4
-  train.csv: 125fc1232dd7f746696b5cc5c0e57632
+  train.csv: 41557ec57005974c3ea9f0e95eced46a
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_modulo_4:
   sample_submission.csv: 5227d00f43fafd8dff865ed640858c54
   test_features.csv: 091756851080afd8454ce0d4d6a6408f
-  train.csv: 3726f23a2b278b95ae49bb3cad763745
+  train.csv: d229e7fbceaf9ed212ded619e1eafbca
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_random_0:
   sample_submission.csv: 18f2ff53f15dd5d1775c66b07de5f80b
   test_features.csv: d6d8f5d64387221d01692d389af3ba13
-  train.csv: 857cd9e89024b83290dbee64801ad181
+  train.csv: 261dcb7eae5c5c1c2f9a1cd080df3b3c
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_random_1:
   sample_submission.csv: 5227d00f43fafd8dff865ed640858c54
   test_features.csv: d5c182b2fcf819dd80f22d9eb4b658e1
-  train.csv: 8877cdf1890877baab4fc0c9d9ec9741
+  train.csv: 80205db74a790a2ba284f93a7d5e9a0b
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_random_2:
   sample_submission.csv: 1a1fe78dfb41179d64cbfee7a9fa824e
   test_features.csv: 7d988542bca4c817166a9bf843af9142
-  train.csv: 6de83176a28bfaaf6d4471bc9a14870e
+  train.csv: 01a42a6f4ad1fe916e1032813a565c01
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_random_3:
   sample_submission.csv: 1a1fe78dfb41179d64cbfee7a9fa824e
   test_features.csv: 43c5dfa668631c843005b416dbdd714c
-  train.csv: b0063c5a653b1f73135313f74740088d
+  train.csv: adab3597a8774868cfd7a8c7f498d818
 public-proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity-fold_random_4:
   sample_submission.csv: 9736ab4d20a5d4996fa3479e13ebb8fd
   test_features.csv: f4ab1bb3a5e59e23c1cf490be2d24679
-  train.csv: 053f78292c05d9e5a6f10a6a69f31ebc
+  train.csv: d09b80d907c02064a826212147b85e00
 zip: 53b3c9be428aac3724703a877c014f9c

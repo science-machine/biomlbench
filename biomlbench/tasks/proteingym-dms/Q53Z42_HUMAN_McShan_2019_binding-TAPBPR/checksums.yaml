@@ -31,61 +31,61 @@ private-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_random_4:
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_contiguous_0:
   sample_submission.csv: 0ccf44ee630ba80d82ec18a099a29f71
   test_features.csv: 213f08eb38ada76983b94d5da79638c6
-  train.csv: 35439014996b799445ce721802c97525
+  train.csv: 2198a17a7679bdd7c67ca70c44cbb2fa
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_contiguous_1:
   sample_submission.csv: 654e92450634281c6fe6a6a864ea42c0
   test_features.csv: eb14eb91770c5fad190f2821ec268e82
-  train.csv: e384e2a96fad28b874f55d250ab502b4
+  train.csv: 08386d5e11f06b19034d60def9cb08ed
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_contiguous_2:
   sample_submission.csv: 0a40cdad1aab1e59b7165c1fa30e90c1
   test_features.csv: 59701a0dbac6c524267a25df083602a6
-  train.csv: 4c7e05941bfed095e70fffbd443fbe4e
+  train.csv: ec3c83a3adf68ee0b7bcc2c6d0096f05
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_contiguous_3:
   sample_submission.csv: ba4d78f809ef0fe8b957048250385e55
   test_features.csv: 3e0e79b9d782028a36867a64175a9e70
-  train.csv: d6bc13cbe0414ce20eddfb3e49ef79fd
+  train.csv: 9f6abdfa1b4b99422fe5276840efe3f5
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_contiguous_4:
   sample_submission.csv: 654e92450634281c6fe6a6a864ea42c0
   test_features.csv: 814de7a60314c4cb7ef98732d9c8569a
-  train.csv: 9f500df80855e682e357c526bb4d3598
+  train.csv: a132cd32e570c8666a7124b8f1ec170f
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_modulo_0:
   sample_submission.csv: 75f4200b58f86b5fa9d32b802fc36afe
   test_features.csv: 08bfe68d7290a8102286effb49f331b9
-  train.csv: c9e3de325db77b40ad529b3727620751
+  train.csv: a84f4d899270645d1a63bb10fcfa1080
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_modulo_1:
   sample_submission.csv: fa1c6c09d75a282fd3b9693a23e07485
   test_features.csv: 3367ad3232412708c8f6e3b85b32b886
-  train.csv: 2b9d43d61202fd39d75fd8dba2e7577f
+  train.csv: 3b06281e2f427ea8156c4a054d63a9cd
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_modulo_2:
   sample_submission.csv: 5b8df962746011e0fbfa3878f6bc3c37
   test_features.csv: f20724b2ea117673c3bf250280c56453
-  train.csv: 36f349750c8217768f25d17d4a104483
+  train.csv: 23f1c5e34fd0ef4f57271320a96f54d8
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_modulo_3:
   sample_submission.csv: 93ce1b46f522e4e99c49160452899711
   test_features.csv: 2ac5942020c03afd401c8457ca011ca4
-  train.csv: 82cbaf50be12671d6f005c00ce5cf7ae
+  train.csv: 03e2438c64a8e85b5188c0eb41583db3
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_modulo_4:
   sample_submission.csv: c3d9583b074a242a6790ac53ce83cca9
   test_features.csv: 0b3881bc78a80e055c144122ae4ce1b8
-  train.csv: 218c0a7bbff33de03c9818b288b95f5a
+  train.csv: d206a56fd1c26a043e06a94618846d9b
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_random_0:
   sample_submission.csv: 3b3666da082f6a7d0fac83866fd0afe6
   test_features.csv: 092d7a96b480c5f34e67ea426eb7c124
-  train.csv: 0162bc5627938eaff5a53185cf0b8b88
+  train.csv: db7f8bccefdefef9f54b850e460a1842
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_random_1:
   sample_submission.csv: caf6bfb5828a51269d492f7ab79d5eee
   test_features.csv: 06af366cb9ea81a6769fd67e6da51d09
-  train.csv: 3f95f1e34f5c00916aedfe670ae73c0a
+  train.csv: 87362c91e3f74deea99716a2176e6bac
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_random_2:
   sample_submission.csv: 575a8512fc2bc6f460078831b34e40f9
   test_features.csv: af622f997163bf97a9a9831515984c48
-  train.csv: 782c7e2a33661563c7ff368dc1354874
+  train.csv: 68cec74801aea7c51912a135cfef2450
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_random_3:
   sample_submission.csv: f0c6554e15a1389146e4f6aad49596c2
   test_features.csv: 45b02828ed15353c2848567c8c0ce15a
-  train.csv: 31590c066c337e389faa871b0bb601f4
+  train.csv: a886bc5f07e4b5f9c1fa2557e281f967
 public-proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR-fold_random_4:
   sample_submission.csv: 8af6ce1930ffc4e9f5df9e52a08fe3b8
   test_features.csv: 190e629410a34d02bb90c4f4c2719163
-  train.csv: 0db2406986e9fa68d4c998ef797dad65
+  train.csv: eaf520b9c18911ecc3816191abb19492
 zip: 53b3c9be428aac3724703a877c014f9c
