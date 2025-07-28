@@ -53,7 +53,7 @@ class KaggleDataSource(DataSource):
         Validate Kaggle source configuration.
         
         Args:
-            source_config: Should contain 'competition_id' key
+            source_config: Should contain 'benchmark_id' key
             
         Returns:
             True if valid
@@ -61,16 +61,16 @@ class KaggleDataSource(DataSource):
         Raises:
             DataSourceConfigError: If configuration is invalid
         """
-        if 'competition_id' not in source_config:
+        if 'benchmark_id' not in source_config:
             raise DataSourceConfigError(
-                "Kaggle data source requires 'competition_id' in configuration",
+                "Kaggle data source requires 'benchmark_id' in configuration",
                 source_type="kaggle"
             )
         
-        competition_id = source_config['competition_id']
+        competition_id = source_config['benchmark_id']
         if not isinstance(competition_id, str) or not competition_id.strip():
             raise DataSourceConfigError(
-                "Kaggle 'competition_id' must be a non-empty string",
+                "Kaggle 'benchmark_id' must be a non-empty string",
                 source_type="kaggle"
             )
         
@@ -98,7 +98,7 @@ class KaggleDataSource(DataSource):
         """
         self.validate_config(source_config)
         
-        competition_id = source_config['competition_id']
+        competition_id = source_config['benchmark_id']
         quiet = source_config.get('quiet', False)
         force = source_config.get('force', False)
         
@@ -157,7 +157,7 @@ class KaggleDataSource(DataSource):
         Get leaderboard from Kaggle competition.
         
         Args:
-            source_config: Must contain 'competition_id'
+            source_config: Must contain 'benchmark_id'
             
         Returns:
             DataFrame with leaderboard data
@@ -167,7 +167,7 @@ class KaggleDataSource(DataSource):
         """
         self.validate_config(source_config)
         
-        competition_id = source_config['competition_id']
+        competition_id = source_config['benchmark_id']
         
         try:
             api = authenticate_kaggle_api()
@@ -233,8 +233,8 @@ class KaggleDataSource(DataSource):
             return human_baselines
             
         except Exception as e:
-            logger.warning(f"Failed to extract human baselines from Kaggle: {e}")
-            return None
+            logger.error(f"Failed to extract human baselines from Kaggle: {e}")
+            raise e
     
     def _filter_human_teams(self, leaderboard_df: pd.DataFrame) -> pd.DataFrame:
         """Filter leaderboard to identify likely human teams."""

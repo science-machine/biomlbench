@@ -1,0 +1,32 @@
+id: ranzcr-clip-catheter-line-classification
+name: RANZCR CLiP - Catheter and Line Position Challenge
+competition_type: code
+awards_medals: true
+prizes:
+  - position: 1
+    value: 16000
+  - position: 2
+    value: 12000
+  - position: 3
+    value: 6000
+  - position: 4
+    value: 4000
+  - position: 5
+    value: 4000
+  - position: 6
+    value: 4000
+  - position: 7
+    value: 4000
+    
+description: biomlbench/tasks/kaggle/ranzcr-clip-catheter-line-classification/description.md
+
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
+
+grader:
+  name: auc-roc
+  grade_fn: biomlbench.tasks.kaggle.ranzcr-clip-catheter-line-classification.grade:grade
+
+preparer: biomlbench.tasks.kaggle.ranzcr-clip-catheter-line-classification.prepare:prepare

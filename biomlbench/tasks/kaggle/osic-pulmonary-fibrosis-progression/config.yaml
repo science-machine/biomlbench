@@ -1,0 +1,23 @@
+id: osic-pulmonary-fibrosis-progression
+name: OSIC Pulmonary Fibrosis Progression
+competition_type: code
+awards_medals: true
+prizes:
+  - position: 1
+    value: 30000
+  - position: 2
+    value: 15000
+  - position: 3
+    value: 10000
+description: biomlbench/tasks/kaggle/osic-pulmonary-fibrosis-progression/description.md
+
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
+
+grader:
+  name: modified-laplace-log-likelihood
+  grade_fn: biomlbench.tasks.kaggle.osic-pulmonary-fibrosis-progression.grade:grade
+
+preparer: biomlbench.tasks.kaggle.osic-pulmonary-fibrosis-progression.prepare:prepare

@@ -59,7 +59,7 @@ def download_and_prepare_datasets(
 
     assert is_valid_prepare_fn(
         task.prepare_fn
-    ), f"Provided `prepare_fn` doesn't take arguments `raw`, `private` and `public`!"
+    ), f"Provided `prepare_fn` doesn't take arguments `raw`, `prepared`!"
 
     # Ensure leaderboard exists
     ensure_leaderboard_exists(task, force=overwrite_leaderboard)
@@ -82,6 +82,7 @@ def download_and_prepare_datasets(
 
     # Download data using the data source
     try:
+        breakpoint()
         downloaded_path = data_source.download(source_config, task.raw_dir)
 
         # Handle zip file extraction for sources that provide zip files (like Kaggle)
@@ -247,6 +248,8 @@ def is_valid_prepare_fn(preparer_fn: Any) -> bool:
     """Checks if the `preparer_fn` takes two arguments: `raw` and `prepared`, in that order."""
 
     import inspect
+
+    breakpoint()
 
     try:
         sig = inspect.signature(preparer_fn)

@@ -1,0 +1,27 @@
+id: siim-isic-melanoma-classification
+name: SIIM-ISIC Melanoma Classification
+competition_type: simple
+awards_medals: true
+prizes:
+  - position: 1
+    value: 10000
+  - position: 2
+    value: 6000
+  - position: 3
+    value: 4000
+  - position: With Context Special Prize
+    value: 5000
+  - position: Without Context Special Prize
+    value: 5000
+description: biomlbench/tasks/kaggle/siim-isic-melanoma-classification/description.md
+
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
+
+grader:
+  name: auc-roc
+  grade_fn: biomlbench.tasks.kaggle.siim-isic-melanoma-classification.grade:grade
+
+preparer: biomlbench.tasks.kaggle.siim-isic-melanoma-classification.prepare:prepare

@@ -1,0 +1,37 @@
+id: siim-covid19-detection
+name: SIIM-FISABIO-RSNA COVID-19 Detection
+competition_type: code
+awards_medals: true
+prizes:
+  - position: 1
+    value: 30000
+  - position: 2
+    value: 20000
+  - position: 3
+    value: 10000
+  - position: 4
+    value: 8000
+  - position: 5
+    value: 7000
+  - position: 6
+    value: 5000
+  - position: 7
+    value: 5000
+  - position: 8
+    value: 5000
+  - position: 9
+    value: 5000
+  - position: 10
+    value: 5000
+description: biomlbench/tasks/kaggle/siim-covid19-detection/description.md
+
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
+
+grader:
+  name: mean-average-precision
+  grade_fn: biomlbench.tasks.kaggle.siim-covid19-detection.grade:grade
+
+preparer: biomlbench.tasks.kaggle.siim-covid19-detection.prepare:prepare

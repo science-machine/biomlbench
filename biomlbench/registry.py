@@ -128,6 +128,13 @@ class Task:
             datasets.append(dataset)
 
         try:
+            if not "task_type" in data:
+                data["task_type"] = "simple"
+            if not "domain" in data:
+                data["domain"] = "general"
+            if not "difficulty" in data:
+                data["difficulty"] = "easy"
+
             return Task(
                 id=data["id"],
                 name=data["name"],

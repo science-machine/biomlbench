@@ -1,0 +1,23 @@
+id: stanford-covid-vaccine
+name: "OpenVaccine: COVID-19 mRNA Vaccine Degradation Prediction"
+competition_type: simple
+awards_medals: true
+prizes:
+  - position: 1
+    value: 12000
+  - position: 2
+    value: 8000
+  - position: 3
+    value: 5000
+description: biomlbench/tasks/kaggle/stanford-covid-vaccine/description.md
+
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
+
+grader:
+  name: multi-class-log-loss
+  grade_fn: biomlbench.tasks.kaggle.stanford-covid-vaccine.grade:grade
+
+preparer: biomlbench.tasks.kaggle.stanford-covid-vaccine.prepare:prepare

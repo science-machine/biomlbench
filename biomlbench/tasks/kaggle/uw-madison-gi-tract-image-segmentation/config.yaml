@@ -1,0 +1,23 @@
+id: uw-madison-gi-tract-image-segmentation
+name: UW-Madison GI Tract Image Segmentation
+competition_type: code
+awards_medals: true
+prizes:
+  - position: 1
+    value: 1200
+  - position: 2
+    value: 8000
+  - position: 3
+    value: 5000
+description: biomlbench/tasks/kaggle/uw-madison-gi-tract-image-segmentation/description.md
+
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
+
+grader:
+  name: dice-hausdorff-combo
+  grade_fn: biomlbench.tasks.kaggle.uw-madison-gi-tract-image-segmentation.grade:grade
+
+preparer: biomlbench.tasks.kaggle.uw-madison-gi-tract-image-segmentation.prepare:prepare

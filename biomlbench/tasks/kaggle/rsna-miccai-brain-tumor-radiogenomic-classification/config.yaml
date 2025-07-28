@@ -1,0 +1,33 @@
+id: rsna-miccai-brain-tumor-radiogenomic-classification
+name: RSNA-MICCAI Brain Tumor Radiogenomic Classification
+competition_type: code
+awards_medals: true
+prizes:
+  - position: 1
+    value: 6000
+  - position: 2
+    value: 5000
+  - position: 3
+    value: 4000
+  - position: 4
+    value: 3000
+  - position: 5
+    value: 3000
+  - position: 6
+    value: 3000
+  - position: 7
+    value: 3000
+  - position: 8
+    value: 3000
+description: biomlbench/tasks/kaggle/rsna-miccai-brain-tumor-radiogenomic-classification/description.md
+
+datasets:
+  '0':
+    answers: answers.csv
+    sample_submission: sample_submission.csv
+
+grader:
+  name: auc-roc
+  grade_fn: biomlbench.tasks.kaggle.rsna-miccai-brain-tumor-radiogenomic-classification.grade:grade
+
+preparer: biomlbench.tasks.kaggle.rsna-miccai-brain-tumor-radiogenomic-classification.prepare:prepare
