@@ -110,7 +110,6 @@ class KaggleDataSource(DataSource):
             logger.info(f"Downloading Kaggle dataset for `{competition_id}` to `{data_dir}`...")
 
             api = authenticate_kaggle_api()
-            breakpoint()
             try:
                 api.competition_download_files(
                     competition=competition_id,
@@ -133,7 +132,6 @@ class KaggleDataSource(DataSource):
                 else:
                     raise e
             
-            breakpoint()
 
             zip_files = list(data_dir.glob("*.zip"))
 
