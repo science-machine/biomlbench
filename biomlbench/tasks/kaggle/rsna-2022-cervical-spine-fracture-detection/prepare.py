@@ -4,7 +4,7 @@ from pathlib import Path
 
 from tqdm.auto import tqdm
 
-from mlebench.utils import read_csv
+from biomlbench.utils import read_csv
 
 
 def prepare(raw: Path, prepared: Path) -> None:    

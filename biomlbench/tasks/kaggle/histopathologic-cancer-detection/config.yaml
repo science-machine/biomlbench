@@ -1,4 +1,4 @@
-id: histopathologic-cancer-detection
+id: kaggle/histopathologic-cancer-detection
 name: Histopathologic Cancer Detection
 competition_type: code
 awards_medals: false
@@ -7,7 +7,7 @@ description: biomlbench/tasks/kaggle/histopathologic-cancer-detection/descriptio
 
 data_source:
   type: kaggle
-  benchmark_id: histopathologic-cancer-detection
+  benchmark_id: kaggle/histopathologic-cancer-detection
 
 
 datasets:

@@ -14,10 +14,16 @@ def make_image_subpath(image_id: str) -> Path:
     return subpath
 
 
-def prepare(raw: Path, public: Path, private: Path):
-    """
-    Splits the data in raw into public and private datasets with appropriate test/train splits.
-    """
+def prepare(raw: Path, prepared: Path) -> None:    
+    # Create dataset directory (we use 0 as the default for a single dataset)
+    dataset_dir = prepared / "0"
+    dataset_dir.mkdir(parents=True, exist_ok=True)
+    public = dataset_dir / "public"
+    private = dataset_dir / "private"
+    public.mkdir(parents=True, exist_ok=True)
+    private.mkdir(parents=True, exist_ok=True)
+    print(f"Running prepare for {raw} -> {prepared}")
+
     # Load train data
     old_train = pd.read_csv(raw / "train_labels.csv")
 

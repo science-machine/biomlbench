@@ -1,4 +1,4 @@
-id: stanford-covid-vaccine
+id: kaggle/stanford-covid-vaccine
 name: "OpenVaccine: COVID-19 mRNA Vaccine Degradation Prediction"
 competition_type: simple
 awards_medals: true
@@ -15,6 +15,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/stanford-covid-vaccine
+
 
 grader:
   name: multi-class-log-loss

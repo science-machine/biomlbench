@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from pandas import DataFrame
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 
 def prepare_for_metric(submission: DataFrame, answers: DataFrame) -> dict:

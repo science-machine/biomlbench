@@ -1,4 +1,4 @@
-id: siim-isic-melanoma-classification
+id: kaggle/siim-isic-melanoma-classification
 name: SIIM-ISIC Melanoma Classification
 competition_type: simple
 awards_medals: true
@@ -19,6 +19,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/siim-isic-melanoma-classification
+
 
 grader:
   name: auc-roc

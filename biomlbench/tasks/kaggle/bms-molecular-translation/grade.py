@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from Levenshtein import distance
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 
 def edit_distance_array(y_true: pd.Series, y_pred: pd.Series) -> float:

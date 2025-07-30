@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 from biomlbench.tasks.kaggle.utils import prepare_for_auroc_metric
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 from .classes import CLASSES
 

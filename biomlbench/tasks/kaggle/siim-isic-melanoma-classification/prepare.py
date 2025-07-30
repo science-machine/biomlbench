@@ -5,7 +5,7 @@ import pandas as pd
 from tqdm.auto import tqdm
 
 from mlebench.competitions.utils import get_ids_from_tf_records
-from mlebench.utils import get_logger
+from biomlbench.utils import get_logger
 
 logger = get_logger(__name__)
 

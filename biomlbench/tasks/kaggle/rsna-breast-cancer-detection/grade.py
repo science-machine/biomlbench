@@ -1,6 +1,6 @@
 import pandas as pd
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 
 def pfbeta(labels, predictions, beta):

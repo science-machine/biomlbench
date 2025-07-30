@@ -99,6 +99,7 @@ class KaggleDataSource(DataSource):
         self.validate_config(source_config)
         
         competition_id = source_config['benchmark_id']
+        competition_id = competition_id.split('/')[-1]
         quiet = source_config.get('quiet', False)
         force = source_config.get('force', False)
         
@@ -109,7 +110,7 @@ class KaggleDataSource(DataSource):
             logger.info(f"Downloading Kaggle dataset for `{competition_id}` to `{data_dir}`...")
 
             api = authenticate_kaggle_api()
-
+            breakpoint()
             try:
                 api.competition_download_files(
                     competition=competition_id,
@@ -131,6 +132,8 @@ class KaggleDataSource(DataSource):
                     )
                 else:
                     raise e
+            
+            breakpoint()
 
             zip_files = list(data_dir.glob("*.zip"))
 
@@ -168,6 +171,7 @@ class KaggleDataSource(DataSource):
         self.validate_config(source_config)
         
         competition_id = source_config['benchmark_id']
+        competition_id = competition_id.split('/')[-1]
         
         try:
             api = authenticate_kaggle_api()

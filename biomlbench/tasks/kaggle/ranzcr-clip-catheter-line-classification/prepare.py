@@ -3,7 +3,7 @@ from pathlib import Path
 
 from sklearn.model_selection import train_test_split
 
-from mlebench.utils import read_csv
+from biomlbench.utils import read_csv
 
 from .classes import CLASSES
 

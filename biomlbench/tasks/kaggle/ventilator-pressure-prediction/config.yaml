@@ -1,4 +1,4 @@
-id: ventilator-pressure-prediction 
+id: kaggle/ventilator-pressure-prediction 
 name: "Google Brain - Ventilator Pressure Prediction"
 competition_type: simple
 awards_medals: true
@@ -15,6 +15,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/ventilator-pressure-prediction
+
 
 grader:
   name: dice-hausdorff-combo

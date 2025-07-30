@@ -1,4 +1,4 @@
-id: rsna-miccai-brain-tumor-radiogenomic-classification
+id: kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
 name: RSNA-MICCAI Brain Tumor Radiogenomic Classification
 competition_type: code
 awards_medals: true
@@ -25,6 +25,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+
 
 grader:
   name: auc-roc

@@ -4,7 +4,7 @@ from pathlib import Path
 from sklearn.model_selection import train_test_split
 from tqdm.auto import tqdm
 
-from mlebench.utils import read_csv
+from biomlbench.utils import read_csv
 
 # columns in train.csv
 train_columns = [

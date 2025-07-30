@@ -1,4 +1,4 @@
-id: ranzcr-clip-catheter-line-classification
+id: kaggle/ranzcr-clip-catheter-line-classification
 name: RANZCR CLiP - Catheter and Line Position Challenge
 competition_type: code
 awards_medals: true
@@ -24,6 +24,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/ranzcr-clip-catheter-line-classification
+
 
 grader:
   name: auc-roc

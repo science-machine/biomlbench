@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import average_precision_score
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 
 def calculate_iou(

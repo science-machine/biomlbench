@@ -59,6 +59,7 @@ dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.14",
     "mkdocstrings[python]>=0.29.1",
+    "levenshtein>=0.27.1",
 ]
 
 [project.optional-dependencies]

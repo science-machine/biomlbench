@@ -1,6 +1,6 @@
 import pandas as pd
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 from . import kullback_leibler_divergence as kl_divergence
 from .constants import ID_COL, TARGET_COLS

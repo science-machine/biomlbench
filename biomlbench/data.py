@@ -82,7 +82,6 @@ def download_and_prepare_datasets(
 
     # Download data using the data source
     try:
-        breakpoint()
         downloaded_path = data_source.download(source_config, task.raw_dir)
 
         # Handle zip file extraction for sources that provide zip files (like Kaggle)
@@ -249,8 +248,6 @@ def is_valid_prepare_fn(preparer_fn: Any) -> bool:
 
     import inspect
 
-    breakpoint()
-
     try:
         sig = inspect.signature(preparer_fn)
     except (TypeError, ValueError):
@@ -366,6 +363,7 @@ def get_leaderboard(task: Task) -> pd.DataFrame:
     print(leaderboard_path)
     assert leaderboard_path.exists(), f"Leaderboard not found locally for task `{task.id}`."
     leaderboard_df = pd.read_csv(leaderboard_path)
+    assert 'score' in leaderboard_df.columns, f"Leaderboard for task `{task.id}` does not contain a `score` column."
     return leaderboard_df
 
 

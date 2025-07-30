@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
-from mlebench.utils import read_csv
+from biomlbench.utils import read_csv
 
 
 def prepare(raw: Path, prepared: Path) -> None:    

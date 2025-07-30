@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from tqdm.auto import tqdm
 
-from mlebench.utils import read_csv
+from biomlbench.utils import read_csv
 
 
 def verify_directory_sync(df: pd.DataFrame, expected_dir: Path, unexpected_dir: Path):

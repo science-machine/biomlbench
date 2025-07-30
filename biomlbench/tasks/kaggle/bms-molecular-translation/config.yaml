@@ -1,4 +1,4 @@
-id: bms-molecular-translation
+id: kaggle/bms-molecular-translation
 name: Bristol-Myers Squibb - Molecular Translation
 competition_type: simple
 awards_medals: true
@@ -15,6 +15,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/bms-molecular-translation
+
 
 grader:
   name: levenshtein-distance

@@ -1,4 +1,4 @@
-id: uw-madison-gi-tract-image-segmentation
+id: kaggle/uw-madison-gi-tract-image-segmentation
 name: UW-Madison GI Tract Image Segmentation
 competition_type: code
 awards_medals: true
@@ -15,6 +15,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/uw-madison-gi-tract-image-segmentation
+
 
 grader:
   name: dice-hausdorff-combo

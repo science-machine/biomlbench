@@ -4,7 +4,7 @@ from scipy.spatial.distance import directed_hausdorff
 from tqdm.auto import tqdm
 
 from biomlbench.tasks.kaggle.utils import rles_to_masks
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 from mlebench.metrics import dice_coefficient
 
 UNIT_CUBE_DIAGONAL = np.sqrt(3)

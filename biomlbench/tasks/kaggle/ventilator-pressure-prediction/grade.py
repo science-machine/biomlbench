@@ -1,7 +1,7 @@
 from pandas import DataFrame
 from sklearn.metrics import mean_absolute_error
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 
 def prepare_for_metric(submission: DataFrame, answers: DataFrame) -> dict:

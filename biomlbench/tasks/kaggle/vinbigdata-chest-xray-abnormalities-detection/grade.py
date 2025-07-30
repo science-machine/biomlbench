@@ -3,7 +3,7 @@ import pandas as pd
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 
 def prepare_for_metric(submission: pd.DataFrame, answers: pd.DataFrame) -> dict:

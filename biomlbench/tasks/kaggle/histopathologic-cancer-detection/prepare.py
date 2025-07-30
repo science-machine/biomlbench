@@ -10,8 +10,11 @@ from tqdm import tqdm
 def prepare(raw: Path, prepared: Path) -> None:    
     # Create dataset directory (we use 0 as the default for a single dataset)
     dataset_dir = prepared / "0"
+    dataset_dir.mkdir(parents=True, exist_ok=True)
     public = dataset_dir / "public"
     private = dataset_dir / "private"
+    public.mkdir(parents=True, exist_ok=True)
+    private.mkdir(parents=True, exist_ok=True)
     old_train = pd.read_csv(raw / "train_labels.csv")
 
     num_test = len(list((raw / "test").glob("*.tif")))
@@ -31,7 +34,6 @@ def prepare(raw: Path, prepared: Path) -> None:
     ), "The combined length of new_train_ids and new_test_ids should equal the length of old_train"
 
     # Copy over files
-    breakpoint()
     public.mkdir(parents=True, exist_ok=True)
     private.mkdir(parents=True, exist_ok=True)
 

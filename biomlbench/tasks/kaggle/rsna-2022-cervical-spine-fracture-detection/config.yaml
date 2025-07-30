@@ -1,4 +1,4 @@
-id: rsna-2022-cervical-spine-fracture-detection
+id: kaggle/rsna-2022-cervical-spine-fracture-detection
 name: RSNA 2022 Cervical Spine Fracture Detection
 competition_type: code
 awards_medals: true
@@ -25,6 +25,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/rsna-2022-cervical-spine-fracture-detection
+
 
 grader:
   name: weighted-multi-label-log-loss

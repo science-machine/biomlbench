@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 column_order = ["patient_overall", "C1", "C2", "C3", "C4", "C5", "C6", "C7"]
 

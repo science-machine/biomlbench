@@ -1,4 +1,4 @@
-id: vinbigdata-chest-xray-abnormalities-detection
+id: kaggle/vinbigdata-chest-xray-abnormalities-detection
 name: VinBigData Chest X-ray Abnormalities Detection
 competition_type: simple
 awards_medals: true
@@ -17,6 +17,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/vinbigdata-chest-xray-abnormalities-detection
+
 
 grader:
   name: mAP-at-IoU>0.4

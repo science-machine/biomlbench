@@ -1,4 +1,4 @@
-id: osic-pulmonary-fibrosis-progression
+id: kaggle/osic-pulmonary-fibrosis-progression
 name: OSIC Pulmonary Fibrosis Progression
 competition_type: code
 awards_medals: true
@@ -15,6 +15,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/osic-pulmonary-fibrosis-progression
+
 
 grader:
   name: modified-laplace-log-likelihood

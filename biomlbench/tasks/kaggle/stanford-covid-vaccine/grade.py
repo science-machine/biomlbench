@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import root_mean_squared_error
 
-from mlebench.grade_helpers import InvalidSubmissionError
+from biomlbench.grade_helpers import InvalidSubmissionError
 
 
 def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:

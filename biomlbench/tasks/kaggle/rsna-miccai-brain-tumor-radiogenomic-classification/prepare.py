@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from mlebench.utils import read_csv
+from biomlbench.utils import read_csv
 
 
 def prepare(raw: Path, prepared: Path) -> None:    

@@ -1,4 +1,4 @@
-id: siim-covid19-detection
+id: kaggle/siim-covid19-detection
 name: SIIM-FISABIO-RSNA COVID-19 Detection
 competition_type: code
 awards_medals: true
@@ -29,6 +29,11 @@ datasets:
   '0':
     answers: answers.csv
     sample_submission: sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/siim-covid19-detection
+
 
 grader:
   name: mean-average-precision
