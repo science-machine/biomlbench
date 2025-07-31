@@ -5,7 +5,7 @@ from tqdm.auto import tqdm
 
 from biomlbench.tasks.kaggle.utils import rles_to_masks
 from biomlbench.grade_helpers import InvalidSubmissionError
-from mlebench.metrics import dice_coefficient
+from biomlbench.metrics import dice_coefficient
 
 UNIT_CUBE_DIAGONAL = np.sqrt(3)
 

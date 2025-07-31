@@ -257,9 +257,12 @@ class KaggleDataSource(DataSource):
             # Very long random-looking strings
             r'^[a-z0-9]{20,}$'
         ]
+
+        # Find the team name column. It could be team_name or teamName
+        team_name = 'team_name' if 'team_name' in df.columns else 'teamName'
         
         for pattern in bot_patterns:
-            human_indicators &= ~df['team_name'].str.contains(pattern, case=False, na=False, regex=True)
+            human_indicators &= ~df[team_name].str.contains(pattern, case=False, na=False, regex=True)
         
         # Filter out teams with suspicious submission patterns
         # (This would require submission frequency data, which Kaggle API may not provide)
@@ -273,8 +276,11 @@ class KaggleDataSource(DataSource):
     def _categorize_human_performance(self, human_df: pd.DataFrame) -> pd.DataFrame:
         """Categorize human performance into expert/intermediate/novice levels."""
         
+        # Find the team name column. It could be team_name or teamName
+        team_name = 'team_name' if 'team_name' in human_df.columns else 'teamName'
+
         if human_df.empty:
-            return pd.DataFrame(columns=['team_name', 'score', 'human_type', 'source'])
+            return pd.DataFrame(columns=[team_name, 'score', 'human_type', 'source'])
         
         # Calculate performance percentiles
         scores = human_df['score'].astype(float)
@@ -296,9 +302,8 @@ class KaggleDataSource(DataSource):
                 human_type = 'intermediate'
             else:
                 human_type = 'novice'
-            
             human_baselines.append({
-                'team_name': row['team_name'],
+                'team_name': row[team_name],
                 'score': score,
                 'human_type': human_type
             })

@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 from tqdm.auto import tqdm
 
-from mlebench.competitions.utils import get_ids_from_tf_records
+from biomlbench.tasks.kaggle.utils import get_ids_from_tf_records
 from biomlbench.utils import get_logger
 
 logger = get_logger(__name__)
