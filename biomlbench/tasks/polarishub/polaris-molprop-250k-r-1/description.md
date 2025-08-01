@@ -45,7 +45,7 @@ The full curation and creation process is documented [here](https://github.com/p
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'n_aromatic_rings', 'tpsa', 'n_rotatable_bonds', 'clogp', 'mw', 'n_charged_atoms', 'fsp3', 'formal_charge', 'refractivity'}` (first target if multiple available)
+- Target column: `{'clogp', 'refractivity', 'n_rotatable_bonds', 'n_charged_atoms', 'formal_charge', 'mw', 'n_aromatic_rings', 'tpsa', 'fsp3'}` (first target if multiple available)
 
 ## Files
 

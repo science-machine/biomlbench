@@ -25,14 +25,15 @@ def grade_jsonl(
     Saves the aggregated report as a JSON file.
     """
 
-    submissions = read_jsonl(path_to_submissions, skip_commented_out_lines=True)
+    submissions = read_jsonl(str(path_to_submissions), skip_commented_out_lines=True)
     task_reports = []
 
     for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
-        submission_path = Path(str(submission["submission_path"]))
-        task_id = submission.get("task_id")
+        # Resolve submission path relative to the JSONL file directory
+        submission_path = path_to_submissions.parent / submission["submission_path"]
+        task_id = submission["task_id"]
         task = registry.get_task(task_id)
-        single_report = grade_csv(submission_path, task)
+        single_report = grade_submission(submission_path, task)
         task_reports.append(single_report)
 
     aggregated_report = aggregate_reports(task_reports)
@@ -50,8 +51,8 @@ def grade_jsonl(
     logger.info(purple(f"Saved summary report to {save_path}"))
 
 
-def grade_csv(path_to_submission: Path, task: Task) -> TaskReport:
-    """Grades a submission CSV for the given task."""
+def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
+    """Grades a submission file (CSV or h5ad) for the given task."""
 
     if not is_dataset_prepared(task, grading_only=True):
         raise ValueError(
@@ -60,15 +61,31 @@ def grade_csv(path_to_submission: Path, task: Task) -> TaskReport:
         )
 
     score = None
-    submission_exists = path_to_submission.is_file() and path_to_submission.suffix.lower() == ".csv"
-
+    submission_exists = path_to_submission.is_file()
+    file_extension = path_to_submission.suffix.lower()
+    
     if submission_exists:
-        submission_df = read_csv(path_to_submission)
-        answers = load_answers(task.answers)
-        score = task.grader(submission_df, answers)
+        if file_extension == ".csv":
+            # Traditional CSV-based task
+            submission_df = read_csv(path_to_submission)
+            answers = load_answers(task.answers)
+            score = task.grader(submission_df, answers)
+        elif file_extension == ".h5ad":
+            # AnnData-based task (e.g., OpenProblems)
+            # Call grade_fn directly with Path arguments, bypassing Grader.__call__
+            answers_path = Path(task.answers)
+            try:
+                score = task.grader.grade_fn(path_to_submission, answers_path)
+                if score is not None:
+                    score = round(score, 5)  # Match the rounding from Grader.__call__
+            except Exception as e:
+                logger.error(f"Unexpected error during h5ad grading: {e}")
+                raise e
+        else:
+            logger.warning(f"Unsupported file format: {file_extension}. Expected .csv or .h5ad.")
     else:
         logger.warning(
-            f"Invalid submission file: {path_to_submission}. Please check that the file exists and it is a CSV."
+            f"Invalid submission file: {path_to_submission}. Please check that the file exists."
         )
 
     valid_submission = score is not None
@@ -123,8 +140,11 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
     if not submission.is_file():
         return False, f"Submission invalid! Submission file {submission} does not exist."
 
-    if not submission.suffix.lower() == ".csv":
-        return False, "Submission invalid! Submission file must be a CSV file."
+    # Support multiple file formats: CSV, h5ad, and potentially others
+    supported_formats = [".csv", ".h5ad"]
+    file_extension = submission.suffix.lower()
+    if file_extension not in supported_formats:
+        return False, f"Submission invalid! Submission file must be one of {supported_formats}, got {file_extension}."
 
     if not is_dataset_prepared(task, grading_only=True):
         raise ValueError(
@@ -133,7 +153,15 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
         )
 
     try:
-        task.grader.grade_fn(read_csv(submission), read_csv(task.answers))
+        # Use the same logic as grade_submission for different file formats
+        if file_extension == ".csv":
+            task.grader.grade_fn(read_csv(submission), read_csv(task.answers))
+        elif file_extension == ".h5ad":
+            # For h5ad files, pass paths directly to grade_fn
+            task.grader.grade_fn(submission, Path(task.answers))
+        else:
+            # This shouldn't happen given our validation above, but handle it gracefully
+            raise ValueError(f"Unsupported file format for validation: {file_extension}")
     except Exception as e:
         return (
             False,

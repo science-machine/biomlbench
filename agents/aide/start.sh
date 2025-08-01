@@ -105,20 +105,5 @@ elif [ -d "${AGENT_DIR}/logs" ]; then
   find ${AGENT_DIR}/logs -name "best_solution.py" -type f -exec cp {} ${CODE_DIR}/ \; -quit
 fi
 
-# Check if AIDE generated a submission file in the expected location
-if [ -f "/home/submission/submission.csv" ]; then
-  echo "✅ Found submission at expected location: /home/submission/submission.csv"
-else
-  echo "⚠️ No submission found at /home/submission/submission.csv"
-  echo "Searching for any submission files..."
-  
-  # Look for submission files in common locations
-  find ${AGENT_DIR} ./logs ./workspaces -name "submission.csv" -type f 2>/dev/null | while read csvfile; do
-    echo "Found submission file: $csvfile"
-    cp "$csvfile" "${SUBMISSION_DIR}/submission.csv"
-    echo "✅ Copied submission to ${SUBMISSION_DIR}/submission.csv"
-    break
-  done
-fi
 
 echo "AIDE execution complete."

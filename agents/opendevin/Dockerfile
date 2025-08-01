@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 biomlbench-env
 # Do not modify the following block of arg-env pairs. The evaluation infrastructure will
 # periodically download the contents of these directories for logging purposes.
 
-# Where the agent should write its `submission.csv`
+# Where the agent should write its submission
 ARG SUBMISSION_DIR=/home/submission
 ENV SUBMISSION_DIR=${SUBMISSION_DIR}
 

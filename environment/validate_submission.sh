@@ -3,7 +3,7 @@
 # This script is a tool for agents to submit a file to the grading server for validation.
 
 # validate_submission.sh
-# Usage: ./validate_submission.sh user_submission.csv
+# Usage: ./validate_submission.sh user_submission.csv # or ./validate_submission.sh user_submission.h5ad
 
 SUBMISSION_FILE=$1
 SERVER_URL="http://localhost:5000/validate"

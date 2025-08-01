@@ -50,7 +50,7 @@ class Grader:
             except TypeError:
                 fn_info = str(self.grade_fn)
             logger.error(f"Unexpected error during grading: {e}. Check {fn_info}")
-            return None
+            raise e
         rounded_score = round(score, 5)
         return rounded_score
 
@@ -163,9 +163,10 @@ class Grader:
 class TaskReport:
     """
     Report for a single biomedical task evaluation.
-    
+
     Extended from MLE-bench CompetitionReport with biomedical-specific fields.
     """
+
     task_id: str
     score: float | None
     gold_threshold: float
@@ -182,7 +183,7 @@ class TaskReport:
     is_lower_better: bool
     created_at: datetime
     submission_path: str
-    
+
     # Biomedical-specific fields
     beats_human: bool = None
     human_percentile: float = None
@@ -207,7 +208,9 @@ class TaskReport:
             "created_at": self.created_at.isoformat(),  # Serialize datetime
             "submission_path": self.submission_path,
             "beats_human": bool(self.beats_human) if self.beats_human is not None else None,
-            "human_percentile": float(self.human_percentile) if self.human_percentile is not None else None,
+            "human_percentile": float(self.human_percentile)
+            if self.human_percentile is not None
+            else None,
         }
 
     @classmethod
@@ -230,14 +233,15 @@ class TaskReport:
             "is_lower_better": bool(data["is_lower_better"]),
             "created_at": datetime.fromisoformat(data["created_at"]),
             "submission_path": data["submission_path"],
-            "beats_human": bool(data["beats_human"]) if data.get("beats_human") is not None else None,
-            "human_percentile": float(data["human_percentile"]) if data.get("human_percentile") is not None else None,
+            "beats_human": bool(data["beats_human"])
+            if data.get("beats_human") is not None
+            else None,
+            "human_percentile": float(data["human_percentile"])
+            if data.get("human_percentile") is not None
+            else None,
         }
 
         return cls(**typed_data)
-
-
-
 
 
 class InvalidSubmissionError(Exception):

@@ -22,6 +22,8 @@ See the docs here: [docs/index.md](docs/index.md)
 - [ ] Improve documentation of built-in agents.
 - [ ] Decide if we're going to add in unit tests.
 - [ ] Decide if we want to bother scraping subsequent polarihub leaderboard pages (not a lot of examples with more than one page).
+- [ ] Decide if we want to have the option to let models see the public leaderboard (would be a more fair comparison to human performance).
+
 
 
 ## How to wrap a new benchmark database

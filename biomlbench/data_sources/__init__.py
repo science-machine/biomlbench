@@ -14,6 +14,7 @@ from .factory import DataSourceFactory, register_data_source
 # Import all data source implementations to trigger registration
 from .kaggle import KaggleDataSource
 from .polaris import PolarisDataSource
+from .openproblems import OpenProblemsDataSource
 
 __all__ = [
     # Base classes and interfaces
@@ -27,6 +28,7 @@ __all__ = [
     # Concrete implementations
     "KaggleDataSource",
     "PolarisDataSource",
+    "OpenProblemsDataSource",
 ]
 
 

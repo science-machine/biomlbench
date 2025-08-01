@@ -2,6 +2,9 @@ import argparse
 import json
 from pathlib import Path
 
+# Add dotenv import for .env file loading
+from dotenv import load_dotenv
+
 from biomlbench.agents import run_agent
 from biomlbench.baselines import run_baseline
 from biomlbench.data import (
@@ -9,14 +12,23 @@ from biomlbench.data import (
     ensure_leaderboard_exists,
     prepare_human_baselines,
 )
-from biomlbench.grade import grade_csv, grade_jsonl
+from biomlbench.grade import grade_submission, grade_jsonl
 from biomlbench.registry import registry
-from biomlbench.utils import get_logger
+from biomlbench.utils import get_logger, get_repo_dir
 
 logger = get_logger(__name__)
 
 
 def main():
+    # Load .env file from the project root directory
+    # This ensures API keys and other environment variables are available
+    dotenv_path = get_repo_dir() / ".env"
+    if dotenv_path.exists():
+        load_dotenv(dotenv_path)
+        logger.debug(f"Loaded environment variables from {dotenv_path}")
+    else:
+        logger.debug(f"No .env file found at {dotenv_path}")
+    
     parser = argparse.ArgumentParser(description="Runs agents on biomedical ML tasks.")
     subparsers = parser.add_subparsers(dest="command", help="Sub-command to run.")
 
@@ -333,7 +345,7 @@ def main():
         new_registry = registry.set_data_dir(Path(args.data_dir))
         task = new_registry.get_task(args.task_id)
         submission = Path(args.submission)
-        report = grade_csv(submission, task)
+        report = grade_submission(submission, task)
         logger.info("Task report:")
         logger.info(json.dumps(report.to_dict(), indent=4))
 

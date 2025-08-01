@@ -2,14 +2,14 @@
 
 A benchmark suite for evaluating LLM agents on biomedical machine learning tasks.
 
-BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) and provides a comprehensive framework for benchmarking LLM agents on biomedical machine learning (BioML) tasks including protein engineering, drug discovery, medical imaging, and clinical biomarkers.
+BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) and provides a comprehensive framework for benchmarking LLM agents on biomedical machine learning (BioML) tasks including protein engineering, drug discovery, single cell omics, medical imaging, and clinical biomarkers.
 
 Agents autonomously read task descriptions, analyze biomedical data, design appropriate ML approaches, and implement complete solutions from scratch.
 
 ## 🧬 Features
 
-- **Diverse Biomedical Tasks**: Protein engineering, drug discovery, medical imaging, clinical biomarkers
-- **Agent-Agnostic Evaluation**: Any LLM agent that can read task descriptions and produce CSV submissions can be evaluated
+- **Diverse Biomedical Tasks**: Protein engineering, drug discovery, single cell omics, medical imaging, clinical biomarkers
+- **Agent-Agnostic Evaluation**: Any LLM agent that can read task descriptions and produce file/folder submissions can be evaluated
 - **Human Baselines**: Built-in human performance benchmarks for comparison
 - **Secure Evaluation**: Containerized execution with no data leakage
 - **Extensible Framework**: Easy to add new biomedical tasks

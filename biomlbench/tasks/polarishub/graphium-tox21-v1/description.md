@@ -28,7 +28,7 @@ Reference: [Improving the human hazard characterization of chemicals: a Tox21 up
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'SR-p53', 'NR-ER-LBD', 'NR-AhR', 'NR-Aromatase', 'SR-ATAD5', 'NR-AR', 'NR-PPAR-gamma', 'SR-HSE', 'SR-MMP', 'SR-ARE', 'NR-ER', 'NR-AR-LBD'}` (first target if multiple available)
+- Target column: `{'SR-MMP', 'NR-ER-LBD', 'NR-AhR', 'NR-AR', 'NR-Aromatase', 'NR-ER', 'NR-PPAR-gamma', 'SR-ARE', 'SR-HSE', 'SR-p53', 'SR-ATAD5', 'NR-AR-LBD'}` (first target if multiple available)
 
 ## Files
 

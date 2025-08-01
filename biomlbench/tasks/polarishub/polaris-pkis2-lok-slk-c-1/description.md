@@ -55,7 +55,7 @@ The full curation and creation process is documented -> [notebook](https://githu
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'CLASS_SLK', 'CLASS_LOK'}` (first target if multiple available)
+- Target column: `{'CLASS_LOK', 'CLASS_SLK'}` (first target if multiple available)
 
 ## Files
 

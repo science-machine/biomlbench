@@ -1,11 +1,13 @@
+*.h5ad
 __pycache__/
 *.pyc
 *.pyo
 *.db
+figures
+results/
 ref
 .venv
 baseline_submissions
-*.json
 *.jsonl
 cache
 .env

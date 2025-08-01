@@ -52,7 +52,7 @@ The full curation and creation process is documented -> [notebook](https://githu
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'EGFR', 'EGFR_(L858R_mutant)'}` (first target if multiple available)
+- Target column: `{'EGFR_(L858R_mutant)', 'EGFR'}` (first target if multiple available)
 
 ## Files
 

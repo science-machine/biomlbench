@@ -155,17 +155,17 @@ AGENT_DIR="/home/agent"
 ```
 /home/data/                    # Task data (read-only)
 ├── description.md             # Task description
-├── train.csv                  # Training data
-├── test_features.csv          # Test features
-├── sample_submission.csv      # Expected format
-└── human_baselines.csv        # Human performance (if available)
+├── train.<ext>                # Training data (e.g., train.csv, train.h5ad)
+├── test_features.<ext>        # Test features (e.g., test_features.csv, test_features.h5ad)
+├── sample_submission.<ext>    # Expected format (e.g., sample_submission.csv, sample_submission.h5ad)
+└── human_baselines.<ext>      # Human performance (if available) (e.g., human_baselines.csv, human_baselines.h5ad)
 
 /home/submission/              # Agent output (read-write)
-└── submission.csv             # Agent predictions
+└── submission.<ext>           # Agent predictions (e.g., submission.csv, submission.h5ad)
 
 /private/data/task-id/         # Private evaluation data
 └── prepared/private/
-    └── answers.csv            # Ground truth (inaccessible to agents)
+    └── answers.<ext>          # Ground truth (inaccessible to agents) (e.g., answers.csv, answers.h5ad)
 ```
 
 
