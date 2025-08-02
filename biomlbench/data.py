@@ -86,11 +86,19 @@ def download_and_prepare_dataset(
         downloaded_path = data_source.download(source_config, task.raw_dir)
 
         # Handle zip file extraction for sources that provide zip files (like Kaggle)
+        # Skip extraction for data sources that handle it internally (like ProteinGym)
         if downloaded_path and downloaded_path.suffix == ".zip":
-            if is_empty(task.raw_dir) or len(list(task.raw_dir.iterdir())) == 1:
+            # Check if the zip file exists and hasn't been extracted yet
+            # Look for the extracted directory that would be created by the zip
+            zip_name = downloaded_path.stem  # Remove .zip extension
+            extracted_dir = task.raw_dir / zip_name
+
+            if not extracted_dir.exists():
                 logger.info(f"Extracting `{downloaded_path}` to `{task.raw_dir}`...")
                 extract(downloaded_path, task.raw_dir, recursive=False)
                 logger.info(f"Extracted successfully.")
+            else:
+                logger.info(f"Zip file already extracted to `{extracted_dir}`")
 
     except DataSourceError as e:
         raise ValueError(f"Failed to download data for task '{task.id}': {e}") from e
@@ -99,7 +107,7 @@ def download_and_prepare_dataset(
     if overwrite_checksums or not skip_verification:
         actual_checksums = {}
 
-        # Only include zip checksum if we have a zip file
+        # Only include zip checksum if we have a zip file (and it's not handled internally)
         if downloaded_path and downloaded_path.suffix == ".zip":
             logger.info(f"Generating checksum for `{downloaded_path}`...")
             actual_zip_checksum = get_checksum(downloaded_path)
