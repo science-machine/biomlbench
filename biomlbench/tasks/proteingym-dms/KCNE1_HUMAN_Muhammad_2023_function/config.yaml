@@ -14,8 +14,8 @@ data_source:
   benchmark_id: KCNE1_HUMAN_Muhammad_2023_function
 
 dataset:
-  answers: proteingym-dms/KCNE1_HUMAN_Muhammad_2023_function/private/answers.csv
-  sample_submission: proteingym-dms/KCNE1_HUMAN_Muhammad_2023_function/public/sample_submission.csv
+  answers: proteingym-dms/KCNE1_HUMAN_Muhammad_2023_function/prepared/private/answers.csv
+  sample_submission: proteingym-dms/KCNE1_HUMAN_Muhammad_2023_function/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

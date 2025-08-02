@@ -14,8 +14,8 @@ data_source:
   benchmark_id: SQSTM_MOUSE_Tsuboyama_2023_2RRU
 
 dataset:
-  answers: proteingym-dms/SQSTM_MOUSE_Tsuboyama_2023_2RRU/private/answers.csv
-  sample_submission: proteingym-dms/SQSTM_MOUSE_Tsuboyama_2023_2RRU/public/sample_submission.csv
+  answers: proteingym-dms/SQSTM_MOUSE_Tsuboyama_2023_2RRU/prepared/private/answers.csv
+  sample_submission: proteingym-dms/SQSTM_MOUSE_Tsuboyama_2023_2RRU/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: RASH_HUMAN_Bandaru_2017
 
 dataset:
-  answers: proteingym-dms/RASH_HUMAN_Bandaru_2017/private/answers.csv
-  sample_submission: proteingym-dms/RASH_HUMAN_Bandaru_2017/public/sample_submission.csv
+  answers: proteingym-dms/RASH_HUMAN_Bandaru_2017/prepared/private/answers.csv
+  sample_submission: proteingym-dms/RASH_HUMAN_Bandaru_2017/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

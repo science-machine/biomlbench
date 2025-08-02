@@ -14,8 +14,8 @@ data_source:
   benchmark_id: RL40A_YEAST_Roscoe_2014
 
 dataset:
-  answers: proteingym-dms/RL40A_YEAST_Roscoe_2014/private/answers.csv
-  sample_submission: proteingym-dms/RL40A_YEAST_Roscoe_2014/public/sample_submission.csv
+  answers: proteingym-dms/RL40A_YEAST_Roscoe_2014/prepared/private/answers.csv
+  sample_submission: proteingym-dms/RL40A_YEAST_Roscoe_2014/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

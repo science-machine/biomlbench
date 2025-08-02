@@ -14,8 +14,8 @@ data_source:
   benchmark_id: BRCA1_HUMAN_Findlay_2018
 
 dataset:
-  answers: proteingym-dms/BRCA1_HUMAN_Findlay_2018/private/answers.csv
-  sample_submission: proteingym-dms/BRCA1_HUMAN_Findlay_2018/public/sample_submission.csv
+  answers: proteingym-dms/BRCA1_HUMAN_Findlay_2018/prepared/private/answers.csv
+  sample_submission: proteingym-dms/BRCA1_HUMAN_Findlay_2018/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: HCP_LAMBD_Tsuboyama_2023_2L6Q
 
 dataset:
-  answers: proteingym-dms/HCP_LAMBD_Tsuboyama_2023_2L6Q/private/answers.csv
-  sample_submission: proteingym-dms/HCP_LAMBD_Tsuboyama_2023_2L6Q/public/sample_submission.csv
+  answers: proteingym-dms/HCP_LAMBD_Tsuboyama_2023_2L6Q/prepared/private/answers.csv
+  sample_submission: proteingym-dms/HCP_LAMBD_Tsuboyama_2023_2L6Q/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

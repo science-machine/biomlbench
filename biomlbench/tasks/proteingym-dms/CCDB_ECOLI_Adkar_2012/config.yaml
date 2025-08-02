@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CCDB_ECOLI_Adkar_2012
 
 dataset:
-  answers: proteingym-dms/CCDB_ECOLI_Adkar_2012/private/answers.csv
-  sample_submission: proteingym-dms/CCDB_ECOLI_Adkar_2012/public/sample_submission.csv
+  answers: proteingym-dms/CCDB_ECOLI_Adkar_2012/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CCDB_ECOLI_Adkar_2012/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

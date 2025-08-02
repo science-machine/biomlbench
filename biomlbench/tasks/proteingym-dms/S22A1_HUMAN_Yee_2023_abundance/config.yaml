@@ -14,8 +14,8 @@ data_source:
   benchmark_id: S22A1_HUMAN_Yee_2023_abundance
 
 dataset:
-  answers: proteingym-dms/S22A1_HUMAN_Yee_2023_abundance/private/answers.csv
-  sample_submission: proteingym-dms/S22A1_HUMAN_Yee_2023_abundance/public/sample_submission.csv
+  answers: proteingym-dms/S22A1_HUMAN_Yee_2023_abundance/prepared/private/answers.csv
+  sample_submission: proteingym-dms/S22A1_HUMAN_Yee_2023_abundance/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CALM1_HUMAN_Weile_2017
 
 dataset:
-  answers: proteingym-dms/CALM1_HUMAN_Weile_2017/private/answers.csv
-  sample_submission: proteingym-dms/CALM1_HUMAN_Weile_2017/public/sample_submission.csv
+  answers: proteingym-dms/CALM1_HUMAN_Weile_2017/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CALM1_HUMAN_Weile_2017/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

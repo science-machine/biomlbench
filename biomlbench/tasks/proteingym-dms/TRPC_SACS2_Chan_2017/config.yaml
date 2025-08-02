@@ -14,8 +14,8 @@ data_source:
   benchmark_id: TRPC_SACS2_Chan_2017
 
 dataset:
-  answers: proteingym-dms/TRPC_SACS2_Chan_2017/private/answers.csv
-  sample_submission: proteingym-dms/TRPC_SACS2_Chan_2017/public/sample_submission.csv
+  answers: proteingym-dms/TRPC_SACS2_Chan_2017/prepared/private/answers.csv
+  sample_submission: proteingym-dms/TRPC_SACS2_Chan_2017/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

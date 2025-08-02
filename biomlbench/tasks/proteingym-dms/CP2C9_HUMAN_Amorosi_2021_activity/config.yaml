@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CP2C9_HUMAN_Amorosi_2021_activity
 
 dataset:
-  answers: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity/private/answers.csv
-  sample_submission: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity/public/sample_submission.csv
+  answers: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_activity/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

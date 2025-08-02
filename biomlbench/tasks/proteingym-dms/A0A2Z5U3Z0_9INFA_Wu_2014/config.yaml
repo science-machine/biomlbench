@@ -14,8 +14,8 @@ data_source:
   benchmark_id: A0A2Z5U3Z0_9INFA_Wu_2014
 
 dataset:
-  answers: proteingym-dms/A0A2Z5U3Z0_9INFA_Wu_2014/private/answers.csv
-  sample_submission: proteingym-dms/A0A2Z5U3Z0_9INFA_Wu_2014/public/sample_submission.csv
+  answers: proteingym-dms/A0A2Z5U3Z0_9INFA_Wu_2014/prepared/private/answers.csv
+  sample_submission: proteingym-dms/A0A2Z5U3Z0_9INFA_Wu_2014/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

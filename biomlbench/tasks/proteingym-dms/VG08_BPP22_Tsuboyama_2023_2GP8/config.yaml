@@ -14,8 +14,8 @@ data_source:
   benchmark_id: VG08_BPP22_Tsuboyama_2023_2GP8
 
 dataset:
-  answers: proteingym-dms/VG08_BPP22_Tsuboyama_2023_2GP8/private/answers.csv
-  sample_submission: proteingym-dms/VG08_BPP22_Tsuboyama_2023_2GP8/public/sample_submission.csv
+  answers: proteingym-dms/VG08_BPP22_Tsuboyama_2023_2GP8/prepared/private/answers.csv
+  sample_submission: proteingym-dms/VG08_BPP22_Tsuboyama_2023_2GP8/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

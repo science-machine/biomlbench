@@ -14,8 +14,8 @@ data_source:
   benchmark_id: VKOR1_HUMAN_Chiasson_2020_activity
 
 dataset:
-  answers: proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity/private/answers.csv
-  sample_submission: proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity/public/sample_submission.csv
+  answers: proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity/prepared/private/answers.csv
+  sample_submission: proteingym-dms/VKOR1_HUMAN_Chiasson_2020_activity/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

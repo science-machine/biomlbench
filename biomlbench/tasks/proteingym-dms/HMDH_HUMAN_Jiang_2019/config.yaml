@@ -14,8 +14,8 @@ data_source:
   benchmark_id: HMDH_HUMAN_Jiang_2019
 
 dataset:
-  answers: proteingym-dms/HMDH_HUMAN_Jiang_2019/private/answers.csv
-  sample_submission: proteingym-dms/HMDH_HUMAN_Jiang_2019/public/sample_submission.csv
+  answers: proteingym-dms/HMDH_HUMAN_Jiang_2019/prepared/private/answers.csv
+  sample_submission: proteingym-dms/HMDH_HUMAN_Jiang_2019/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

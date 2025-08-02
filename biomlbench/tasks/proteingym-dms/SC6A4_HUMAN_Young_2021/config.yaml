@@ -14,8 +14,8 @@ data_source:
   benchmark_id: SC6A4_HUMAN_Young_2021
 
 dataset:
-  answers: proteingym-dms/SC6A4_HUMAN_Young_2021/private/answers.csv
-  sample_submission: proteingym-dms/SC6A4_HUMAN_Young_2021/public/sample_submission.csv
+  answers: proteingym-dms/SC6A4_HUMAN_Young_2021/prepared/private/answers.csv
+  sample_submission: proteingym-dms/SC6A4_HUMAN_Young_2021/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

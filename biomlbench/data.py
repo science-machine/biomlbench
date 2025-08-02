@@ -227,6 +227,7 @@ def is_dataset_prepared(task: Task, grading_only: bool = False) -> bool:
         logger.warning("Private directory is empty.")
         return False
 
+    print(task.answers)
     if not task.answers.is_file():
         logger.warning("Answers file does not exist.")
         return False

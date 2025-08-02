@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CP2C9_HUMAN_Amorosi_2021_abundance
 
 dataset:
-  answers: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_abundance/private/answers.csv
-  sample_submission: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_abundance/public/sample_submission.csv
+  answers: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_abundance/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CP2C9_HUMAN_Amorosi_2021_abundance/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

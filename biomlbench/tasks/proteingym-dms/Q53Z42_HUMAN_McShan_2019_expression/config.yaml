@@ -14,8 +14,8 @@ data_source:
   benchmark_id: Q53Z42_HUMAN_McShan_2019_expression
 
 dataset:
-  answers: proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression/private/answers.csv
-  sample_submission: proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression/public/sample_submission.csv
+  answers: proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression/prepared/private/answers.csv
+  sample_submission: proteingym-dms/Q53Z42_HUMAN_McShan_2019_expression/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: POLG_DEN26_Suphatrakul_2023
 
 dataset:
-  answers: proteingym-dms/POLG_DEN26_Suphatrakul_2023/private/answers.csv
-  sample_submission: proteingym-dms/POLG_DEN26_Suphatrakul_2023/public/sample_submission.csv
+  answers: proteingym-dms/POLG_DEN26_Suphatrakul_2023/prepared/private/answers.csv
+  sample_submission: proteingym-dms/POLG_DEN26_Suphatrakul_2023/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: POLG_HCVJF_Qi_2014
 
 dataset:
-  answers: proteingym-dms/POLG_HCVJF_Qi_2014/private/answers.csv
-  sample_submission: proteingym-dms/POLG_HCVJF_Qi_2014/public/sample_submission.csv
+  answers: proteingym-dms/POLG_HCVJF_Qi_2014/prepared/private/answers.csv
+  sample_submission: proteingym-dms/POLG_HCVJF_Qi_2014/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

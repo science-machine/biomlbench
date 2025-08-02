@@ -14,8 +14,8 @@ data_source:
   benchmark_id: NCAP_I34A1_Doud_2015
 
 dataset:
-  answers: proteingym-dms/NCAP_I34A1_Doud_2015/private/answers.csv
-  sample_submission: proteingym-dms/NCAP_I34A1_Doud_2015/public/sample_submission.csv
+  answers: proteingym-dms/NCAP_I34A1_Doud_2015/prepared/private/answers.csv
+  sample_submission: proteingym-dms/NCAP_I34A1_Doud_2015/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

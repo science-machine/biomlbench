@@ -14,8 +14,8 @@ data_source:
   benchmark_id: POLG_CXB3N_Mattenberger_2021
 
 dataset:
-  answers: proteingym-dms/POLG_CXB3N_Mattenberger_2021/private/answers.csv
-  sample_submission: proteingym-dms/POLG_CXB3N_Mattenberger_2021/public/sample_submission.csv
+  answers: proteingym-dms/POLG_CXB3N_Mattenberger_2021/prepared/private/answers.csv
+  sample_submission: proteingym-dms/POLG_CXB3N_Mattenberger_2021/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

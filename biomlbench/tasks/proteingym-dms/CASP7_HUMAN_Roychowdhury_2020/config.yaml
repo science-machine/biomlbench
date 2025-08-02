@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CASP7_HUMAN_Roychowdhury_2020
 
 dataset:
-  answers: proteingym-dms/CASP7_HUMAN_Roychowdhury_2020/private/answers.csv
-  sample_submission: proteingym-dms/CASP7_HUMAN_Roychowdhury_2020/public/sample_submission.csv
+  answers: proteingym-dms/CASP7_HUMAN_Roychowdhury_2020/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CASP7_HUMAN_Roychowdhury_2020/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

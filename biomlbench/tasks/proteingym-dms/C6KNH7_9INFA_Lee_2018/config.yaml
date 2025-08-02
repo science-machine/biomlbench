@@ -14,8 +14,8 @@ data_source:
   benchmark_id: C6KNH7_9INFA_Lee_2018
 
 dataset:
-  answers: proteingym-dms/C6KNH7_9INFA_Lee_2018/private/answers.csv
-  sample_submission: proteingym-dms/C6KNH7_9INFA_Lee_2018/public/sample_submission.csv
+  answers: proteingym-dms/C6KNH7_9INFA_Lee_2018/prepared/private/answers.csv
+  sample_submission: proteingym-dms/C6KNH7_9INFA_Lee_2018/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

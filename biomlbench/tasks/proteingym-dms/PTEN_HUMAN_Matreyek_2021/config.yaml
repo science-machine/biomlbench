@@ -14,8 +14,8 @@ data_source:
   benchmark_id: PTEN_HUMAN_Matreyek_2021
 
 dataset:
-  answers: proteingym-dms/PTEN_HUMAN_Matreyek_2021/private/answers.csv
-  sample_submission: proteingym-dms/PTEN_HUMAN_Matreyek_2021/public/sample_submission.csv
+  answers: proteingym-dms/PTEN_HUMAN_Matreyek_2021/prepared/private/answers.csv
+  sample_submission: proteingym-dms/PTEN_HUMAN_Matreyek_2021/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

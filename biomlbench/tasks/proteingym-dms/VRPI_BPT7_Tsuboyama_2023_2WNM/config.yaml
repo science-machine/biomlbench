@@ -14,8 +14,8 @@ data_source:
   benchmark_id: VRPI_BPT7_Tsuboyama_2023_2WNM
 
 dataset:
-  answers: proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM/private/answers.csv
-  sample_submission: proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM/public/sample_submission.csv
+  answers: proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM/prepared/private/answers.csv
+  sample_submission: proteingym-dms/VRPI_BPT7_Tsuboyama_2023_2WNM/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

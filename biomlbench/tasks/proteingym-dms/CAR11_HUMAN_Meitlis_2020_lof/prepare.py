@@ -18,6 +18,7 @@ def prepare(raw: Path, public: Path, private: Path) -> None:
     # Load the ProteinGym DMS data files (downloaded by ProteinGymDMSDataSource)
     # The raw parameter now points to the task's raw directory containing the specific CSV
     df = pd.read_csv(raw / "CAR11_HUMAN_Meitlis_2020_lof.csv")
+
     # Metadata is stored in the shared proteingym-dms directory
     metadata = pd.read_csv(raw.parent.parent / "DMS_substitutions.csv", index_col="DMS_id")
     fold_columns = ["fold_random_5", "fold_modulo_5", "fold_contiguous_5"]

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: BLAT_ECOLX_Stiffler_2015
 
 dataset:
-  answers: proteingym-dms/BLAT_ECOLX_Stiffler_2015/private/answers.csv
-  sample_submission: proteingym-dms/BLAT_ECOLX_Stiffler_2015/public/sample_submission.csv
+  answers: proteingym-dms/BLAT_ECOLX_Stiffler_2015/prepared/private/answers.csv
+  sample_submission: proteingym-dms/BLAT_ECOLX_Stiffler_2015/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

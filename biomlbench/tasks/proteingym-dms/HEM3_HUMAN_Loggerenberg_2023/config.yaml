@@ -14,8 +14,8 @@ data_source:
   benchmark_id: HEM3_HUMAN_Loggerenberg_2023
 
 dataset:
-  answers: proteingym-dms/HEM3_HUMAN_Loggerenberg_2023/private/answers.csv
-  sample_submission: proteingym-dms/HEM3_HUMAN_Loggerenberg_2023/public/sample_submission.csv
+  answers: proteingym-dms/HEM3_HUMAN_Loggerenberg_2023/prepared/private/answers.csv
+  sample_submission: proteingym-dms/HEM3_HUMAN_Loggerenberg_2023/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: AICDA_HUMAN_Gajula_2014_3cycles
 
 dataset:
-  answers: proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/private/answers.csv
-  sample_submission: proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/public/sample_submission.csv
+  answers: proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/prepared/private/answers.csv
+  sample_submission: proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

@@ -14,8 +14,8 @@ data_source:
   benchmark_id: P53_HUMAN_Giacomelli_2018_WT_Nutlin
 
 dataset:
-  answers: proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin/private/answers.csv
-  sample_submission: proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin/public/sample_submission.csv
+  answers: proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin/prepared/private/answers.csv
+  sample_submission: proteingym-dms/P53_HUMAN_Giacomelli_2018_WT_Nutlin/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

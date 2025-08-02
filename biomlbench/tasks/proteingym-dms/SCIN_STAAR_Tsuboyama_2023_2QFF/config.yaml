@@ -14,8 +14,8 @@ data_source:
   benchmark_id: SCIN_STAAR_Tsuboyama_2023_2QFF
 
 dataset:
-  answers: proteingym-dms/SCIN_STAAR_Tsuboyama_2023_2QFF/private/answers.csv
-  sample_submission: proteingym-dms/SCIN_STAAR_Tsuboyama_2023_2QFF/public/sample_submission.csv
+  answers: proteingym-dms/SCIN_STAAR_Tsuboyama_2023_2QFF/prepared/private/answers.csv
+  sample_submission: proteingym-dms/SCIN_STAAR_Tsuboyama_2023_2QFF/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

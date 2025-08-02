@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CAS9_STRP1_Spencer_2017_positive
 
 dataset:
-  answers: proteingym-dms/CAS9_STRP1_Spencer_2017_positive/private/answers.csv
-  sample_submission: proteingym-dms/CAS9_STRP1_Spencer_2017_positive/public/sample_submission.csv
+  answers: proteingym-dms/CAS9_STRP1_Spencer_2017_positive/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CAS9_STRP1_Spencer_2017_positive/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

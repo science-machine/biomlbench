@@ -14,8 +14,8 @@ data_source:
   benchmark_id: R1AB_SARS2_Flynn_2022
 
 dataset:
-  answers: proteingym-dms/R1AB_SARS2_Flynn_2022/private/answers.csv
-  sample_submission: proteingym-dms/R1AB_SARS2_Flynn_2022/public/sample_submission.csv
+  answers: proteingym-dms/R1AB_SARS2_Flynn_2022/prepared/private/answers.csv
+  sample_submission: proteingym-dms/R1AB_SARS2_Flynn_2022/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

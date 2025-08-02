@@ -14,8 +14,8 @@ data_source:
   benchmark_id: SPIKE_SARS2_Starr_2020_binding
 
 dataset:
-  answers: proteingym-dms/SPIKE_SARS2_Starr_2020_binding/private/answers.csv
-  sample_submission: proteingym-dms/SPIKE_SARS2_Starr_2020_binding/public/sample_submission.csv
+  answers: proteingym-dms/SPIKE_SARS2_Starr_2020_binding/prepared/private/answers.csv
+  sample_submission: proteingym-dms/SPIKE_SARS2_Starr_2020_binding/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

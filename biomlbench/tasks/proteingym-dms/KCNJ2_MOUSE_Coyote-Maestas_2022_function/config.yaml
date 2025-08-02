@@ -14,8 +14,8 @@ data_source:
   benchmark_id: KCNJ2_MOUSE_Coyote-Maestas_2022_function
 
 dataset:
-  answers: proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_function/private/answers.csv
-  sample_submission: proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_function/public/sample_submission.csv
+  answers: proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_function/prepared/private/answers.csv
+  sample_submission: proteingym-dms/KCNJ2_MOUSE_Coyote-Maestas_2022_function/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

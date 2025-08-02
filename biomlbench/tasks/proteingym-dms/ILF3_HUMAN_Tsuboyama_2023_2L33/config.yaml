@@ -14,8 +14,8 @@ data_source:
   benchmark_id: ILF3_HUMAN_Tsuboyama_2023_2L33
 
 dataset:
-  answers: proteingym-dms/ILF3_HUMAN_Tsuboyama_2023_2L33/private/answers.csv
-  sample_submission: proteingym-dms/ILF3_HUMAN_Tsuboyama_2023_2L33/public/sample_submission.csv
+  answers: proteingym-dms/ILF3_HUMAN_Tsuboyama_2023_2L33/prepared/private/answers.csv
+  sample_submission: proteingym-dms/ILF3_HUMAN_Tsuboyama_2023_2L33/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

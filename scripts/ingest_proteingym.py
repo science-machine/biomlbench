@@ -53,6 +53,7 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
         # Load the ProteinGym DMS data files (downloaded by ProteinGymDMSDataSource)
         # The raw parameter now points to the task's raw directory containing the specific CSV
         df = pd.read_csv(raw / "$dataset_name.csv")
+        
         # Metadata is stored in the shared proteingym-dms directory
         metadata = pd.read_csv(raw.parent.parent / "DMS_substitutions.csv", index_col="DMS_id")
         fold_columns = ["fold_random_5", "fold_modulo_5", "fold_contiguous_5"]
@@ -110,8 +111,8 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
       benchmark_id: $dataset_name
 
     dataset:
-      answers: proteingym-dms/$dataset_name/private/answers.csv
-      sample_submission: proteingym-dms/$dataset_name/public/sample_submission.csv
+      answers: proteingym-dms/$dataset_name/prepared/private/answers.csv
+      sample_submission: proteingym-dms/$dataset_name/prepared/public/sample_submission.csv
 
     grader:
       name: proteingym-metric

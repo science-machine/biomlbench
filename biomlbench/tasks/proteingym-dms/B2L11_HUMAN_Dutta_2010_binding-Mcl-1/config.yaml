@@ -14,8 +14,8 @@ data_source:
   benchmark_id: B2L11_HUMAN_Dutta_2010_binding-Mcl-1
 
 dataset:
-  answers: proteingym-dms/B2L11_HUMAN_Dutta_2010_binding-Mcl-1/private/answers.csv
-  sample_submission: proteingym-dms/B2L11_HUMAN_Dutta_2010_binding-Mcl-1/public/sample_submission.csv
+  answers: proteingym-dms/B2L11_HUMAN_Dutta_2010_binding-Mcl-1/prepared/private/answers.csv
+  sample_submission: proteingym-dms/B2L11_HUMAN_Dutta_2010_binding-Mcl-1/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

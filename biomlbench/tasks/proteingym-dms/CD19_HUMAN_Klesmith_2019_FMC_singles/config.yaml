@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CD19_HUMAN_Klesmith_2019_FMC_singles
 
 dataset:
-  answers: proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles/private/answers.csv
-  sample_submission: proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles/public/sample_submission.csv
+  answers: proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CD19_HUMAN_Klesmith_2019_FMC_singles/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

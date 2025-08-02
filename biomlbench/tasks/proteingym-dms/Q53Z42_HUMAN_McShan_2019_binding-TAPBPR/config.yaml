@@ -14,8 +14,8 @@ data_source:
   benchmark_id: Q53Z42_HUMAN_McShan_2019_binding-TAPBPR
 
 dataset:
-  answers: proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR/private/answers.csv
-  sample_submission: proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR/public/sample_submission.csv
+  answers: proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR/prepared/private/answers.csv
+  sample_submission: proteingym-dms/Q53Z42_HUMAN_McShan_2019_binding-TAPBPR/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

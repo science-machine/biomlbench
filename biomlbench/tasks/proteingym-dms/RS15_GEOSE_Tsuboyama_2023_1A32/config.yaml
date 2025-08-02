@@ -14,8 +14,8 @@ data_source:
   benchmark_id: RS15_GEOSE_Tsuboyama_2023_1A32
 
 dataset:
-  answers: proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32/private/answers.csv
-  sample_submission: proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32/public/sample_submission.csv
+  answers: proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32/prepared/private/answers.csv
+  sample_submission: proteingym-dms/RS15_GEOSE_Tsuboyama_2023_1A32/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

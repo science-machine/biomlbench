@@ -14,8 +14,8 @@ data_source:
   benchmark_id: FKBP3_HUMAN_Tsuboyama_2023_2KFV
 
 dataset:
-  answers: proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV/private/answers.csv
-  sample_submission: proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV/public/sample_submission.csv
+  answers: proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV/prepared/private/answers.csv
+  sample_submission: proteingym-dms/FKBP3_HUMAN_Tsuboyama_2023_2KFV/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

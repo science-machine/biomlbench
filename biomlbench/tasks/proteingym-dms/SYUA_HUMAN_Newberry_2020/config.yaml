@@ -14,8 +14,8 @@ data_source:
   benchmark_id: SYUA_HUMAN_Newberry_2020
 
 dataset:
-  answers: proteingym-dms/SYUA_HUMAN_Newberry_2020/private/answers.csv
-  sample_submission: proteingym-dms/SYUA_HUMAN_Newberry_2020/public/sample_submission.csv
+  answers: proteingym-dms/SYUA_HUMAN_Newberry_2020/prepared/private/answers.csv
+  sample_submission: proteingym-dms/SYUA_HUMAN_Newberry_2020/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

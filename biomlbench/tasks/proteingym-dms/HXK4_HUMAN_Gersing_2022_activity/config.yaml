@@ -14,8 +14,8 @@ data_source:
   benchmark_id: HXK4_HUMAN_Gersing_2022_activity
 
 dataset:
-  answers: proteingym-dms/HXK4_HUMAN_Gersing_2022_activity/private/answers.csv
-  sample_submission: proteingym-dms/HXK4_HUMAN_Gersing_2022_activity/public/sample_submission.csv
+  answers: proteingym-dms/HXK4_HUMAN_Gersing_2022_activity/prepared/private/answers.csv
+  sample_submission: proteingym-dms/HXK4_HUMAN_Gersing_2022_activity/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

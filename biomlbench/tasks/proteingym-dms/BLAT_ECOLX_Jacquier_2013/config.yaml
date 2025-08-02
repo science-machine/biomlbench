@@ -14,8 +14,8 @@ data_source:
   benchmark_id: BLAT_ECOLX_Jacquier_2013
 
 dataset:
-  answers: proteingym-dms/BLAT_ECOLX_Jacquier_2013/private/answers.csv
-  sample_submission: proteingym-dms/BLAT_ECOLX_Jacquier_2013/public/sample_submission.csv
+  answers: proteingym-dms/BLAT_ECOLX_Jacquier_2013/prepared/private/answers.csv
+  sample_submission: proteingym-dms/BLAT_ECOLX_Jacquier_2013/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

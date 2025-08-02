@@ -14,8 +14,8 @@ data_source:
   benchmark_id: ARGR_ECOLI_Tsuboyama_2023_1AOY
 
 dataset:
-  answers: proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY/private/answers.csv
-  sample_submission: proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY/public/sample_submission.csv
+  answers: proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY/prepared/private/answers.csv
+  sample_submission: proteingym-dms/ARGR_ECOLI_Tsuboyama_2023_1AOY/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

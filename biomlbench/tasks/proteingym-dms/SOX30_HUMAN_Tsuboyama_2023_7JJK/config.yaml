@@ -14,8 +14,8 @@ data_source:
   benchmark_id: SOX30_HUMAN_Tsuboyama_2023_7JJK
 
 dataset:
-  answers: proteingym-dms/SOX30_HUMAN_Tsuboyama_2023_7JJK/private/answers.csv
-  sample_submission: proteingym-dms/SOX30_HUMAN_Tsuboyama_2023_7JJK/public/sample_submission.csv
+  answers: proteingym-dms/SOX30_HUMAN_Tsuboyama_2023_7JJK/prepared/private/answers.csv
+  sample_submission: proteingym-dms/SOX30_HUMAN_Tsuboyama_2023_7JJK/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

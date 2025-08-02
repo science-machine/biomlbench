@@ -14,8 +14,8 @@ data_source:
   benchmark_id: TAT_HV1BR_Fernandes_2016
 
 dataset:
-  answers: proteingym-dms/TAT_HV1BR_Fernandes_2016/private/answers.csv
-  sample_submission: proteingym-dms/TAT_HV1BR_Fernandes_2016/public/sample_submission.csv
+  answers: proteingym-dms/TAT_HV1BR_Fernandes_2016/prepared/private/answers.csv
+  sample_submission: proteingym-dms/TAT_HV1BR_Fernandes_2016/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

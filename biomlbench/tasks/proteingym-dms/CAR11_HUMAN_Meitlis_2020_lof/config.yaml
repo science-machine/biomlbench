@@ -14,8 +14,8 @@ data_source:
   benchmark_id: CAR11_HUMAN_Meitlis_2020_lof
 
 dataset:
-  answers: proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof/private/answers.csv
-  sample_submission: proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof/public/sample_submission.csv
+  answers: proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof/prepared/private/answers.csv
+  sample_submission: proteingym-dms/CAR11_HUMAN_Meitlis_2020_lof/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

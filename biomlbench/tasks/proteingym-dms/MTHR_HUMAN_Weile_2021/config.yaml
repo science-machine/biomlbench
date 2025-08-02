@@ -14,8 +14,8 @@ data_source:
   benchmark_id: MTHR_HUMAN_Weile_2021
 
 dataset:
-  answers: proteingym-dms/MTHR_HUMAN_Weile_2021/private/answers.csv
-  sample_submission: proteingym-dms/MTHR_HUMAN_Weile_2021/public/sample_submission.csv
+  answers: proteingym-dms/MTHR_HUMAN_Weile_2021/prepared/private/answers.csv
+  sample_submission: proteingym-dms/MTHR_HUMAN_Weile_2021/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

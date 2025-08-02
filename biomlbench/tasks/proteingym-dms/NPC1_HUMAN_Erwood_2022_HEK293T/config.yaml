@@ -14,8 +14,8 @@ data_source:
   benchmark_id: NPC1_HUMAN_Erwood_2022_HEK293T
 
 dataset:
-  answers: proteingym-dms/NPC1_HUMAN_Erwood_2022_HEK293T/private/answers.csv
-  sample_submission: proteingym-dms/NPC1_HUMAN_Erwood_2022_HEK293T/public/sample_submission.csv
+  answers: proteingym-dms/NPC1_HUMAN_Erwood_2022_HEK293T/prepared/private/answers.csv
+  sample_submission: proteingym-dms/NPC1_HUMAN_Erwood_2022_HEK293T/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

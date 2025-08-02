@@ -14,8 +14,8 @@ data_source:
   benchmark_id: PKN1_HUMAN_Tsuboyama_2023_1URF
 
 dataset:
-  answers: proteingym-dms/PKN1_HUMAN_Tsuboyama_2023_1URF/private/answers.csv
-  sample_submission: proteingym-dms/PKN1_HUMAN_Tsuboyama_2023_1URF/public/sample_submission.csv
+  answers: proteingym-dms/PKN1_HUMAN_Tsuboyama_2023_1URF/prepared/private/answers.csv
+  sample_submission: proteingym-dms/PKN1_HUMAN_Tsuboyama_2023_1URF/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

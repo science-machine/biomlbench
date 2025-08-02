@@ -14,8 +14,8 @@ data_source:
   benchmark_id: SRC_HUMAN_Ahler_2019
 
 dataset:
-  answers: proteingym-dms/SRC_HUMAN_Ahler_2019/private/answers.csv
-  sample_submission: proteingym-dms/SRC_HUMAN_Ahler_2019/public/sample_submission.csv
+  answers: proteingym-dms/SRC_HUMAN_Ahler_2019/prepared/private/answers.csv
+  sample_submission: proteingym-dms/SRC_HUMAN_Ahler_2019/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric
