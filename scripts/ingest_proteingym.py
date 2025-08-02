@@ -61,12 +61,13 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
         target_column = "DMS_score"
         
         wt_sequence = metadata.loc["$dataset_name", "target_seq"]
-        wt_seq_row = pd.DataFrame({"sequence": [wt_sequence], "fitness_score": [np.nan]})
+        wt_seq_row = pd.DataFrame({"id": ["WT"], "sequence": [wt_sequence], "fitness_score": [np.nan]})
         wt_seq_row[fold_columns] = -1
         
         df["id"] = range(len(df))
         df.rename({seq_column: "sequence", target_column: "fitness_score"}, axis=1, inplace=True)
         df = df[["id", "sequence", "fitness_score"] + fold_columns]
+        df = pd.concat([wt_seq_row, df])
         df.to_csv(public / "data.csv", index=False)
         
         sample_submission = pd.DataFrame({
