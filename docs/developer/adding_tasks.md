@@ -84,22 +84,18 @@ See example `biomlbench/tasks/polarishub/tdcommons-caco2-wang/prepare.py`.
 from pathlib import Path
 import pandas as pd
 
-def prepare(raw: Path, prepared: Path) -> None:
+def prepare(raw: Path, public: Path, private: Path) -> None:
     """
-    Prepare task data with train/test splits.
-    
-      Args:
-        raw: Directory with raw data downloaded by DataSource
-        prepared: Directory for prepared data - prepare() must create at least one dataset subdirectory inside this directory,
-          which is expected to contain subdirectories `public` and `private` containing the train data/test features and 
-          test answers respectively.
+    Prepares the task data into public/private directories.
+
+    Args:
+        raw: Directory with the raw data
+        public: Directory for public data (training examples and inputs for test examples)
+        private: Directory for private data (answers for test examples)
     """
-    
     # Download and process raw data
     # Create train.<ext>, test_features.<ext>, sample_submission.<ext>
     # Generate private answers.<ext>
-    
-    return public_dir
 ```
 
 ## Evaluation Logic (`grade.py`)
