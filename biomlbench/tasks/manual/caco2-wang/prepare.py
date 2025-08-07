@@ -10,22 +10,15 @@ from pathlib import Path
 import pandas as pd
 
 
-def prepare(raw: Path, prepared: Path) -> None:
+def prepare(raw: Path, public: Path, private: Path) -> None:
     """
     Prepare the Caco-2 permeability prediction dataset from Polaris data.
 
     Args:
         raw: Directory with raw Polaris data (downloaded by PolarisDataSource)
-        prepared: Directory for prepared data - will create 0/public and 0/private subdirectories
+        public: Directory for public data (train.csv, test_features.csv)
+        private: Directory for private data (answers.csv)
     """
-
-    # Create dataset directory (we use 0 as the default for a single dataset)
-    dataset_dir = prepared / "0"
-    public_dir = dataset_dir / "public"
-    private_dir = dataset_dir / "private"
-
-    public_dir.mkdir(parents=True, exist_ok=True)
-    private_dir.mkdir(parents=True, exist_ok=True)
 
     # Load the Polaris data files (downloaded by PolarisDataSource)
     train_df = pd.read_csv(raw / "polaris_train_data.csv")
@@ -37,7 +30,7 @@ def prepare(raw: Path, prepared: Path) -> None:
     # Format: SMILES, target
     train_public = train_df.copy()
     train_public = train_public.rename(columns={"Drug": "smiles", "Y": "caco2_permeability"})
-    train_public.to_csv(public_dir / "train.csv", index=False)
+    train_public.to_csv(public / "train.csv", index=False)
 
     # Create test features (test_features.csv)
     # Format: id, SMILES (no targets)
@@ -45,7 +38,7 @@ def prepare(raw: Path, prepared: Path) -> None:
     test_features = test_features.rename(columns={"Drug": "smiles"})
     test_features["id"] = range(len(test_features))  # Add ID column
     test_features = test_features[["id", "smiles"]]  # Reorder columns
-    test_features.to_csv(public_dir / "test_features.csv", index=False)
+    test_features.to_csv(public / "test_features.csv", index=False)
 
     # Create sample submission (sample_submission.csv)
     sample_submission = pd.DataFrame(
@@ -54,7 +47,7 @@ def prepare(raw: Path, prepared: Path) -> None:
             "caco2_permeability": [0.0] * len(test_features),  # Dummy predictions
         }
     )
-    sample_submission.to_csv(public_dir / "sample_submission.csv", index=False)
+    sample_submission.to_csv(public / "sample_submission.csv", index=False)
 
     # Create private answers file for evaluation
     answers = pd.DataFrame(
@@ -63,7 +56,7 @@ def prepare(raw: Path, prepared: Path) -> None:
             "caco2_permeability": test_df["Y"].values,  # Use actual test labels
         }
     )
-    answers.to_csv(private_dir / "answers.csv", index=False)
+    answers.to_csv(private / "answers.csv", index=False)
 
     print(f"Dataset prepared successfully!")
     print(f"Training examples: {len(train_public)}")

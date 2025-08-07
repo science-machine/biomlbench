@@ -1,31 +1,31 @@
 id: polarishub/tdcommons-bbb-martins
-name: bbb-martins
+name: "bbb-martins"
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-bbb-martins/description.md
-preparer: biomlbench.tasks.polarishub.tdcommons-bbb-martins.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: tdcommons/bbb-martins
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: polarishub/tdcommons-bbb-martins/prepared/private/answers.csv
+  sample_submission: polarishub/tdcommons-bbb-martins/prepared/public/sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.tdcommons-bbb-martins.grade:grade
 
+preparer: biomlbench.tasks.polarishub.tdcommons-bbb-martins.prepare:prepare
+
 biomedical_metadata:
-  modality: molecular
-  data_type: single_task
-  clinical_relevance: drug_discovery
-  polaris_main_metric: roc_auc
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "roc_auc"
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

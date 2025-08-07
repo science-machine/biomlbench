@@ -8,15 +8,10 @@ from tqdm import tqdm
 from biomlbench.utils import read_csv
 
 
-def prepare(raw: Path, prepared: Path) -> None:    
-    # Create dataset directory (we use 0 as the default for a single dataset)
-    dataset_dir = prepared / "0"
-    dataset_dir.mkdir(parents=True, exist_ok=True)
-    public = dataset_dir / "public"
-    private = dataset_dir / "private"
+def prepare(raw: Path, public: Path, private: Path) -> None:
     public.mkdir(parents=True, exist_ok=True)
     private.mkdir(parents=True, exist_ok=True)
-    
+
     """
     There are two tasks:
     - Image level: Object detection problem - detect the presence of pneumonia in the image using bounding boxes

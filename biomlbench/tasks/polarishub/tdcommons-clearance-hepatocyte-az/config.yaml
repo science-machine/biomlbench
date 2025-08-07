@@ -1,31 +1,31 @@
 id: polarishub/tdcommons-clearance-hepatocyte-az
-name: clearance-hepatocyte-az
+name: "clearance-hepatocyte-az"
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-clearance-hepatocyte-az/description.md
-preparer: biomlbench.tasks.polarishub.tdcommons-clearance-hepatocyte-az.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: tdcommons/clearance-hepatocyte-az
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: polarishub/tdcommons-clearance-hepatocyte-az/prepared/private/answers.csv
+  sample_submission: polarishub/tdcommons-clearance-hepatocyte-az/prepared/public/sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.tdcommons-clearance-hepatocyte-az.grade:grade
 
+preparer: biomlbench.tasks.polarishub.tdcommons-clearance-hepatocyte-az.prepare:prepare
+
 biomedical_metadata:
-  modality: molecular
-  data_type: single_task
-  clinical_relevance: drug_discovery
-  polaris_main_metric: spearmanr
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "spearmanr"
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

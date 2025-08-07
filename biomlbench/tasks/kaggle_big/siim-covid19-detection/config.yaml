@@ -25,10 +25,9 @@ prizes:
     value: 5000
 description: biomlbench/tasks/kaggle/siim-covid19-detection/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/siim-covid19-detection/prepared/private/answers.csv
+  sample_submission: kaggle/siim-covid19-detection/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

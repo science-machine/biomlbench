@@ -11,10 +11,9 @@ prizes:
     value: 5000
 description: biomlbench/tasks/kaggle/uw-madison-gi-tract-image-segmentation/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/uw-madison-gi-tract-image-segmentation/prepared/private/answers.csv
+  sample_submission: kaggle/uw-madison-gi-tract-image-segmentation/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

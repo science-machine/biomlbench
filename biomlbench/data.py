@@ -35,11 +35,12 @@ cache = dc.Cache("cache", size_limit=2**26)  # 64 MB
 
 
 def create_prepared_dir(task: Task) -> None:
-    """Create the prepared directory for a task."""
-    task.prepared_dir.mkdir(exist_ok=True, parents=True)
+    """Create public and private directories for a task."""
+    task.public_dir.mkdir(exist_ok=True, parents=True)
+    task.private_dir.mkdir(exist_ok=True, parents=True)
 
 
-def download_and_prepare_datasets(
+def download_and_prepare_dataset(
     task: Task,
     keep_raw: bool = True,
     overwrite_checksums: bool = False,
@@ -47,7 +48,7 @@ def download_and_prepare_datasets(
     skip_verification: bool = False,
 ) -> None:
     """
-    Download and prepare the dataset(s) for a task using the appropriate data source.
+    Download and prepare a dataset using the appropriate data source.
 
     Args:
         task: Task to prepare
@@ -59,12 +60,12 @@ def download_and_prepare_datasets(
 
     assert is_valid_prepare_fn(
         task.prepare_fn
-    ), f"Provided `prepare_fn` doesn't take arguments `raw`, `prepared`!"
+    ), f"Provided `prepare_fn` doesn't take arguments `raw`, `private` and `public`!"
 
     # Ensure leaderboard exists
     ensure_leaderboard_exists(task, force=overwrite_leaderboard)
 
-    task_dir = task.prepared_dir
+    task_dir = task.raw_dir.parent
     task.raw_dir.mkdir(exist_ok=True, parents=True)
     create_prepared_dir(task)
 
@@ -85,11 +86,19 @@ def download_and_prepare_datasets(
         downloaded_path = data_source.download(source_config, task.raw_dir)
 
         # Handle zip file extraction for sources that provide zip files (like Kaggle)
+        # Skip extraction for data sources that handle it internally (like ProteinGym)
         if downloaded_path and downloaded_path.suffix == ".zip":
-            if is_empty(task.raw_dir) or len(list(task.raw_dir.iterdir())) == 1:
+            # Check if the zip file exists and hasn't been extracted yet
+            # Look for the extracted directory that would be created by the zip
+            zip_name = downloaded_path.stem  # Remove .zip extension
+            extracted_dir = task.raw_dir / zip_name
+
+            if not extracted_dir.exists():
                 logger.info(f"Extracting `{downloaded_path}` to `{task.raw_dir}`...")
                 extract(downloaded_path, task.raw_dir, recursive=False)
                 logger.info(f"Extracted successfully.")
+            else:
+                logger.info(f"Zip file already extracted to `{extracted_dir}`")
 
     except DataSourceError as e:
         raise ValueError(f"Failed to download data for task '{task.id}': {e}") from e
@@ -98,7 +107,7 @@ def download_and_prepare_datasets(
     if overwrite_checksums or not skip_verification:
         actual_checksums = {}
 
-        # Only include zip checksum if we have a zip file
+        # Only include zip checksum if we have a zip file (and it's not handled internally)
         if downloaded_path and downloaded_path.suffix == ".zip":
             logger.info(f"Generating checksum for `{downloaded_path}`...")
             actual_zip_checksum = get_checksum(downloaded_path)
@@ -117,13 +126,13 @@ def download_and_prepare_datasets(
                 logger.info(f"Checksum for `{downloaded_path}` matches the expected checksum.")
 
     # Run task-specific preparation
-    if (not task.is_prepared()) or overwrite_checksums:
-        if task.prepared_dir.exists() and overwrite_checksums:
+    if not is_dataset_prepared(task) or overwrite_checksums:
+        if task.public_dir.parent.exists() and overwrite_checksums:
             logger.info(
                 f"Removing the existing prepared data directory for `{task.id}` since "
                 "`overwrite_checksums` is set to `True`..."
             )
-            shutil.rmtree(task.prepared_dir)
+            shutil.rmtree(task.public_dir.parent)
             create_prepared_dir(task)
 
         logger.info(
@@ -133,15 +142,15 @@ def download_and_prepare_datasets(
 
         task.prepare_fn(
             raw=task.raw_dir,
-            prepared=task.prepared_dir,
+            public=task.public_dir,
+            private=task.private_dir,
         )
 
         logger.info(f"Data for task `{task.id}` prepared successfully.")
 
     # Save task description
-    for dataset in task.datasets:
-        with open(dataset.public_path / "description.md", "w") as f:
-            f.write(task.description)
+    with open(task.public_dir / "description.md", "w") as f:
+        f.write(task.description)
 
     # Prepare human baselines
     prepare_human_baselines(task, force=overwrite_checksums)
@@ -150,14 +159,12 @@ def download_and_prepare_datasets(
     if overwrite_checksums or not skip_verification:
         logger.info(f"Generating checksums for files in `{task_dir}`...")
 
-        # Generate checksums for public and private directories within prepared
-        for dataset in task.datasets:
-            actual_checksums.update(
-                {
-                    f"public-{dataset.id}": generate_checksums(dataset.public_path),
-                    f"private-{dataset.id}": generate_checksums(dataset.private_path),
-                }
-            )
+        actual_checksums.update(
+            {
+                "public": generate_checksums(task.public_dir),
+                "private": generate_checksums(task.private_dir),
+            }
+        )
 
         if not task.checksums.is_file() or overwrite_checksums:
             with open(task.checksums, "w") as file:
@@ -191,7 +198,50 @@ def download_and_prepare_datasets(
             shutil.rmtree(downloaded_path)
 
     # Final validation
-    assert task.is_prepared(), f"Task `{task.id}` is not prepared."
+    assert task.public_dir.is_dir(), f"Public data directory doesn't exist."
+    assert task.private_dir.is_dir(), f"Private data directory doesn't exist."
+    assert not is_empty(task.public_dir), f"Public data directory is empty!"
+    assert not is_empty(task.private_dir), f"Private data directory is empty!"
+
+
+def is_dataset_prepared(task: Task, grading_only: bool = False) -> bool:
+    """Checks if the task has non-empty `public` and `private` directories with the expected files."""
+
+    assert isinstance(task, Task), f"Expected input to be of type `Task` but got {type(task)}."
+
+    public = task.public_dir
+    private = task.private_dir
+
+    if not grading_only:
+        if not public.is_dir():
+            logger.warning("Public directory does not exist.")
+            return False
+        if is_empty(public):
+            logger.warning("Public directory is empty.")
+            return False
+
+    if not private.is_dir():
+        logger.warning("Private directory does not exist.")
+        return False
+    if is_empty(private):
+        logger.warning("Private directory is empty.")
+        return False
+
+    print(task.answers)
+    if not task.answers.is_file():
+        logger.warning("Answers file does not exist.")
+        return False
+
+    if not task.sample_submission.is_file() and not grading_only:
+        logger.warning("Sample submission file does not exist.")
+        return False
+
+    # Check for leaderboard - critical for grading and medal calculations
+    if not task.leaderboard.is_file():
+        logger.warning("Leaderboard file does not exist.")
+        return False
+
+    return True
 
 
 def ensure_leaderboard_exists(task: Task, force: bool = False) -> Path:
@@ -244,7 +294,7 @@ def ensure_leaderboard_exists(task: Task, force: bool = False) -> Path:
 
 
 def is_valid_prepare_fn(preparer_fn: Any) -> bool:
-    """Checks if the `preparer_fn` takes two arguments: `raw` and `prepared`, in that order."""
+    """Checks if the `preparer_fn` takes three arguments: `raw`, `public` and `private`, in that order."""
 
     import inspect
 
@@ -254,7 +304,7 @@ def is_valid_prepare_fn(preparer_fn: Any) -> bool:
         return False
 
     actual_params = list(sig.parameters.keys())
-    expected_params = ["raw", "prepared"]
+    expected_params = ["raw", "public", "private"]
 
     return actual_params == expected_params
 
@@ -360,14 +410,12 @@ def get_checksum(fpath: Path) -> str:
 def get_leaderboard(task: Task) -> pd.DataFrame:
     """Load leaderboard data for a task."""
     leaderboard_path = task.leaderboard
-    print(leaderboard_path)
     assert leaderboard_path.exists(), f"Leaderboard not found locally for task `{task.id}`."
     leaderboard_df = pd.read_csv(leaderboard_path)
-    assert 'score' in leaderboard_df.columns, f"Leaderboard for task `{task.id}` does not contain a `score` column."
     return leaderboard_df
 
 
-def prepare_human_baselines(task: Task, force: bool = False) -> None:
+def prepare_human_baselines(task: Task, force: bool = False) -> Optional[Path]:
     """
     Prepare human baseline data for a task.
 
@@ -378,57 +426,46 @@ def prepare_human_baselines(task: Task, force: bool = False) -> None:
     Returns:
         Path to human baselines CSV file, or None if not available
     """
-    for dataset in task.datasets:
-        human_baselines_path = dataset.public_path / "human_baselines.csv"
+    human_baselines_path = task.public_dir / "human_baselines.csv"
 
-        # Skip if already exists and not forcing
-        if human_baselines_path.exists() and not force:
-            logger.info(
-                f"Human baselines already exist for dataset '{dataset.id}' of task '{task.id}'"
-            )
-            continue
+    # Skip if already exists and not forcing
+    if human_baselines_path.exists() and not force:
+        logger.info(f"Human baselines already exist for task '{task.id}'")
+        return human_baselines_path
 
-        # Get data source configuration
-        source_config = getattr(task, "data_source", None)
-        if source_config is None:
-            logger.debug(
-                f"No data source configuration for dataset '{dataset.id}' of task '{task.id}', skipping human baselines"
-            )
-            continue
+    # Get data source configuration
+    source_config = getattr(task, "data_source", None)
+    if source_config is None:
+        logger.debug(f"No data source configuration for task '{task.id}', skipping human baselines")
+        return None
 
-        # Create appropriate data source
-        source_type = source_config.get("type")
-        try:
-            data_source = DataSourceFactory.create(source_type)
-        except Exception as e:
-            logger.warning(f"Failed to create data source '{source_type}' for human baselines: {e}")
-            continue
+    # Create appropriate data source
+    source_type = source_config.get("type")
+    try:
+        data_source = DataSourceFactory.create(source_type)
+    except Exception as e:
+        logger.warning(f"Failed to create data source '{source_type}' for human baselines: {e}")
+        return None
 
-        # Check if data source supports human baselines
-        if not data_source.supports_human_baselines():
-            logger.debug(f"Data source '{source_type}' does not support human baselines")
-            continue
+    # Check if data source supports human baselines
+    if not data_source.supports_human_baselines():
+        logger.debug(f"Data source '{source_type}' does not support human baselines")
+        return None
 
-        # Extract human baselines
-        try:
-            human_baselines_df = data_source.get_human_baselines(source_config)
+    # Extract human baselines
+    try:
+        human_baselines_df = data_source.get_human_baselines(source_config)
 
-            if human_baselines_df is None or human_baselines_df.empty:
-                logger.info(
-                    f"No human baselines available for dataset '{dataset.id}' of task '{task.id}'"
-                )
-                continue
+        if human_baselines_df is None or human_baselines_df.empty:
+            logger.info(f"No human baselines available for task '{task.id}'")
+            return None
 
-            # Save human baselines
-            human_baselines_df.to_csv(human_baselines_path, index=False)
+        # Save human baselines
+        human_baselines_df.to_csv(human_baselines_path, index=False)
 
-            logger.info(
-                f"Saved {len(human_baselines_df)} human baseline entries for dataset '{dataset.id}' of task '{task.id}'"
-            )
-            continue
+        logger.info(f"Saved {len(human_baselines_df)} human baseline entries for task '{task.id}'")
+        return human_baselines_path
 
-        except Exception as e:
-            logger.error(
-                f"Failed to extract human baselines for dataset '{dataset.id}' of task '{task.id}': {e}"
-            )
-            raise e
+    except Exception as e:
+        logger.error(f"Failed to extract human baselines for task '{task.id}': {e}")
+        raise e

@@ -1,5 +1,4 @@
 """Helper classes related to grading"""
-
 import inspect
 from dataclasses import dataclass
 from datetime import datetime
@@ -137,20 +136,6 @@ class Grader:
             score, (float, int)
         ), f"Expected `score` to be a `float` or `int` but got a {type(score)}."
 
-        # Handle NaN scores explicitly - they should get no medals
-        import math
-        if math.isnan(score):
-            return {
-                "gold_medal": False,
-                "silver_medal": False,
-                "bronze_medal": False,
-                "above_median": False,
-                "gold_threshold": gold_threshold,
-                "silver_threshold": silver_threshold,
-                "bronze_threshold": bronze_threshold,
-                "median_threshold": median_threshold,
-            }
-
         gold_medal = score <= gold_threshold if lower_is_better else score >= gold_threshold
         silver_medal = not gold_medal and (
             score <= silver_threshold if lower_is_better else score >= silver_threshold
@@ -179,7 +164,6 @@ class TaskReport:
     """
     Report for a single biomedical task evaluation.
 
-
     Extended from MLE-bench CompetitionReport with biomedical-specific fields.
     """
 
@@ -194,10 +178,11 @@ class TaskReport:
     silver_medal: bool
     bronze_medal: bool
     above_median: bool
-    valid_submission: bool
     submission_exists: bool
+    valid_submission: bool
     is_lower_better: bool
     created_at: datetime
+    submission_path: str
 
     # Biomedical-specific fields
     beats_human: bool = None
@@ -217,14 +202,15 @@ class TaskReport:
             "silver_medal": bool(self.silver_medal),
             "bronze_medal": bool(self.bronze_medal),
             "above_median": bool(self.above_median),
-            "valid_submission": bool(self.valid_submission),
             "submission_exists": bool(self.submission_exists),
+            "valid_submission": bool(self.valid_submission),
             "is_lower_better": bool(self.is_lower_better),
             "created_at": self.created_at.isoformat(),  # Serialize datetime
+            "submission_path": self.submission_path,
             "beats_human": bool(self.beats_human) if self.beats_human is not None else None,
-            "human_percentile": (
-                float(self.human_percentile) if self.human_percentile is not None else None
-            ),
+            "human_percentile": float(self.human_percentile)
+            if self.human_percentile is not None
+            else None,
         }
 
     @classmethod
@@ -246,14 +232,13 @@ class TaskReport:
             "valid_submission": bool(data["valid_submission"]),
             "is_lower_better": bool(data["is_lower_better"]),
             "created_at": datetime.fromisoformat(data["created_at"]),
-            "beats_human": (
-                bool(data["beats_human"]) if data.get("beats_human") is not None else None
-            ),
-            "human_percentile": (
-                float(data["human_percentile"])
-                if data.get("human_percentile") is not None
-                else None
-            ),
+            "submission_path": data["submission_path"],
+            "beats_human": bool(data["beats_human"])
+            if data.get("beats_human") is not None
+            else None,
+            "human_percentile": float(data["human_percentile"])
+            if data.get("human_percentile") is not None
+            else None,
         }
 
         return cls(**typed_data)

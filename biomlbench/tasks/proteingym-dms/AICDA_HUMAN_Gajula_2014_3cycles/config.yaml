@@ -10,55 +10,12 @@ description: biomlbench/tasks/proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/des
 preparer: biomlbench.tasks.proteingym-dms.AICDA_HUMAN_Gajula_2014_3cycles.prepare:prepare
 
 data_source:
-  type: proteingym
+  type: proteingym-dms
   benchmark_id: AICDA_HUMAN_Gajula_2014_3cycles
 
-datasets:
-  fold_random_0:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_1:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_2:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_3:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_4:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_0:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_1:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_2:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_3:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_4:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_0:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_1:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_2:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_3:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_4:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/prepared/private/answers.csv
+  sample_submission: proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

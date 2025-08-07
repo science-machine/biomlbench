@@ -21,7 +21,8 @@ from typing import Any, List, Tuple
 
 import docker
 
-from biomlbench.registry import Dataset, Task, registry
+from biomlbench.data import is_dataset_prepared
+from biomlbench.registry import Task, registry
 from biomlbench.utils import (
     create_run_dir,
     generate_submission_from_metadata,
@@ -42,26 +43,64 @@ logger = get_logger(__name__)
 
 async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool:
     """
-    Check if an agent run succeeded by looking for a valid submission file.
-    
-    Simple and reliable: if there's a non-empty submission file, it succeeded.
+    Check if an agent run actually succeeded by examining submission files and logs.
+
+    This catches cases where agents fail internally but exit with success codes.
     """
     try:
-        # Check for submission files
+        # Check 1: Look for submission files
         submission_dir = run_dir / "submission"
-        if not submission_dir.exists():
-            run_logger.error(f"No submission directory found")
+        has_submission = False
+
+        if submission_dir.exists():
+            # Check for common submission file formats
+            submission_formats = ["submission.csv", "submission.h5ad"]
+            for format_name in submission_formats:
+                submission_file = submission_dir / format_name
+                if submission_file.exists() and submission_file.stat().st_size > 0:
+                    has_submission = True
+                    break
+
+        # Check 2: Examine logs for failure patterns
+        log_file = run_dir / "run.log"
+        has_critical_errors = False
+
+        if log_file.exists():
+            try:
+                with open(log_file, "r") as f:
+                    log_content = f.read().lower()
+
+                    # Critical error patterns that indicate failure
+                    error_patterns = [
+                        "authenticationerror",
+                        "invalid api key",
+                        "401",
+                        "traceback (most recent call last)",
+                        "error:",
+                        "exception:",
+                        "timeout",
+                    ]
+
+                    for pattern in error_patterns:
+                        if pattern in log_content:
+                            has_critical_errors = True
+                            run_logger.debug(f"Found error pattern '{pattern}' in logs")
+                            break
+            except Exception:
+                run_logger.warning("Could not read run log for failure analysis")
+
+        # Decision logic: If we have critical errors, it's a failure
+        if has_critical_errors:
+            run_logger.error(f"Agent failed: Critical errors found in logs")
             return False
 
-        # Check for common submission file formats
-        submission_formats = ["submission.csv", "submission.h5ad"]
-        for format_name in submission_formats:
-            submission_file = submission_dir / format_name
-            if submission_file.exists() and submission_file.stat().st_size > 0:
-                run_logger.info(f"Agent succeeded: Found valid submission file {submission_file}")
-                return True
+        # If we have a valid submission file, it's likely a success
+        if has_submission:
+            run_logger.info(f"Agent succeeded: Valid submission file found")
+            return True
 
-        run_logger.error(f"No valid submission files found in {submission_dir}")
+        # If no submission and no clear errors, treat as suspicious failure
+        run_logger.warning(f"Agent success unclear: No submission file found")
         return False
 
     except Exception as e:
@@ -70,8 +109,8 @@ async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool
 
 
 @dataclass(frozen=True)
-class AgentTaskDataset:
-    """Represents a single agent execution for a single dataset of a task."""
+class AgentTask:
+    """Represents a single agent-task execution."""
 
     run_id: str
     seed: int
@@ -80,13 +119,12 @@ class AgentTaskDataset:
     path_to_run: Path
     agent: Agent
     task: Task
-    dataset: Dataset
     container_config: dict[str, Any]
 
 
 async def worker(
     idx: int,
-    queue: asyncio.Queue[AgentTaskDataset],
+    queue: asyncio.Queue[AgentTask],
     client: docker.DockerClient,
     tasks_outputs: dict[str, dict[str, Any]],
     retain_container: bool = False,
@@ -94,9 +132,6 @@ async def worker(
     """Worker function that processes agent tasks from the queue."""
     while True:
         agent_task = await queue.get()
-
-        # Create the subdirectory-specific run directory
-        agent_task.path_to_run.mkdir(parents=True, exist_ok=True)
 
         # Create logger for the run
         run_logger = get_logger(str(agent_task.path_to_run))
@@ -106,14 +141,12 @@ async def worker(
         run_logger.propagate = False
 
         run_logger.info(
-            f"[Worker {idx}] Running seed {agent_task.seed} for {agent_task.task.id} "
-            f"and agent {agent_task.agent.name} in dataset {agent_task.dataset.id}"
+            f"[Worker {idx}] Running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
         )
 
         task_output = {
             "task_id": agent_task.task.id,
             "agent_id": agent_task.agent.id,
-            "dataset_id": agent_task.dataset.dataset_id,
             "seed": agent_task.seed,
         }
         try:
@@ -121,8 +154,8 @@ async def worker(
                 run_in_container,
                 client=client,
                 task_id=agent_task.task.id,
-                public_dir=agent_task.dataset.public_path,
-                private_dir=agent_task.dataset.private_path,
+                public_dir=agent_task.task.public_dir,
+                private_dir=agent_task.task.private_dir,
                 agent=agent_task.agent,
                 image=agent_task.agent.name,
                 container_config=agent_task.container_config,
@@ -130,6 +163,8 @@ async def worker(
                 run_dir=agent_task.path_to_run,
                 logger=run_logger,
             )
+
+            # ENHANCED: Check if the agent actually succeeded beyond just not throwing an exception
             success = await check_agent_success(agent_task.path_to_run, run_logger)
             task_output["success"] = success
 
@@ -141,22 +176,17 @@ async def worker(
                 run_logger.error(
                     f"[Worker {idx}] Agent completed without exception but failed internally for seed {agent_task.seed}, task {agent_task.task.id}, agent {agent_task.agent.name}"
                 )
-
-            run_logger.info(
-                f"[Worker {idx}] Finished running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
-            )
         except Exception as e:
             stack_trace = traceback.format_exc()
             run_logger.error(type(e))
             run_logger.error(stack_trace)
             run_logger.error(
                 f"Run failed for seed {agent_task.seed}, agent {agent_task.agent.id} and task "
-                f"{agent_task.task.id} dataset {agent_task.dataset.id}"
+                f"{agent_task.task.id}"
             )
             task_output["success"] = False
         finally:
-            # Use a composite key to track individual dataset results
-            tasks_outputs[f"{agent_task.run_id}-{agent_task.dataset.dataset_id}"] = task_output
+            tasks_outputs[agent_task.run_id] = task_output
             queue.task_done()
 
 
@@ -186,20 +216,9 @@ async def run_agent_async(
     container_config_path: str = None,
     retain_container: bool = False,
     data_dir: str = None,
-    missing_ok: bool = False,
 ) -> Tuple[str, Path]:
     """
     Run an agent on multiple tasks asynchronously.
-
-    Args:
-        agent_id: ID of the agent to run
-        task_ids: List of task IDs to run on
-        n_workers: Number of parallel workers
-        n_seeds: Number of random seeds per task
-        container_config_path: Path to container configuration file
-        retain_container: Whether to keep containers after completion
-        data_dir: Custom data directory path
-        missing_ok: If True, skip failed runs; if False, raise error on any missing submissions
 
     Returns:
         Tuple[str, Path]: The run group ID and path to the generated submission file
@@ -233,10 +252,10 @@ async def run_agent_async(
     # Validate all tasks are prepared
     for task_id in task_ids:
         task = task_registry.get_task(task_id)
-        if not task.is_prepared():
+        if not is_dataset_prepared(task):
             raise ValueError(
-                f"Dataset(s) for task `{task.id}` are not prepared! "
-                f"Please run `biomlbench prepare -t {task.id}` to prepare the dataset(s)."
+                f"Dataset for task `{task.id}` is not prepared! "
+                f"Please run `biomlbench prepare -t {task.id}` to prepare the dataset."
             )
 
     # Load container configuration
@@ -246,52 +265,29 @@ async def run_agent_async(
     with open(container_config_path, "r") as f:
         container_config = json.load(f)
 
-    # Create agent tasks for each (task × seed × subdirectory) combination
+    # Create agent tasks for each (task × seed) combination
     logger.info(f"Launching run group: {run_group}")
     agent_tasks = []
     for seed in range(n_seeds):
         for task_id in task_ids:
             task = task_registry.get_task(task_id)
-
-            # Create one run directory per task (not per subdirectory)
             run_dir = create_run_dir(task.id, agent.id, run_group)
+            # Store relative path from run group directory for proper reconstruction
             run_group_dir = get_runs_dir() / run_group
             run_id = str(run_dir.relative_to(run_group_dir))
+            agent_task = AgentTask(
+                run_id=run_id,
+                seed=seed,
+                image=agent.name,
+                agent=agent,
+                task=task,
+                path_to_run_group=run_dir.parent,
+                path_to_run=run_dir,
+                container_config=container_config,
+            )
+            agent_tasks.append(agent_task)
 
-            for dataset in task.datasets:
-                # Create subdirectory-specific run path within the task run directory
-                dataset_run_dir = run_dir / dataset.dataset_id
-                agent_task = AgentTaskDataset(
-                    run_id=run_id,
-                    seed=seed,
-                    image=agent.name,
-                    agent=agent,
-                    task=task,
-                    path_to_run_group=run_dir,
-                    path_to_run=dataset_run_dir,
-                    container_config=container_config,
-                    dataset=dataset,
-                )
-                agent_tasks.append(agent_task)
-
-    # Smart parallelism suggestions and warnings
-    total_tasks = len(agent_tasks)
-    if n_workers == 1 and total_tasks > 3:
-        logger.warning(f"⚠️  Running {total_tasks} datasets sequentially with 1 worker")
-        suggested_workers = min(total_tasks, 8)  # Cap at 8 for resource management
-        logger.warning(f"💡 Consider using --n-workers {suggested_workers} for parallel execution:")
-        logger.warning(f"   biomlbench run-agent --agent {agent.name} --task-id {' '.join(task_ids)} --n-workers {suggested_workers}")
-        logger.warning(f"   This could reduce runtime from ~{total_tasks}x to ~{total_tasks//suggested_workers}x")
-
-    elif n_workers > total_tasks:
-        logger.warning(f"⚠️  You specified {n_workers} workers for {total_tasks} tasks - reducing to {total_tasks} workers")
-        n_workers = total_tasks
-
-    logger.info(f"Creating {n_workers} workers to serve {total_tasks} tasks...")
-    if n_workers > 1:
-        # Calculate actual speedup: how much faster than sequential execution
-        speedup = min(n_workers, total_tasks)  # Can't be faster than the number of tasks
-        logger.info(f"🚀 Parallel execution: ~{speedup}x faster than sequential")
+    logger.info(f"Creating {n_workers} workers to serve {len(agent_tasks)} tasks...")
 
     # Create queue and workers
     queue = asyncio.Queue()
@@ -331,7 +327,7 @@ async def run_agent_async(
         json.dump(metadata, f, indent=4, sort_keys=False, default=str)
 
     # Auto-generate submission file for grading
-    submission_path = generate_submission_from_metadata(metadata_path, missing_ok=missing_ok)
+    submission_path = generate_submission_from_metadata(metadata_path)
 
     # CRITICAL: Check for failures and report them to prevent silent failures
     failed_runs = [
@@ -348,83 +344,34 @@ async def run_agent_async(
         logger.error(f"❌ {len(failed_runs)}/{total_runs} runs FAILED!")
         logger.error(f"✅ {successful_runs}/{total_runs} runs succeeded")
 
-        # Show errors from failed runs with proper path construction
-        logger.error(f"🔍 Showing errors from failed runs:")
+        # Check for common failure patterns and provide specific guidance
+        first_failed_run = failed_runs[0]
+        first_run_log = run_group_dir / first_failed_run / "run.log"
 
-        for i, failed_run_key in enumerate(failed_runs[:3]):  # Show up to 3 failed runs
-            # Parse the composite key to get run_id and dataset_id
-            # failed_run_key format: "run_id-dataset_id"
-            parts = failed_run_key.split('-')
-            if len(parts) >= 2:
-                # The run_id might contain hyphens, so we need to be careful
-                # We know dataset_id is the last part after the last hyphen
-                dataset_id = parts[-1]
-                run_id = '-'.join(parts[:-1])
-            else:
-                logger.error(f"⚠️  Could not parse failed run key: {failed_run_key}")
-                continue
+        if first_run_log.exists():
+            try:
+                with open(first_run_log, "r") as f:
+                    log_content = f.read().lower()
 
-            # Construct the correct path to the log file
-            log_file_path = run_group_dir / run_id / dataset_id / "run.log"
-
-            logger.error(f"")
-            logger.error(f"{'='*60}")
-            logger.error(f"❌ FAILED RUN #{i+1}: {failed_run_key}")
-            logger.error(f"📁 Log file: {log_file_path}")
-
-            if log_file_path.exists():
-                try:
-                    with open(log_file_path, "r") as f:
-                        log_content = f.read()
-
-                    # Show the last 20 lines of the log for immediate context
-                    log_lines = log_content.strip().split('\n')
-                    if len(log_lines) > 20:
-                        logger.error(f"📋 Last 20 lines of error log:")
-                        for line in log_lines[-20:]:
-                            logger.error(f"   {line}")
-                        logger.error(f"   ... (showing last 20/{len(log_lines)} lines)")
-                    else:
-                        logger.error(f"📋 Full error log:")
-                        for line in log_lines:
-                            logger.error(f"   {line}")
-
-                    # Still provide specific guidance for common issues
-                    log_content_lower = log_content.lower()
-                    if ("docker.errors.imagenotfound" in log_content_lower or
-                        "no such image" in log_content_lower):
-                        logger.error(f"")
-                        logger.error(f"💡 SOLUTION: Build the missing Docker image:")
+                    if (
+                        "docker.errors.imagenotfound" in log_content
+                        or "no such image" in log_content
+                    ):
+                        logger.error(f"🐳 Docker image '{agent.name}:latest' not found!")
+                        logger.error(f"💡 To fix this, build the agent image first:")
                         logger.error(f"   ./scripts/build_agent.sh {agent.name}")
                         logger.error(f"   # OR build all agent images:")
                         logger.error(f"   ./scripts/build_agent.sh --all")
-                    elif ("environment variable" in log_content_lower and
-                          "not set" in log_content_lower):
-                        logger.error(f"")
-                        logger.error(f"💡 SOLUTION: Set missing environment variables:")
-                        logger.error(f"   Check your .env file in the project root")
+                    elif "environment variable" in log_content and "not set" in log_content:
+                        logger.error(f"🔑 Missing API key or environment variable!")
+                        logger.error(f"💡 To fix this, check your .env file in the project root")
                         logger.error(f"   Example: OPENAI_API_KEY=your-key-here")
-                    elif ("authenticationerror" in log_content_lower or
-                          "invalid api key" in log_content_lower or
-                          "401" in log_content_lower):
-                        logger.error(f"")
-                        logger.error(f"💡 SOLUTION: Fix API authentication:")
-                        logger.error(f"   Check your API keys in the .env file")
-                        logger.error(f"   Ensure keys are valid and have sufficient credits")
+                    else:
+                        logger.error(f"📋 Check detailed error logs:")
+                        logger.error(f"   cat {first_run_log}")
+            except Exception:
+                logger.error(f"📋 Check detailed error logs in: {run_group_dir}")
 
-                except Exception as e:
-                    logger.error(f"❌ Could not read log file: {e}")
-            else:
-                logger.error(f"❌ Log file not found at expected path")
-                logger.error(f"📁 Expected: {log_file_path}")
-
-                # Try to find the log file in the run group directory
-                logger.error(f"🔍 Searching for log files in run group...")
-                for log_path in run_group_dir.rglob("*.log"):
-                    if "run.log" in log_path.name:
-                        logger.error(f"   Found: {log_path}")
-
-        logger.error(f"{'='*60}")
         logger.error(f"🚨 AGENT EXECUTION FAILED - See errors above")
 
         # If ALL runs failed, this is a critical error that should not be silent
@@ -475,7 +422,6 @@ def run_agent(args) -> str:
             container_config_path=args.container_config,
             retain_container=args.retain_container,
             data_dir=args.data_dir,
-            missing_ok=args.missing_ok,
         )
     )
 

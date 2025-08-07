@@ -11,10 +11,9 @@ prizes:
     value: 5000
 description: biomlbench/tasks/kaggle/stanford-covid-vaccine/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/stanford-covid-vaccine/prepared/private/answers.csv
+  sample_submission: kaggle/stanford-covid-vaccine/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

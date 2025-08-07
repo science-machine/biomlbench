@@ -1,31 +1,31 @@
 id: polarishub/tdcommons-lipophilicity-astrazeneca
-name: lipophilicity-astrazeneca
+name: "lipophilicity-astrazeneca"
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-lipophilicity-astrazeneca/description.md
-preparer: biomlbench.tasks.polarishub.tdcommons-lipophilicity-astrazeneca.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: tdcommons/lipophilicity-astrazeneca
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: polarishub/tdcommons-lipophilicity-astrazeneca/prepared/private/answers.csv
+  sample_submission: polarishub/tdcommons-lipophilicity-astrazeneca/prepared/public/sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.tdcommons-lipophilicity-astrazeneca.grade:grade
 
+preparer: biomlbench.tasks.polarishub.tdcommons-lipophilicity-astrazeneca.prepare:prepare
+
 biomedical_metadata:
-  modality: molecular
-  data_type: single_task
-  clinical_relevance: drug_discovery
-  polaris_main_metric: mean_absolute_error
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "mean_absolute_error"
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

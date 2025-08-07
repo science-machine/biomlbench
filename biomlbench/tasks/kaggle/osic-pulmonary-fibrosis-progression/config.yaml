@@ -11,10 +11,9 @@ prizes:
     value: 10000
 description: biomlbench/tasks/kaggle/osic-pulmonary-fibrosis-progression/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/osic-pulmonary-fibrosis-progression/prepared/private/answers.csv
+  sample_submission: kaggle/osic-pulmonary-fibrosis-progression/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

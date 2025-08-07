@@ -15,10 +15,9 @@ prizes:
     value: 5000
 description: biomlbench/tasks/kaggle/hms-harmful-brain-activity-classification/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/hms-harmful-brain-activity-classification/prepared/private/answers.csv
+  sample_submission: kaggle/hms-harmful-brain-activity-classification/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

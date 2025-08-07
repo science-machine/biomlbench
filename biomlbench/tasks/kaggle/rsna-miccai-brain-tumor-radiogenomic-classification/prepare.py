@@ -7,15 +7,10 @@ from sklearn.model_selection import train_test_split
 from biomlbench.utils import read_csv
 
 
-def prepare(raw: Path, prepared: Path) -> None:    
-    # Create dataset directory (we use 0 as the default for a single dataset)
-    dataset_dir = prepared / "0"
-    dataset_dir.mkdir(parents=True, exist_ok=True)
-    public = dataset_dir / "public"
-    private = dataset_dir / "private"
+def prepare(raw: Path, public: Path, private: Path) -> None:
     public.mkdir(parents=True, exist_ok=True)
     private.mkdir(parents=True, exist_ok=True)
-    
+
     # Create train and test splits from train set
     old_train = read_csv(raw / "train_labels.csv", dtype={"BraTS21ID": str, "MGMT_value": int})
     new_train, new_test = train_test_split(old_train, test_size=0.1, random_state=0)

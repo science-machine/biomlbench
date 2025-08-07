@@ -21,10 +21,9 @@ prizes:
     value: 5000
 description: biomlbench/tasks/kaggle/rsna-breast-cancer-detection/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/rsna-breast-cancer-detection/prepared/private/answers.csv
+  sample_submission: kaggle/rsna-breast-cancer-detection/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

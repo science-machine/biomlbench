@@ -11,10 +11,9 @@ prizes:
     value: 2500
 description: biomlbench/tasks/kaggle/ventilator-pressure-prediction/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/ventilator-pressure-prediction/prepared/private/answers.csv
+  sample_submission: kaggle/ventilator-pressure-prediction/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

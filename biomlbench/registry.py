@@ -5,14 +5,7 @@ from typing import Any, Callable, Dict, Optional
 from appdirs import user_cache_dir
 
 from biomlbench.grade_helpers import Grader
-from biomlbench.utils import (
-    get_logger,
-    get_module_dir,
-    get_repo_dir,
-    import_fn,
-    is_empty,
-    load_yaml,
-)
+from biomlbench.utils import get_logger, get_module_dir, get_repo_dir, import_fn, load_yaml
 
 logger = get_logger(__name__)
 
@@ -21,53 +14,9 @@ DEFAULT_DATA_DIR = (Path(user_cache_dir()) / "bioml-bench" / "data").resolve()
 
 
 @dataclass(frozen=True)
-class Dataset:
-    """
-    Represents a dataset in the BioML-bench framework.
-
-    Extended from MLE-bench CompetitionDataset class with biomedical-specific metadata.
-    """
-
-    task_id: str  # ID of the task to which the dataset belongs
-    dataset_id: str  # ID of the dataset
-    path: Path  # path to the dataset directory containing public and private subdirectories
-    answers: str  # name of the answers file
-    sample_submission: str  # name of the sample submission file
-
-    @property
-    def id(self) -> str:
-        """Combines the task ID and the dataset ID to form a unique identifier for the dataset."""
-        return f"{self.task_id}-{self.dataset_id}"
-
-    @property
-    def answers_path(self) -> Path:
-        """Path to the answers file."""
-        return self.path / "private" / self.answers
-
-    @property
-    def public_path(self) -> Path:
-        """Path to the public directory."""
-        return self.path / "public"
-
-    @property
-    def private_path(self) -> Path:
-        """Path to the private directory."""
-        return self.path / "private"
-
-    @property
-    def sample_submission_path(self) -> Path:
-        """Path to the sample submission file."""
-        return self.path / "public" / self.sample_submission
-
-    def is_prepared(self) -> bool:
-        """Checks if the dataset is prepared by checking that the public and private directories are not empty."""
-        return not (is_empty(self.public_path) or is_empty(self.private_path))
-
-
-@dataclass(frozen=True)
 class Task:
     """
-    Represents a biomedical ML task in the BioML-bench framework, which can contain multiple datasets.
+    Represents a biomedical ML task in the BioML-bench framework.
 
     Extended from MLE-bench Competition class with biomedical-specific metadata.
     """
@@ -75,14 +24,14 @@ class Task:
     id: str
     name: str
     description: str
-    datasets: list[Dataset]
     grader: Grader
-    task_type: str  # e.g., 'medical_imaging', 'protein_engineering'
-    domain: str  # e.g., 'oncology', 'drug_discovery'
-    difficulty: str  # e.g., 'easy', 'medium', 'hard'
-    prepare_fn: Callable[[Path, Path], None]
+    answers: Path
+    gold_submission: Path
+    sample_submission: Path
+    prepare_fn: Callable[[Path, Path, Path], Path]
     raw_dir: Path
-    prepared_dir: Path
+    private_dir: Path
+    public_dir: Path
     checksums: Path
     leaderboard: Path
 
@@ -92,88 +41,52 @@ class Task:
     compute_requirements: Optional[Dict[str, Any]] = None
     data_source: Optional[Dict[str, Any]] = None
 
+    # Optional fields
+    task_type: Optional[str] = None  # e.g., 'medical_imaging', 'protein_engineering'
+    domain: Optional[str] = None  # e.g., 'oncology', 'drug_discovery'
+    difficulty: Optional[str] = None  # e.g., 'easy', 'medium', 'hard'
+
     def __post_init__(self):
         assert isinstance(self.id, str), "Task id must be a string."
         assert isinstance(self.name, str), "Task name must be a string."
         assert isinstance(self.description, str), "Task description must be a string."
         assert isinstance(self.grader, Grader), "Task grader must be of type Grader."
-        assert isinstance(self.task_type, str), "Task type must be a string."
-        assert isinstance(self.domain, str), "Domain must be a string."
-        assert isinstance(self.difficulty, str), "Difficulty must be a string."
+        assert isinstance(self.answers, Path), "Task answers must be a Path."
+        assert isinstance(self.gold_submission, Path), "Gold submission must be a Path."
+        assert isinstance(self.sample_submission, Path), "Sample submission must be a Path."
         assert isinstance(self.checksums, Path), "Checksums must be a Path."
         assert isinstance(self.leaderboard, Path), "Leaderboard must be a Path."
         assert len(self.id) > 0, "Task id cannot be empty."
-        assert len(self.name) > 0, "Task name cannot be empty."
-        assert len(self.description) > 0, "Task description cannot be empty."
-        assert len(self.task_type) > 0, "Task type cannot be empty."
-        assert len(self.domain) > 0, "Domain cannot be empty."
-        assert len(self.difficulty) > 0, "Difficulty cannot be empty."
 
     @staticmethod
     def from_dict(data: dict) -> "Task":
         grader = Grader.from_dict(data["grader"])
 
-        # Create dataset objects
-        datasets = []
-
-        # dataset_data here is expected to contain answers and sample_submission file names
-        for dataset_id, dataset_data in data["datasets"].items():
-            dataset = Dataset(
-                task_id=data["id"],
-                dataset_id=dataset_id,
-                path=data["prepared_dir"] / dataset_id,
-                answers=dataset_data["answers"],
-                sample_submission=dataset_data["sample_submission"],
-            )
-            datasets.append(dataset)
-
         try:
-            if not "task_type" in data:
-                data["task_type"] = "simple"
-            if not "domain" in data:
-                data["domain"] = "general"
-            if not "difficulty" in data:
-                data["difficulty"] = "easy"
-
             return Task(
                 id=data["id"],
                 name=data["name"],
                 description=data["description"],
-                datasets=datasets,
                 grader=grader,
-                task_type=data["task_type"],
-                domain=data["domain"],
-                difficulty=data["difficulty"],
+                answers=data["answers"],
+                sample_submission=data["sample_submission"],
+                gold_submission=data["gold_submission"],
                 prepare_fn=data["prepare_fn"],
                 raw_dir=data["raw_dir"],
-                prepared_dir=data["prepared_dir"],
+                public_dir=data["public_dir"],
+                private_dir=data["private_dir"],
                 checksums=data["checksums"],
                 leaderboard=data["leaderboard"],
                 biomedical_metadata=data.get("biomedical_metadata"),
                 human_baselines=data.get("human_baselines"),
                 compute_requirements=data.get("compute_requirements"),
                 data_source=data.get("data_source"),
+                task_type=data.get("task_type"),
+                domain=data.get("domain"),
+                difficulty=data.get("difficulty"),
             )
         except KeyError as e:
             raise ValueError(f"Missing key {e} in task config!")
-
-    def get_dataset(self, dataset_id: str) -> Dataset:
-        """Retrieves the dataset from the task using folder/dataset format."""
-        for dataset in self.datasets:
-            if dataset.id == dataset_id:
-                return dataset
-        raise ValueError(f"Dataset {dataset_id} not found in task {self.id}")
-
-    def is_prepared(self) -> bool:
-        """Checks if the task is prepared by checking that each of its datasets is prepared."""
-        for dataset in self.datasets:
-            try:
-                if not dataset.is_prepared():
-                    return False
-            except AssertionError:
-                return False
-
-        return True
 
 
 class Registry:
@@ -199,20 +112,27 @@ class Registry:
 
         preparer_fn = import_fn(config["preparer"])
 
-        raw_dir = self.get_data_dir() / task_id / "raw"
-        prepared_dir = self.get_data_dir() / task_id / "prepared"
+        answers = self.get_data_dir() / config["dataset"]["answers"]
+        gold_submission = answers
+        if "gold_submission" in config["dataset"]:
+            gold_submission = self.get_data_dir() / config["dataset"]["gold_submission"]
+        sample_submission = self.get_data_dir() / config["dataset"]["sample_submission"]
 
-        # {dataset_id: {answers: str, sample_submission: str}}
-        datasets = config["datasets"]
+        raw_dir = self.get_data_dir() / task_id / "raw"
+        private_dir = self.get_data_dir() / task_id / "prepared" / "private"
+        public_dir = self.get_data_dir() / task_id / "prepared" / "public"
 
         return Task.from_dict(
             {
                 **config,
-                "datasets": datasets,
                 "description": description,
+                "answers": answers,
+                "sample_submission": sample_submission,
+                "gold_submission": gold_submission,
                 "prepare_fn": preparer_fn,
                 "raw_dir": raw_dir,
-                "prepared_dir": prepared_dir,
+                "private_dir": private_dir,
+                "public_dir": public_dir,
                 "checksums": checksums_path,
                 "leaderboard": leaderboard_path,
             }

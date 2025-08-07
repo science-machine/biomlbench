@@ -1,31 +1,31 @@
 id: polarishub/tdcommons-herg
-name: herg
+name: "herg"
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-herg/description.md
-preparer: biomlbench.tasks.polarishub.tdcommons-herg.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: tdcommons/herg
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: polarishub/tdcommons-herg/prepared/private/answers.csv
+  sample_submission: polarishub/tdcommons-herg/prepared/public/sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.tdcommons-herg.grade:grade
 
+preparer: biomlbench.tasks.polarishub.tdcommons-herg.prepare:prepare
+
 biomedical_metadata:
-  modality: molecular
-  data_type: single_task
-  clinical_relevance: drug_discovery
-  polaris_main_metric: roc_auc
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "roc_auc"
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

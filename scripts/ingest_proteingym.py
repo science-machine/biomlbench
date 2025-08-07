@@ -1,8 +1,5 @@
 import argparse
 import tempfile
-from concurrent.futures import ProcessPoolExecutor
-from concurrent.futures import TimeoutError as FuturesTimeoutError
-from concurrent.futures import as_completed
 from pathlib import Path
 from string import Template
 from textwrap import dedent
@@ -10,15 +7,12 @@ from textwrap import dedent
 import pandas as pd
 import requests
 
-from biomlbench.data import download_and_prepare_datasets
+from biomlbench.data import download_and_prepare_dataset
 from biomlbench.registry import registry
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Ingest Polaris tasks")
-    parser.add_argument(
-        "--workers", type=int, default=4, help="Number of workers to use for parallel processing"
-    )
+    parser = argparse.ArgumentParser(description="Ingest ProteinGym-DMS tasks")
     parser.add_argument(
         "--prepare",
         action="store_true",
@@ -36,7 +30,7 @@ def parse_args():
     return args
 
 
-def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bool):
+def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bool) -> str:
     """Prepares a ProteinGym DMS task."""
     script_template = Template(
         """
@@ -44,54 +38,60 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
 
     from pathlib import Path
     import pandas as pd
+    import numpy as np 
 
-    def prepare(raw: Path, prepared: Path) -> None:
+    def prepare(raw: Path, public: Path, private: Path) -> None:
         \"\"\"
         Prepare the proteingym-dms/$dataset_name dataset from ProteinGym data.
 
         Args:
             raw: Directory with the DMS dataset as a CSV file
-            prepared: Directory for prepared data (train.csv, test_features.csv, sample_submission.csv, answers.csv)
+            public: Directory for public data (train.csv, test_features.csv)  
+            private: Directory for private data (answers.csv)
         \"\"\"
 
         # Load the ProteinGym DMS data files (downloaded by ProteinGymDMSDataSource)
-        df = pd.read_csv(raw / "cv_folds_singles_substitutions" / "$dataset_name.csv")
+        # The raw parameter now points to the task's raw directory containing the specific CSV
+        df = pd.read_csv(raw / "$dataset_name.csv")
+        
+        # Metadata is stored in the shared proteingym-dms directory
+        metadata = pd.read_csv(raw.parent.parent / "DMS_substitutions.csv", index_col="DMS_id")
         fold_columns = ["fold_random_5", "fold_modulo_5", "fold_contiguous_5"]
         seq_column = "mutated_sequence"
         target_column = "DMS_score"
-
-        for fold_column in fold_columns:
-            fold_name = fold_column.rstrip('_5')
-            for fold, fold_df in df.groupby(fold_column):
-                (prepared / f"{fold_name}_{fold}").mkdir(parents=True, exist_ok=True)
-                public = prepared / f"{fold_name}_{fold}" / "public"
-                private = prepared / f"{fold_name}_{fold}" / "private"
-                public.mkdir(parents=True, exist_ok=True)
-                private.mkdir(parents=True, exist_ok=True)
-
-                train_df = df[df[fold_column] != fold].copy()
-                train_df["id"] = range(len(train_df))
-                train_df.rename({seq_column: "sequence", target_column: "fitness_score"}, axis=1, inplace=True)
-
-                fold_df["id"] = range(len(fold_df))
-                fold_df.rename({seq_column: "sequence", target_column: "fitness_score"}, axis=1, inplace=True)
-
-                train_df[["id", "sequence", "fitness_score"]].to_csv(public / "train.csv", index=False)
-                fold_df[["id", "sequence"]].to_csv(public / "test_features.csv", index=False)
-                fold_df[["id", "fitness_score"]].to_csv(private / "answers.csv", index=False)
-
-                sample_submission = pd.DataFrame({
-                    "id": fold_df["id"],
-                    "fitness_score": [0.0] * len(fold_df)
-                })
-                sample_submission.to_csv(public / "sample_submission.csv", index=False)
+        
+        wt_sequence = metadata.loc["$dataset_name", "target_seq"]
+        wt_seq_row = pd.DataFrame({"id": ["WT"], "sequence": [wt_sequence], "fitness_score": [np.nan]})
+        wt_seq_row[fold_columns] = -1
+        
+        df["id"] = range(len(df))
+        df.rename({seq_column: "sequence", target_column: "fitness_score"}, axis=1, inplace=True)
+        df = df[["id", "sequence", "fitness_score"] + fold_columns]
+        df = pd.concat([wt_seq_row, df])
+        df.to_csv(public / "data.csv", index=False)
+        
+        sample_submission = pd.DataFrame({
+            "id": df["id"], 
+            "fitness_score_fold_random_5": [0.0] * len(df),
+            "fitness_score_fold_modulo_5": [0.0] * len(df),
+            "fitness_score_fold_contiguous_5": [0.0] * len(df)
+        })
+        sample_submission.to_csv(public / "sample_submission.csv", index=False)
+        
+        answers = pd.DataFrame({
+            "id": df["id"],
+            "fitness_score_fold_random_5": df["fitness_score"],
+            "fitness_score_fold_modulo_5": df["fitness_score"],
+            "fitness_score_fold_contiguous_5": df["fitness_score"]
+        })
+        answers.to_csv(private / "answers.csv", index=False)
 
         print("✅ Datasets prepared successfully!")
         print(f"Files created:")
-        print(f"  Public: train.csv, test_features.csv, sample_submission.csv")
-        print(f"  Private: answers.csv")
+        print(f"  Public: data.csv, sample_submission.csv")
         print(f"  Sequence column: sequence")
         print(f"  Target column: fitness_score")
+        print(f"  Fold columns: {fold_columns}")
     """
     )
 
@@ -108,55 +108,12 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
     preparer: biomlbench.tasks.proteingym-dms.$dataset_name.prepare:prepare
 
     data_source:
-      type: proteingym
+      type: proteingym-dms
       benchmark_id: $dataset_name
 
-    datasets:
-      fold_random_0:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_random_1:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_random_2:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_random_3:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_random_4:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_modulo_0:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_modulo_1:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_modulo_2:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_modulo_3:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_modulo_4:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_contiguous_0:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_contiguous_1:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_contiguous_2:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_contiguous_3:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
-      fold_contiguous_4:
-        answers: answers.csv
-        sample_submission: sample_submission.csv
+    dataset:
+      answers: proteingym-dms/$dataset_name/prepared/private/answers.csv
+      sample_submission: proteingym-dms/$dataset_name/prepared/public/sample_submission.csv
 
     grader:
       name: proteingym-metric
@@ -199,24 +156,82 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
     ## Objective
 
     The objective of this benchmark is to train a model that can predict the fitness of unseen single-substitution sequence variants of $protein_name.
-    These variants may be in regions of the protein where mutations were not present in the training set.
+    To train your model, you will use 5-fold cross-validation on the sequences and fitness scores defined in the `data.csv` file. 
+    
+    You will use the `fold_random_5`, `fold_modulo_5`, and `fold_contiguous_5` columns to split the data into training and test sets.
+    Each of these columns contains integer values from 0 to 4, which indicate the fold of the sequence in the corresponding 5-fold cross-validation split.
+    
+    When predicting the fitness score for a given sequence, **you must use a model trained only on sequences from other folds**.
+    For example, to predict the fitness score for sequences in fold 0 for the `fold_random_5` split, you must use a model trained
+    only on the sequences with `fold_random_5` values other than 0.
+  
+    You must repeat this process for each of the five folds in `fold_random_5` (so that all sequences in `data.csv` 
+    receive a predicted score). Then repeat the process separately for the other two cross-validation split columns
+    `fold_modulo_5` and `fold_contiguous_5`. Hence, each sequence should have three predicted fitness scores,
+    corresponding to the prediction for that sequence under models trained on the three different cross-validation splits.
+    
+    Overall, your training and inference pseudocode loop should look like this:
+    
+    ```python
+    import pandas as pd
+    data = pd.read_csv("data.csv")
+    wt_sequence = data.iloc[0]["sequence"]
+    
+    # remove the wild-type sequence from the data
+    data = data.iloc[1:]
+    
+    ## define your model here ##
+    model = ...
+    
+    # initialize a dataframe to store the predictions
+    predictions = pd.DataFrame(columns=["id", "fold_random_5", "fold_modulo_5", "fold_contiguous_5"], index=data.index)
+    predictions["id"] = data["id"]
+    
+    # loop over the different cross-validation splits
+    fold_columns = ["fold_random_5", "fold_modulo_5", "fold_contiguous_5"]
+    for column in fold_columns:  # different splits
+        for fold in range(5):  # different folds per-split
+            fold_mask = data[column] == fold
+            train_data = data[~fold_mask]  # train on all folds except the current one
+            test_data = data[fold_mask]  # test on the current fold
+            
+            # train the model **from scratch** on the training set 
+            trained_model = model.fit(train_data["sequence"], train_data["fitness_score"]) 
 
+            # predict the fitness score for the sequences in the current fold 
+            predictions.loc[fold_mask, f"fitness_score_{column}"] = trained_model.predict(test_data["sequence"])
+    ```
+    
+    Hence, the output data frame should contain four columns:
+    - `id`: The ID of the sequence 
+    - `fitness_score_fold_random_5`: The predicted fitness score for that sequence predicted by the model trained on the 
+      cross-validation split defined by the `fold_random_5` column
+    - `fitness_score_fold_modulo_5`: The predicted fitness score for that sequence predicted by the model trained on the 
+      cross-validation split defined by the `fold_modulo_5` column
+    - `fitness_score_fold_contiguous_5`: The predicted fitness score for that sequence predicted by the model trained on the 
+      cross-validation split defined by the `fold_contiguous_5` column
+    
     ## Data Format
 
-    This task uses CSV files to store the amino acid sequence data and fitness scores.
-    - ID column: `id` (this is just an index column)
-    - Sequence column: `sequence`
-    - Fitness column: `fitness_score`
+    The `data.csv` file contains the following columns:
+    - `id`: The index of the sequence
+    - `sequence`: The amino acid sequence of the variant
+    - `fitness_score`: The fitness score of the variant
+    - `fold_random_5`: The fold of the variant (0-4) in the "random" 5-fold cross-validation split
+    - `fold_modulo_5`: The fold of the variant (0-4) in the "modulo" 5-fold cross-validation split
+    - `fold_contiguous_5`: The fold of the variant (0-4) in the "contiguous" 5-fold cross-validation split
+
+    The first row of the CSV file contains the wild-type sequence in the `sequence` field and missing values for the other columns.
 
     ## Files
 
-    - `train.csv`: Training data with sequences and fitness scores
-    - `test_features.csv`: Test features with ID column and sequence column - these fitness scores must be predicted by your model
+    - `data.csv`: File with sequences and fitness scores
     - `sample_submission.csv`: Example submission format with ID column and fitness score column
 
     ## Evaluation
 
-    Your model will be evaluated on the Spearman correlation between the predicted fitness scores and the true fitness scores.
+    Your model will be evaluated on the Spearman correlation between the predicted fitness scores and the true fitness scores for
+    each of the sequences in `data.csv`.
     """
     )
 
@@ -230,14 +245,21 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
     def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
         \"\"\"Grade using spearman correlation between true and predicted fitness scores.\"\"\"
 
-        # Extract predictions (second column)
-        predictions = submission[submission.columns[1]].tolist()
-        answers = answers[answers.columns[1]].tolist()
+        # Extract predictions for each fold
+        fold_random_5 = submission[submission.columns[1]].tolist()
+        fold_modulo_5 = submission[submission.columns[2]].tolist()
+        fold_contiguous_5 = submission[submission.columns[3]].tolist()
+        answers_fold_random_5 = answers[answers.columns[1]].tolist()
+        answers_fold_modulo_5 = answers[answers.columns[2]].tolist()
+        answers_fold_contiguous_5 = answers[answers.columns[3]].tolist()
 
-        # Calculate Spearman correlation
-        correlation, _ = spearmanr(predictions, answers)
+        # Calculate Spearman correlation for each split
+        correlation_fold_random_5, _ = spearmanr(fold_random_5, answers_fold_random_5)
+        correlation_fold_modulo_5, _ = spearmanr(fold_modulo_5, answers_fold_modulo_5)
+        correlation_fold_contiguous_5, _ = spearmanr(fold_contiguous_5, answers_fold_contiguous_5)
 
-        return correlation
+        # Return the average correlation across all splits
+        return (correlation_fold_random_5 + correlation_fold_modulo_5 + correlation_fold_contiguous_5) / 3
     """
     )
 
@@ -271,7 +293,9 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
     if prepare:
         print(f"🔄 Preparing data for proteingym/{dms_id}...")
         task = registry.get_task(f"proteingym-dms/{dms_id}")
-        download_and_prepare_datasets(task)
+        download_and_prepare_dataset(task)
+
+    return dms_id
 
 
 def main():
@@ -303,7 +327,7 @@ def main():
 
     for dms_id in dms_ids:
         try:
-            ingest_task(dms_id, dms_single_substitutions, TASK_DIR, args.prepare)
+            dms_id = ingest_task(dms_id, dms_single_substitutions, TASK_DIR, args.prepare)
             status = "✅ Created and prepared" if args.prepare else "✅ Created"
             print(f"{status} proteingym-dms/{dms_id.replace('/', '-').lower()}")
         except Exception as e:
