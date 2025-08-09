@@ -206,16 +206,31 @@ def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
     main_metric = "{main_metric}"
     
     if hasattr(results, 'results') and not results.results.empty:
-        # Try to find main_metric in results
+        # Search for the main metric in the results
         if "Metric" in results.results.columns:
-            if results.results["Metric"].iloc[0] == main_metric:
-                score = float(results.results["Score"].iloc[0])
+            # Find the row that matches the main metric
+            metric_mask = results.results["Metric"] == main_metric
+            matching_rows = results.results[metric_mask]
+            
+            if matching_rows.empty:
+                raise ValueError(
+                    f"Main metric '{main_metric}' not found in evaluation results. "
+                )
+            elif len(matching_rows) > 1:
+                raise ValueError(
+                    f"Multiple rows found for main metric '{main_metric}'. "
+                )
             else:
-                raise ValueError("This should never happen")
+                # Extract score from the single matching row
+                score = float(matching_rows["Score"].iloc[0])
         else:
-            raise ValueError("This should never happen")
+            raise ValueError(
+                f"'Metric' column not found in evaluation results. "
+            )
     else:
-        raise ValueError("This should never happen")
+        raise ValueError(
+            "Evaluation results are empty or missing. "
+        )
     
     return score
 '''
@@ -279,12 +294,6 @@ Auto-generated from [Polaris Hub](https://polarishub.io/).
             # Don't raise - let the task creation succeed even if preparation fails
 
 
-def create_polaris_task_wrapper(args):
-    """Wrapper for create_polaris_task to handle tuple unpacking for multiprocessing."""
-    benchmark_id, output_dir, prepare_data = args
-    return create_polaris_task(benchmark_id, output_dir, prepare_data)
-
-
 def main():
     """Discover and ingest all Polaris tasks."""
     # Load number of workers from command line
@@ -323,22 +332,28 @@ def main():
                 break
             benchmarks.extend(result)
 
-    print(f"📊 Found {len(benchmarks)} benchmarks on Polaris Hub")
+    # Only keep the benchmarks which are in scripts/polarishub_tasks.csv
+    with open("scripts/polarishub_tasks.csv", "r") as f:
+        polarishub_tasks = [line.strip() for line in f.readlines()]
+        # Remove everything before the FIRST -
+        # EVERYTHING AFTER THE FIRST - IS THE TASK NAME
+        polarishub_tasks = [task.split("-", 1)[1] for task in polarishub_tasks]
+    benchmarks = [benchmark for benchmark in benchmarks if any(task in benchmark for task in polarishub_tasks)]
+    print(f"📊 Found {len(benchmarks)} benchmarks on Polaris Hub" )
+
     if args.prepare:
         print("🔄 Will also prepare datasets after creating tasks")
     else:
         print("⏭️  Will skip dataset preparation")
 
-    # Create argument tuples for parallel processing
-    # benchmarks = ['tdcommons/caco2-wang']
-    # benchmarks = ['molecularml/moleculeace-chembl4203-ki']
-    task_args = [(benchmark_id, output_dir, args.prepare) for benchmark_id in benchmarks]
+    # Create partial function to avoid pickling issues
+    task_func = partial(create_polaris_task, output_dir=output_dir, prepare_data=args.prepare)
 
     # Use ProcessPoolExecutor for parallel processing
     with ProcessPoolExecutor(max_workers=args.workers) as executor:
         # Submit all tasks
         future_to_benchmark = {
-            executor.submit(create_polaris_task_wrapper, arg): arg[0] for arg in task_args
+            executor.submit(task_func, benchmark_id): benchmark_id for benchmark_id in benchmarks
         }
 
         # Process completed tasks with individual timeouts

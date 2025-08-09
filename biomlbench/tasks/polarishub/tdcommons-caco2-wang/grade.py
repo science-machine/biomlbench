@@ -22,15 +22,30 @@ def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
     main_metric = "mean_absolute_error"
     
     if hasattr(results, 'results') and not results.results.empty:
-        # Try to find main_metric in results
+        # Search for the main metric in the results
         if "Metric" in results.results.columns:
-            if results.results["Metric"].iloc[0] == main_metric:
-                score = float(results.results["Score"].iloc[0])
+            # Find the row that matches the main metric
+            metric_mask = results.results["Metric"] == main_metric
+            matching_rows = results.results[metric_mask]
+            
+            if matching_rows.empty:
+                raise ValueError(
+                    f"Main metric 'mean_absolute_error' not found in evaluation results. "
+                )
+            elif len(matching_rows) > 1:
+                raise ValueError(
+                    f"Multiple rows found for main metric 'mean_absolute_error'. "
+                )
             else:
-                raise ValueError("This should never happen")
+                # Extract score from the single matching row
+                score = float(matching_rows["Score"].iloc[0])
         else:
-            raise ValueError("This should never happen")
+            raise ValueError(
+                f"'Metric' column not found in evaluation results. "
+            )
     else:
-        raise ValueError("This should never happen")
+        raise ValueError(
+            "Evaluation results are empty or missing. "
+        )
     
     return score

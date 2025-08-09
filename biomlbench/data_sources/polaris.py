@@ -284,7 +284,7 @@ except Exception as e:
 
     def _extract_table_data(self, table, benchmark_id: str) -> Optional[pd.DataFrame]:
         """
-        Extract data from a BeautifulSoup table element.
+        Extract data from a BeautifulSoup table element using pandas read_html.
 
         Args:
             table: BeautifulSoup table element
@@ -294,115 +294,37 @@ except Exception as e:
             DataFrame with leaderboard data or None if extraction fails
         """
         try:
-            # Extract headers - only non-empty ones
-            header_cells = table.select('thead th[data-slot="table-head"]')
-            headers = []
-            header_indices = []  # Track which column indices have actual headers
-
-            for i, th in enumerate(header_cells):
-                text = th.get_text(strip=True)
-                if text and text not in ["", " "]:  # Skip empty headers
-                    headers.append(text)
-                    header_indices.append(i)
-
-            if len(headers) < 2:  # Need at least rank/name and one metric
-                logger.warning(f"Insufficient headers found for {benchmark_id}: {headers}")
+            # Convert the table element to HTML string and use pandas to parse it
+            table_html = str(table)            
+            # Use pandas read_html to parse the table
+            dfs = pd.read_html(table_html, header=0)
+            
+            if not dfs:
+                logger.warning(f"No tables found in HTML for {benchmark_id}")
                 return None
-
-            logger.debug(f"Found headers: {headers} at indices: {header_indices}")
-
-            # Extract data rows
-            rows = []
-            data_rows = table.select('tbody tr[data-slot="table-row"]')
-
-            for tr in data_rows:
-                cells = tr.select('td[data-slot="table-cell"]')
-
-                # Extract only cells that correspond to headers we found
-                row_data = []
-                for i in header_indices:
-                    if i < len(cells):
-                        cell = cells[i]
-                        # Try different strategies to extract meaningful content
-                        text = self._extract_cell_content(cell)
-                        row_data.append(text)
-                    else:
-                        row_data.append("")  # Missing cell
-
-                # Only add rows that have non-empty content in key columns
-                if len(row_data) == len(headers) and any(cell.strip() for cell in row_data):
-                    row_dict = dict(zip(headers, row_data))
-                    rows.append(row_dict)
-                    logger.debug(f"Extracted row: {row_dict}")
-
-            if not rows:
-                logger.warning(f"No valid data rows found for {benchmark_id}")
+                
+            df = dfs[0]  # Take the first (and likely only) table
+            
+            if df.empty:
+                logger.warning(f"Empty dataframe extracted for {benchmark_id}")
                 return None
-
-            logger.info(f"Successfully extracted {len(rows)} rows for {benchmark_id}")
-
+                
+            logger.info(f"Successfully extracted table with shape {df.shape} for {benchmark_id}")
+            logger.debug(f"Columns: {list(df.columns)}")
+            logger.debug(f"First few rows:\n{df.head()}")
+            
             # Convert to standard leaderboard format
-            return self._normalize_polaris_leaderboard(pd.DataFrame(rows), benchmark_id)
+            return self._normalize_polaris_leaderboard(df, benchmark_id)
 
         except Exception as e:
             logger.warning(f"Failed to extract table data for {benchmark_id}: {e}")
             return None
 
-    def _extract_cell_content(self, cell) -> str:
-        """
-        Extract meaningful content from a table cell with various strategies.
 
-        Args:
-            cell: BeautifulSoup cell element
-
-        Returns:
-            Extracted text content
-        """
-        # Strategy 1: Look for specific content patterns
-
-        # Score/metric values (usually in divs with specific classes)
-        score_div = cell.select_one("div.text-center.font-medium")
-        if score_div:
-            return score_div.get_text(strip=True)
-
-        # Model/team names (usually in <p> tags)
-        name_p = cell.select_one("p")
-        if name_p:
-            return name_p.get_text(strip=True)
-
-        # References (look for links)
-        links = cell.select("a[href]")
-        if links:
-            if len(links) == 1:
-                return f"Link: {links[0].get('href', '')}"
-            else:
-                # Multiple references
-                ref_types = []
-                for link in links:
-                    link_text = link.get_text(strip=True).lower()
-                    if "code" in link_text:
-                        ref_types.append("Code")
-                    elif "paper" in link_text:
-                        ref_types.append("Paper")
-                    else:
-                        ref_types.append("Link")
-                return ", ".join(ref_types) if ref_types else "References"
-
-        # Check for "No references" text
-        if "no references" in cell.get_text(strip=True).lower():
-            return "No references"
-
-        # Strategy 2: Just get all text, but clean it up
-        text = cell.get_text(strip=True)
-
-        # Clean up whitespace and empty content
-        text = " ".join(text.split())  # Normalize whitespace
-
-        return text if text else ""
 
     def _normalize_polaris_leaderboard(self, df: pd.DataFrame, benchmark_id: str) -> pd.DataFrame:
         """
-        Normalize scraped Polaris leaderboard to standard format.
+        Normalize scraped Polaris leaderboard to standard format using benchmark's main metric.
 
         Args:
             df: Raw scraped dataframe
@@ -414,58 +336,122 @@ except Exception as e:
         if df.empty:
             return df
 
-        # Find rank and name columns (usually first few columns)
-        rank_col = None
-        name_col = None
+        # Get the main metric from the benchmark
+        try:
+            import polaris as po
+            benchmark = po.load_benchmark(benchmark_id)
+            main_metric_label = benchmark.main_metric.label
+            logger.debug(f"Main metric for {benchmark_id}: {main_metric_label}")
+        except Exception as e:
+            raise DataSourceError(
+                f"Could not load benchmark {benchmark_id} to get main metric: {e}",
+                source_type="polaris"
+            ) from e
 
+        # Find the team/model name column (usually contains "name" or "model")
+        name_col = None
+        # Remove any columns that match the pattern "Unnamed"
+        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
         for col in df.columns:
-            col_lower = col.lower()
-            if rank_col is None and ("#" in col or "rank" in col_lower):
-                rank_col = col
-            elif name_col is None and ("name" in col_lower or "model" in col_lower):
+            col_lower = str(col).lower()
+            if any(keyword in col_lower for keyword in ["name", "model"]):
                 name_col = col
                 break
 
         if name_col is None:
-            # Fallback: assume second column after rank is name
-            cols = list(df.columns)
-            if len(cols) >= 2:
-                name_col = cols[1]
+            raise DataSourceError(
+                f"Could not identify name/model column for {benchmark_id}. "
+                f"Available columns: {list(df.columns)}",
+                source_type="polaris"
+            )
 
-        if name_col is None:
-            logger.warning(f"Could not identify name column for {benchmark_id}")
-            return pd.DataFrame()  # Return empty
+        # Find the score column using the main metric
+        score_col = None
+        if main_metric_label:
+            # Look for exact match first
+            for col in df.columns:
+                if str(col).strip() == main_metric_label:
+                    score_col = col
+                    break
+            
+            # If no exact match, look for partial match
+            if score_col is None:
+                for col in df.columns:
+                    if main_metric_label.lower() in str(col).lower():
+                        score_col = col
+                        break
 
-        # Find main metric column (skip rank, name, contributors, references)
-        metric_col = None
-        skip_patterns = ["#", "rank", "name", "contributor", "reference", "model"]
+        # If we still don't have a score column, find the first numeric column that's not rank/position
+        if score_col is None:
+            for col in df.columns:
+                col_lower = str(col).lower()
+                # Skip obvious non-score columns
+                if any(skip in col_lower for skip in ["#", "rank", "position", "name", "model", "reference", "contributor"]):
+                    continue
+                # Check if this column contains numeric data
+                try:
+                    pd.to_numeric(df[col], errors='coerce')
+                    score_col = col
+                    break
+                except:
+                    continue
 
-        for col in df.columns:
-            col_lower = col.lower()
-            if not any(pattern in col_lower for pattern in skip_patterns):
-                # This looks like a metric column
-                metric_col = col
-                break
-
-        if metric_col is None:
-            logger.warning(f"Could not identify metric column for {benchmark_id}")
-            # Use placeholder scores
-            df["score"] = 0.5
-        else:
-            # Convert metric to numeric, handling any parsing issues
-            df["score"] = pd.to_numeric(df[metric_col], errors="coerce").fillna(0.5)
+        if score_col is None:
+            raise DataSourceError(
+                f"Could not identify score column for {benchmark_id}. "
+                f"Main metric: '{main_metric_label}', Available columns: {list(df.columns)}",
+                source_type="polaris"
+            )
+        
+        logger.debug(f"Using score column '{score_col}' for {benchmark_id}")
+        # Convert to numeric, fail if we can't parse the scores properly
+        try:
+            scores = pd.to_numeric(df[score_col], errors="raise")
+        except (ValueError, TypeError) as e:
+            raise DataSourceError(
+                f"Could not parse scores from column '{score_col}' for {benchmark_id}: {e}",
+                source_type="polaris"
+            ) from e
 
         # Create normalized leaderboard
-        normalized = pd.DataFrame(
-            {
-                "teamName": df[name_col].astype(str),
-                "score": df["score"],
-                "submissionDate": "2024-01-01",  # Placeholder date
-            }
-        )
+        team_names = df[name_col].astype(str)
+        
+        # Validate that we actually extracted meaningful team names
+        valid_names = team_names[
+            (team_names.str.strip() != "") & 
+            (team_names.str.lower() != "nan") &
+            (~team_names.isna())
+        ]
+        
+        if len(valid_names) == 0:
+            raise DataSourceError(
+                f"No valid team names found for {benchmark_id}. "
+                f"All team names are empty, 'nan', or null. "
+                f"Raw name column '{name_col}' values: {team_names.tolist()[:10]}",
+                source_type="polaris"
+            )
+        
+        if len(valid_names) < len(team_names) * 0.5:  # More than 50% invalid names
+            raise DataSourceError(
+                f"Most team names are invalid for {benchmark_id}. "
+                f"Only {len(valid_names)}/{len(team_names)} names are valid. "
+                f"Raw name column '{name_col}' values: {team_names.tolist()[:10]}",
+                source_type="polaris"
+            )
 
-        # Remove any empty team names
-        normalized = normalized[normalized["teamName"].str.strip() != ""]
+        normalized = pd.DataFrame({
+            "teamName": team_names,
+            "score": scores,
+            "submissionDate": "2024-01-01",  # Placeholder date
+        })
+
+        # Remove any empty/invalid team names
+        normalized = normalized[
+            (normalized["teamName"].str.strip() != "") & 
+            (normalized["teamName"].str.lower() != "nan") &
+            (~normalized["teamName"].isna())
+        ]
 
         logger.info(f"Normalized {len(normalized)} leaderboard entries for {benchmark_id}")
+        logger.debug(f"Used columns: name='{name_col}', score='{score_col}'")
         return normalized

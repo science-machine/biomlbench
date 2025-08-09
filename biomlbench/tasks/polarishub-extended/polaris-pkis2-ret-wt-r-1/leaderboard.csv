@@ -1,0 +1,11 @@
+teamName,score,submissionDate
+1B_MPNN_LargeMix-and-Phenomics,17.758,2024-01-01
+1B_MPNN_MolGPS-ens_LargeMix,20.467,2024-01-01
+TabPFNv2-rdkit,22.748,2024-01-01
+pkis2-ret-wt-r-1_avalon_RandomForestRegressor,23.548,2024-01-01
+pkis2-ret-wt-r-1_DGLGraphTransformer_GATModel,24.885,2024-01-01
+pkis2-ret-wt-r-1_DGLGraphTransformer_AttentiveFPModel,26.163,2024-01-01
+pkis2-ret-wt-r-1_DGLGraphTransformer_PNAModel,27.931,2024-01-01
+pkis2-ret-wt-r-1_DGLGraphTransformer_GCNModel,26.634,2024-01-01
+pkis2-ret-wt-r-1_DGLGraphTransformer_MPNNModel,28.765,2024-01-01
+pkis2-ret-wt-r-1_estate_FCModel,30.238,2024-01-01

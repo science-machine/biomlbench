@@ -61,6 +61,7 @@ dependencies = [
     "mkdocstrings[python]>=0.29.1",
     "levenshtein>=0.27.1",
     "pycocotools>=2.0.10",
+    "lxml>=6.0.0",
 ]
 
 [project.optional-dependencies]

@@ -57,7 +57,7 @@ class Grader:
     def rank_score(self, score: Optional[float], leaderboard: pd.DataFrame) -> dict:
         """
         Ranks a score based on the leaderboard.
-        Returns a dictionary of bools with the following keys:
+        Returns a dictionary with the following keys:
         - gold_medal: bool
         - silver_medal: bool
         - bronze_medal: bool
@@ -66,7 +66,8 @@ class Grader:
         - silver_threshold: float
         - bronze_threshold: float
         - median_threshold: float
-        - leaderboard_position: int or None (1-indexed position on leaderboard)
+        - leaderboard_percentile: float or None (0-100, higher = better performance)
+        - leaderboard_size: int (total number of entries on leaderboard)
         """
         assert "score" in leaderboard.columns, "Leaderboard must have a `score` column."
 
@@ -102,6 +103,26 @@ class Grader:
                 better_scores = (scores > agent_score).sum()
                 # Position is number of better scores + 1
                 return int(better_scores + 1)
+
+        def calculate_leaderboard_percentile(agent_score: Optional[float]) -> Optional[float]:
+            """
+            Calculate percentile ranking on the leaderboard (0-100).
+            Higher percentile = better performance regardless of metric direction.
+            Returns None if score is None.
+            """
+            if agent_score is None:
+                return None
+            
+            if lower_is_better:
+                # For lower-is-better: percentile = % of scores that are worse (higher)
+                worse_scores = (scores > agent_score).sum()
+                percentile = (worse_scores / len(scores)) * 100
+            else:
+                # For higher-is-better: percentile = % of scores that are worse (lower)
+                worse_scores = (scores < agent_score).sum()
+                percentile = (worse_scores / len(scores)) * 100
+            
+            return round(percentile, 1)
 
         def get_thresholds(num_teams: int) -> tuple[float, float, float, float]:
             """
@@ -150,7 +171,8 @@ class Grader:
                 "silver_threshold": silver_threshold,
                 "bronze_threshold": bronze_threshold,
                 "median_threshold": median_threshold,
-                "leaderboard_position": None,
+                "leaderboard_percentile": None,
+                "leaderboard_size": num_teams,
             }
 
         assert isinstance(
@@ -169,6 +191,7 @@ class Grader:
         above_median = score < median_threshold if lower_is_better else score > median_threshold
 
         leaderboard_position = calculate_leaderboard_position(score)
+        leaderboard_percentile = calculate_leaderboard_percentile(score)
 
         return {
             "gold_medal": gold_medal,
@@ -179,7 +202,8 @@ class Grader:
             "silver_threshold": silver_threshold,
             "bronze_threshold": bronze_threshold,
             "median_threshold": median_threshold,
-            "leaderboard_position": leaderboard_position,
+            "leaderboard_percentile": leaderboard_percentile,
+            "leaderboard_size": num_teams,
         }
 
 
@@ -207,7 +231,8 @@ class TaskReport:
     is_lower_better: bool
     created_at: datetime
     submission_path: str
-    leaderboard_position: int | None = None
+    leaderboard_percentile: float | None = None
+    leaderboard_size: int | None = None
 
     # Biomedical-specific fields
     beats_human: bool = None
@@ -232,7 +257,10 @@ class TaskReport:
             "is_lower_better": bool(self.is_lower_better),
             "created_at": self.created_at.isoformat(),  # Serialize datetime
             "submission_path": self.submission_path,
-            "leaderboard_position": int(self.leaderboard_position) if self.leaderboard_position is not None else None,
+            "leaderboard_percentile": float(self.leaderboard_percentile)
+            if self.leaderboard_percentile is not None
+            else None,
+            "leaderboard_size": int(self.leaderboard_size) if self.leaderboard_size is not None else None,
             "beats_human": bool(self.beats_human) if self.beats_human is not None else None,
             "human_percentile": float(self.human_percentile)
             if self.human_percentile is not None
@@ -259,7 +287,10 @@ class TaskReport:
             "is_lower_better": bool(data["is_lower_better"]),
             "created_at": datetime.fromisoformat(data["created_at"]),
             "submission_path": data["submission_path"],
-            "leaderboard_position": int(data["leaderboard_position"]) if data.get("leaderboard_position") is not None else None,
+            "leaderboard_percentile": float(data["leaderboard_percentile"])
+            if data.get("leaderboard_percentile") is not None
+            else None,
+            "leaderboard_size": int(data["leaderboard_size"]) if data.get("leaderboard_size") is not None else None,
             "beats_human": bool(data["beats_human"])
             if data.get("beats_human") is not None
             else None,

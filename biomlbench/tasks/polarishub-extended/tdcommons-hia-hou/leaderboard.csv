@@ -1,0 +1,6 @@
+teamName,score,submissionDate
+TabPFNv2-rdkit,0.989,2024-01-01
+TabPFNv2-rdkit-3D,0.988,2024-01-01
+1B_MPNN_LargeMix-and-Phenomics,0.975,2024-01-01
+3B_e50_MPNN_LargeMix-and-Phenomics,0.974,2024-01-01
+MHNfs,0.764,2024-01-01

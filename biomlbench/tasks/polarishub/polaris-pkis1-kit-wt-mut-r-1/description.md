@@ -48,7 +48,7 @@ Given the benchmarking goal, a scaffold-based splitting approach was applied to 
 This task uses the Polaris data source system:
 - Data is downloaded from Polaris Hub using the PolarisDataSource
 - Molecule column: `smiles`
-- Target column: `{'KIT', 'KIT_(V560G_mutant)', 'KIT_(T6701_mutant)'}` (first target if multiple available)
+- Target column: `{'KIT_(T6701_mutant)', 'KIT_(V560G_mutant)', 'KIT'}` (first target if multiple available)
 
 ## Files
 

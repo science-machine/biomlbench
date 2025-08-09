@@ -1,0 +1,11 @@
+teamName,score,submissionDate
+1B_MPNN_LargeMix-and-Phenomics,0.284,2024-01-01
+1B_MPNN_MolGPS-ens_LargeMix,0.291,2024-01-01
+TabPFNv2-rdkit,0.345,2024-01-01
+adme-fang-HPPB-1-GIRAFFE-wae,0.391,2024-01-01
+nepare,0.462,2024-01-01
+chemlactica-125m-sft,0.408,2024-01-01
+adme-fang-HPPB-1_atompair_RandomForestRegressor,0.499,2024-01-01
+chemma-2b-sft,0.47,2024-01-01
+chemlactica-1b-sft,0.521,2024-01-01
+adme-fang-HPPB-1_DGLGraphTransformer_PNAModel,0.67,2024-01-01

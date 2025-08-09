@@ -333,7 +333,8 @@ def main():
         new_registry = registry.set_data_dir(Path(args.data_dir))
         submission = Path(args.submission)
         output_dir = Path(args.output_dir)
-        grade_jsonl(submission, output_dir, new_registry)
+        summary_path, individual_dir = grade_jsonl(submission, output_dir, new_registry)
+        logger.info(f"Grading complete. Summary: {summary_path}, Individual reports: {individual_dir}")
 
     if args.command == "grade-sample":
         new_registry = registry.set_data_dir(Path(args.data_dir))

@@ -23,6 +23,7 @@ def grade_jsonl(
     """
     Grades multiple submissions stored in a JSONL file.
     Saves the aggregated report as a JSON file.
+    Also saves individual task reports for easier access.
     """
 
     submissions = read_jsonl(str(path_to_submissions), skip_commented_out_lines=True)
@@ -38,6 +39,8 @@ def grade_jsonl(
 
     aggregated_report = aggregate_reports(task_reports)
     timestamp = get_timestamp()
+    
+    # Save aggregated report
     save_path = output_dir / f"{timestamp}_grading_report.json"
     logger.info(
         json.dumps({k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4)
@@ -47,6 +50,21 @@ def grade_jsonl(
     with open(save_path, "w") as f:
         json.dump(aggregated_report, f, indent=2)
     logger.info(purple(f"Saved summary report to {save_path}"))
+    
+    # Save individual task reports for easier access
+    individual_reports_dir = output_dir / f"{timestamp}_individual_reports"
+    individual_reports_dir.mkdir(exist_ok=True)
+    
+    for report in task_reports:
+        # Sanitize task ID for use as filename (replace slashes with underscores)
+        safe_task_id = report.task_id.replace("/", "_").replace("\\", "_")
+        individual_path = individual_reports_dir / f"{safe_task_id}.json"
+        with open(individual_path, "w") as f:
+            json.dump(report.to_dict(), f, indent=2)
+    
+    logger.info(purple(f"Saved {len(task_reports)} individual task reports to {individual_reports_dir}"))
+    
+    return save_path, individual_reports_dir
 
 
 def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
@@ -126,7 +144,8 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
         is_lower_better=is_lower_better,
         created_at=datetime.now(),
         submission_path=str(path_to_submission),
-        leaderboard_position=rank_info["leaderboard_position"],
+        leaderboard_percentile=rank_info["leaderboard_percentile"],
+        leaderboard_size=rank_info["leaderboard_size"],
         beats_human=beats_human,
         human_percentile=human_percentile,
     )
@@ -188,11 +207,11 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
     total_valid_submissions = sum(report.valid_submission for report in task_reports)
     total_beats_human = sum(1 for report in task_reports if report.beats_human)
 
-    # Calculate position statistics
-    positions = [report.leaderboard_position for report in task_reports if report.leaderboard_position is not None]
-    avg_position = sum(positions) / len(positions) if positions else None
-    best_position = min(positions) if positions else None
-    worst_position = max(positions) if positions else None
+    # Calculate percentile statistics
+    percentiles = [report.leaderboard_percentile for report in task_reports if report.leaderboard_percentile is not None]
+    avg_percentile = sum(percentiles) / len(percentiles) if percentiles else None
+    best_percentile = max(percentiles) if percentiles else None  # Higher percentile = better
+    worst_percentile = min(percentiles) if percentiles else None  # Lower percentile = worse
 
     summary_report = {
         "total_runs": int(len(task_reports)),
@@ -204,9 +223,9 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
         "total_bronze_medals": int(total_bronze_medals),
         "total_above_median": int(total_above_median),
         "total_beats_human": int(total_beats_human),
-        "avg_leaderboard_position": round(avg_position, 1) if avg_position is not None else None,
-        "best_leaderboard_position": int(best_position) if best_position is not None else None,
-        "worst_leaderboard_position": int(worst_position) if worst_position is not None else None,
+        "avg_leaderboard_percentile": round(avg_percentile, 1) if avg_percentile is not None else None,
+        "best_leaderboard_percentile": round(best_percentile, 1) if best_percentile is not None else None,
+        "worst_leaderboard_percentile": round(worst_percentile, 1) if worst_percentile is not None else None,
         "task_reports": [tr.to_dict() for tr in task_reports],
     }
 
