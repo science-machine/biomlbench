@@ -4,7 +4,7 @@ set -x # Print commands and their arguments as they are executed
 cd ${AGENT_DIR}
 
 eval "$(conda shell.bash hook)" # make conda available to the shell
-conda activate agent
+conda activate biomni_e1  
 
 # determine hardware available
 if command -v nvidia-smi &> /dev/null && nvidia-smi --query-gpu=name --format=csv,noheader &> /dev/null; then
@@ -19,10 +19,6 @@ else
   HARDWARE="a CPU"
 fi
 export HARDWARE
-# check that we can use the GPU in PyTorch
-python -c "import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'WARNING: No GPU')"
-# check that we can use the GPU in TensorFlow
-python -c "import tensorflow as tf; print('GPUs Available: ', tf.config.list_physical_devices('GPU'))"
 
 # convert $TIME_LIMIT_SECS to more readable format for prompt
 format_time() {
@@ -44,14 +40,14 @@ if [ "$OBFUSCATE" = "true" ]; then
 fi
 
 # start a new file to store the full instructions, starting with general instructions
-cp /home/instructions.txt ${AGENT_DIR}/full_instructions.txt
+cp /home/instructions.txt ${AGENT_DIR}/instructions.txt
 
 # add agent-specific instructions with a linebreak in between
-echo "" >> ${AGENT_DIR}/full_instructions.txt
-envsubst < ${AGENT_DIR}/additional_notes.txt >> ${AGENT_DIR}/full_instructions.txt
+echo "" >> ${AGENT_DIR}/instructions.txt
+envsubst < ${AGENT_DIR}/additional_notes.txt >> ${AGENT_DIR}/instructions.txt
 
 # append the task instructions with a linebreak in between
-printf "\nCOMPETITION INSTRUCTIONS\n------\n\n" >> ${AGENT_DIR}/full_instructions.txt
+printf "\nCOMPETITION INSTRUCTIONS\n------\n\n" >> ${AGENT_DIR}/instructions.txt
 
 # overwrite description.md with description_obfuscated.md if $OBFUSCATE is set
 if [ "$OBFUSCATE" = "true" ]; then
@@ -61,14 +57,23 @@ if [ "$OBFUSCATE" = "true" ]; then
   fi
   mv /home/data/description_obfuscated.md /home/data/description.md
 fi
-cat /home/data/description.md >> ${AGENT_DIR}/full_instructions.txt
+cat /home/data/description.md >> ${AGENT_DIR}/instructions.txt
 
 # Create workspace and logs directories
 mkdir -p ${AGENT_DIR}/logs
 mkdir -p ${AGENT_DIR}/workspaces
 
+# Verify that data lake files are present
+echo "Verifying pre-downloaded data lake files..."
+python ${AGENT_DIR}/verify_data_download.py
+if [ $? -ne 0 ]; then
+    echo "Warning: Some data lake files may be missing. Biomni will download them at runtime."
+fi
+
 # run with timeout, using the Biomni format with correct parameters
-timeout $TIME_LIMIT_SECS python main.py "$@" 
+timeout $TIME_LIMIT_SECS python main.py \
+  --path ${AGENT_DIR} \
+  "$@"
 
 if [ $? -eq 124 ]; then
   echo "Timed out after $TIME_LIMIT"
@@ -85,6 +90,11 @@ fi
 # Also check the default logs directory that Biomni creates
 if [ -d "./logs" ]; then
   cp -r ./logs/* ${LOGS_DIR}/ 2>/dev/null || true
+fi
+
+# Copy any generated code files
+if [ -d "${AGENT_DIR}/workspaces" ]; then
+  find ${AGENT_DIR}/workspaces -name "*.py" -type f -exec cp {} ${CODE_DIR}/ \; 2>/dev/null || true
 fi
 
 echo "Biomni execution complete."

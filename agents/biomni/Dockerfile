@@ -17,10 +17,27 @@ RUN mkdir ${LOGS_DIR} ${CODE_DIR} ${AGENT_DIR}
 
 ARG CONDA_ENV_NAME=agent
 
+# Accept Anaconda TOS for defaults channels (needed for non-interactive builds)
+SHELL ["/bin/bash", "-lc"]
+RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
 # Clone the Biomni repo and create the environment
 RUN git clone https://github.com/snap-stanford/Biomni.git ${AGENT_DIR}/Biomni && \
     cd ${AGENT_DIR}/Biomni/biomni_env && \
     conda env create -f environment.yml && \
-    cd ..
+    cd .. 
 
-RUN conda activate biomni_e1 && pip install git+https://github.com/snap-stanford/Biomni.git@main
+RUN conda run -n biomni_e1 pip install "git+https://github.com/snap-stanford/Biomni.git@main"
+
+COPY . ${AGENT_DIR}
+
+# Pre-download data lake files to avoid runtime downloads
+RUN echo "🚀 Starting Biomni data lake pre-download..." && \
+    echo "�� This will download ~80+ biomedical datasets (~20 GB total)" && \
+    echo "⏱️  This step takes around an hour..." && \
+    conda run -n biomni_e1 python ${AGENT_DIR}/pre_download_data.py && \
+    mkdir -p ${AGENT_DIR}/biomni_data && \
+    cp -r /tmp/biomni_data/* ${AGENT_DIR}/biomni_data/ && \
+    rm -rf /tmp/biomni_data && \
+    echo "✅ Data lake pre-download completed successfully!"

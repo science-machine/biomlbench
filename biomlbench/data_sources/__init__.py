@@ -15,7 +15,6 @@ from .factory import DataSourceFactory, register_data_source
 from .kaggle import KaggleDataSource
 from .openproblems import OpenProblemsDataSource
 from .polaris import PolarisDataSource
-from .proteingym import ProteinGymDMSDataSource
 
 __all__ = [
     # Base classes and interfaces
@@ -30,7 +29,6 @@ __all__ = [
     "KaggleDataSource",
     "PolarisDataSource",
     "OpenProblemsDataSource",
-    "ProteinGymDMSDataSource",
 ]
 
 
