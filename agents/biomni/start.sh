@@ -70,6 +70,13 @@ if [ $? -ne 0 ]; then
     echo "Warning: Some data lake files may be missing. Biomni will download them at runtime."
 fi
 
+# Fix RDKit compatibility if needed
+echo "Checking RDKit compatibility..."
+python ${AGENT_DIR}/fix_rdkit.py
+if [ $? -ne 0 ]; then
+    echo "Warning: RDKit compatibility fix failed. Agent may encounter errors."
+fi
+
 # run with timeout, using the Biomni format with correct parameters
 timeout $TIME_LIMIT_SECS python main.py \
   --path ${AGENT_DIR} \

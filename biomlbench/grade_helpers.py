@@ -66,6 +66,7 @@ class Grader:
         - silver_threshold: float
         - bronze_threshold: float
         - median_threshold: float
+        - leaderboard_position: int or None (1-indexed position on leaderboard)
         """
         assert "score" in leaderboard.columns, "Leaderboard must have a `score` column."
 
@@ -82,6 +83,25 @@ class Grader:
             if position - 1 >= len(scores) or position < 1:
                 raise IndexError("Position out of bounds in the leaderboard.")
             return scores.iloc[position - 1]
+
+        def calculate_leaderboard_position(agent_score: Optional[float]) -> Optional[int]:
+            """
+            Calculate where the agent would rank on the leaderboard.
+            Returns 1-indexed position, or None if score is None.
+            """
+            if agent_score is None:
+                return None
+            
+            if lower_is_better:
+                # Count how many scores are better (lower) than agent's score
+                better_scores = (scores < agent_score).sum()
+                # Position is number of better scores + 1
+                return int(better_scores + 1)
+            else:
+                # Count how many scores are better (higher) than agent's score
+                better_scores = (scores > agent_score).sum()
+                # Position is number of better scores + 1
+                return int(better_scores + 1)
 
         def get_thresholds(num_teams: int) -> tuple[float, float, float, float]:
             """
@@ -130,6 +150,7 @@ class Grader:
                 "silver_threshold": silver_threshold,
                 "bronze_threshold": bronze_threshold,
                 "median_threshold": median_threshold,
+                "leaderboard_position": None,
             }
 
         assert isinstance(
@@ -147,6 +168,8 @@ class Grader:
         )
         above_median = score < median_threshold if lower_is_better else score > median_threshold
 
+        leaderboard_position = calculate_leaderboard_position(score)
+
         return {
             "gold_medal": gold_medal,
             "silver_medal": silver_medal,
@@ -156,6 +179,7 @@ class Grader:
             "silver_threshold": silver_threshold,
             "bronze_threshold": bronze_threshold,
             "median_threshold": median_threshold,
+            "leaderboard_position": leaderboard_position,
         }
 
 
@@ -183,6 +207,7 @@ class TaskReport:
     is_lower_better: bool
     created_at: datetime
     submission_path: str
+    leaderboard_position: int | None = None
 
     # Biomedical-specific fields
     beats_human: bool = None
@@ -207,6 +232,7 @@ class TaskReport:
             "is_lower_better": bool(self.is_lower_better),
             "created_at": self.created_at.isoformat(),  # Serialize datetime
             "submission_path": self.submission_path,
+            "leaderboard_position": int(self.leaderboard_position) if self.leaderboard_position is not None else None,
             "beats_human": bool(self.beats_human) if self.beats_human is not None else None,
             "human_percentile": float(self.human_percentile)
             if self.human_percentile is not None
@@ -233,6 +259,7 @@ class TaskReport:
             "is_lower_better": bool(data["is_lower_better"]),
             "created_at": datetime.fromisoformat(data["created_at"]),
             "submission_path": data["submission_path"],
+            "leaderboard_position": int(data["leaderboard_position"]) if data.get("leaderboard_position") is not None else None,
             "beats_human": bool(data["beats_human"])
             if data.get("beats_human") is not None
             else None,

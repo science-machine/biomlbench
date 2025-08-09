@@ -142,12 +142,13 @@ def run_in_container(
     try:
         time_start = time.monotonic()
         container.start()
+        logger.info("Waiting for grading server to start...")
         exit_code, _ = container.exec_run(
-            'timeout 60s sh -c "while ! curl -s http://localhost:5000/health > /dev/null; do sleep 1; done"'
+            'timeout 240s sh -c "while ! curl -s http://localhost:5000/health > /dev/null; do sleep 1; done"'
         )
         if exit_code != 0:
             raise RuntimeError(
-                "The grading server failed to start within 60 seconds. This is likely due to an error in `entrypoint.sh`; check the logs."
+                "The grading server failed to start within 240 seconds. This is likely due to an error in `entrypoint.sh`; check the logs."
             )
         execute_agent(container, agent, logger)
         save_output(container, run_dir, container_config)

@@ -23,16 +23,18 @@ RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkg
     conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
 # Clone the Biomni repo and create the environment
+# TODO: Once they have a stable release, switch to using that
 RUN git clone https://github.com/snap-stanford/Biomni.git ${AGENT_DIR}/Biomni && \
+    cd ${AGENT_DIR}/Biomni && \
+    git checkout 0f9dbf925a0512292a2486c87f87152484a9d18a && \
     cd ${AGENT_DIR}/Biomni/biomni_env && \
     conda env create -f environment.yml && \
     cd .. 
 
-RUN conda run -n biomni_e1 pip install "git+https://github.com/snap-stanford/Biomni.git@main"
+RUN conda run -n biomni_e1 pip install ${AGENT_DIR}/Biomni
 
-COPY . ${AGENT_DIR}
+COPY pre_download_data.py ${AGENT_DIR}/pre_download_data.py
 
-# Pre-download data lake files to avoid runtime downloads
 RUN echo "🚀 Starting Biomni data lake pre-download..." && \
     echo "�� This will download ~80+ biomedical datasets (~20 GB total)" && \
     echo "⏱️  This step takes around an hour..." && \
@@ -41,3 +43,11 @@ RUN echo "🚀 Starting Biomni data lake pre-download..." && \
     cp -r /tmp/biomni_data/* ${AGENT_DIR}/biomni_data/ && \
     rm -rf /tmp/biomni_data && \
     echo "✅ Data lake pre-download completed successfully!"
+
+# Fix NumPy version compatibility with RDKit AFTER data lake download
+RUN conda run -n biomni_e1 pip install "numpy<2.0" --force-reinstall && \
+    echo "✅ NumPy downgraded for RDKit compatibility"
+
+COPY . ${AGENT_DIR}
+
+

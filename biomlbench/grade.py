@@ -126,6 +126,7 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
         is_lower_better=is_lower_better,
         created_at=datetime.now(),
         submission_path=str(path_to_submission),
+        leaderboard_position=rank_info["leaderboard_position"],
         beats_human=beats_human,
         human_percentile=human_percentile,
     )
@@ -187,6 +188,12 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
     total_valid_submissions = sum(report.valid_submission for report in task_reports)
     total_beats_human = sum(1 for report in task_reports if report.beats_human)
 
+    # Calculate position statistics
+    positions = [report.leaderboard_position for report in task_reports if report.leaderboard_position is not None]
+    avg_position = sum(positions) / len(positions) if positions else None
+    best_position = min(positions) if positions else None
+    worst_position = max(positions) if positions else None
+
     summary_report = {
         "total_runs": int(len(task_reports)),
         "total_runs_with_submissions": int(total_submissions),
@@ -197,6 +204,9 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
         "total_bronze_medals": int(total_bronze_medals),
         "total_above_median": int(total_above_median),
         "total_beats_human": int(total_beats_human),
+        "avg_leaderboard_position": round(avg_position, 1) if avg_position is not None else None,
+        "best_leaderboard_position": int(best_position) if best_position is not None else None,
+        "worst_leaderboard_position": int(worst_position) if worst_position is not None else None,
         "task_reports": [tr.to_dict() for tr in task_reports],
     }
 
