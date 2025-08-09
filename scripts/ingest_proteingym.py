@@ -71,18 +71,16 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
         df.to_csv(public / "data.csv", index=False)
         
         sample_submission = pd.DataFrame({
-            "id": df["id"], 
-            "fitness_score_fold_random_5": [0.0] * len(df),
-            "fitness_score_fold_modulo_5": [0.0] * len(df),
-            "fitness_score_fold_contiguous_5": [0.0] * len(df)
+            "id": df["id"].iloc[1:], 
+            "fitness_score_fold_random_5": [0.0] * len(df.iloc[1:]),
+            "fitness_score_fold_modulo_5": [0.0] * len(df.iloc[1:]),
+            "fitness_score_fold_contiguous_5": [0.0] * len(df.iloc[1:])
         })
         sample_submission.to_csv(public / "sample_submission.csv", index=False)
         
         answers = pd.DataFrame({
-            "id": df["id"],
-            "fitness_score_fold_random_5": df["fitness_score"],
-            "fitness_score_fold_modulo_5": df["fitness_score"],
-            "fitness_score_fold_contiguous_5": df["fitness_score"]
+            "id": df["id"].iloc[1:],
+            "fitness_score": df["fitness_score"].iloc[1:],
         })
         answers.to_csv(private / "answers.csv", index=False)
 
@@ -246,17 +244,21 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
         \"\"\"Grade using spearman correlation between true and predicted fitness scores.\"\"\"
 
         # Extract predictions for each fold
-        fold_random_5 = submission[submission.columns[1]].tolist()
-        fold_modulo_5 = submission[submission.columns[2]].tolist()
-        fold_contiguous_5 = submission[submission.columns[3]].tolist()
-        answers_fold_random_5 = answers[answers.columns[1]].tolist()
-        answers_fold_modulo_5 = answers[answers.columns[2]].tolist()
-        answers_fold_contiguous_5 = answers[answers.columns[3]].tolist()
+        submission = submission[submission.iloc[:, 0] != "WT"]
+        merged = pd.merge(submission, answers, on="id", how="inner")
+        
+        if len(merged) != len(submission):
+            print(f"Warning: got a submission with {len(submission)} rows but {len(merged)} rows after merging with IDs with answers.")
+
+        fold_random_5 = merged.iloc[:, 1].tolist()
+        fold_modulo_5 = merged.iloc[:, 2].tolist()
+        fold_contiguous_5 = merged.iloc[:, 3].tolist()
+        answers = merged.iloc[:, 4].tolist()
 
         # Calculate Spearman correlation for each split
-        correlation_fold_random_5, _ = spearmanr(fold_random_5, answers_fold_random_5)
-        correlation_fold_modulo_5, _ = spearmanr(fold_modulo_5, answers_fold_modulo_5)
-        correlation_fold_contiguous_5, _ = spearmanr(fold_contiguous_5, answers_fold_contiguous_5)
+        correlation_fold_random_5, _ = spearmanr(fold_random_5, answers)
+        correlation_fold_modulo_5, _ = spearmanr(fold_modulo_5, answers)
+        correlation_fold_contiguous_5, _ = spearmanr(fold_contiguous_5, answers)
 
         # Return the average correlation across all splits
         return (correlation_fold_random_5 + correlation_fold_modulo_5 + correlation_fold_contiguous_5) / 3

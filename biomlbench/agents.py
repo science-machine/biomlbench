@@ -73,6 +73,8 @@ async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool
                     # Critical error patterns that indicate failure
                     error_patterns = [
                         "traceback (most recent call last)",
+                        "authenticationerror",
+                        "invalid api key",
                     ]
 
                     for pattern in error_patterns:

@@ -1,0 +1,15 @@
+vars:
+  step_count: &step_count 10
+  time_limit: &time_limit 7200 # total time limit
+
+biomni:
+  start: biomni/start.sh
+  dockerfile: biomni/Dockerfile
+  kwargs_type: argparse
+  kwargs:
+    llm: claude-sonnet-4-20250514
+    timeout_seconds: 600
+  env_vars:
+    TIME_LIMIT_SECS: *time_limit
+    STEP_LIMIT: *step_count
+    ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

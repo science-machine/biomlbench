@@ -68,10 +68,10 @@ mkdir -p ${AGENT_DIR}/logs
 mkdir -p ${AGENT_DIR}/workspaces
 
 # Create a goal description from the task description
-GOAL="Build a machine learning model to solve this biomedical task. Focus on understanding the dataset structure, implementing appropriate data preprocessing, selecting suitable algorithms for the task type, and optimizing performance."
+GOAL="Build a machine learning model to solve this biomedical task. Focus on understanding the dataset structure, implementing appropriate data preprocessing, selecting suitable algorithms for the task type, and optimizing performance. Full instructions can be found in the instructions.txt file."
 
 # Create evaluation description based on task type
-EVAL="Use appropriate evaluation metrics for the task type. For regression tasks, use RMSE or MAE. For classification tasks, use accuracy, F1-score, or AUC. Ensure predictions are formatted correctly."
+EVAL="Use appropriate evaluation metrics for the task type. See the instructions.txt file for more details."
 
 # run with timeout, using the AIDE format with correct parameters
 timeout $TIME_LIMIT_SECS aide \
