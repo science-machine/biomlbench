@@ -36,18 +36,16 @@ def prepare(raw: Path, public: Path, private: Path) -> None:
     df.to_csv(public / "data.csv", index=False)
 
     sample_submission = pd.DataFrame({
-        "id": df["id"], 
-        "fitness_score_fold_random_5": [0.0] * len(df),
-        "fitness_score_fold_modulo_5": [0.0] * len(df),
-        "fitness_score_fold_contiguous_5": [0.0] * len(df)
+        "id": df["id"].iloc[1:], 
+        "fitness_score_fold_random_5": [0.0] * len(df.iloc[1:]),
+        "fitness_score_fold_modulo_5": [0.0] * len(df.iloc[1:]),
+        "fitness_score_fold_contiguous_5": [0.0] * len(df.iloc[1:])
     })
     sample_submission.to_csv(public / "sample_submission.csv", index=False)
 
     answers = pd.DataFrame({
-        "id": df["id"],
-        "fitness_score_fold_random_5": df["fitness_score"],
-        "fitness_score_fold_modulo_5": df["fitness_score"],
-        "fitness_score_fold_contiguous_5": df["fitness_score"]
+        "id": df["id"].iloc[1:],
+        "fitness_score": df["fitness_score"].iloc[1:],
     })
     answers.to_csv(private / "answers.csv", index=False)
 

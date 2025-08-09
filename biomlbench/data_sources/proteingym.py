@@ -225,6 +225,7 @@ class ProteinGymDMSDataSource(DataSource):
                 "submissionDate": "2024-01-01",  # Placeholder date
             }
         )
+        dataset_df.sort_values(by="score", ascending=False, inplace=True)
         logger.info(f"Filtered leaderboard to dataset: {dataset_name}")
         return dataset_df
 
