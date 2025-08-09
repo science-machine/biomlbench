@@ -3,15 +3,10 @@ from pathlib import Path
 import pandas as pd
 
 
-def prepare(raw: Path, prepared: Path) -> None:    
-    # Create dataset directory (we use 0 as the default for a single dataset)
-    dataset_dir = prepared / "0"
-    dataset_dir.mkdir(parents=True, exist_ok=True)
-    public = dataset_dir / "public"
-    private = dataset_dir / "private"
+def prepare(raw: Path, public: Path, private: Path) -> None:
     public.mkdir(parents=True, exist_ok=True)
     private.mkdir(parents=True, exist_ok=True)
-    
+
     old_train = pd.read_json(raw / "train.json", lines=True)
     old_test = pd.read_json(raw / "test.json", lines=True)
     old_sample_submission = pd.read_csv(raw / "sample_submission.csv")

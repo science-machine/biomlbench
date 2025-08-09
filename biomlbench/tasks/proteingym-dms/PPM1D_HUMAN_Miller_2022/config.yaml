@@ -10,55 +10,12 @@ description: biomlbench/tasks/proteingym-dms/PPM1D_HUMAN_Miller_2022/description
 preparer: biomlbench.tasks.proteingym-dms.PPM1D_HUMAN_Miller_2022.prepare:prepare
 
 data_source:
-  type: proteingym
+  type: proteingym-dms
   benchmark_id: PPM1D_HUMAN_Miller_2022
 
-datasets:
-  fold_random_0:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_1:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_2:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_3:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_random_4:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_0:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_1:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_2:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_3:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_modulo_4:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_0:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_1:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_2:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_3:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
-  fold_contiguous_4:
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: proteingym-dms/PPM1D_HUMAN_Miller_2022/prepared/private/answers.csv
+  sample_submission: proteingym-dms/PPM1D_HUMAN_Miller_2022/prepared/public/sample_submission.csv
 
 grader:
   name: proteingym-metric

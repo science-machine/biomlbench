@@ -10,10 +10,9 @@ data_source:
   benchmark_id: kaggle/histopathologic-cancer-detection
 
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/histopathologic-cancer-detection/prepared/private/answers.csv
+  sample_submission: kaggle/histopathologic-cancer-detection/prepared/public/sample_submission.csv
 
 grader:
   name: auc-roc

@@ -1,31 +1,31 @@
 id: polarishub/polaris-pkis2-ret-wt-cls-v2
-name: pkis2-ret-wt-cls-v2
+name: "pkis2-ret-wt-cls-v2"
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/polaris-pkis2-ret-wt-cls-v2/description.md
-preparer: biomlbench.tasks.polarishub.polaris-pkis2-ret-wt-cls-v2.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: polaris/pkis2-ret-wt-cls-v2
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: polarishub/polaris-pkis2-ret-wt-cls-v2/prepared/private/answers.csv
+  sample_submission: polarishub/polaris-pkis2-ret-wt-cls-v2/prepared/public/sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.polaris-pkis2-ret-wt-cls-v2.grade:grade
 
+preparer: biomlbench.tasks.polarishub.polaris-pkis2-ret-wt-cls-v2.prepare:prepare
+
 biomedical_metadata:
-  modality: molecular
-  data_type: single_task
-  clinical_relevance: drug_discovery
-  polaris_main_metric: pr_auc
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "pr_auc"
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

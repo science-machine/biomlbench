@@ -111,22 +111,15 @@ compute_requirements:
 from pathlib import Path
 import pandas as pd
 
-def prepare(raw: Path, prepared: Path) -> None:
+def prepare(raw: Path, public: Path, private: Path) -> None:
     """
     Prepare {benchmark_id} dataset from Polaris data downloaded by PolarisDataSource.
     
     Args:
         raw: Directory with polaris_train_data.csv and polaris_test_data.csv
-        prepared: Directory for prepared data - will create 0/public and 0/private subdirectories
+        public: Directory for public data (train.csv, test_features.csv)  
+        private: Directory for private data (answers.csv)
     """
-    
-    # Create dataset directory (we use 0 as the default for a single dataset)
-    dataset_dir = prepared / "0"
-    public_dir = dataset_dir / "public"
-    private_dir = dataset_dir / "private"
-    
-    public_dir.mkdir(parents=True, exist_ok=True)
-    private_dir.mkdir(parents=True, exist_ok=True)
     
     # Load the Polaris data files (downloaded by PolarisDataSource)
     train_df = pd.read_csv(raw / 'polaris_train_data.csv')
@@ -158,27 +151,27 @@ def prepare(raw: Path, prepared: Path) -> None:
     
     # Create public training data (train.csv)
     train_public = train_df[[molecule_col, target_col]].copy()
-    train_public.to_csv(public_dir / 'train.csv', index=False)
+    train_public.to_csv(public / 'train.csv', index=False)
     
     # Create test features (test_features.csv) - no targets
     test_features = test_df[[molecule_col]].copy()
     test_features['id'] = range(len(test_features))
     test_features = test_features[['id', molecule_col]]
-    test_features.to_csv(public_dir / 'test_features.csv', index=False)
+    test_features.to_csv(public / 'test_features.csv', index=False)
     
     # Create sample submission (sample_submission.csv)
     sample_submission = pd.DataFrame({{
         'id': range(len(test_features)),
         target_col: [0.0] * len(test_features)
     }})
-    sample_submission.to_csv(public_dir / 'sample_submission.csv', index=False)
+    sample_submission.to_csv(public / 'sample_submission.csv', index=False)
     
     # Create private answers file for evaluation
     answers = pd.DataFrame({{
         'id': range(len(test_features)),
         target_col: test_df[target_col].values
     }})
-    answers.to_csv(private_dir / 'answers.csv', index=False)
+    answers.to_csv(private / 'answers.csv', index=False)
     
     print("✅ Dataset prepared successfully!")
     print(f"Molecule column: {{molecule_col}}")
@@ -274,12 +267,12 @@ Auto-generated from [Polaris Hub](https://polarishub.io/).
     # Optionally prepare the data immediately
     if prepare_data:
         try:
-            from biomlbench.data import download_and_prepare_datasets
+            from biomlbench.data import download_and_prepare_dataset
             from biomlbench.registry import registry
 
             print(f"🔄 Preparing data for polarishub/{task_name}...")
             task = registry.get_task(f"polarishub/{task_name}")
-            download_and_prepare_datasets(task)
+            download_and_prepare_dataset(task)
             print(f"✅ Prepared data for polarishub/{task_name}")
         except Exception as e:
             print(f"❌ Failed to prepare {task_name}: {e}")

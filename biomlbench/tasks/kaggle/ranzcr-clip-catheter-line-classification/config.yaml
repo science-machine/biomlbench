@@ -1,5 +1,7 @@
 id: kaggle/ranzcr-clip-catheter-line-classification
 name: RANZCR CLiP - Catheter and Line Position Challenge
+task_type: classification
+domain: medical_imaging
 competition_type: code
 awards_medals: true
 prizes:
@@ -20,10 +22,9 @@ prizes:
     
 description: biomlbench/tasks/kaggle/ranzcr-clip-catheter-line-classification/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/ranzcr-clip-catheter-line-classification/prepared/private/answers.csv
+  sample_submission: kaggle/ranzcr-clip-catheter-line-classification/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

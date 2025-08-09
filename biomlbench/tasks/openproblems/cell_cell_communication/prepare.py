@@ -53,7 +53,9 @@ def map_gene_symbols(adata, map_filename: Union[str, pathlib.Path]):
     )
 
     # fill 'gene' column
-    var_alias_match = var_alias_match.reset_index().merge(map_df, on="alias", how="left")
+    var_alias_match = var_alias_match.reset_index().merge(
+        map_df, on="alias", how="left"
+    )
     var_gene_match["gene"] = var_gene_match.index
     var_no_map["gene"] = var_no_map.index
 
@@ -79,12 +81,16 @@ def map_gene_symbols(adata, map_filename: Union[str, pathlib.Path]):
         adata_gene = adata[:, gene_aliases]
         many_to_one_X.append(scipy.sparse.coo_matrix(adata_gene.X.sum(axis=1)))
         for layer_name, layer in adata_gene.layers.items():
-            many_to_one_layers[layer_name].append(scipy.sparse.coo_matrix(adata_gene.X.sum(axis=1)))
+            many_to_one_layers[layer_name].append(
+                scipy.sparse.coo_matrix(adata_gene.X.sum(axis=1))
+            )
 
     return anndata.AnnData(
         X=scipy.sparse.hstack([adata_one_to_any.X] + many_to_one_X).tocsr(),
         obs=adata.obs,
-        var=pd.DataFrame(index=np.concatenate([adata_one_to_any.var.index, many_to_one_genes])),
+        var=pd.DataFrame(
+            index=np.concatenate([adata_one_to_any.var.index, many_to_one_genes])
+        ),
         layers={
             layer_name: scipy.sparse.hstack(
                 [adata_one_to_any.layers[layer_name]] + many_to_one_layers[layer_name]
@@ -94,6 +100,7 @@ def map_gene_symbols(adata, map_filename: Union[str, pathlib.Path]):
         uns=adata.uns,
         obsm=adata.obsm,
     )
+
 
 
 def download_file(url: str, output_path: Path) -> None:
@@ -149,29 +156,28 @@ def subsample_even(adata, n_obs, even_obs):
     return adata_out
 
 
-def prepare(raw: Path, prepared: Path) -> None:
+
+def prepare(raw: Path, public: Path, private: Path) -> None:
     """
     Prepare OpenProblems batch_integration dataset.
-
+    
     Downloads real h5ad files from S3 for batch integration evaluation.
     - dataset.h5ad: Input data with batch effects (public)
-    - solution.h5ad: Ground truth integrated data (private)
-
+    - solution.h5ad: Ground truth integrated data (private) 
+    
     Args:
         raw: Directory for raw data (unused)
-        prepared: Directory for prepared data - will create 0/public and 0/private subdirectories
+        public: Directory for public data (dataset.h5ad)
+        private: Directory for private data (solution.h5ad)
     """
-    dataset_dir = prepared / "0"
-    public_dir = dataset_dir / "public"
-    private_dir = dataset_dir / "private"
-
+    
     logger.info("Downloading OpenProblems batch_integration h5ad files from S3...")
-
+    
     logger.info(f"Using dataset: {URL}")
-
+    
     # Download dataset.h5ad (input with batch effects) from datasets location -> public
-    dataset_path = public_dir / "dataset.h5ad"
-
+    dataset_path = Path(public) / "dataset.h5ad"
+    
     logger.info(f"Downloading {URL} to {dataset_path}")
     download_file(URL, dataset_path)
 
@@ -179,70 +185,66 @@ def prepare(raw: Path, prepared: Path) -> None:
     adata = sc.read_h5ad(dataset_path)
 
     # Get the map from https://raw.githubusercontent.com/openproblems-bio/openproblems/refs/tags/v1.0.0/openproblems/tasks/_cell_cell_communication/cell_cell_communication_ligand_target/datasets/tnbc_wu2021_gene_symbols.csv
-    map_path = public_dir / "tnbc_wu2021_gene_symbols.csv"
-    download_file(
-        "https://raw.githubusercontent.com/openproblems-bio/openproblems/refs/tags/v1.0.0/openproblems/tasks/_cell_cell_communication/cell_cell_communication_ligand_target/datasets/tnbc_wu2021_gene_symbols.csv",
-        map_path,
-    )
+    map_path = Path(public) / "tnbc_wu2021_gene_symbols.csv"
+    download_file("https://raw.githubusercontent.com/openproblems-bio/openproblems/refs/tags/v1.0.0/openproblems/tasks/_cell_cell_communication/cell_cell_communication_ligand_target/datasets/tnbc_wu2021_gene_symbols.csv", map_path)
 
-    adata = map_gene_symbols(adata, map_path)
+    adata = map_gene_symbols(
+        adata, map_path
+    )
     adata.uns["merge_keys"] = ["ligand", "target"]
 
-    # Create a public version that is missing the
+    # Create a public version that is missing the 
 
     # Load the resource from https://raw.githubusercontent.com/saezlab/liana-py/e0c86b15cc2731dde8f4caf63e7918c032f4f2b3/liana/resource/omni_resource.csv
-    resource_path = public_dir / "resource.csv"
-    download_file(
-        "https://raw.githubusercontent.com/saezlab/liana-py/e0c86b15cc2731dde8f4caf63e7918c032f4f2b3/liana/resource/omni_resource.csv",
-        resource_path,
-    )
-
+    resource_path = Path(public) / "resource.csv"
+    download_file("https://raw.githubusercontent.com/saezlab/liana-py/e0c86b15cc2731dde8f4caf63e7918c032f4f2b3/liana/resource/omni_resource.csv", resource_path)
+    
     # Load the resource
     resource = pd.read_csv(resource_path, index_col=0)
-    resource = resource[resource.resource == "consensus"]
+    resource = resource[resource.resource == 'consensus']
     adata.uns["ligand_receptor_resource"] = resource
 
     # For the adata.uns['ccc_target'], split it so that 30% of all targets are in the test set
-    test_targets = adata.uns["ccc_target"].sample(frac=0.3)
+    test_targets = adata.uns['ccc_target'].sample(frac=0.3)
     # For these selected targets, put NaN in the response column
     adata_train = adata.copy()
-    adata_train.uns["ccc_target"].loc[test_targets.index, "response"] = np.nan
+    adata_train.uns['ccc_target'].loc[test_targets.index, 'response'] = np.nan
     adata_test = adata.copy()
 
     # Save the train and test datasets. Test goes ONLY in private
-    adata_train.write_h5ad(public_dir / "dataset.h5ad")
-    adata_test.write_h5ad(private_dir / "solution.h5ad")
+    adata_train.write_h5ad(Path(public) / "dataset.h5ad")
+    adata_test.write_h5ad(Path(private) / "solution.h5ad")
 
     # For the adata.uns['ccc_ligand'], split it so that 50% of all ligands are in the test set
-    test_ligands = adata.uns["ccc_target"].sample(frac=0.5)
-
+    test_ligands = adata.uns['ccc_target'].sample(frac=0.5)
+    
     # Check file size
     dataset_size_mb = dataset_path.stat().st_size / (1024 * 1024)
     logger.info(f"Downloaded dataset.h5ad ({dataset_size_mb:.1f} MB)")
-
+    
     # Download solution.h5ad (ground truth integration) from task location -> private
-    solution_key = f"resources/task_cell_cell_communication/datasets/{dataset_id}/{subset_id}/{normalization_id}/solution.h5ad"
-    solution_path = private_dir / "solution.h5ad"
-
+    solution_key = f"resources/task_batch_integration/datasets/{dataset_id}/{subset_id}/{normalization_id}/solution.h5ad"
+    solution_path = private / "solution.h5ad"
+    
     logger.info(f"Downloading {solution_key} to {solution_path}")
     s3_client.download_file(bucket_name, solution_key, str(solution_path))
-
+    
     # Check file size
     solution_size_mb = solution_path.stat().st_size / (1024 * 1024)
     logger.info(f"Downloaded solution.h5ad ({solution_size_mb:.1f} MB)")
-
+    
     # Download and save state.yaml for reference
     try:
-        state_key = f"resources/task_cell_cell_communication/datasets/{dataset_id}/{subset_id}/{normalization_id}/state.yaml"
+        state_key = f"resources/task_batch_integration/datasets/{dataset_id}/{subset_id}/{normalization_id}/state.yaml"
         response = s3_client.get_object(Bucket=bucket_name, Key=state_key)
-        state_content = response["Body"].read().decode("utf-8")
-
-        (public_dir / "dataset_info.yaml").write_text(state_content)
+        state_content = response['Body'].read().decode('utf-8')
+        
+        (public / 'dataset_info.yaml').write_text(state_content)
         logger.info("Downloaded dataset metadata (state.yaml)")
     except Exception as e:
         logger.warning(f"Could not download state.yaml: {e}")
-
-    # Create task description
+    
+    # Create task description 
     description_content = f"""# OpenProblems Batch Integration
 
 This task evaluates methods for removing batch effects from single-cell data while preserving biological variation.
@@ -265,9 +267,9 @@ Cell-cell communication is a key process in multicellular organisms. This task e
 
 Visit https://openproblems.bio for more information about this task.
 """
-
-    (public_dir / "description.md").write_text(description_content)
-
+    
+    (public / 'description.md').write_text(description_content)
+    
     logger.info("✅ OpenProblems cell-cell communication data prepared successfully")
     logger.info(f"Dataset: {dataset_path} ({dataset_size_mb:.1f} MB)")
     logger.info(f"Solution: {solution_path} ({solution_size_mb:.1f} MB)")

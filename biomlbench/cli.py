@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from biomlbench.agents import run_agent
 from biomlbench.baselines import run_baseline
 from biomlbench.data import (
-    download_and_prepare_datasets,
+    download_and_prepare_dataset,
     ensure_leaderboard_exists,
     prepare_human_baselines,
 )
@@ -137,21 +137,16 @@ def main():
     # Grade sample sub-parser
     parser_grade_sample = subparsers.add_parser(
         name="grade-sample",
-        help="Grade a single sample (dataset) in the eval",
+        help="Grade a single sample (task) in the eval",
     )
     parser_grade_sample.add_argument(
         "submission",
-        help="Path to the submission file.",
+        help="Path to the submission CSV file.",
         type=str,
     )
     parser_grade_sample.add_argument(
         "task_id",
         help=f"ID of the task to grade in 'folder/task' format. Examples: manual/caco2-wang",
-        type=str,
-    )
-    parser_grade_sample.add_argument(
-        "dataset_id",
-        help=f"ID of the dataset to grade. Should be a folder in the task's directory.",
         type=str,
     )
     parser_grade_sample.add_argument(
@@ -271,7 +266,7 @@ def main():
     )
     parser_run_agent.add_argument(
         "--n-workers",
-        help="Number of parallel workers (applies to datasets within tasks and multiple tasks)",
+        help="Number of parallel workers for multi-task runs",
         type=int,
         default=1,
     )
@@ -299,11 +294,6 @@ def main():
         default=registry.get_data_dir(),
     )
     parser_run_agent.add_argument(
-        "--missing-ok",
-        help="Skip failed runs instead of raising errors (allows partial results)",
-        action="store_true",
-    )
-    parser_run_agent.add_argument(
         "--output-dir",
         help="Directory to save agent run outputs",
         type=str,
@@ -323,21 +313,15 @@ def main():
             with open(args.list, "r") as f:
                 task_ids = f.read().splitlines()
             tasks = [new_registry.get_task(task_id) for task_id in task_ids]
-        elif args.domain:
-            task_ids = new_registry.get_tasks_by_domain(args.domain)
-            tasks = [new_registry.get_task(task_id) for task_id in task_ids]
-        elif args.task_type:
-            task_ids = new_registry.get_tasks_by_type(args.task_type)
-            tasks = [new_registry.get_task(task_id) for task_id in task_ids]
         else:
             if not args.task_id:
                 parser_prepare.error(
-                    "One of --lite, --all, --list, --domain, --task-type, or --task-id must be specified."
+                    "One of --lite, --all, --list, or --task-id must be specified."
                 )
             tasks = [new_registry.get_task(args.task_id)]
 
         for task in tasks:
-            download_and_prepare_datasets(
+            download_and_prepare_dataset(
                 task=task,
                 keep_raw=args.keep_raw,
                 overwrite_checksums=args.overwrite_checksums,
@@ -354,9 +338,8 @@ def main():
     if args.command == "grade-sample":
         new_registry = registry.set_data_dir(Path(args.data_dir))
         task = new_registry.get_task(args.task_id)
-        dataset = task.get_dataset(args.dataset_id)
         submission = Path(args.submission)
-        report = grade_submission(submission, task, dataset)
+        report = grade_submission(submission, task)
         logger.info("Task report:")
         logger.info(json.dumps(report.to_dict(), indent=4))
 

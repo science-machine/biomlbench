@@ -11,10 +11,9 @@ data_source:
   type: openproblems
   task_name: batch_integration
 
-datasets:
-  '0':
-    answers: solution.h5ad
-    sample_submission: dataset.h5ad
+dataset:
+  answers: openproblems/batch_integration/prepared/private/solution.h5ad
+  sample_submission: openproblems/batch_integration/prepared/public/dataset.h5ad
 
 grader:
   name: scib-metrics

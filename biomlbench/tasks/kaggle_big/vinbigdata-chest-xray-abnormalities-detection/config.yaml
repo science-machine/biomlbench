@@ -13,10 +13,9 @@ prizes:
     value: 8000
 description: biomlbench/tasks/kaggle/vinbigdata-chest-xray-abnormalities-detection/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/vinbigdata-chest-xray-abnormalities-detection/prepared/private/answers.csv
+  sample_submission: kaggle/vinbigdata-chest-xray-abnormalities-detection/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle

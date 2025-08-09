@@ -1,31 +1,31 @@
 id: polarishub/tdcommons-ld50-zhu
-name: ld50-zhu
+name: "ld50-zhu"
 task_type: drug_discovery
 domain: molecular_properties
 difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-ld50-zhu/description.md
-preparer: biomlbench.tasks.polarishub.tdcommons-ld50-zhu.prepare:prepare
 
 data_source:
   type: polaris
   benchmark_id: tdcommons/ld50-zhu
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: polarishub/tdcommons-ld50-zhu/prepared/private/answers.csv
+  sample_submission: polarishub/tdcommons-ld50-zhu/prepared/public/sample_submission.csv
 
 grader:
   name: polaris-metric
   grade_fn: biomlbench.tasks.polarishub.tdcommons-ld50-zhu.grade:grade
 
+preparer: biomlbench.tasks.polarishub.tdcommons-ld50-zhu.prepare:prepare
+
 biomedical_metadata:
-  modality: molecular
-  data_type: single_task
-  clinical_relevance: drug_discovery
-  polaris_main_metric: mean_absolute_error
+  modality: "molecular"
+  data_type: "single_task"
+  clinical_relevance: "drug_discovery"
+  polaris_main_metric: "mean_absolute_error"
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

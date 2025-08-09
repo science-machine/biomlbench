@@ -10,15 +10,10 @@ from biomlbench.utils import get_logger
 logger = get_logger(__name__)
 
 
-def prepare(raw: Path, prepared: Path) -> None:    
-    # Create dataset directory (we use 0 as the default for a single dataset)
-    dataset_dir = prepared / "0"
-    dataset_dir.mkdir(parents=True, exist_ok=True)
-    public = dataset_dir / "public"
-    private = dataset_dir / "private"
+def prepare(raw: Path, public: Path, private: Path) -> None:
     public.mkdir(parents=True, exist_ok=True)
     private.mkdir(parents=True, exist_ok=True)
-    
+
     # split on the TFRecord files.
     # There's 33126 train samples; 16 TFRecord files with 2071 samples each
     # so we take 2 arbitrary TF record files as our test set (4142 samples is ~ 10% of data)

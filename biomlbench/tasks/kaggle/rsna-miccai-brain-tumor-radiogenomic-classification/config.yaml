@@ -21,10 +21,9 @@ prizes:
     value: 3000
 description: biomlbench/tasks/kaggle/rsna-miccai-brain-tumor-radiogenomic-classification/description.md
 
-datasets:
-  '0':
-    answers: answers.csv
-    sample_submission: sample_submission.csv
+dataset:
+  answers: kaggle/rsna-miccai-brain-tumor-radiogenomic-classification/prepared/private/answers.csv
+  sample_submission: kaggle/rsna-miccai-brain-tumor-radiogenomic-classification/prepared/public/sample_submission.csv
 
 data_source:
   type: kaggle
