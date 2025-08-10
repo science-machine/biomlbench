@@ -23,10 +23,12 @@ See the docs here: [docs/index.md](docs/index.md)
 - [ ] Decide if we're going to add in unit tests.
 - [ ] Decide if we want to bother scraping subsequent polarihub leaderboard pages (not a lot of examples with more than one page).
 - [ ] Decide if we want to have the option to let models see the public leaderboard (would be a more fair comparison to human performance).
+- [ ] Need a permenant task cache on s3 that we maintain in case of link rot.
 
-Tasks:
+## Polarishub tasks:
 
-- [ ] For `adaptyv-bio-egfr-binders-binary-cls-v0` we need to get the leaderboard from [this page](https://www.adaptyv.com/leaderboard/adaptyv-bio-egfr-binders-binary-cls-v0).
+- [ ] For `adaptyv-bio-egfr-binders-binary-cls-v0` we need to get the actual leaderboard from [this page](https://www.adaptyv.com/leaderboard/adaptyv-bio-egfr-binders-binary-cls-v0).
+- [ ] For `graphium-*` tasks, the baseline model performance is [here](https://graphium-docs.datamol.io/main/baseline.html).
 
 
 ## How to wrap a new benchmark database

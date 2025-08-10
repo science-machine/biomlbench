@@ -1,0 +1,36 @@
+id: manual/open-problems-single-cell-perturbations
+name: "OpenProblems – Single-Cell Perturbation Prediction"
+description: biomlbench/tasks/manual/open-problems-single-cell-perturbations/description.md
+
+dataset:
+  answers: manual/open-problems-single-cell-perturbations/prepared/private/answers.csv
+  sample_submission: manual/open-problems-single-cell-perturbations/prepared/public/sample_submission.csv
+
+data_source:
+  type: manual
+
+grader:
+  name: mean-rowwise-rmse
+  grade_fn: biomlbench.tasks.manual.open-problems-single-cell-perturbations.grade:grade
+
+preparer: biomlbench.tasks.manual.open-problems-single-cell-perturbations.prepare:prepare
+
+# Biomedical metadata
+task_type: single_cell_genomics
+domain: drug_discovery
+difficulty: hard
+
+biomedical_metadata:
+  modality: "single_cell_rna_seq"
+  data_type: "differential_expression"
+  clinical_relevance: "drug_perturbation_prediction"
+  experimental_design: "pbmc_compound_treatment"
+  cell_types: ["T_cells_CD4", "T_cells_CD8", "T_regulatory_cells", "NK_cells", "B_cells", "Myeloid_cells"]
+  num_genes: 5319
+  num_compounds: 144
+  treatment_duration: "24_hours"
+
+compute_requirements:
+  recommended_gpu_memory_gb: 8
+  estimated_runtime_minutes: 120
+  max_dataset_size_gb: 5 
