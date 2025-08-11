@@ -86,5 +86,5 @@ The first row of the CSV file contains the wild-type sequence in the `sequence` 
 
 ## Evaluation
 
-Your model will be evaluated on the Spearman correlation between the predicted fitness scores and the true fitness scores for
+Your model will be evaluated using the Spearman correlation between the predicted fitness scores and the true fitness scores for
 each of the sequences in `data.csv`.
