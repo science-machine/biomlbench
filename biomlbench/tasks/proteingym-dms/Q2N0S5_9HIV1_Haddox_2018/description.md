@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein HIV env (BG505) from the organism Human immunodeficiency virus 1. This protein has Uniprot ID: Q2N0S5_9HIV1. 
+single-substitution variants for the protein HIV env (BG505) from the organism Human immunodeficiency virus 1. This protein has Uniprot ID: Q2N0S5_9HIV1. 
 
 The DMS selection assay was described as follows: 
 

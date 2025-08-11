@@ -1,0 +1,12 @@
+teamName,score,submissionDate
+MSA Transformer Embeddings,0.106,2024-01-01
+MSA_Transformer + One-Hot Encodings,0.072,2024-01-01
+DeepSequence + One-Hot Encodings,0.069,2024-01-01
+Tranception + One-Hot Encodings,0.064,2024-01-01
+ESM-1v + One-Hot Encodings,0.062,2024-01-01
+TranceptEVE + One-Hot Encodings,0.053,2024-01-01
+Kermut,0.047,2024-01-01
+ProteinNPT,0.039,2024-01-01
+ESM-1v Embeddings,0.004,2024-01-01
+One-Hot Encodings,-0.055,2024-01-01
+Tranception Embeddings,-0.057,2024-01-01

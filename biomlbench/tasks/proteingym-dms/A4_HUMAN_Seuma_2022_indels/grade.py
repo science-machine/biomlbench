@@ -1,0 +1,19 @@
+
+"""Auto-generated grading for proteingym-dms/A4_HUMAN_Seuma_2022_indels."""
+import pandas as pd
+import polaris as po
+from scipy.stats import spearmanr
+
+def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
+    """Grade using spearman correlation between true and predicted fitness scores."""
+
+    # Extract predictions for each fold
+    submission = submission[submission.iloc[:, 0] != "WT"]
+    merged = pd.merge(submission, answers, on="id", how="inner", suffixes=("_pred", "_true"))
+
+    if len(merged) != len(submission):
+        print(f"Warning: got a submission with {len(submission)} rows but {len(merged)} rows after merging with IDs with answers.")
+
+    correlation, _ = spearmanr(merged["fitness_score_pred"], merged["fitness_score_true"])
+
+    return correlation

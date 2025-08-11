@@ -3,7 +3,7 @@ id: proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles
 name: AICDA_HUMAN_Gajula_2014_3cycles
 task_type: fitness_prediction
 domain: protein_engineering
-difficulty: medium
+difficulty: easy
 awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/description.md
@@ -25,6 +25,7 @@ biomedical_metadata:
   modality: protein_sequence
   data_type: single_task
   proteingym_main_metric: spearman
+  num_sequences: 209
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

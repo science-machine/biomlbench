@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Small ribosomal subunit protein uS15 from the organism Geobacillus stearothermophilus. This protein has Uniprot ID: RS15_GEOSE. 
+single-substitution variants for the protein Small ribosomal subunit protein uS15 from the organism Geobacillus stearothermophilus. This protein has Uniprot ID: RS15_GEOSE. 
 
 The DMS selection assay was described as follows: 
 

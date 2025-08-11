@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Influenza hemagglutinin from the organism Influenza A virus (A/Perth/16/2009(H3N2)). This protein has Uniprot ID: C6KNH7_9INFA. 
+single-substitution variants for the protein Influenza hemagglutinin from the organism Influenza A virus (A/Perth/16/2009(H3N2)). This protein has Uniprot ID: C6KNH7_9INFA. 
 
 The DMS selection assay was described as follows: 
 

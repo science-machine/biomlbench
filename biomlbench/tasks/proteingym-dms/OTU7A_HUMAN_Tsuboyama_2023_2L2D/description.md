@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein OTU domain-containing protein 7A from the organism Homo sapiens. This protein has Uniprot ID: OTU7A_HUMAN. 
+single-substitution variants for the protein OTU domain-containing protein 7A from the organism Homo sapiens. This protein has Uniprot ID: OTU7A_HUMAN. 
 
 The DMS selection assay was described as follows: 
 

@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Beta-lactamase VIM-2 from the organism Pseudomonas aeruginosa. This protein has Uniprot ID: A4GRB6_PSEAI. 
+single-substitution variants for the protein Beta-lactamase VIM-2 from the organism Pseudomonas aeruginosa. This protein has Uniprot ID: A4GRB6_PSEAI. 
 
 The DMS selection assay was described as follows: 
 

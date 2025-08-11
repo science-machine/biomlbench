@@ -3,6 +3,7 @@ import tempfile
 from pathlib import Path
 from string import Template
 from textwrap import dedent
+from typing import Literal
 
 import pandas as pd
 import requests
@@ -30,8 +31,13 @@ def parse_args():
     return args
 
 
-def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bool) -> str:
-    """Prepares a ProteinGym DMS task."""
+def ingest_substitutions_task(
+    dms_id: str,
+    metadata: pd.DataFrame,
+    task_dir: Path,
+    prepare: bool,
+) -> str:
+    """Prepares a ProteinGym DMS task that contains substitution mutations."""
     script_template = Template(
         """
     \"\"\"Auto-generated preparation for proteingym-dms/$dataset_name.\"\"\"
@@ -99,7 +105,7 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
     name: $dataset_name
     task_type: fitness_prediction
     domain: protein_engineering
-    difficulty: medium
+    difficulty: $difficulty
     awards_medals: false
     prizes: null
     description: biomlbench/tasks/proteingym-dms/$dataset_name/description.md
@@ -121,6 +127,7 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
       modality: protein_sequence
       data_type: single_task
       proteingym_main_metric: spearman
+      num_sequences: $num_sequences
 
     compute_requirements:
       recommended_gpu_memory_gb: 4
@@ -137,7 +144,7 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
 
     This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
     protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-    only single-substitution variants for the protein $protein_name from the organism $organism. This protein has Uniprot ID: $uniprot_id. 
+    $mutation_type variants for the protein $protein_name from the organism $organism. This protein has Uniprot ID: $uniprot_id. 
 
     The DMS selection assay was described as follows: 
 
@@ -265,11 +272,283 @@ def ingest_task(dms_id: str, metadata: pd.DataFrame, task_dir: Path, prepare: bo
     """
     )
 
+    if metadata.loc[dms_id, "includes_multiple_mutants"]:
+        mutation_type = "multi-substitution"
+        difficulty = "medium"
+    else:
+        mutation_type = "single-substitution"
+        difficulty = "easy"
+
+    num_sequences = metadata.loc[dms_id, "DMS_total_number_mutants"]
     (task_dir / dms_id).mkdir(parents=True, exist_ok=True)
     with open(task_dir / dms_id / "prepare.py", "w") as f:
         f.write(dedent(script_template.substitute(dataset_name=dms_id)))
     with open(task_dir / dms_id / "config.yaml", "w") as f:
-        f.write(dedent(config_template.substitute(dataset_name=dms_id)))
+        f.write(
+            dedent(
+                config_template.substitute(
+                    dataset_name=dms_id, difficulty=difficulty, num_sequences=num_sequences
+                )
+            )
+        )
+    with open(task_dir / dms_id / "description.md", "w") as f:
+        f.write(
+            dedent(
+                description_template.substitute(
+                    dataset_name=dms_id,
+                    mutation_type=mutation_type,
+                    protein_name=metadata.loc[dms_id, "molecule_name"],
+                    organism=metadata.loc[dms_id, "source_organism"],
+                    uniprot_id=metadata.loc[dms_id, "UniProt_ID"],
+                    selection_assay=(
+                        metadata.loc[dms_id, "selection_assay"].capitalize()
+                        if isinstance(metadata.loc[dms_id, "selection_assay"], str)
+                        else "(Not provided)"
+                    ),
+                    fitness_attribute=metadata.loc[dms_id, "coarse_selection_type"],
+                    publication_title=metadata.loc[dms_id, "title"],
+                    doi=metadata.loc[dms_id, "jo"],
+                )
+            )
+        )
+    with open(task_dir / dms_id / "grade.py", "w") as f:
+        f.write(dedent(grade_template.substitute(dataset_name=dms_id)))
+
+    if prepare:
+        print(f"🔄 Preparing data for proteingym/{dms_id}...")
+        task = registry.get_task(f"proteingym-dms/{dms_id}")
+        download_and_prepare_dataset(task)
+
+    return dms_id
+
+
+def ingest_indels_task(
+    dms_id: str,
+    metadata: pd.DataFrame,
+    task_dir: Path,
+    prepare: bool,
+) -> str:
+    """Prepares a ProteinGym DMS task that contains indel mutations."""
+    script_template = Template(
+        """
+    \"\"\"Auto-generated preparation for proteingym-dms/$dataset_name.\"\"\"
+
+    from pathlib import Path
+    import pandas as pd
+    import numpy as np 
+
+    def prepare(raw: Path, public: Path, private: Path) -> None:
+        \"\"\"
+        Prepare the proteingym-dms/$dataset_name dataset from ProteinGym data.
+
+        Args:
+            raw: Directory with the DMS dataset as a CSV file
+            public: Directory for public data (train.csv, test_features.csv)  
+            private: Directory for private data (answers.csv)
+        \"\"\"
+
+        # Load the ProteinGym DMS data files (downloaded by ProteinGymDMSDataSource)
+        # The raw parameter now points to the task's raw directory containing the specific CSV
+        df = pd.read_csv(raw / "$dataset_name.csv")
+        
+        # Metadata is stored in the shared proteingym-dms directory
+        metadata = pd.read_csv(raw.parent.parent / "DMS_indels.csv", index_col="DMS_id")
+        fold_columns = ["fold_random_5"]
+        seq_column = "mutated_sequence"
+        target_column = "DMS_score"
+        
+        wt_sequence = metadata.loc["$dataset_name", "target_seq"]
+        wt_seq_row = pd.DataFrame({"id": ["WT"], "sequence": [wt_sequence], "fitness_score": [np.nan]})
+        wt_seq_row[fold_columns] = -1
+        
+        df["id"] = range(len(df))
+        df.rename({seq_column: "sequence", target_column: "fitness_score"}, axis=1, inplace=True)
+        df = df[["id", "sequence", "fitness_score"] + fold_columns]
+        df = pd.concat([wt_seq_row, df])
+        df.to_csv(public / "data.csv", index=False)
+        
+        sample_submission = pd.DataFrame({
+            "id": df["id"].iloc[1:], 
+            "fitness_score": [0.0] * len(df.iloc[1:]),
+        })
+        sample_submission.to_csv(public / "sample_submission.csv", index=False)
+        
+        answers = pd.DataFrame({
+            "id": df["id"].iloc[1:],
+            "fitness_score": df["fitness_score"].iloc[1:],
+        })
+        answers.to_csv(private / "answers.csv", index=False)
+
+        print("✅ Datasets prepared successfully!")
+        print(f"Files created:")
+        print(f"  Public: data.csv, sample_submission.csv")
+        print(f"  Sequence column: sequence")
+        print(f"  Target column: fitness_score")
+    """
+    )
+
+    config_template = Template(
+        """
+    id: proteingym-dms/$dataset_name
+    name: $dataset_name
+    task_type: fitness_prediction
+    domain: protein_engineering
+    difficulty: hard
+    awards_medals: false
+    prizes: null
+    description: biomlbench/tasks/proteingym-dms/$dataset_name/description.md
+    preparer: biomlbench.tasks.proteingym-dms.$dataset_name.prepare:prepare
+
+    data_source:
+      type: proteingym-dms
+      benchmark_id: $dataset_name
+
+    dataset:
+      answers: proteingym-dms/$dataset_name/prepared/private/answers.csv
+      sample_submission: proteingym-dms/$dataset_name/prepared/public/sample_submission.csv
+
+    grader:
+      name: proteingym-metric
+      grade_fn: biomlbench.tasks.proteingym-dms.$dataset_name.grade:grade
+
+    biomedical_metadata:
+      modality: protein_sequence
+      data_type: single_task
+      proteingym_main_metric: spearman
+      num_sequences: $num_sequences
+
+    compute_requirements:
+      recommended_gpu_memory_gb: 4
+      estimated_runtime_minutes: 15
+      max_dataset_size_gb: 2
+    """
+    )
+
+    description_template = Template(
+        """
+    # Proteingym-DMS dataset: $dataset_name
+
+    ## Description
+
+    This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
+    protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
+    indel variants for the protein $protein_name from the organism $organism. This protein has Uniprot ID: $uniprot_id. 
+
+    The DMS selection assay was described as follows: 
+
+        $selection_assay
+
+    It was categorised as measuring the following (general) fitness attribute: $fitness_attribute. Higher scores indicate better fitness.
+
+    The source publication for this dataset is titled: 
+
+    "$publication_title"
+
+    and can be accessed at the following DOI: $doi.
+
+    ## Objective
+
+    The objective of this benchmark is to train a model that can predict the fitness of unseen single-substitution sequence variants of $protein_name.
+    To train your model, you will use 5-fold cross-validation on the sequences and fitness scores defined in the `data.csv` file. 
+    
+    You will use the `fold_random_5` column to split the data into training and test sets. This column contains integer values from 0 to 4, 
+    which indicate the fold of the sequence in the corresponding 5-fold cross-validation split.
+    
+    When predicting the fitness score for a given sequence, **you must use a model trained only on sequences from other folds**.
+    For example, to predict the fitness score for sequences with `fold_random_5 == 0`, you must use a model trained
+    only on the sequences with `fold_random_5` values other than 0.
+  
+    You must repeat this process for each of the five folds in `fold_random_5` (so that all sequences in `data.csv` 
+    receive a predicted score).
+    
+    Overall, your training and inference pseudocode loop should look like this:
+    
+    ```python
+    import pandas as pd
+    data = pd.read_csv("data.csv")
+    wt_sequence = data.iloc[0]["sequence"]
+    
+    # remove the wild-type sequence from the data
+    data = data.iloc[1:]
+    
+    ## define your model here ##
+    model = ...
+    
+    # initialize a dataframe to store the predictions
+    predictions = pd.DataFrame(columns=["id", "fitness_score"], index=data.index)
+    predictions["id"] = data["id"]
+    
+    # loop over the different folds
+    for fold in range(5): 
+        fold_mask = data["fold_random_5"] == fold
+        train_data = data[~fold_mask]  # train on all folds except the current one
+        test_data = data[fold_mask]  # test on the current fold
+        
+        # train the model **from scratch** on the training set 
+        trained_model = model.fit(train_data["sequence"], train_data["fitness_score"]) 
+
+        # predict the fitness score for the sequences in the current fold 
+        predictions.loc[fold_mask, "fitness_score"] = trained_model.predict(test_data["sequence"])
+    ```
+    
+    Hence, the output data frame should contain four columns:
+    - `id`: The ID of the sequence 
+    - `fitness_score`: The predicted fitness score for that sequence predicted by the model trained on the 
+        cross-validation split defined by the `fold_random_5` column.
+        
+    ## Data Format
+
+    The `data.csv` file contains the following columns:
+    - `id`: The index of the sequence
+    - `sequence`: The amino acid sequence of the variant
+    - `fitness_score`: The fitness score of the variant
+    - `fold_random_5`: The fold of the variant (0-4) in the 5-fold cross-validation split
+    
+    The first row of the CSV file contains the wild-type sequence in the `sequence` field and missing values for the other columns.
+
+    ## Files
+
+    - `data.csv`: File with sequences and fitness scores
+    - `sample_submission.csv`: Example submission format with ID column and fitness score column
+
+    ## Evaluation
+
+    Your model will be evaluated on the Spearman correlation between the predicted fitness scores and the true fitness scores for
+    each of the sequences in `data.csv`.
+    """
+    )
+
+    grade_template = Template(
+        """
+    \"\"\"Auto-generated grading for proteingym-dms/$dataset_name.\"\"\"
+    import pandas as pd
+    import polaris as po
+    from scipy.stats import spearmanr
+
+    def grade(submission: pd.DataFrame, answers: pd.DataFrame) -> float:
+        \"\"\"Grade using spearman correlation between true and predicted fitness scores.\"\"\"
+
+        # Extract predictions for each fold
+        submission = submission[submission.iloc[:, 0] != "WT"]
+        merged = pd.merge(submission, answers, on="id", how="inner", suffixes=("_pred", "_true"))
+        
+        if len(merged) != len(submission):
+            print(f"Warning: got a submission with {len(submission)} rows but {len(merged)} rows after merging with IDs with answers.")
+
+        correlation, _ = spearmanr(merged["fitness_score_pred"], merged["fitness_score_true"])
+
+        return correlation
+    """
+    )
+
+    num_sequences = metadata.loc[dms_id, "DMS_total_number_mutants"]
+    (task_dir / dms_id).mkdir(parents=True, exist_ok=True)
+    with open(task_dir / dms_id / "prepare.py", "w") as f:
+        f.write(dedent(script_template.substitute(dataset_name=dms_id)))
+    with open(task_dir / dms_id / "config.yaml", "w") as f:
+        f.write(
+            dedent(config_template.substitute(dataset_name=dms_id, num_sequences=num_sequences))
+        )
     with open(task_dir / dms_id / "description.md", "w") as f:
         f.write(
             dedent(
@@ -311,25 +590,40 @@ def main():
 
     # URL for the metadata CSV
     DMS_SUBSTITUTIONS_URL = "https://zenodo.org/records/15293562/files/DMS_substitutions.csv"
+    DMS_INDELS_URL = "https://zenodo.org/records/15293562/files/DMS_indels.csv"
 
     args = parse_args()
 
     # Download the metadata CSV to a temporary file and load
-    with tempfile.NamedTemporaryFile(suffix=".csv", delete=False) as tmpfile:
+    with tempfile.NamedTemporaryFile(suffix=".csv") as tmpfile:
         response = requests.get(DMS_SUBSTITUTIONS_URL)
         response.raise_for_status()
         tmpfile.write(response.content)
         tmp_csv_path = tmpfile.name
 
-    dms_substitutions = pd.read_csv(tmp_csv_path).set_index("DMS_id")
-    dms_single_substitutions = dms_substitutions[
-        dms_substitutions["includes_multiple_mutants"] == False
-    ].copy()
-    dms_ids = dms_single_substitutions.index.tolist()
+        dms_substitutions = pd.read_csv(tmp_csv_path).set_index("DMS_id")
+        dms_substitutions_ids = dms_substitutions.index.tolist()
 
-    for dms_id in dms_ids:
+    with tempfile.NamedTemporaryFile(suffix=".csv") as tmpfile:
+        response = requests.get(DMS_INDELS_URL)
+        response.raise_for_status()
+        tmpfile.write(response.content)
+        tmp_csv_path = tmpfile.name
+
+        dms_indels = pd.read_csv(tmp_csv_path).set_index("DMS_id")
+        dms_indels_ids = dms_indels.index.tolist()
+
+    for dms_id in dms_substitutions_ids:
         try:
-            dms_id = ingest_task(dms_id, dms_single_substitutions, TASK_DIR, args.prepare)
+            dms_id = ingest_substitutions_task(dms_id, dms_substitutions, TASK_DIR, args.prepare)
+            status = "✅ Created and prepared" if args.prepare else "✅ Created"
+            print(f"{status} proteingym-dms/{dms_id.replace('/', '-').lower()}")
+        except Exception as e:
+            print(f"❌ Failed to create {dms_id}: {e}")
+
+    for dms_id in dms_indels_ids:
+        try:
+            dms_id = ingest_indels_task(dms_id, dms_indels, TASK_DIR, args.prepare)
             status = "✅ Created and prepared" if args.prepare else "✅ Created"
             print(f"{status} proteingym-dms/{dms_id.replace('/', '-').lower()}")
         except Exception as e:

@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Influenza polymerase basic protein 2 from the organism Influenza A virus (A/green-winged teal/Ohio/175/1986(H2N1)). This protein has Uniprot ID: A4D664_9INFA. 
+single-substitution variants for the protein Influenza polymerase basic protein 2 from the organism Influenza A virus (A/green-winged teal/Ohio/175/1986(H2N1)). This protein has Uniprot ID: A4D664_9INFA. 
 
 The DMS selection assay was described as follows: 
 

@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Thiopurine S-methyltransferase from the organism Homo sapiens. This protein has Uniprot ID: TPMT_HUMAN. 
+single-substitution variants for the protein Thiopurine S-methyltransferase from the organism Homo sapiens. This protein has Uniprot ID: TPMT_HUMAN. 
 
 The DMS selection assay was described as follows: 
 

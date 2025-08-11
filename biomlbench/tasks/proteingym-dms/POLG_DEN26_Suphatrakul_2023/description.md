@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Flavivirus NS5 from the organism Dengue virus type 2 (strain Thailand/16681/1984) (DENV-2). This protein has Uniprot ID: POLG_DEN26. 
+single-substitution variants for the protein Flavivirus NS5 from the organism Dengue virus type 2 (strain Thailand/16681/1984) (DENV-2). This protein has Uniprot ID: POLG_DEN26. 
 
 The DMS selection assay was described as follows: 
 

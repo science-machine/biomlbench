@@ -1,0 +1,33 @@
+
+id: proteingym-dms/RCD1_ARATH_Tsuboyama_2023_5OAO_indels
+name: RCD1_ARATH_Tsuboyama_2023_5OAO_indels
+task_type: fitness_prediction
+domain: protein_engineering
+difficulty: hard
+awards_medals: false
+prizes: null
+description: biomlbench/tasks/proteingym-dms/RCD1_ARATH_Tsuboyama_2023_5OAO_indels/description.md
+preparer: biomlbench.tasks.proteingym-dms.RCD1_ARATH_Tsuboyama_2023_5OAO_indels.prepare:prepare
+
+data_source:
+  type: proteingym-dms
+  benchmark_id: RCD1_ARATH_Tsuboyama_2023_5OAO_indels
+
+dataset:
+  answers: proteingym-dms/RCD1_ARATH_Tsuboyama_2023_5OAO_indels/prepared/private/answers.csv
+  sample_submission: proteingym-dms/RCD1_ARATH_Tsuboyama_2023_5OAO_indels/prepared/public/sample_submission.csv
+
+grader:
+  name: proteingym-metric
+  grade_fn: biomlbench.tasks.proteingym-dms.RCD1_ARATH_Tsuboyama_2023_5OAO_indels.grade:grade
+
+biomedical_metadata:
+  modality: protein_sequence
+  data_type: single_task
+  proteingym_main_metric: spearman
+  num_sequences: 124
+
+compute_requirements:
+  recommended_gpu_memory_gb: 4
+  estimated_runtime_minutes: 15
+  max_dataset_size_gb: 2

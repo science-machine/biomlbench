@@ -3,7 +3,7 @@ id: proteingym-dms/C6KNH7_9INFA_Lee_2018
 name: C6KNH7_9INFA_Lee_2018
 task_type: fitness_prediction
 domain: protein_engineering
-difficulty: medium
+difficulty: easy
 awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/C6KNH7_9INFA_Lee_2018/description.md
@@ -25,6 +25,7 @@ biomedical_metadata:
   modality: protein_sequence
   data_type: single_task
   proteingym_main_metric: spearman
+  num_sequences: 10754
 
 compute_requirements:
   recommended_gpu_memory_gb: 4

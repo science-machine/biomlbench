@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Influenza RNA polymerase PB1 from the organism Influenza A virus (strain A/Wilson-Smith/1933 H1N1). This protein has Uniprot ID: RDRP_I33A0. 
+single-substitution variants for the protein Influenza RNA polymerase PB1 from the organism Influenza A virus (strain A/Wilson-Smith/1933 H1N1). This protein has Uniprot ID: RDRP_I33A0. 
 
 The DMS selection assay was described as follows: 
 

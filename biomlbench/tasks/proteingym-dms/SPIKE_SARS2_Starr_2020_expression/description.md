@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Spike RBD from the organism Severe acute respiratory syndrome coronavirus 2 (2019-nCoV) (SARS-CoV-2). This protein has Uniprot ID: SPIKE_SARS2. 
+single-substitution variants for the protein Spike RBD from the organism Severe acute respiratory syndrome coronavirus 2 (2019-nCoV) (SARS-CoV-2). This protein has Uniprot ID: SPIKE_SARS2. 
 
 The DMS selection assay was described as follows: 
 

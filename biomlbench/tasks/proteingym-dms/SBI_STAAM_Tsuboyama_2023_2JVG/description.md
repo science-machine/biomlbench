@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Immunoglobulin-binding protein Sbi from the organism Staphylococcus aureus. This protein has Uniprot ID: SBI_STAAM. 
+single-substitution variants for the protein Immunoglobulin-binding protein Sbi from the organism Staphylococcus aureus. This protein has Uniprot ID: SBI_STAAM. 
 
 The DMS selection assay was described as follows: 
 
