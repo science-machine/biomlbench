@@ -3,7 +3,6 @@
 Simple script to ingest a few Polaris tasks.
 """
 
-import signal
 from concurrent.futures import ProcessPoolExecutor
 from concurrent.futures import TimeoutError as FuturesTimeoutError
 from concurrent.futures import as_completed
@@ -338,8 +337,10 @@ def main():
         # Remove everything before the FIRST -
         # EVERYTHING AFTER THE FIRST - IS THE TASK NAME
         polarishub_tasks = [task.split("-", 1)[1] for task in polarishub_tasks]
-    benchmarks = [benchmark for benchmark in benchmarks if any(task in benchmark for task in polarishub_tasks)]
-    print(f"📊 Found {len(benchmarks)} benchmarks on Polaris Hub" )
+    benchmarks = [
+        benchmark for benchmark in benchmarks if any(task in benchmark for task in polarishub_tasks)
+    ]
+    print(f"📊 Found {len(benchmarks)} benchmarks on Polaris Hub")
 
     if args.prepare:
         print("🔄 Will also prepare datasets after creating tasks")

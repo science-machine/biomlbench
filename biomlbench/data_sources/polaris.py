@@ -5,12 +5,11 @@ This module handles downloading datasets from Polaris Hub and provides
 leaderboard information from the Polaris platform.
 """
 
-import subprocess
-import tempfile
 from pathlib import Path
 from typing import Any, Dict, Optional
 
 import pandas as pd
+import polaris as po
 
 from biomlbench.data_sources.base import DataSource, DataSourceError
 from biomlbench.utils import get_logger
@@ -28,9 +27,6 @@ class PolarisDataSource(DataSource):
     Downloads benchmark data and provides leaderboard information
     from the Polaris platform using the polarishub conda environment.
     """
-
-    def __init__(self):
-        self.conda_env = "polarishub"  # Default environment name
 
     def validate_config(self, source_config: Dict[str, Any]) -> bool:
         """
@@ -57,52 +53,7 @@ class PolarisDataSource(DataSource):
                 "Polaris 'benchmark_id' must be a non-empty string", source_type="polaris"
             )
 
-        # Optional environment override
-        if "conda_env" in source_config:
-            self.conda_env = source_config["conda_env"]
-
         return True
-
-    def _run_polaris_script(self, script_content: str) -> str:
-        """
-        Run a Python script in the polarishub conda environment.
-
-        Args:
-            script_content: Python script to execute
-
-        Returns:
-            Script output
-
-        Raises:
-            DataSourceError: If script execution fails
-        """
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
-            f.write(script_content)
-            script_path = f.name
-
-        try:
-            result = subprocess.run(
-                [
-                    "bash",
-                    "-c",
-                    f"source ~/miniconda3/etc/profile.d/conda.sh && "
-                    f"conda activate {self.conda_env} && "
-                    f"python {script_path}",
-                ],
-                capture_output=True,
-                text=True,
-                check=True,
-            )
-
-            return result.stdout
-
-        except subprocess.CalledProcessError as e:
-            raise DataSourceError(
-                f"Polaris script execution failed: {e.stderr}", source_type="polaris"
-            ) from e
-        finally:
-            # Clean up temporary script
-            Path(script_path).unlink()
 
     def download(self, source_config: Dict[str, Any], data_dir: Path) -> Optional[Path]:
         """
@@ -123,45 +74,22 @@ class PolarisDataSource(DataSource):
         benchmark_id = source_config["benchmark_id"]
         data_dir.mkdir(parents=True, exist_ok=True)
 
-        # Create script to download and save Polaris data
-        download_script = f"""
-import polaris as po
-import pandas as pd
-from pathlib import Path
-
-try:
-    # Load benchmark from Polaris Hub
-    benchmark = po.load_benchmark('{benchmark_id}')
-    train, _ = benchmark.get_train_test_split()
-    # Grab the test set with the targets included
-    test = benchmark._get_test_sets(hide_targets=False)['test']
-
-    # Convert to dataframes
-    df_train = train.as_dataframe()
-    df_test = test.as_dataframe()
-
-    # Save to data directory
-    data_dir = Path('{data_dir}')
-    df_train.to_csv(data_dir / 'polaris_train_data.csv', index=False)
-    df_test.to_csv(data_dir / 'polaris_test_data.csv', index=False)
-
-    print(f"SUCCESS: Downloaded train: {{len(df_train)}} samples")
-    print(f"SUCCESS: Downloaded test: {{len(df_test)}} samples")
-    print(f"SUCCESS: Saved to {{data_dir}}")
-    
-except Exception as e:
-    print(f"ERROR: {{str(e)}}")
-    raise
-"""
-
         try:
-            output = self._run_polaris_script(download_script)
+            benchmark = po.load_benchmark(benchmark_id)
+            train, _ = benchmark.get_train_test_split()
+            # Grab the test set with the targets included
+            test = benchmark._get_test_sets(hide_targets=False)["test"]
 
-            # Check if download was successful
-            if "SUCCESS:" not in output:
-                raise DataSourceError(f"Polaris download failed: {output}", source_type="polaris")
+            # Convert to dataframes
+            df_train = train.as_dataframe()
+            df_test = test.as_dataframe()
+
+            # Save to data directory
+            df_train.to_csv(data_dir / "polaris_train_data.csv", index=False)
+            df_test.to_csv(data_dir / "polaris_test_data.csv", index=False)
 
             logger.info(f"Successfully downloaded Polaris benchmark '{benchmark_id}' to {data_dir}")
+
             return data_dir
 
         except Exception as e:
@@ -295,32 +223,30 @@ except Exception as e:
         """
         try:
             # Convert the table element to HTML string and use pandas to parse it
-            table_html = str(table)            
+            table_html = str(table)
             # Use pandas read_html to parse the table
             dfs = pd.read_html(table_html, header=0)
-            
+
             if not dfs:
                 logger.warning(f"No tables found in HTML for {benchmark_id}")
                 return None
-                
+
             df = dfs[0]  # Take the first (and likely only) table
-            
+
             if df.empty:
                 logger.warning(f"Empty dataframe extracted for {benchmark_id}")
                 return None
-                
+
             logger.info(f"Successfully extracted table with shape {df.shape} for {benchmark_id}")
             logger.debug(f"Columns: {list(df.columns)}")
             logger.debug(f"First few rows:\n{df.head()}")
-            
+
             # Convert to standard leaderboard format
             return self._normalize_polaris_leaderboard(df, benchmark_id)
 
         except Exception as e:
             logger.warning(f"Failed to extract table data for {benchmark_id}: {e}")
             return None
-
-
 
     def _normalize_polaris_leaderboard(self, df: pd.DataFrame, benchmark_id: str) -> pd.DataFrame:
         """
@@ -339,19 +265,20 @@ except Exception as e:
         # Get the main metric from the benchmark
         try:
             import polaris as po
+
             benchmark = po.load_benchmark(benchmark_id)
             main_metric_label = benchmark.main_metric.label
             logger.debug(f"Main metric for {benchmark_id}: {main_metric_label}")
         except Exception as e:
             raise DataSourceError(
                 f"Could not load benchmark {benchmark_id} to get main metric: {e}",
-                source_type="polaris"
+                source_type="polaris",
             ) from e
 
         # Find the team/model name column (usually contains "name" or "model")
         name_col = None
         # Remove any columns that match the pattern "Unnamed"
-        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+        df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
         for col in df.columns:
             col_lower = str(col).lower()
             if any(keyword in col_lower for keyword in ["name", "model"]):
@@ -362,7 +289,7 @@ except Exception as e:
             raise DataSourceError(
                 f"Could not identify name/model column for {benchmark_id}. "
                 f"Available columns: {list(df.columns)}",
-                source_type="polaris"
+                source_type="polaris",
             )
 
         # Find the score column using the main metric
@@ -373,7 +300,7 @@ except Exception as e:
                 if str(col).strip() == main_metric_label:
                     score_col = col
                     break
-            
+
             # If no exact match, look for partial match
             if score_col is None:
                 for col in df.columns:
@@ -386,11 +313,22 @@ except Exception as e:
             for col in df.columns:
                 col_lower = str(col).lower()
                 # Skip obvious non-score columns
-                if any(skip in col_lower for skip in ["#", "rank", "position", "name", "model", "reference", "contributor"]):
+                if any(
+                    skip in col_lower
+                    for skip in [
+                        "#",
+                        "rank",
+                        "position",
+                        "name",
+                        "model",
+                        "reference",
+                        "contributor",
+                    ]
+                ):
                     continue
                 # Check if this column contains numeric data
                 try:
-                    pd.to_numeric(df[col], errors='coerce')
+                    pd.to_numeric(df[col], errors="coerce")
                     score_col = col
                     break
                 except:
@@ -400,9 +338,9 @@ except Exception as e:
             raise DataSourceError(
                 f"Could not identify score column for {benchmark_id}. "
                 f"Main metric: '{main_metric_label}', Available columns: {list(df.columns)}",
-                source_type="polaris"
+                source_type="polaris",
             )
-        
+
         logger.debug(f"Using score column '{score_col}' for {benchmark_id}")
         # Convert to numeric, fail if we can't parse the scores properly
         try:
@@ -410,46 +348,48 @@ except Exception as e:
         except (ValueError, TypeError) as e:
             raise DataSourceError(
                 f"Could not parse scores from column '{score_col}' for {benchmark_id}: {e}",
-                source_type="polaris"
+                source_type="polaris",
             ) from e
 
         # Create normalized leaderboard
         team_names = df[name_col].astype(str)
-        
+
         # Validate that we actually extracted meaningful team names
         valid_names = team_names[
-            (team_names.str.strip() != "") & 
-            (team_names.str.lower() != "nan") &
-            (~team_names.isna())
+            (team_names.str.strip() != "")
+            & (team_names.str.lower() != "nan")
+            & (~team_names.isna())
         ]
-        
+
         if len(valid_names) == 0:
             raise DataSourceError(
                 f"No valid team names found for {benchmark_id}. "
                 f"All team names are empty, 'nan', or null. "
                 f"Raw name column '{name_col}' values: {team_names.tolist()[:10]}",
-                source_type="polaris"
+                source_type="polaris",
             )
-        
+
         if len(valid_names) < len(team_names) * 0.5:  # More than 50% invalid names
             raise DataSourceError(
                 f"Most team names are invalid for {benchmark_id}. "
                 f"Only {len(valid_names)}/{len(team_names)} names are valid. "
                 f"Raw name column '{name_col}' values: {team_names.tolist()[:10]}",
-                source_type="polaris"
+                source_type="polaris",
             )
 
-        normalized = pd.DataFrame({
-            "teamName": team_names,
-            "score": scores,
-            "submissionDate": "2024-01-01",  # Placeholder date
-        })
+        normalized = pd.DataFrame(
+            {
+                "teamName": team_names,
+                "score": scores,
+                "submissionDate": "2024-01-01",  # Placeholder date
+            }
+        )
 
         # Remove any empty/invalid team names
         normalized = normalized[
-            (normalized["teamName"].str.strip() != "") & 
-            (normalized["teamName"].str.lower() != "nan") &
-            (~normalized["teamName"].isna())
+            (normalized["teamName"].str.strip() != "")
+            & (normalized["teamName"].str.lower() != "nan")
+            & (~normalized["teamName"].isna())
         ]
 
         logger.info(f"Normalized {len(normalized)} leaderboard entries for {benchmark_id}")
