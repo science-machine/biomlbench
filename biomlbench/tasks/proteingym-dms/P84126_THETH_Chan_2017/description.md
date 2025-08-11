@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein TIM Barrell (T. thermophilus) from the organism Thermus thermophilus. This protein has Uniprot ID: P84126_THETH. 
+single-substitution variants for the protein TIM Barrell (T. thermophilus) from the organism Thermus thermophilus. This protein has Uniprot ID: P84126_THETH. 
 
 The DMS selection assay was described as follows: 
 

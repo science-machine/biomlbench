@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein GAL4 from the organism Saccharomyces cerevisiae. This protein has Uniprot ID: GAL4_YEAST. 
+single-substitution variants for the protein GAL4 from the organism Saccharomyces cerevisiae. This protein has Uniprot ID: GAL4_YEAST. 
 
 The DMS selection assay was described as follows: 
 

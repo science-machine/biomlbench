@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein LGK (levoglucosan kinase) from the organism Lipomyces starkeyi. This protein has Uniprot ID: LGK_LIPST. 
+single-substitution variants for the protein LGK (levoglucosan kinase) from the organism Lipomyces starkeyi. This protein has Uniprot ID: LGK_LIPST. 
 
 The DMS selection assay was described as follows: 
 

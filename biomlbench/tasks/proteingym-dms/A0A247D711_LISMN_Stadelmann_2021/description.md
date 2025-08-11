@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Anti-CRISPR protein AcrIIA4 from the organism Listeria monocytogenes. This protein has Uniprot ID: A0A247D711_LISMN. 
+single-substitution variants for the protein Anti-CRISPR protein AcrIIA4 from the organism Listeria monocytogenes. This protein has Uniprot ID: A0A247D711_LISMN. 
 
 The DMS selection assay was described as follows: 
 

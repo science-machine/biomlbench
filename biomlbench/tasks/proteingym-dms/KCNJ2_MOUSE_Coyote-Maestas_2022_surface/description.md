@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Kir2.1 from the organism Mus musculus. This protein has Uniprot ID: KCNJ2_MOUSE. 
+single-substitution variants for the protein Kir2.1 from the organism Mus musculus. This protein has Uniprot ID: KCNJ2_MOUSE. 
 
 The DMS selection assay was described as follows: 
 

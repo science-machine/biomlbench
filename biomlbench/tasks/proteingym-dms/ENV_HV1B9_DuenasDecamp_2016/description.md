@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein HIV env from the organism Human immunodeficiency virus type 1 group M subtype B (strain 89.6) (HIV-1). This protein has Uniprot ID: ENV_HV1B9. 
+single-substitution variants for the protein HIV env from the organism Human immunodeficiency virus type 1 group M subtype B (strain 89.6) (HIV-1). This protein has Uniprot ID: ENV_HV1B9. 
 
 The DMS selection assay was described as follows: 
 

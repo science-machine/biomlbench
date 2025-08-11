@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein pilin (PilE) from the organism Neisseria meningitidis. This protein has Uniprot ID: A0A1I9GEU1_NEIME. 
+single-substitution variants for the protein pilin (PilE) from the organism Neisseria meningitidis. This protein has Uniprot ID: A0A1I9GEU1_NEIME. 
 
 The DMS selection assay was described as follows: 
 

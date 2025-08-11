@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Picornavirus capsid from the organism Coxsackievirus B3 (strain Nancy). This protein has Uniprot ID: POLG_CXB3N. 
+single-substitution variants for the protein Picornavirus capsid from the organism Coxsackievirus B3 (strain Nancy). This protein has Uniprot ID: POLG_CXB3N. 
 
 The DMS selection assay was described as follows: 
 

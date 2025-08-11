@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein APH(3’)II, neo from the organism Klebsiella pneumoniae. This protein has Uniprot ID: KKA2_KLEPN. 
+single-substitution variants for the protein APH(3’)II, neo from the organism Klebsiella pneumoniae. This protein has Uniprot ID: KKA2_KLEPN. 
 
 The DMS selection assay was described as follows: 
 

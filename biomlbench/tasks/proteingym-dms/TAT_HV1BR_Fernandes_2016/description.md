@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein HIV tat from the organism Human immunodeficiency virus type 1 group M subtype B (isolate BRU/LAI) (HIV-1). This protein has Uniprot ID: TAT_HV1BR. 
+single-substitution variants for the protein HIV tat from the organism Human immunodeficiency virus type 1 group M subtype B (isolate BRU/LAI) (HIV-1). This protein has Uniprot ID: TAT_HV1BR. 
 
 The DMS selection assay was described as follows: 
 

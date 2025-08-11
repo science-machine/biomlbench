@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein NS5A from the organism Hepatitis C virus genotype 2a (isolate JFH-1) (HCV). This protein has Uniprot ID: POLG_HCVJF. 
+single-substitution variants for the protein NS5A from the organism Hepatitis C virus genotype 2a (isolate JFH-1) (HCV). This protein has Uniprot ID: POLG_HCVJF. 
 
 The DMS selection assay was described as follows: 
 

@@ -5,7 +5,7 @@
 
 This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
 protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
-only single-substitution variants for the protein Scaffolding protein from the organism Salmonella phage P22 (Bacteriophage P22). This protein has Uniprot ID: VG08_BPP22. 
+single-substitution variants for the protein Scaffolding protein from the organism Salmonella phage P22 (Bacteriophage P22). This protein has Uniprot ID: VG08_BPP22. 
 
 The DMS selection assay was described as follows: 
 
