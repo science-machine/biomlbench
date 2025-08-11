@@ -231,7 +231,7 @@ def ingest_substitutions_task(
     ## Files
 
     - `data.csv`: File with sequences and fitness scores
-    - `sample_submission.csv`: Example submission format with ID column and fitness score column
+    - `sample_submission.csv`: Example submission format with ID column and the three fitness score columns
 
     ## Evaluation
 
@@ -513,7 +513,7 @@ def ingest_indels_task(
 
     ## Evaluation
 
-    Your model will be evaluated on the Spearman correlation between the predicted fitness scores and the true fitness scores for
+    Your model will be evaluated using the Spearman correlation between the predicted fitness scores and the true fitness scores for
     each of the sequences in `data.csv`.
     """
     )

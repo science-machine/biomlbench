@@ -92,7 +92,7 @@ The first row of the CSV file contains the wild-type sequence in the `sequence` 
 ## Files
 
 - `data.csv`: File with sequences and fitness scores
-- `sample_submission.csv`: Example submission format with ID column and fitness score column
+- `sample_submission.csv`: Example submission format with ID column and the three fitness score columns
 
 ## Evaluation
 
