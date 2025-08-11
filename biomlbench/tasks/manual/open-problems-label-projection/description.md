@@ -1,37 +1,56 @@
 # Label Projection Task
 
 ## Overview
-Label projection is a fundamental task in single-cell genomics where the goal is to automatically annotate cell types in new datasets based on existing reference atlases. This task evaluates methods for transferring cell type labels from a well-annotated reference dataset to an unlabeled query dataset.
+Label projection: Automated cell type annotation from rich, labeled reference data
 
 ## Task Description
-Given a training dataset with cell type annotations and an unlabeled test dataset, methods must predict the cell type for each cell in the test set. This is a multi-class classification problem that requires:
+A major challenge for integrating single cell datasets is creating matching
+cell type annotations for each cell. One of the most common strategies for
+annotating cell types is referred to as
+["cluster-then-annotate"](https://www.nature.com/articles/s41576-018-0088-9)
+whereby cells are aggregated into clusters based on feature similarity and
+then manually characterized based on differential gene expression or previously
+identified marker genes. Recently, methods have emerged to build on this
+strategy and annotate cells using
+[known marker genes](https://www.nature.com/articles/s41592-019-0535-3).
+However, these strategies pose a difficulty for integrating atlas-scale
+datasets as the particular annotations may not match.
 
-1. Learning cell type signatures from the reference data
-2. Handling batch effects between datasets
-3. Projecting labels accurately to new cells
+To ensure that the cell type labels in newly generated datasets match
+existing reference datasets, some methods align cells to a previously
+annotated [reference dataset](https://academic.oup.com/bioinformatics/article/35/22/4688/54802990)
+and then _project_ labels from the reference to the new dataset.
 
-## Dataset: Mouse Pancreas Atlas
-We use the **Mouse Pancreas Atlas** from the CellxGene Census, which provides a comprehensive single-cell atlas of mouse pancreatic cells. This dataset includes:
+Here, we compare methods for annotation based on a reference dataset.
+The datasets consist of two or more samples of single cell profiles that
+have been manually annotated with matching labels. These datasets are then
+split into training and test batches, and the task of each method is to
+train a cell type classifer on the training set and project those labels
+onto the test set.
 
-- **Training set**: 292,354 cells with known cell type labels
-- **Test set**: 9,442 cells requiring label prediction
-- **Cell types**: Multiple pancreatic cell types including:
-  - Type A, B, D pancreatic cells (alpha, beta, delta cells)
-  - Pancreatic PP cells
-  - Pancreatic ductal cells
-  - Pancreatic stellate cells
-  - Endothelial cells
-  - Hematopoietic cells
-  - And others
+## Dataset: Diabetic Kidney Disease (DKD)
+We use the **Diabetic Kidney Disease** dataset from the CellxGene Census, which provides comprehensive single-cell data from human kidney cortex samples. This dataset includes cells from donors with and without diabetic kidney disease, offering insights into disease-associated cellular changes.
+
+### Dataset Overview:
+- **Reference**: Wilson et al., 2022 - "Multimodal single cell sequencing implicates chromatin accessibility and genetic background in diabetic kidney disease progression"
+- **Tissue**: Human kidney cortex
+- **Condition**: Samples from donors with and without diabetic kidney disease
+- **Technology**: Single nucleus RNA sequencing (snRNA-seq)
+- **Cell types**: Multiple kidney cell types including:
+  - Proximal tubule cells (including injured PT_VCAM1+ cells)
+  - Distal tubule cells
+  - Collecting duct cells
+  - Glomerular cells (podocytes, endothelial, mesangial)
+  - Immune cells
+  - Stromal cells
 
 ## Data Format
 All data is provided in H5AD (AnnData) format with the following structure:
 
 ### Training Data (`train.h5ad`)
-- **Dimensions**: 292,354 cells × 24,923 genes
 - **obs**: 
   - `label`: Cell type annotations
-  - `batch`: Batch/study information
+  - `batch`: Batch/sample information
 - **var**: Gene metadata (feature_id, feature_name, hvg, hvg_score)
 - **layers**:
   - `counts`: Raw count data
@@ -40,8 +59,7 @@ All data is provided in H5AD (AnnData) format with the following structure:
   - `X_pca`: Pre-computed PCA embeddings
 
 ### Test Data (`test.h5ad`)
-- **Dimensions**: 9,442 cells × 24,923 genes
-- **Structure**: Same as training data but without `label` column
+- Same structure as training data but without `label` column
 - Methods must predict labels for these cells
 
 ## Evaluation Metric
@@ -91,5 +109,5 @@ The task includes control methods for comparison:
 ## Data Access
 Data is hosted on the OpenProblems S3 bucket:
 ```
-s3://openproblems-data/resources/task_label_projection/datasets/cellxgene_census/mouse_pancreas_atlas/log_cp10k/
+s3://openproblems-data/resources/task_label_projection/datasets/cellxgene_census/dkd/log_cp10k/
 ``` 

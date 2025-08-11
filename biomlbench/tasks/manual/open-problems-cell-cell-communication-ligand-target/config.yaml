@@ -1,0 +1,35 @@
+id: manual/open-problems-cell-cell-communication-ligand-target
+name: "OpenProblems – Cell-Cell Communication (Ligand-Target)"
+description: biomlbench/tasks/manual/open-problems-cell-cell-communication-ligand-target/description.md
+
+dataset:
+  answers: manual/open-problems-cell-cell-communication-ligand-target/prepared/private/answers.csv
+  sample_submission: manual/open-problems-cell-cell-communication-ligand-target/prepared/public/sample_submission.csv
+
+data_source:
+  type: manual
+
+grader:
+  name: odds-ratio
+  grade_fn: biomlbench.tasks.manual.open-problems-cell-cell-communication-ligand-target.grade:grade
+
+preparer: biomlbench.tasks.manual.open-problems-cell-cell-communication-ligand-target.prepare:prepare
+
+# Biomedical metadata
+task_type: single_cell_genomics
+domain: cell_communication
+difficulty: hard
+
+biomedical_metadata:
+  modality: "single_cell_rna_seq"
+  data_type: "cell_cell_communication"
+  clinical_relevance: "Understanding intercellular signaling in tumor microenvironment"
+  experimental_design: "Single-cell RNA-seq of triple-negative breast cancer samples"
+  organism: "human"
+  tissue: "breast_cancer"
+  disease: "triple_negative_breast_cancer"
+
+compute_requirements:
+  recommended_gpu_memory_gb: 16
+  estimated_runtime_minutes: 120
+  max_dataset_size_gb: 5 

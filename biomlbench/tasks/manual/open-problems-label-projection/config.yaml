@@ -1,0 +1,37 @@
+id: manual/open-problems-label-projection
+name: "OpenProblems – Label Projection"
+description: biomlbench/tasks/manual/open-problems-label-projection/description.md
+
+dataset:
+  answers: manual/open-problems-label-projection/prepared/private/answers.csv
+  sample_submission: manual/open-problems-label-projection/prepared/public/sample_submission.csv
+
+data_source:
+  type: manual
+
+grader:
+  name: f1-weighted
+  grade_fn: biomlbench.tasks.manual.open-problems-label-projection.grade:grade
+
+preparer: biomlbench.tasks.manual.open-problems-label-projection.prepare:prepare
+
+# Biomedical metadata
+task_type: single_cell_genomics
+domain: cell_type_annotation
+difficulty: medium
+
+biomedical_metadata:
+  modality: "single_cell_rna_seq"
+  data_type: "cell_type_classification"
+  clinical_relevance: "disease_progression"
+  experimental_design: "reference_based_annotation"
+  organism: "human"
+  tissue: "kidney_cortex"
+  disease: "diabetic_kidney_disease"
+  num_cell_types: 29
+  num_genes: 24923
+
+compute_requirements:
+  recommended_gpu_memory_gb: 16
+  estimated_runtime_minutes: 60
+  max_dataset_size_gb: 10 
