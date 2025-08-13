@@ -143,13 +143,60 @@ def run_in_container(
         time_start = time.monotonic()
         container.start()
         logger.info("Waiting for grading server to start...")
-        exit_code, _ = container.exec_run(
+        
+        # Add more verbose health check with actual output
+        logger.info("Running health check...")
+        exit_code, output = container.exec_run(
             'timeout 240s sh -c "while ! curl -s http://localhost:5000/health > /dev/null; do sleep 1; done"'
         )
+        
         if exit_code != 0:
+            # Get more detailed error information
+            logger.error(f"Health check failed with exit code {exit_code}")
+            
+            # Try to get container logs
+            try:
+                container_logs = container.logs(stdout=True, stderr=True, tail=50).decode('utf-8')
+                logger.error("Container logs (last 50 lines):")
+                for line in container_logs.split('\n'):
+                    if line.strip():
+                        logger.error(f"[Container] {line}")
+            except Exception as log_error:
+                logger.error(f"Could not retrieve container logs: {log_error}")
+            
+            # Try to check if entrypoint.sh is running
+            try:
+                ps_exit, ps_output = container.exec_run("ps aux")
+                if ps_exit == 0:
+                    logger.error("Running processes in container:")
+                    for line in ps_output.decode('utf-8').split('\n'):
+                        if line.strip():
+                            logger.error(f"[Process] {line}")
+                else:
+                    logger.error("Could not get process list from container")
+            except Exception as ps_error:
+                logger.error(f"Could not get process info: {ps_error}")
+            
+            # Try to check if entrypoint log exists
+            try:
+                log_check_exit, log_check_output = container.exec_run("ls -la /home/logs/ || echo 'No logs dir'")
+                logger.error("Contents of /home/logs/:")
+                logger.error(log_check_output.decode('utf-8'))
+                
+                # Try to read entrypoint log if it exists
+                entrypoint_log_exit, entrypoint_log_output = container.exec_run("tail -50 /home/logs/entrypoint.log 2>/dev/null || echo 'No entrypoint.log'")
+                if entrypoint_log_exit == 0:
+                    logger.error("Entrypoint log (last 50 lines):")
+                    for line in entrypoint_log_output.decode('utf-8').split('\n'):
+                        if line.strip():
+                            logger.error(f"[Entrypoint] {line}")
+            except Exception as entrypoint_error:
+                logger.error(f"Could not check entrypoint log: {entrypoint_error}")
+            
             raise RuntimeError(
-                "The grading server failed to start within 240 seconds. This is likely due to an error in `entrypoint.sh`; check the logs."
+                "The grading server failed to start within 240 seconds. This is likely due to an error in `entrypoint.sh`; check the logs above for details."
             )
+            
         execute_agent(container, agent, logger)
         save_output(container, run_dir, container_config)
         time_end = time.monotonic()

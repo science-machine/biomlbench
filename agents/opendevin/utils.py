@@ -23,4 +23,4 @@ def get_gpu_generation() -> Optional[str]:
     if not generation:
         return None
 
-    return ", ".join([info.strip() for info in generation])
+    return ", ".join([info.strip() for info in generation]) 

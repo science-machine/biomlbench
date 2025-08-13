@@ -1,75 +1,51 @@
 #!/usr/bin/env python3
 """
-Wrapper for AutoBioML that configures it to run without Docker.
-
-This wrapper patches AutoGen's DockerCommandLineCodeExecutor to use 
-LocalCommandLineCodeExecutor instead, avoiding Docker-in-Docker issues.
+Wrapper script to run AutoBioML with local code execution instead of Docker.
+This monkey-patches AutoGen's DockerCommandLineCodeExecutor to use LocalCommandLineCodeExecutor.
 """
 
-import os
 import sys
-from pathlib import Path
+import os
 
-# Set environment variables to disable Docker
-os.environ["AUTOBIOML_NO_DOCKER"] = "1"
-
-# Track if patching was successful
-patching_successful = False
-
-# Monkey-patch the autogen docker executor to use local executor instead
-try:
-    # Import the official LocalCommandLineCodeExecutor
-    from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
-    
-    # Monkey-patch the Docker executor to use Local executor
-    import autogen_ext.code_executors.docker as docker_module
-    
-    # Store the original class for reference
-    _OriginalDockerExecutor = docker_module.DockerCommandLineCodeExecutor
-    
-    # Replace with LocalCommandLineCodeExecutor
-    docker_module.DockerCommandLineCodeExecutor = LocalCommandLineCodeExecutor
-    
-    # Also patch it in the main autogen_ext.code_executors namespace if it exists there
+def patch_docker_executor():
+    """Monkey-patch AutoGen's Docker executor to use Local executor instead."""
     try:
-        import autogen_ext.code_executors as executors
-        executors.DockerCommandLineCodeExecutor = LocalCommandLineCodeExecutor
-    except:
-        pass
-    
-    print("✓ Successfully patched Docker executor to use Local executor")
-    patching_successful = True
-    
-except ImportError as e:
-    print(f"⚠ Could not import autogen_ext modules: {e}")
-    # Fallback: try the old autogen import paths
-    try:
-        from autogen.coding import LocalCommandLineCodeExecutor
+        # Import the modules we need to patch
+        from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
         import autogen_ext.code_executors.docker as docker_module
-        docker_module.DockerCommandLineCodeExecutor = LocalCommandLineCodeExecutor
-        print("✓ Successfully patched using legacy autogen imports")
-        patching_successful = True
-    except Exception as e2:
-        print(f"✗ Failed to patch with legacy imports: {e2}")
-except Exception as e:
-    print(f"✗ Unexpected error during patching: {e}")
-
-# If patching failed, we need to inform the user
-if not patching_successful:
-    print("\n⚠ WARNING: Could not patch Docker executor to use Local executor.")
-    print("AutoBioML may attempt to use Docker-in-Docker which will likely fail.")
-    print("Please ensure autogen-ext is properly installed in the environment.")
-    print("\nContinuing anyway...\n")
-
-# Now run autobioml with the provided arguments
-if __name__ == "__main__":
-    try:
-        # Pass all arguments to autobioml
-        from autobioml.cli import main
-        main()
+        
+        # Create a wrapper class that filters out Docker-specific parameters
+        class FilteredLocalExecutor(LocalCommandLineCodeExecutor):
+            def __init__(self, **kwargs):
+                # Filter out Docker-specific parameters
+                docker_specific_params = {
+                    'image', 'container_name', 'auto_remove', 'stop_container', 
+                    'device_requests', 'volumes', 'environment', 'network_mode',
+                    'ports', 'privileged', 'working_dir', 'user'
+                }
+                filtered_kwargs = {k: v for k, v in kwargs.items() if k not in docker_specific_params}
+                super().__init__(**filtered_kwargs)
+        
+        # Monkey-patch the DockerCommandLineCodeExecutor
+        original_docker_executor = getattr(docker_module, 'DockerCommandLineCodeExecutor', None)
+        
+        if original_docker_executor:
+            # Replace DockerCommandLineCodeExecutor with our filtered local executor
+            docker_module.DockerCommandLineCodeExecutor = FilteredLocalExecutor
+            print("✓ Successfully patched Docker executor to use Local executor")
+        else:
+            print("⚠ DockerCommandLineCodeExecutor not found - continuing without patch")
+            
     except Exception as e:
-        print(f"\n✗ Error running AutoBioML: {e}")
-        if not patching_successful:
-            print("\nThis may be due to the Docker executor patching failure.")
-            print("Consider checking the autogen installation.")
-        sys.exit(1) 
+        print(f"⚠ Failed to patch Docker executor: {e}")
+        print("Continuing with original AutoBioML configuration...")
+
+if __name__ == "__main__":
+    # Apply the patch before importing AutoBioML
+    patch_docker_executor()
+    
+    # Now import and run AutoBioML
+    from autobioml.cli import autobioml
+    
+    # Run AutoBioML with the provided arguments
+    autobioml() 

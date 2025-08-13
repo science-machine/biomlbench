@@ -34,4 +34,4 @@ ADDITIONAL NOTES
 - You must write all of the code necessary to produce the `submission.csv` in `${workspace}`. You must not write to any other location.
 - You must use all the time available to you, unless you've achieved the maximum possible score for the competition. Do not stop until you've reached the maximum possible score.
 """
-)
+) 

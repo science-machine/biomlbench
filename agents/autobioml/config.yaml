@@ -3,50 +3,10 @@ autobioml:
   dockerfile: autobioml/Dockerfile
   kwargs_type: argparse
   kwargs:
-    model: gpt-4o
-    max_iterations: 25
-    enable_public_evaluation: true
-  env_vars:
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-    ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-    PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
-
-  
-autobioml/claude:
-  start: autobioml/start.sh
-  dockerfile: autobioml/Dockerfile
-  kwargs_type: argparse
-  kwargs:
-    model: claude-3-5-sonnet-20240620
-    max_iterations: 25
-    enable_public_evaluation: true
-  env_vars:
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-    ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-    PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
-
-autobioml/dev:
-  start: autobioml/start.sh
-  dockerfile: autobioml/Dockerfile
-  kwargs_type: argparse
-  kwargs:
-    model: gpt-4o
-    max_iterations: 8
+    model: gpt-4.1
+    max_iterations: 50
     enable_public_evaluation: false
   env_vars:
     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
-
-autobioml/gpt-4.1:
-  start: autobioml/start.sh
-  dockerfile: autobioml/Dockerfile
-  kwargs_type: argparse
-  kwargs:
-    model: gpt-4.0-2024-08-06
-    max_iterations: 25
-    enable_public_evaluation: true
-  env_vars:
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-    ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-    PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }} 

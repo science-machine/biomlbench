@@ -3,15 +3,19 @@ import asyncio
 import json
 import os
 import random
+import sys
 from pathlib import Path
 from typing import Iterable
 
-from opendevin.controller.state.state import State  # type: ignore
-from opendevin.core.config import load_app_config  # type: ignore
-from opendevin.core.main import create_runtime, run_controller  # type: ignore
-from opendevin.events.action import CmdRunAction, IPythonRunCellAction  # type: ignore
-from opendevin.events.event import Event  # type: ignore
-from opendevin.events.observation import (  # type: ignore
+# Add OpenHands to Python path
+sys.path.insert(0, '/home/agent/OpenHands')
+
+from openhands.controller.state.state import State  # type: ignore
+from openhands.core.config import load_app_config  # type: ignore
+from openhands.core.main import create_runtime, run_controller  # type: ignore
+from openhands.events.action import CmdRunAction, IPythonRunCellAction  # type: ignore
+from openhands.events.event import Event  # type: ignore
+from openhands.events.observation import (  # type: ignore
     CmdOutputObservation,
     IPythonRunCellObservation,
 )
@@ -47,7 +51,7 @@ async def on_event(event: Event):
 
 
 async def run(instructions: str) -> State:
-    config = load_app_config()
+    config = load_app_config("/home/agent/config.toml")
     runtime = await create_runtime(config)
     sid = random.randint(10_000, 100_000)
     event_stream = runtime.event_stream
@@ -161,4 +165,4 @@ if __name__ == "__main__":
     with open("/home/full_instructions.txt", "r") as file:
         instructions = file.read()
 
-    asyncio.run(run(instructions))
+    asyncio.run(run(instructions)) 

@@ -58,7 +58,7 @@ echo "" >> $INSTRUCTIONS_FILE
 envsubst < /home/additional_notes.txt >> $INSTRUCTIONS_FILE
 
 # --------- Prepare necessary files for the agent workspace
-task="mlebench"
+task="biomlbench"
 mlab_env_dir="$AGENT_DIR/MLAgentBench/MLAgentBench/benchmarks/$task/env"  # Everything we want to give to the agent, put here
 workdir="workdir"  # contents of $mlab_env_dir later get copied by MLAB into this workdir where the agent operates
 logdir="$AGENT_DIR/logs" && mkdir -p $logdir
@@ -75,6 +75,21 @@ cp $INSTRUCTIONS_FILE $AGENT_DIR/MLAgentBench/MLAgentBench/benchmarks/$task/scri
 cp $INSTRUCTIONS_FILE $mlab_env_dir/instructions.txt
 # Give the agent access to the validation tool
 cp $VALIDATION_SCRIPT $mlab_env_dir/validate_submission.sh
+
+# --------- Create API key files for MLAgentBench
+
+# MLAgentBench expects API keys in files, but we receive them as environment variables
+# Create the files MLAgentBench expects from the environment variables
+# OpenAI format: organization:APIkey (we'll use a placeholder organization)
+if [ ! -z "$OPENAI_API_KEY" ]; then
+    echo "org:$OPENAI_API_KEY" > openai_api_key.txt
+    echo "Created openai_api_key.txt from environment variable in correct format (org:key)"
+fi
+
+if [ ! -z "$ANTHROPIC_API_KEY" ]; then
+    echo "$ANTHROPIC_API_KEY" > claude_api_key.txt  
+    echo "Created claude_api_key.txt from environment variable"
+fi
 
 # --------- MLAB steps
 

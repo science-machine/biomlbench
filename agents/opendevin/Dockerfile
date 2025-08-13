@@ -1,53 +1,58 @@
-FROM --platform=linux/amd64 biomlbench-env
+FROM biomlbench-env
 
-# Do not modify the following block of arg-env pairs. The evaluation infrastructure will
-# periodically download the contents of these directories for logging purposes.
-
-# Where the agent should write its submission
-ARG SUBMISSION_DIR=/home/submission
+# where to put submission, will be extracted
+ARG SUBMISSION_DIR
 ENV SUBMISSION_DIR=${SUBMISSION_DIR}
-
-# Where the agent's logs should be written
-ARG LOGS_DIR=/home/logs
+# where to put any logs, will be extracted
+ARG LOGS_DIR
 ENV LOGS_DIR=${LOGS_DIR}
-
-# Where the agent should write its code
-ARG CODE_DIR=/home/code
+# where to put any code, will be extracted
+ARG CODE_DIR
 ENV CODE_DIR=${CODE_DIR}
-
-# Where the agent code should exist
-ARG AGENT_DIR=/home/agent
+# where to put any other agent-specific files, will not be necessarily extracted
+ARG AGENT_DIR
 ENV AGENT_DIR=${AGENT_DIR}
 
+RUN mkdir -p ${LOGS_DIR} ${AGENT_DIR} ${CODE_DIR} ${SUBMISSION_DIR}
+
 ARG CONDA_ENV_NAME=agent
-ARG PYTHON_VERSION=3.11
-ARG OD_VERSION=v2.1.0
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN mkdir -p ${LOGS_DIR} ${AGENT_DIR} ${CODE_DIR} ${SUBMISSION_DIR} && \
-    curl -fsSL https://get.docker.com -o /tmp/get-docker.sh && \
+# Install Docker and system dependencies needed for OpenHands
+RUN curl -fsSL https://get.docker.com -o /tmp/get-docker.sh && \
     chmod 700 /tmp/get-docker.sh && \
     /tmp/get-docker.sh && \
-    sudo usermod -aG docker nonroot && \
-    git clone --branch ${OD_VERSION} --single-branch https://github.com/thesofakillers/OpenHands.git ${AGENT_DIR}
+    sudo usermod -aG docker nonroot
 
-WORKDIR ${AGENT_DIR}
+# Install additional system packages that OpenHands might need
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    nodejs \
+    npm \
+    && rm -rf /var/lib/apt/lists/*
 
-# Assumes that the `agent` conda env already exists, which is created in the `mlebench-env` base image.
-RUN conda install -y -n ${CONDA_ENV_NAME} -c conda-forge nodejs=18.17.1 && \
-    conda run -n ${CONDA_ENV_NAME} pip install poetry>=1.8 && \
-    conda run -n ${CONDA_ENV_NAME} poetry install && \
-    conda run -n ${CONDA_ENV_NAME} poetry add build && \
+# Copy requirements and install Python dependencies via pip (avoid conda TOS issues)
+COPY requirements.txt ${AGENT_DIR}/requirements.txt
+RUN conda run -n ${CONDA_ENV_NAME} pip install --upgrade pip && \
+    conda run -n ${CONDA_ENV_NAME} pip install -r ${AGENT_DIR}/requirements.txt --upgrade && \
     conda clean -afy
 
-COPY setup.py start.py templates.py utils.py start.sh build.sh ${AGENT_DIR}/
+# Copy the local OpenHands code (but don't install it as a package to avoid dependency conflicts)
+COPY ./ref/OpenHands ${AGENT_DIR}/OpenHands
+
+# Copy OpenDevin agent files (including additional_notes.txt)
+COPY setup.py start.py templates.py utils.py build.sh additional_notes.txt ${AGENT_DIR}/
+COPY start.sh ${AGENT_DIR}/
 COPY entrypoint.sh /agent_entrypoint.sh
 
-RUN chmod +x /agent_entrypoint.sh
+RUN chmod +x /agent_entrypoint.sh ${AGENT_DIR}/build.sh ${AGENT_DIR}/start.sh
 
-# Allow the agent to do `sudo /build.sh`, but restrict it from reading or editing the file.
-RUN echo "ALL ALL=NOPASSWD: ${AGENT_DIR}/build.sh" >> /etc/sudoers && \
-    chmod 711 ${AGENT_DIR}/build.sh
+# Configure passwordless sudo for the build script and conda commands
+RUN echo "nonroot ALL=(ALL) NOPASSWD: ${AGENT_DIR}/build.sh" >> /etc/sudoers && \
+    echo "ALL ALL=(ALL) NOPASSWD: ${AGENT_DIR}/build.sh" >> /etc/sudoers && \
+    echo "nonroot ALL=(ALL) NOPASSWD: /opt/conda/bin/conda" >> /etc/sudoers
 
 # run the agent's entrypoint script instead (which also runs root entrypoint)
 ENTRYPOINT ["/agent_entrypoint.sh"]

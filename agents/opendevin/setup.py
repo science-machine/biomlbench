@@ -46,4 +46,4 @@ with open("/home/instructions.txt", "r") as file:
 instructions = partial_instructions + additional_notes
 
 with open("/home/full_instructions.txt", "w") as file:
-    file.write(instructions.strip())
+    file.write(instructions.strip()) 

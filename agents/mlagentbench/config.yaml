@@ -7,9 +7,9 @@ mlagentbench:
   dockerfile: mlagentbench/Dockerfile
   kwargs_type: argparse
   kwargs: # Args for MLAgentBench.runner
-    llm-name: gpt-4o-2024-08-06
-    edit-script-llm-name: gpt-4o-2024-08-06
-    fast-llm-name: gpt-4o-2024-08-06
+    llm-name: gpt-5-2025-08-07
+    edit-script-llm-name: gpt-5-2025-08-07
+    fast-llm-name: gpt-5-2025-08-07
     max-steps: *step_count
     agent-max-steps: *step_count # Some MLAB agents have their own max-steps which is separate from the env max-steps; for ResearchAgent, these should be the same
     max-time: *time_limit

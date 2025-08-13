@@ -63,7 +63,6 @@ python ${AGENT_DIR}/autobioml_wrapper.py \
     model=${MODEL} \
     max_iterations=${MAX_ITERATIONS} \
     enable_public_evaluation=${ENABLE_PUBLIC_EVAL} \
-    docker.enabled=false \
     hydra.run.dir="${WORK_DIR}/outputs"
 
 # Check if AutoBioML succeeded

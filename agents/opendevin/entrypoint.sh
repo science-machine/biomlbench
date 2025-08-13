@@ -42,4 +42,4 @@ mkdir -p $AGENT_DIR
 touch $AGENT_DIR/entrypoint_done
 
 # wait for root entrypoint (a server), need this otherwise the container exits
-wait
+wait 

@@ -1,109 +1,84 @@
 #!/usr/bin/env python3
 """
-Adapter to convert BioML-bench tasks to AutoBioML format.
+Simple adapter to convert BioML-bench tasks to AutoBioML format.
+Works with the actual container structure.
 """
 
 import argparse
-import json
-import os
-import shutil
 import sys
 from pathlib import Path
 import yaml
 
 
 def read_instructions(data_dir: Path) -> str:
-    """Read task instructions from various possible locations."""
-    # Check for instructions.txt in the parent directory
-    instructions_file = data_dir.parent / "instructions.txt"
-    if instructions_file.exists():
-        return instructions_file.read_text()
-    
-    # Check for README or description files
-    for filename in ["README.md", "readme.md", "description.txt", "task_description.txt"]:
-        desc_file = data_dir / filename
-        if desc_file.exists():
-            return desc_file.read_text()
-    
-    return "Complete the biomedical machine learning task using the provided data."
-
-
-def detect_task_type(data_dir: Path) -> dict:
-    """Detect the task type and available data files."""
-    files = list(data_dir.glob("*"))
-    
-    # Common patterns for different task types
-    task_info = {
-        "has_csv": any(f.suffix == ".csv" for f in files),
-        "has_arrow": any(f.suffix == ".arrow" for f in files),
-        "has_h5ad": any(f.suffix == ".h5ad" for f in files),
-        "has_images": any(f.suffix in [".png", ".jpg", ".jpeg", ".tiff", ".dcm"] for f in files),
-        "files": [f.name for f in files if f.is_file()]
-    }
-    
-    # Detect specific task patterns
-    if any("methylation" in f.name.lower() or "betas" in f.name.lower() for f in files):
-        task_info["task_type"] = "epigenetic_clock"
-    elif task_info["has_h5ad"]:
-        task_info["task_type"] = "single_cell"
-    elif task_info["has_images"]:
-        task_info["task_type"] = "medical_imaging"
+    """Read task instructions from mounted data."""
+    # The main description file is description.md in the data directory
+    desc_file = data_dir / "description.md"
+    if desc_file.exists():
+        return desc_file.read_text()
     else:
-        task_info["task_type"] = "tabular_prediction"
-    
-    return task_info
+        raise FileNotFoundError(f"Description file not found in {data_dir}")
+
+
+def detect_output_format(data_dir: Path) -> str:
+    """Detect output format from sample submission file."""
+    for pattern in ["sample_submission.*", "submission.*"]:
+        sample_files = list(data_dir.glob(pattern))
+        if sample_files:
+            ext = sample_files[0].suffix.lower()
+            if ext == ".csv":
+                return "csv"
+            elif ext == ".h5ad":
+                return "h5ad"
+            elif ext in [".arrow", ".feather"]:
+                return "arrow"
+            else:
+                raise ValueError(f"Unsupported file format: {ext}")
+        else:
+            raise FileNotFoundError(f"Sample submission file not found in {data_dir}")
 
 
 def create_task_yaml(task_id: str, data_dir: Path, work_dir: Path) -> Path:
-    """Create a task.yaml file compatible with AutoBioML."""
+    """Create a simple task.yaml file."""
     
-    instructions = read_instructions(data_dir)
-    task_info = detect_task_type(data_dir)
+    # Read instructions from mounted data
+    description = read_instructions(data_dir)
     
-    # Extract evaluation metrics from instructions if possible
-    metrics = []
-    if "pearson" in instructions.lower() or "correlation" in instructions.lower():
-        metrics.append({
-            "name": "pearson_correlation",
-            "dataset": "test",
-            "threshold": 0.7
-        })
-    elif "accuracy" in instructions.lower():
-        metrics.append({
-            "name": "accuracy",
-            "dataset": "test",
-            "threshold": 0.8
-        })
-    elif "auc" in instructions.lower() or "roc" in instructions.lower():
-        metrics.append({
-            "name": "auc_roc",
-            "dataset": "test", 
-            "threshold": 0.8
-        })
-    else:
-        # Default metric
-        metrics.append({
-            "name": "custom_metric",
-            "dataset": "test",
-            "threshold": 0.5
-        })
+    # Get list of data files
+    files = [f.name for f in data_dir.glob("*") if f.is_file()]
     
-    # Create task configuration
+    # Detect output format
+    output_format = detect_output_format(data_dir)
+    
+    # Create simple task configuration
+    # Use YAML literal scalar (|) to preserve formatting and avoid parsing issues
     task_config = {
-        "task_id": task_id,
+        "name": task_id.replace("/", "_").replace("-", "_"),
         "display_name": f"BioML-bench Task: {task_id}",
-        "version": "1.0.0",
-        "description": instructions[:500] + "..." if len(instructions) > 500 else instructions,
-        "data_dir": str(data_dir),
-        "evaluation": {
-            "metrics": metrics,
-            "public_test_percentage": 0.5
+        "version": "1.0",
+        "task_description": description,  # This will be properly escaped by YAML
+        "project_goal": "Complete the biomedical ML task",
+        "available_data": {
+            "agent_data": [
+                {"path": f, "description": f"Data file: {f}"}
+                for f in files
+            ],
+            "eval_data": []
         },
-        "metadata": {
-            "domain": "biomedical",
-            "task_type": task_info["task_type"],
-            "data_files": task_info["files"]
-        }
+        "data_details": "See task description for details",
+        "docker": {
+            "gpu_required": False,
+            "base_image": "millerh1/autobioml:latest"
+        },
+        # Add instructions directly but safely
+        "full_instructions": f"{task_id}\n\n{description}\n\nData Files Available:\n" + 
+                           "\n".join(f"- {f}" for f in files) + 
+                           f"\n\nOutput Requirements:\nSave your predictions as `submission.{output_format}` in `/home/submission/`.\n\n" +
+                           "Important Notes:\n" +
+                           f"- Your submission MUST be saved as `/home/submission/submission.{output_format}`\n" +
+                           "- Use the validation server at http://localhost:5000/validate to check your submission\n" +
+                           "- Follow the task description above for specific requirements",
+        "output_format": output_format
     }
     
     # Save task.yaml
@@ -111,23 +86,17 @@ def create_task_yaml(task_id: str, data_dir: Path, work_dir: Path) -> Path:
     task_yaml_path.parent.mkdir(parents=True, exist_ok=True)
     
     with open(task_yaml_path, 'w') as f:
-        yaml.dump(task_config, f, default_flow_style=False)
+        yaml.dump(task_config, f, default_flow_style=False, allow_unicode=True)
     
-    # Also create a more detailed instructions file
-    instructions_path = work_dir / "challenges" / "current" / "instructions.md"
-    with open(instructions_path, 'w') as f:
-        f.write(f"# {task_id}\n\n")
-        f.write(instructions)
-        f.write("\n\n## Available Data Files\n\n")
-        for file in task_info["files"]:
-            f.write(f"- {file}\n")
+    print(f"✓ Created task configuration")
+    print(f"  - Output format: {output_format}")
+    print(f"  - Data files: {len(files)}")
     
     return task_yaml_path
 
 
 def setup_data_symlinks(data_dir: Path, work_dir: Path):
-    """Create symlinks to data files in the working directory."""
-    # AutoBioML expects data files in the current working directory
+    """Create symlinks to data files."""
     for file in data_dir.glob("*"):
         if file.is_file():
             link_path = work_dir / "challenges" / "current" / file.name
@@ -136,34 +105,37 @@ def setup_data_symlinks(data_dir: Path, work_dir: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Adapt BioML-bench task for AutoBioML")
-    parser.add_argument("--task-id", required=True, help="Task ID")
-    parser.add_argument("--data-dir", required=True, help="Data directory path")
-    parser.add_argument("--work-dir", required=True, help="Working directory path")
-    parser.add_argument("--submission-dir", required=True, help="Submission directory path")
+    parser = argparse.ArgumentParser(description="Simple BioML-bench to AutoBioML adapter")
+    parser.add_argument("--task-id", required=True)
+    parser.add_argument("--data-dir", required=True)
+    parser.add_argument("--work-dir", required=True)
+    parser.add_argument("--submission-dir", required=True)
     
     args = parser.parse_args()
     
-    data_dir = Path(args.data_dir)
+    # Use absolute paths based on container structure
+    data_dir = Path("/home/data")  # Always mounted here
     work_dir = Path(args.work_dir)
     
     if not data_dir.exists():
         print(f"Error: Data directory {data_dir} does not exist")
         sys.exit(1)
     
+    print(f"Container paths:")
+    print(f"  Data dir: {data_dir}")
+    print(f"  Work dir: {work_dir}")
+    print(f"  Files in data: {list(data_dir.glob('*'))}")
+    
     # Create task.yaml
-    task_yaml_path = create_task_yaml(args.task_id, data_dir, work_dir)
-    print(f"Created task configuration: {task_yaml_path}")
+    create_task_yaml(args.task_id, data_dir, work_dir)
     
     # Set up data symlinks
     setup_data_symlinks(data_dir, work_dir)
-    print(f"Set up data symlinks in {work_dir / 'challenges' / 'current'}")
     
-    # Create submission directory
-    submission_dir = Path(args.submission_dir)
-    submission_dir.mkdir(parents=True, exist_ok=True)
+    # Ensure submission directory exists
+    Path("/home/submission").mkdir(parents=True, exist_ok=True)
     
-    print("Task adaptation completed successfully")
+    print("Adapter completed")
 
 
 if __name__ == "__main__":

@@ -1,13 +1,63 @@
-opendevin:
+vars:
+  step_count: &step_count 500
+  time_limit: &time_limit 86400 # 24 hours in seconds
+
+defaults: &defaults
   start: opendevin/start.sh
   dockerfile: opendevin/Dockerfile
   kwargs_type: argparse
+  env_vars: &env_vars
+    TIME_LIMIT_SECS: *time_limit
+    STEP_LIMIT: *step_count
+
+opendevin:
+  <<: *defaults
   kwargs:
     agent: CodeActAgent
     model: gpt-4o
     max_time_in_hours: 24
-    max_steps: 500
+    max_steps: *step_count
     shm_size: "100G"
   env_vars:
+    <<: *env_vars
+    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  privileged: true
+
+opendevin/gpt-5:
+  <<: *defaults
+  kwargs:
+    agent: CodeActAgent
+    model: gpt-5-2025-08-07
+    max_time_in_hours: 24
+    max_steps: *step_count
+    shm_size: "100G"
+  env_vars:
+    <<: *env_vars
+    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  privileged: true
+
+opendevin/claude-3-5-sonnet:
+  <<: *defaults
+  kwargs:
+    agent: CodeActAgent
+    model: claude-3-5-sonnet-20240620
+    max_time_in_hours: 24
+    max_steps: *step_count
+    shm_size: "100G"
+  env_vars:
+    <<: *env_vars
+    ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  privileged: true
+
+opendevin/o1-preview:
+  <<: *defaults
+  kwargs:
+    agent: CodeActAgent
+    model: o1-preview
+    max_time_in_hours: 24
+    max_steps: *step_count
+    shm_size: "100G"
+  env_vars:
+    <<: *env_vars
     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   privileged: true
