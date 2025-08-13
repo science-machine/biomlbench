@@ -1,0 +1,22 @@
+vars:
+  step_count: &step_count 50
+  time_limit: &time_limit 21600  # 6 hours
+
+stella:
+  start: stella/start.sh
+  dockerfile: stella/Dockerfile
+  kwargs_type: argparse
+  kwargs:
+    model: claude-sonnet-4
+    max_tools: 30
+    timeout_seconds: 21600
+    # Note: use_templates and use_mem0 are action="store_true" flags
+    # Only include them in kwargs if you want them to be True
+    # For benchmarking (zero-shot), we want both False, so we omit them
+  env_vars:
+    TIME_LIMIT_SECS: *time_limit
+    STEP_LIMIT: *step_count
+    OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    MEM0_API_KEY: ${{ secrets.MEM0_API_KEY }}
+    GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} 
