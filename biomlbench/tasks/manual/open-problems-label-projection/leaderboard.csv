@@ -1,0 +1,16 @@
+teamName,score
+xgboost,0.9634
+scanvi,0.9579
+logistic_regression,0.9567
+scanvi_scarches,0.9567
+scimilarity_knn,0.9556
+seurat_transferdata,0.9544
+mlp,0.9529
+knn,0.9487
+naive_bayes,0.9296
+singler,0.9192
+scimilarity,0.8655
+scgpt_zeroshot,0.8339
+random_labels,0.1801
+uce,0.1790
+majority_vote,0.1347 

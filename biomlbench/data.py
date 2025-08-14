@@ -264,11 +264,8 @@ def ensure_leaderboard_exists(task: Task, force: bool = False) -> Path:
 
     # Try to get leaderboard from data source
     source_config = getattr(task, "data_source", None)
-    if source_config is None:
-        # Fallback: assume Kaggle for backward compatibility
-        source_config = {"type": "kaggle", "competition_id": task.id}
 
-    source_type = source_config.get("type", "kaggle")
+    source_type = source_config.get("type")
 
     try:
         data_source = DataSourceFactory.create(source_type)

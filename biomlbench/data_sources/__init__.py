@@ -13,6 +13,7 @@ from .factory import DataSourceFactory, register_data_source
 
 # Import all data source implementations to trigger registration
 from .kaggle import KaggleDataSource
+from .manual import ManualDataSource
 from .openproblems import OpenProblemsDataSource
 from .polaris import PolarisDataSource
 from .proteingym import ProteinGymDMSDataSource
@@ -28,6 +29,7 @@ __all__ = [
     "register_data_source",
     # Concrete implementations
     "KaggleDataSource",
+    "ManualDataSource",
     "PolarisDataSource",
     "OpenProblemsDataSource",
     "ProteinGymDMSDataSource",

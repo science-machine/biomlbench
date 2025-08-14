@@ -1,0 +1,38 @@
+id: manual/open-problems-predict-modality
+name: "OpenProblems – Predict Modality"
+description: biomlbench/tasks/manual/open-problems-predict-modality/description.md
+
+dataset:
+  answers: manual/open-problems-predict-modality/prepared/private/answers.csv
+  sample_submission: manual/open-problems-predict-modality/prepared/public/sample_submission.csv
+
+data_source:
+  type: manual
+
+grader:
+  name: rmse
+  grade_fn: biomlbench.tasks.manual.open-problems-predict-modality.grade:grade
+
+preparer: biomlbench.tasks.manual.open-problems-predict-modality.prepare:prepare
+
+# Biomedical metadata
+task_type: single_cell_genomics
+domain: multimodal_prediction
+difficulty: hard
+
+biomedical_metadata:
+  modality: "multimodal"
+  data_type: "cross_modality_prediction"
+  clinical_relevance: "Understanding molecular relationships between RNA and protein expression is crucial for drug development and cellular mechanism understanding"
+  experimental_design: "CITE-seq (Cellular Indexing of Transcriptomes and Epitopes by Sequencing)"
+  organism: "human"
+  tissue: "bone_marrow"
+  cell_types: "immune_cells"
+  measurement_types:
+    - "gene_expression"
+    - "surface_protein_abundance"
+
+compute_requirements:
+  recommended_gpu_memory_gb: 16
+  estimated_runtime_minutes: 120
+  max_dataset_size_gb: 5 

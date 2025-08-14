@@ -1,0 +1,20 @@
+AutoBioML Agent for BioML-bench
+
+This agent uses a multi-agent system with specialized roles:
+- Team A (Planning): Principal Scientist, ML Expert, Bioinformatics Expert
+- Team B (Implementation): Implementation Engineer, Data Science Critic
+
+The agent will iteratively plan, implement, and review solutions using these teams.
+
+Key Features:
+- Supports multiple LLM backends (GPT-4, Claude, etc.)
+- Docker-based code execution with GPU support
+- Public/private evaluation system
+- Comprehensive lab notebook documentation
+
+Configuration options via command line:
+- --model: LLM model to use (default: gpt-4o)
+- --max_iterations: Maximum planning/implementation cycles (default: 25)
+- --enable_public_evaluation: Whether to use public test evaluation (default: true)
+
+Technical Note: Code execution uses AutoGen's LocalCommandLineCodeExecutor to avoid Docker-in-Docker issues. 

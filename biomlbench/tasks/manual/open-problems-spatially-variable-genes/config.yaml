@@ -1,0 +1,37 @@
+id: manual/open-problems-spatially-variable-genes
+name: "OpenProblems – Spatially Variable Genes"
+description: biomlbench/tasks/manual/open-problems-spatially-variable-genes/description.md
+
+dataset:
+  answers: manual/open-problems-spatially-variable-genes/prepared/private/answers.csv
+  sample_submission: manual/open-problems-spatially-variable-genes/prepared/public/sample_submission.csv
+
+data_source:
+  type: manual
+
+grader:
+  name: kendall-correlation
+  grade_fn: biomlbench.tasks.manual.open-problems-spatially-variable-genes.grade:grade
+
+preparer: biomlbench.tasks.manual.open-problems-spatially-variable-genes.prepare:prepare
+
+# Biomedical metadata
+task_type: single_cell_genomics
+domain: spatial_transcriptomics
+difficulty: medium
+
+biomedical_metadata:
+  modality: "spatial_transcriptomics"
+  data_type: "gene_spatial_variability_scoring"
+  clinical_relevance: "tissue_organization"
+  experimental_design: "synthetic_spatial_patterns"
+  organism: "mouse"
+  tissue: "cortex"
+  technology: "slideseqv2"
+  num_genes: 210  # Based on the solution.var output showing 210 genes
+  spatial_variability_type: "gaussian_process_based"
+
+compute_requirements:
+  recommended_gpu_memory_gb: 16
+  estimated_runtime_minutes: 30
+  max_dataset_size_gb: 5 

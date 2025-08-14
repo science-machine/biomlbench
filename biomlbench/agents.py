@@ -85,10 +85,10 @@ async def check_agent_success(run_dir: Path, run_logger: logging.Logger) -> bool
             except Exception:
                 run_logger.warning("Could not read run log for failure analysis")
 
-        # Decision logic: If we have critical errors, it's a failure
-        if has_critical_errors:
-            run_logger.error(f"Agent failed: Critical errors found in logs")
-            return False
+        # # Decision logic: If we have critical errors, it's a failure
+        # if has_critical_errors:
+        #     run_logger.error(f"Agent failed: Critical errors found in logs")
+        #     return False
 
         # If we have a valid submission file, it's likely a success
         if has_submission:

@@ -24,14 +24,14 @@ COPY requirements.txt ${AGENT_DIR}/requirements.txt
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 # create conda environment and install the requirements to it
-RUN conda run -n ${CONDA_ENV_NAME} pip install -r ${AGENT_DIR}/requirements.txt && \
+RUN conda run -n ${CONDA_ENV_NAME} pip install --upgrade pip && \
+    conda run -n ${CONDA_ENV_NAME} pip install -r ${AGENT_DIR}/requirements.txt --upgrade && \
+    conda run -n ${CONDA_ENV_NAME} pip install --upgrade "openai>=1.50.0" && \
     conda clean -afy
 
-# clone git directory to the agent directory
-RUN git clone https://github.com/JunShern/MLAgentBench.git ${AGENT_DIR}/MLAgentBench && \
-    cd ${AGENT_DIR}/MLAgentBench && \
-    git checkout 328c713c02ea43e63f2d11cd7fd1293acb58f09f
-COPY ./benchmark_dir ${AGENT_DIR}/MLAgentBench/MLAgentBench/benchmarks/mlebench
+# copy local MLAgentBench directory for debugging
+COPY ./ref/MLAgentBench ${AGENT_DIR}/MLAgentBench
+COPY ./benchmark_dir ${AGENT_DIR}/MLAgentBench/MLAgentBench/benchmarks/biomlbench
 
 # put remaining necessary agent files in the expected location
 COPY additional_notes.txt /home/additional_notes.txt

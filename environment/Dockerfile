@@ -45,6 +45,7 @@ ARG REQUIREMENTS=/tmp/requirements.txt
 COPY environment/requirements.txt ${REQUIREMENTS}
 
 # create conda environment and optionally install the requirements to it
+ENV CONDA_PLUGINS_AUTO_ACCEPT_TOS=true
 RUN /opt/conda/bin/conda create -n ${CONDA_ENV_NAME} python=${PYTHON_VERSION} -y
 ARG INSTALL_HEAVY_DEPENDENCIES=true
 ENV INSTALL_HEAVY_DEPENDENCIES=${INSTALL_HEAVY_DEPENDENCIES}
