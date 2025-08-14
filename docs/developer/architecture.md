@@ -33,8 +33,8 @@ BioML-bench follows a modular architecture designed for extensibility and securi
 
 ## Data Flow
 
-1. **Task Preparation** - Download and process datasets
-2. **Agent Execution** - Run agents in isolated containers
+1. **Task Preparation** - Download and process datasets with each task
+2. **Agent Execution** - Run agents in isolated containers on each individual dataset in each task
 3. **Submission Collection** - Extract predictions and logs
 4. **Evaluation** - Score submissions against private answers
 5. **Reporting** - Generate comprehensive evaluation reports

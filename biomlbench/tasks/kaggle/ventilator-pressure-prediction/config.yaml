@@ -1,0 +1,27 @@
+id: kaggle/ventilator-pressure-prediction 
+name: "Google Brain - Ventilator Pressure Prediction"
+competition_type: simple
+awards_medals: true
+prizes:
+  - position: 1
+    value: 2500
+  - position: 2
+    value: 2500
+  - position: 3
+    value: 2500
+description: biomlbench/tasks/kaggle/ventilator-pressure-prediction/description.md
+
+dataset:
+  answers: kaggle/ventilator-pressure-prediction/prepared/private/answers.csv
+  sample_submission: kaggle/ventilator-pressure-prediction/prepared/public/sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/ventilator-pressure-prediction
+
+
+grader:
+  name: dice-hausdorff-combo
+  grade_fn: biomlbench.tasks.kaggle.ventilator-pressure-prediction.grade:grade
+
+preparer: biomlbench.tasks.kaggle.ventilator-pressure-prediction.prepare:prepare

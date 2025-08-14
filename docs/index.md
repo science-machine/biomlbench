@@ -55,7 +55,7 @@ BioML-bench follows a modular architecture:
 - **Core Framework** (`biomlbench/`) - Task management, grading, data handling
 - **Agent System** (`agents/`) - Agent registry and execution framework  
 - **Environment** (`environment/`) - Containerized execution environment
-- **Tasks** (`biomlbench/tasks/`) - Individual biomedical benchmark tasks
+- **Tasks** (`biomlbench/tasks/`) - Individual biomedical benchmark tasks, each of which contains at least 1 dataset
 - **Scripts** (`scripts/`) - Build, test, and deployment automation
 
 ## 📚 Documentation Structure

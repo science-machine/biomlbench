@@ -1,7 +1,7 @@
 teamName,score,submissionDate
-pkis1-ret-wt-mut-c-1_desc2D_FCModel,0.588,2024-01-01
+pkis1-ret-wt-mut-c-1_desc2D_FCModel,0.18,2024-01-01
 pkis1-ret-wt-mut-c-1_DGLGraphTransformer_PNAModel,0.118,2024-01-01
 pkis1-ret-wt-mut-c-1_DGLGraphTransformer_MPNNModel,0.118,2024-01-01
 pkis1-ret-wt-mut-c-1_DGLGraphTransformer_GCNModel,0.118,2024-01-01
 pkis1-ret-wt-mut-c-1_DGLGraphTransformer_GATModel,0.118,2024-01-01
-pkis1-ret-wt-mut-c-1_DGLGraphTransformer_AttentiveFPModel,0.882,2024-01-01
+pkis1-ret-wt-mut-c-1_DGLGraphTransformer_AttentiveFPModel,0.118,2024-01-01

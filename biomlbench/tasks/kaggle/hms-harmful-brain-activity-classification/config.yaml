@@ -1,0 +1,31 @@
+id: kaggle/hms-harmful-brain-activity-classification
+name: HMS - Harmful Brain Activity Classification
+competition_type: code
+awards_medals: true
+prizes: 
+  - position: 1
+    value: 20000
+  - position: 2
+    value: 12000
+  - position: 3
+    value: 7000
+  - position: 4
+    value: 6000
+  - position: 5
+    value: 5000
+description: biomlbench/tasks/kaggle/hms-harmful-brain-activity-classification/description.md
+
+dataset:
+  answers: kaggle/hms-harmful-brain-activity-classification/prepared/private/answers.csv
+  sample_submission: kaggle/hms-harmful-brain-activity-classification/prepared/public/sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/hms-harmful-brain-activity-classification
+
+
+grader:
+  name: KL-divergence
+  grade_fn: biomlbench.tasks.kaggle.hms-harmful-brain-activity-classification.grade:grade
+
+preparer: biomlbench.tasks.kaggle.hms-harmful-brain-activity-classification.prepare:prepare

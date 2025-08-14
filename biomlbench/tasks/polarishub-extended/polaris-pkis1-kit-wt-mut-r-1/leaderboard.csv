@@ -1,0 +1,9 @@
+teamName,score,submissionDate
+pkis1-kit-wt-mut-r-1_pharm2D_FCModel,21.508,2024-01-01
+nepare,22.755,2024-01-01
+No name provided,20.397,2024-01-01
+pkis1-kit-wt-mut-r-1_DGLGraphTransformer_AttentiveFPModel,23.898,2024-01-01
+pkis1-kit-wt-mut-r-1_DGLGraphTransformer_MPNNModel,23.824,2024-01-01
+pkis1-kit-wt-mut-r-1_DGLGraphTransformer_PNAModel,27.284,2024-01-01
+pkis1-kit-wt-mut-r-1_DGLGraphTransformer_GCNModel,25.484,2024-01-01
+pkis1-kit-wt-mut-r-1_DGLGraphTransformer_GATModel,28.096,2024-01-01

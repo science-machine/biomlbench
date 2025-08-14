@@ -7,13 +7,13 @@ from docker.models.containers import Container
 from dotenv import dotenv_values
 
 from agents.registry import Agent
+from biomlbench.registry import Task
+from biomlbench.utils import purple
 from environment.utils import (
     create_task_container,
     extract_from_container,
     extract_from_container_sysbox,
 )
-from biomlbench.registry import Task
-from biomlbench.utils import purple
 
 CONSTANTS = dotenv_values(Path(__file__).parent.resolve() / ".shared_env")
 
@@ -86,7 +86,9 @@ def clean_up(container: Container, logger: logging.Logger, retain: bool = False)
 
 def run_in_container(
     client: docker.DockerClient,
-    task: Task,
+    task_id: str,
+    public_dir: Path,
+    private_dir: Path,
     agent: Agent,
     image: str,
     container_config: dict,
@@ -99,7 +101,9 @@ def run_in_container(
 
     Args:
         client: Docker client.
-        task: The task to run.
+        task_id: The task to run.
+        public_dir: The public directory of the task.
+        private_dir: The private directory of the task.
         agent: The agent to run.
         image: The Docker image to use. Assumes the image is built.
         container_config: Configuration for the Docker container.
@@ -111,23 +115,23 @@ def run_in_container(
         Path to the output file.
     """
     volumes_config = {
-        task.public_dir.resolve().as_posix(): {
+        public_dir.resolve().as_posix(): {
             "bind": "/home/data",
             "mode": "ro",
         },
-        task.private_dir.resolve().as_posix(): {
-            "bind": f"/private/data/{task.id}/prepared/private/",
+        private_dir.resolve().as_posix(): {
+            "bind": f"/private/data/{task_id}/prepared/private/",
             "mode": "ro",
         },
     }
 
     container = create_task_container(
         client=client,
-        task=task,
+        task_id=task_id,
         container_config=container_config,
         volumes_config=volumes_config,
         env_vars={
-            "TASK_ID": task.id,
+            "TASK_ID": task_id,
             **agent.env_vars,
         },
         container_image=image,
@@ -138,12 +142,13 @@ def run_in_container(
     try:
         time_start = time.monotonic()
         container.start()
+        logger.info("Waiting for grading server to start...")
         exit_code, _ = container.exec_run(
-            'timeout 60s sh -c "while ! curl -s http://localhost:5000/health > /dev/null; do sleep 1; done"'
+            'timeout 240s sh -c "while ! curl -s http://localhost:5000/health > /dev/null; do sleep 1; done"'
         )
         if exit_code != 0:
             raise RuntimeError(
-                "The grading server failed to start within 60 seconds. This is likely due to an error in `entrypoint.sh`; check the logs."
+                "The grading server failed to start within 240 seconds. This is likely due to an error in `entrypoint.sh`; check the logs."
             )
         execute_agent(container, agent, logger)
         save_output(container, run_dir, container_config)

@@ -1,0 +1,11 @@
+teamName,score,submissionDate
+1B_MPNN_LargeMix-and-Phenomics,0.296,2024-01-01
+chemlactica-1b-sft,0.314,2024-01-01
+chemlactica-125m-sft,0.321,2024-01-01
+chemma-2b-sft,0.342,2024-01-01
+TabPFNv2-rdkit,0.364,2024-01-01
+adme-fang-HCLint-1_desc2D_RandomForestRegressor,0.381,2024-01-01
+adme-fang-HCLint-1_estate_GradientBoostingRegressor,0.425,2024-01-01
+adme-fang-HCLint-1_DGLGraphTransformer_GCNModel,0.455,2024-01-01
+adme-fang-HCLint-1_DGLGraphTransformer_PNAModel,0.479,2024-01-01
+adme-fang-HCLint-1_estate_FCModel,0.459,2024-01-01

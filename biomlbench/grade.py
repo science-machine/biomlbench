@@ -3,12 +3,12 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from tqdm import tqdm
 import pandas as pd
+from tqdm import tqdm
 
 from biomlbench.data import get_leaderboard, is_dataset_prepared
 from biomlbench.grade_helpers import TaskReport
-from biomlbench.registry import Task, Registry
+from biomlbench.registry import Registry, Task
 from biomlbench.registry import registry as DEFAULT_REGISTRY
 from biomlbench.utils import get_logger, get_timestamp, load_answers, purple, read_csv, read_jsonl
 
@@ -23,6 +23,7 @@ def grade_jsonl(
     """
     Grades multiple submissions stored in a JSONL file.
     Saves the aggregated report as a JSON file.
+    Also saves individual task reports for easier access.
     """
 
     submissions = read_jsonl(str(path_to_submissions), skip_commented_out_lines=True)
@@ -38,17 +39,32 @@ def grade_jsonl(
 
     aggregated_report = aggregate_reports(task_reports)
     timestamp = get_timestamp()
+    
+    # Save aggregated report
     save_path = output_dir / f"{timestamp}_grading_report.json"
     logger.info(
-        json.dumps(
-            {k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4
-        )
+        json.dumps({k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4)
     )
 
     output_dir.mkdir(exist_ok=True)
     with open(save_path, "w") as f:
         json.dump(aggregated_report, f, indent=2)
     logger.info(purple(f"Saved summary report to {save_path}"))
+    
+    # Save individual task reports for easier access
+    individual_reports_dir = output_dir / f"{timestamp}_individual_reports"
+    individual_reports_dir.mkdir(exist_ok=True)
+    
+    for report in task_reports:
+        # Sanitize task ID for use as filename (replace slashes with underscores)
+        safe_task_id = report.task_id.replace("/", "_").replace("\\", "_")
+        individual_path = individual_reports_dir / f"{safe_task_id}.json"
+        with open(individual_path, "w") as f:
+            json.dump(report.to_dict(), f, indent=2)
+    
+    logger.info(purple(f"Saved {len(task_reports)} individual task reports to {individual_reports_dir}"))
+    
+    return save_path, individual_reports_dir
 
 
 def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
@@ -63,7 +79,7 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
     score = None
     submission_exists = path_to_submission.is_file()
     file_extension = path_to_submission.suffix.lower()
-    
+
     if submission_exists:
         if file_extension == ".csv":
             # Traditional CSV-based task
@@ -92,7 +108,7 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
     task_leaderboard = get_leaderboard(task)
     rank_info = task.grader.rank_score(score, task_leaderboard)
     is_lower_better = task.grader.is_lower_better(task_leaderboard)
-    
+
     # Check human baselines if available
     beats_human = None
     human_percentile = None
@@ -101,11 +117,13 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
         if human_baselines_path.exists():
             try:
                 human_df = pd.read_csv(human_baselines_path)
-                if not human_df.empty and 'score' in human_df.columns:
+                if not human_df.empty and "score" in human_df.columns:
                     beats_human, human_percentile = calculate_human_performance_metrics(
                         score, human_df, task.grader.is_lower_better(task_leaderboard)
                     )
-                    logger.debug(f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}")
+                    logger.debug(
+                        f"Human baseline comparison: beats_human={beats_human}, percentile={human_percentile}"
+                    )
             except Exception as e:
                 logger.warning(f"Failed to load human baselines for task '{task.id}': {e}")
 
@@ -126,6 +144,8 @@ def grade_submission(path_to_submission: Path, task: Task) -> TaskReport:
         is_lower_better=is_lower_better,
         created_at=datetime.now(),
         submission_path=str(path_to_submission),
+        leaderboard_percentile=rank_info["leaderboard_percentile"],
+        leaderboard_size=rank_info["leaderboard_size"],
         beats_human=beats_human,
         human_percentile=human_percentile,
     )
@@ -144,7 +164,10 @@ def validate_submission(submission: Path, task: Task) -> tuple[bool, str]:
     supported_formats = [".csv", ".h5ad"]
     file_extension = submission.suffix.lower()
     if file_extension not in supported_formats:
-        return False, f"Submission invalid! Submission file must be one of {supported_formats}, got {file_extension}."
+        return (
+            False,
+            f"Submission invalid! Submission file must be one of {supported_formats}, got {file_extension}.",
+        )
 
     if not is_dataset_prepared(task, grading_only=True):
         raise ValueError(
@@ -184,6 +207,12 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
     total_valid_submissions = sum(report.valid_submission for report in task_reports)
     total_beats_human = sum(1 for report in task_reports if report.beats_human)
 
+    # Calculate percentile statistics
+    percentiles = [report.leaderboard_percentile for report in task_reports if report.leaderboard_percentile is not None]
+    avg_percentile = sum(percentiles) / len(percentiles) if percentiles else None
+    best_percentile = max(percentiles) if percentiles else None  # Higher percentile = better
+    worst_percentile = min(percentiles) if percentiles else None  # Lower percentile = worse
+
     summary_report = {
         "total_runs": int(len(task_reports)),
         "total_runs_with_submissions": int(total_submissions),
@@ -194,41 +223,46 @@ def aggregate_reports(task_reports: list[TaskReport]) -> dict:
         "total_bronze_medals": int(total_bronze_medals),
         "total_above_median": int(total_above_median),
         "total_beats_human": int(total_beats_human),
+        "avg_leaderboard_percentile": round(avg_percentile, 1) if avg_percentile is not None else None,
+        "best_leaderboard_percentile": round(best_percentile, 1) if best_percentile is not None else None,
+        "worst_leaderboard_percentile": round(worst_percentile, 1) if worst_percentile is not None else None,
         "task_reports": [tr.to_dict() for tr in task_reports],
     }
 
     return summary_report
 
 
-def calculate_human_performance_metrics(agent_score: float, human_df: pd.DataFrame, is_lower_better: bool) -> tuple[bool, float]:
+def calculate_human_performance_metrics(
+    agent_score: float, human_df: pd.DataFrame, is_lower_better: bool
+) -> tuple[bool, float]:
     """
     Calculate how an agent's performance compares to human baselines.
-    
+
     Args:
         agent_score: The agent's score to compare
         human_df: DataFrame with human baseline scores (must have 'score' column)
         is_lower_better: Whether lower scores are better for this metric
-        
+
     Returns:
         Tuple of (beats_human, human_percentile) where:
         - beats_human: True if agent beats median human performance
         - human_percentile: Percentile of human performance that agent achieves (0-100)
     """
-    human_scores = human_df['score'].astype(float)
-    
+    human_scores = human_df["score"].astype(float)
+
     if human_scores.empty:
         return None, None
-    
+
     # Calculate median human performance for beats_human
     median_human = human_scores.median()
-    
+
     if is_lower_better:
         beats_human = agent_score < median_human
         # For lower-is-better: percentile = % of humans with score >= agent_score
         human_percentile = (human_scores >= agent_score).mean() * 100
     else:
         beats_human = agent_score > median_human
-        # For higher-is-better: percentile = % of humans with score <= agent_score  
+        # For higher-is-better: percentile = % of humans with score <= agent_score
         human_percentile = (human_scores <= agent_score).mean() * 100
-    
+
     return beats_human, round(human_percentile, 1)

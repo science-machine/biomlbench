@@ -1,9 +1,9 @@
 teamName,score,submissionDate
-No name provided,0.345,2024-01-01
-adme-fang-r-1-GIRAFFE-siglin_wae2,0.35,2024-01-01
-adme-fang-r-1-GIRAFFE-siglin_wae2_85,0.361,2024-01-01
-adme-fang-r-1_estate_FCModel,0.449,2024-01-01
-adme-fang-r-1_DGLGraphTransformer_GATModel,0.498,2024-01-01
-adme-fang-r-1_DGLGraphTransformer_PNAModel,0.497,2024-01-01
-adme-fang-r-1_DGLGraphTransformer_AttentiveFPModel,0.506,2024-01-01
-adme-fang-r-1_DGLGraphTransformer_GCNModel,0.548,2024-01-01
+No name provided,0.193,2024-01-01
+adme-fang-r-1-GIRAFFE-siglin_wae2,0.215,2024-01-01
+adme-fang-r-1-GIRAFFE-siglin_wae2_85,0.22,2024-01-01
+adme-fang-r-1_estate_FCModel,0.332,2024-01-01
+adme-fang-r-1_DGLGraphTransformer_GATModel,0.346,2024-01-01
+adme-fang-r-1_DGLGraphTransformer_PNAModel,0.364,2024-01-01
+adme-fang-r-1_DGLGraphTransformer_AttentiveFPModel,0.382,2024-01-01
+adme-fang-r-1_DGLGraphTransformer_GCNModel,0.409,2024-01-01

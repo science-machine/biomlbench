@@ -10,7 +10,10 @@ NC='\033[0m' # No Color
 
 # Function to show usage
 show_usage() {
-    echo "Usage: $0 <agent-id>"
+    echo "Usage: $0 [OPTIONS] <agent-id>"
+    echo ""
+    echo "Options:"
+    echo "  --force    Force rebuild without using Docker cache"
     echo ""
     echo "Available agents:"
     for agent_dir in agents/*/; do
@@ -21,20 +24,49 @@ show_usage() {
     done
     echo ""
     echo "Examples:"
-    echo "  $0 dummy          # Build the dummy agent"
-    echo "  $0 aide           # Build the AIDE agent"
+    echo "  $0 dummy                    # Build the dummy agent"
+    echo "  $0 aide                     # Build the AIDE agent"
+    echo "  $0 --force biomni           # Force rebuild biomni without cache"
 }
 
-# Check arguments
-if [[ $# -eq 0 ]]; then
+# Parse arguments
+FORCE_REBUILD=false
+AGENT_ID=""
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --force)
+            FORCE_REBUILD=true
+            shift
+            ;;
+        -h|--help)
+            show_usage
+            exit 0
+            ;;
+        *)
+            if [[ -z "$AGENT_ID" ]]; then
+                AGENT_ID="$1"
+            else
+                echo -e "${RED}❌ Unknown argument: $1${NC}"
+                show_usage
+                exit 1
+            fi
+            shift
+            ;;
+    esac
+done
+
+# Check if agent ID was provided
+if [[ -z "$AGENT_ID" ]]; then
     echo -e "${RED}❌ No agent specified${NC}"
     show_usage
     exit 1
 fi
 
-AGENT_ID="$1"
-
 echo -e "${BLUE}🤖 Building BioML-bench Agent: $AGENT_ID${NC}"
+if [[ "$FORCE_REBUILD" == "true" ]]; then
+    echo -e "${YELLOW}🔄 Force rebuild enabled (--no-cache)${NC}"
+fi
 echo "======================================="
 
 # Check if Docker is available
@@ -99,6 +131,10 @@ BUILD_CMD="docker build --platform=linux/amd64 -t $AGENT_ID $AGENT_DIR/ \
     --build-arg LOGS_DIR=/home/logs \
     --build-arg CODE_DIR=/home/code \
     --build-arg AGENT_DIR=/home/agent"
+
+if [[ "$FORCE_REBUILD" == "true" ]]; then
+    BUILD_CMD="$BUILD_CMD --no-cache"
+fi
 
 echo "Running: $BUILD_CMD"
 echo ""

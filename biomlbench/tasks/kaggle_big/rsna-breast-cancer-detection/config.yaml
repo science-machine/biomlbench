@@ -1,0 +1,37 @@
+id: kaggle/rsna-breast-cancer-detection
+name: RSNA Screening Mammography Breast Cancer Detection
+competition_type: code
+awards_medals: true
+prizes:
+  - position: 1
+    value: 10000
+  - position: 2
+    value: 8000
+  - position: 3
+    value: 7000
+  - position: 4
+    value: 5000
+  - position: 5
+    value: 5000
+  - position: 6
+    value: 5000
+  - position: 7
+    value: 5000
+  - position: 8
+    value: 5000
+description: biomlbench/tasks/kaggle/rsna-breast-cancer-detection/description.md
+
+dataset:
+  answers: kaggle/rsna-breast-cancer-detection/prepared/private/answers.csv
+  sample_submission: kaggle/rsna-breast-cancer-detection/prepared/public/sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/rsna-breast-cancer-detection
+
+
+grader:
+  name: probabilistic-f1-score
+  grade_fn: biomlbench.tasks.kaggle.rsna-breast-cancer-detection.grade:grade
+
+preparer: biomlbench.tasks.kaggle.rsna-breast-cancer-detection.prepare:prepare

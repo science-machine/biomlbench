@@ -53,7 +53,7 @@ class KaggleDataSource(DataSource):
         Validate Kaggle source configuration.
         
         Args:
-            source_config: Should contain 'competition_id' key
+            source_config: Should contain 'benchmark_id' key
             
         Returns:
             True if valid
@@ -61,16 +61,16 @@ class KaggleDataSource(DataSource):
         Raises:
             DataSourceConfigError: If configuration is invalid
         """
-        if 'competition_id' not in source_config:
+        if 'benchmark_id' not in source_config:
             raise DataSourceConfigError(
-                "Kaggle data source requires 'competition_id' in configuration",
+                "Kaggle data source requires 'benchmark_id' in configuration",
                 source_type="kaggle"
             )
         
-        competition_id = source_config['competition_id']
+        competition_id = source_config['benchmark_id']
         if not isinstance(competition_id, str) or not competition_id.strip():
             raise DataSourceConfigError(
-                "Kaggle 'competition_id' must be a non-empty string",
+                "Kaggle 'benchmark_id' must be a non-empty string",
                 source_type="kaggle"
             )
         
@@ -98,7 +98,8 @@ class KaggleDataSource(DataSource):
         """
         self.validate_config(source_config)
         
-        competition_id = source_config['competition_id']
+        competition_id = source_config['benchmark_id']
+        competition_id = competition_id.split('/')[-1]
         quiet = source_config.get('quiet', False)
         force = source_config.get('force', False)
         
@@ -109,7 +110,6 @@ class KaggleDataSource(DataSource):
             logger.info(f"Downloading Kaggle dataset for `{competition_id}` to `{data_dir}`...")
 
             api = authenticate_kaggle_api()
-
             try:
                 api.competition_download_files(
                     competition=competition_id,
@@ -131,6 +131,7 @@ class KaggleDataSource(DataSource):
                     )
                 else:
                     raise e
+            
 
             zip_files = list(data_dir.glob("*.zip"))
 
@@ -157,7 +158,7 @@ class KaggleDataSource(DataSource):
         Get leaderboard from Kaggle competition.
         
         Args:
-            source_config: Must contain 'competition_id'
+            source_config: Must contain 'benchmark_id'
             
         Returns:
             DataFrame with leaderboard data
@@ -167,7 +168,8 @@ class KaggleDataSource(DataSource):
         """
         self.validate_config(source_config)
         
-        competition_id = source_config['competition_id']
+        competition_id = source_config['benchmark_id']
+        competition_id = competition_id.split('/')[-1]
         
         try:
             api = authenticate_kaggle_api()
@@ -233,8 +235,8 @@ class KaggleDataSource(DataSource):
             return human_baselines
             
         except Exception as e:
-            logger.warning(f"Failed to extract human baselines from Kaggle: {e}")
-            return None
+            logger.error(f"Failed to extract human baselines from Kaggle: {e}")
+            raise e
     
     def _filter_human_teams(self, leaderboard_df: pd.DataFrame) -> pd.DataFrame:
         """Filter leaderboard to identify likely human teams."""
@@ -255,9 +257,12 @@ class KaggleDataSource(DataSource):
             # Very long random-looking strings
             r'^[a-z0-9]{20,}$'
         ]
+
+        # Find the team name column. It could be team_name or teamName
+        team_name = 'team_name' if 'team_name' in df.columns else 'teamName'
         
         for pattern in bot_patterns:
-            human_indicators &= ~df['team_name'].str.contains(pattern, case=False, na=False, regex=True)
+            human_indicators &= ~df[team_name].str.contains(pattern, case=False, na=False, regex=True)
         
         # Filter out teams with suspicious submission patterns
         # (This would require submission frequency data, which Kaggle API may not provide)
@@ -271,8 +276,11 @@ class KaggleDataSource(DataSource):
     def _categorize_human_performance(self, human_df: pd.DataFrame) -> pd.DataFrame:
         """Categorize human performance into expert/intermediate/novice levels."""
         
+        # Find the team name column. It could be team_name or teamName
+        team_name = 'team_name' if 'team_name' in human_df.columns else 'teamName'
+
         if human_df.empty:
-            return pd.DataFrame(columns=['team_name', 'score', 'human_type', 'source'])
+            return pd.DataFrame(columns=[team_name, 'score', 'human_type', 'source'])
         
         # Calculate performance percentiles
         scores = human_df['score'].astype(float)
@@ -294,9 +302,8 @@ class KaggleDataSource(DataSource):
                 human_type = 'intermediate'
             else:
                 human_type = 'novice'
-            
             human_baselines.append({
-                'team_name': row['team_name'],
+                'team_name': row[team_name],
                 'score': score,
                 'human_type': human_type
             })

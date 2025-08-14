@@ -1,0 +1,33 @@
+
+id: proteingym-dms/RL20_AQUAE_Tsuboyama_2023_1GYZ
+name: RL20_AQUAE_Tsuboyama_2023_1GYZ
+task_type: fitness_prediction
+domain: protein_engineering
+difficulty: medium
+awards_medals: false
+prizes: null
+description: biomlbench/tasks/proteingym-dms/RL20_AQUAE_Tsuboyama_2023_1GYZ/description.md
+preparer: biomlbench.tasks.proteingym-dms.RL20_AQUAE_Tsuboyama_2023_1GYZ.prepare:prepare
+
+data_source:
+  type: proteingym-dms
+  benchmark_id: RL20_AQUAE_Tsuboyama_2023_1GYZ
+
+dataset:
+  answers: proteingym-dms/RL20_AQUAE_Tsuboyama_2023_1GYZ/prepared/private/answers.csv
+  sample_submission: proteingym-dms/RL20_AQUAE_Tsuboyama_2023_1GYZ/prepared/public/sample_submission.csv
+
+grader:
+  name: proteingym-metric
+  grade_fn: biomlbench.tasks.proteingym-dms.RL20_AQUAE_Tsuboyama_2023_1GYZ.grade:grade
+
+biomedical_metadata:
+  modality: protein_sequence
+  data_type: single_task
+  proteingym_main_metric: spearman
+  num_sequences: 1461
+
+compute_requirements:
+  recommended_gpu_memory_gb: 4
+  estimated_runtime_minutes: 15
+  max_dataset_size_gb: 2

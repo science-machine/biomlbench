@@ -12,7 +12,7 @@ from biomlbench.data import (
     ensure_leaderboard_exists,
     prepare_human_baselines,
 )
-from biomlbench.grade import grade_submission, grade_jsonl
+from biomlbench.grade import grade_jsonl, grade_submission
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger, get_repo_dir
 
@@ -28,7 +28,7 @@ def main():
         logger.debug(f"Loaded environment variables from {dotenv_path}")
     else:
         logger.debug(f"No .env file found at {dotenv_path}")
-    
+
     parser = argparse.ArgumentParser(description="Runs agents on biomedical ML tasks.")
     subparsers = parser.add_subparsers(dest="command", help="Sub-command to run.")
 
@@ -313,16 +313,10 @@ def main():
             with open(args.list, "r") as f:
                 task_ids = f.read().splitlines()
             tasks = [new_registry.get_task(task_id) for task_id in task_ids]
-        elif args.domain:
-            task_ids = new_registry.get_tasks_by_domain(args.domain)
-            tasks = [new_registry.get_task(task_id) for task_id in task_ids]
-        elif args.task_type:
-            task_ids = new_registry.get_tasks_by_type(args.task_type)
-            tasks = [new_registry.get_task(task_id) for task_id in task_ids]
         else:
             if not args.task_id:
                 parser_prepare.error(
-                    "One of --lite, --all, --list, --domain, --task-type, or --task-id must be specified."
+                    "One of --lite, --all, --list, or --task-id must be specified."
                 )
             tasks = [new_registry.get_task(args.task_id)]
 
@@ -339,7 +333,8 @@ def main():
         new_registry = registry.set_data_dir(Path(args.data_dir))
         submission = Path(args.submission)
         output_dir = Path(args.output_dir)
-        grade_jsonl(submission, output_dir, new_registry)
+        summary_path, individual_dir = grade_jsonl(submission, output_dir, new_registry)
+        logger.info(f"Grading complete. Summary: {summary_path}, Individual reports: {individual_dir}")
 
     if args.command == "grade-sample":
         new_registry = registry.set_data_dir(Path(args.data_dir))

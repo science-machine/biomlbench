@@ -28,9 +28,6 @@ class Task:
     answers: Path
     gold_submission: Path
     sample_submission: Path
-    task_type: str  # e.g., 'medical_imaging', 'protein_engineering'
-    domain: str  # e.g., 'oncology', 'drug_discovery'
-    difficulty: str  # e.g., 'easy', 'medium', 'hard'
     prepare_fn: Callable[[Path, Path, Path], Path]
     raw_dir: Path
     private_dir: Path
@@ -44,6 +41,11 @@ class Task:
     compute_requirements: Optional[Dict[str, Any]] = None
     data_source: Optional[Dict[str, Any]] = None
 
+    # Optional fields
+    task_type: Optional[str] = None  # e.g., 'medical_imaging', 'protein_engineering'
+    domain: Optional[str] = None  # e.g., 'oncology', 'drug_discovery'
+    difficulty: Optional[str] = None  # e.g., 'easy', 'medium', 'hard'
+
     def __post_init__(self):
         assert isinstance(self.id, str), "Task id must be a string."
         assert isinstance(self.name, str), "Task name must be a string."
@@ -52,17 +54,9 @@ class Task:
         assert isinstance(self.answers, Path), "Task answers must be a Path."
         assert isinstance(self.gold_submission, Path), "Gold submission must be a Path."
         assert isinstance(self.sample_submission, Path), "Sample submission must be a Path."
-        assert isinstance(self.task_type, str), "Task type must be a string."
-        assert isinstance(self.domain, str), "Domain must be a string."
-        assert isinstance(self.difficulty, str), "Difficulty must be a string."
         assert isinstance(self.checksums, Path), "Checksums must be a Path."
         assert isinstance(self.leaderboard, Path), "Leaderboard must be a Path."
         assert len(self.id) > 0, "Task id cannot be empty."
-        assert len(self.name) > 0, "Task name cannot be empty."
-        assert len(self.description) > 0, "Task description cannot be empty."
-        assert len(self.task_type) > 0, "Task type cannot be empty."
-        assert len(self.domain) > 0, "Domain cannot be empty."
-        assert len(self.difficulty) > 0, "Difficulty cannot be empty."
 
     @staticmethod
     def from_dict(data: dict) -> "Task":
@@ -77,9 +71,6 @@ class Task:
                 answers=data["answers"],
                 sample_submission=data["sample_submission"],
                 gold_submission=data["gold_submission"],
-                task_type=data["task_type"],
-                domain=data["domain"],
-                difficulty=data["difficulty"],
                 prepare_fn=data["prepare_fn"],
                 raw_dir=data["raw_dir"],
                 public_dir=data["public_dir"],
@@ -90,6 +81,9 @@ class Task:
                 human_baselines=data.get("human_baselines"),
                 compute_requirements=data.get("compute_requirements"),
                 data_source=data.get("data_source"),
+                task_type=data.get("task_type"),
+                domain=data.get("domain"),
+                difficulty=data.get("difficulty"),
             )
         except KeyError as e:
             raise ValueError(f"Missing key {e} in task config!")

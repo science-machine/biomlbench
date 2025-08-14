@@ -1,0 +1,90 @@
+
+# Proteingym-DMS dataset: UBR5_HUMAN_Tsuboyama_2023_1I2T_indels
+
+## Description
+
+This dataset is part of the ProteinGym DMS benchmark, which contains deep mutational scanning datasets that measure
+protein fitness (in different contexts) for sequence variants of a wide range of proteins. This dataset contains
+indel variants for the protein E3 ubiquitin-protein ligase UBR5 from the organism Homo sapiens. This protein has Uniprot ID: UBR5_HUMAN. 
+
+The DMS selection assay was described as follows: 
+
+    Stability
+
+It was categorised as measuring the following (general) fitness attribute: Stability. Higher scores indicate better fitness.
+
+The source publication for this dataset is titled: 
+
+"Mega-scale experimental analysis of protein folding stability in biology and design"
+
+and can be accessed at the following DOI: 10.1038/s41586-023-06328-69.
+
+## Objective
+
+The objective of this benchmark is to train a model that can predict the fitness of unseen single-substitution sequence variants of E3 ubiquitin-protein ligase UBR5.
+To train your model, you will use 5-fold cross-validation on the sequences and fitness scores defined in the `data.csv` file. 
+
+You will use the `fold_random_5` column to split the data into training and test sets. This column contains integer values from 0 to 4, 
+which indicate the fold of the sequence in the corresponding 5-fold cross-validation split.
+
+When predicting the fitness score for a given sequence, **you must use a model trained only on sequences from other folds**.
+For example, to predict the fitness score for sequences with `fold_random_5 == 0`, you must use a model trained
+only on the sequences with `fold_random_5` values other than 0.
+
+You must repeat this process for each of the five folds in `fold_random_5` (so that all sequences in `data.csv` 
+receive a predicted score).
+
+Overall, your training and inference pseudocode loop should look like this:
+
+```python
+import pandas as pd
+data = pd.read_csv("data.csv")
+wt_sequence = data.iloc[0]["sequence"]
+
+# remove the wild-type sequence from the data
+data = data.iloc[1:]
+
+## define your model here ##
+model = ...
+
+# initialize a dataframe to store the predictions
+predictions = pd.DataFrame(columns=["id", "fitness_score"], index=data.index)
+predictions["id"] = data["id"]
+
+# loop over the different folds
+for fold in range(5): 
+    fold_mask = data["fold_random_5"] == fold
+    train_data = data[~fold_mask]  # train on all folds except the current one
+    test_data = data[fold_mask]  # test on the current fold
+
+    # train the model **from scratch** on the training set 
+    trained_model = model.fit(train_data["sequence"], train_data["fitness_score"]) 
+
+    # predict the fitness score for the sequences in the current fold 
+    predictions.loc[fold_mask, "fitness_score"] = trained_model.predict(test_data["sequence"])
+```
+
+Hence, the output data frame should contain four columns:
+- `id`: The ID of the sequence 
+- `fitness_score`: The predicted fitness score for that sequence predicted by the model trained on the 
+    cross-validation split defined by the `fold_random_5` column.
+
+## Data Format
+
+The `data.csv` file contains the following columns:
+- `id`: The index of the sequence
+- `sequence`: The amino acid sequence of the variant
+- `fitness_score`: The fitness score of the variant
+- `fold_random_5`: The fold of the variant (0-4) in the 5-fold cross-validation split
+
+The first row of the CSV file contains the wild-type sequence in the `sequence` field and missing values for the other columns.
+
+## Files
+
+- `data.csv`: File with sequences and fitness scores
+- `sample_submission.csv`: Example submission format with ID column and fitness score column
+
+## Evaluation
+
+Your model will be evaluated using the Spearman correlation between the predicted fitness scores and the true fitness scores for
+each of the sequences in `data.csv`.

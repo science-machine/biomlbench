@@ -1,0 +1,29 @@
+id: kaggle/vinbigdata-chest-xray-abnormalities-detection
+name: VinBigData Chest X-ray Abnormalities Detection
+competition_type: simple
+awards_medals: true
+prizes:
+  - position: 1
+    value: 20000
+  - position: 2
+    value: 14000
+  - position: 3
+    value: 8000
+  - position: Special Prize
+    value: 8000
+description: biomlbench/tasks/kaggle/vinbigdata-chest-xray-abnormalities-detection/description.md
+
+dataset:
+  answers: kaggle/vinbigdata-chest-xray-abnormalities-detection/prepared/private/answers.csv
+  sample_submission: kaggle/vinbigdata-chest-xray-abnormalities-detection/prepared/public/sample_submission.csv
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/vinbigdata-chest-xray-abnormalities-detection
+
+
+grader:
+  name: mAP-at-IoU>0.4
+  grade_fn: biomlbench.tasks.kaggle.vinbigdata-chest-xray-abnormalities-detection.grade:grade
+
+preparer: biomlbench.tasks.kaggle.vinbigdata-chest-xray-abnormalities-detection.prepare:prepare

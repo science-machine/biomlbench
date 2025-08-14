@@ -1,0 +1,21 @@
+id: kaggle/histopathologic-cancer-detection
+name: Histopathologic Cancer Detection
+competition_type: code
+awards_medals: false
+prizes: null
+description: biomlbench/tasks/kaggle/histopathologic-cancer-detection/description.md
+
+data_source:
+  type: kaggle
+  benchmark_id: kaggle/histopathologic-cancer-detection
+
+
+dataset:
+  answers: kaggle/histopathologic-cancer-detection/prepared/private/answers.csv
+  sample_submission: kaggle/histopathologic-cancer-detection/prepared/public/sample_submission.csv
+
+grader:
+  name: auc-roc
+  grade_fn: biomlbench.tasks.kaggle.histopathologic-cancer-detection.grade:grade
+
+preparer: biomlbench.tasks.kaggle.histopathologic-cancer-detection.prepare:prepare

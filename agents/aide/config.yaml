@@ -1,6 +1,6 @@
 vars:
-  step_count: &step_count 10
-  time_limit: &time_limit 7200 # total time limit
+  step_count: &step_count 25
+  time_limit: &time_limit 18000 # total time limit
 
 defaults: &defaults
   start: aide/start.sh
@@ -18,8 +18,8 @@ aide:
   <<: *defaults
   kwargs:
     <<: *kwargs_common
-    agent.code.model: gpt-4.1-2025-04-14
-    agent.feedback.model: gpt-4.1-2025-04-14
+    agent.code.model: gpt-5-2025-08-07
+    agent.feedback.model: gpt-5-2025-08-07
     agent.steps: *step_count
   env_vars:
     <<: *env_vars
@@ -29,8 +29,8 @@ aide/dev:
   <<: *defaults
   kwargs:
     <<: *kwargs_common
-    agent.code.model: gpt-4.1-2025-04-14
-    agent.feedback.model: gpt-4.1-2025-04-14
+    agent.code.model: gpt-5-2025-08-07
+    agent.feedback.model: gpt-5-2025-08-07
     agent.steps: 8
   env_vars:
     <<: *env_vars
@@ -41,7 +41,7 @@ aide/o1-preview:
   kwargs:
     <<: *kwargs_common
     agent.code.model: o1-preview
-    agent.feedback.model: gpt-4.1-2025-04-14
+    agent.feedback.model: gpt-5-2025-08-07
     agent.steps: *step_count
   env_vars:
     <<: *env_vars
@@ -53,7 +53,7 @@ aide/claude-3-5-sonnet:
   kwargs:
     <<: *kwargs_common
     agent.code.model: claude-3-5-sonnet-20240620
-    agent.feedback.model: gpt-4.1-2025-04-14
+    agent.feedback.model: gpt-5-2025-08-07
     agent.steps: *step_count
   env_vars:
     <<: *env_vars
@@ -64,7 +64,7 @@ aide/gemini-1.5-pro:
   kwargs:
     <<: *kwargs_common
     agent.code.model: gemini-1.5-pro-002
-    agent.feedback.model: gpt-4.1-2025-04-14
+    agent.feedback.model: gpt-5-2025-08-07
     agent.steps: *step_count
   env_vars:
     <<: *env_vars

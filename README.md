@@ -24,6 +24,9 @@ See the docs here: [docs/index.md](docs/index.md)
 - [ ] Decide if we want to bother scraping subsequent polarihub leaderboard pages (not a lot of examples with more than one page).
 - [ ] Decide if we want to have the option to let models see the public leaderboard (would be a more fair comparison to human performance).
 
+Tasks:
+
+- [ ] For `adaptyv-bio-egfr-binders-binary-cls-v0` we need to get the leaderboard from [this page](https://www.adaptyv.com/leaderboard/adaptyv-bio-egfr-binders-binary-cls-v0).
 
 
 ## How to wrap a new benchmark database

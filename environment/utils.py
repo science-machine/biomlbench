@@ -116,7 +116,7 @@ def extract_from_container(container: Container, container_file_path: str, local
 
 def create_task_container(
     client: DockerClient,
-    task: Task,
+    task_id: str,
     container_config: dict,
     volumes_config: dict,
     env_vars: dict,
@@ -143,7 +143,7 @@ def create_task_container(
 
     container = client.containers.create(
         image=container_image,
-        name=f"task-{task.id.replace('/', '-')}-{timestamp}-{unique_id}",
+        name=f"task-{task_id.replace('/', '-')}-{timestamp}-{unique_id}",
         detach=True,
         **parse_container_config(container_config),
         volumes=volumes_config,
