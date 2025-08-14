@@ -42,14 +42,23 @@ def main():
     print(f"Using path: {agent_path}")
     print(f"Timeout: {args.timeout_seconds} seconds")
 
+    # Read task description
+    task_description_path = "/home/data/description.md"
+    with open(task_description_path, 'r') as f:
+        task_description = f.read()
+
     # Initialize the agent with data path
     agent = A1(path=agent_path, llm=args.llm)
 
-    prompt = """
+    prompt = f"""
     Build a machine learning model to solve this biomedical task. Focus on understanding the dataset structure, 
     implementing appropriate data preprocessing, selecting suitable algorithms for the task type, 
-    and optimizing performance. Use appropriate evaluation metrics for the task type. Full instructions 
-    can be found in the instructions.txt file.
+    and optimizing performance. Use appropriate evaluation metrics for the task type.
+
+    Task description and data are available in /home/data/. 
+    Save your final predictions to /home/submission/submission.csv (or appropriate format based on sample submission).
+
+    {task_description}
     """
 
     # Run the agent
