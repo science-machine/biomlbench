@@ -15,3 +15,4 @@ runs
 site
 .vercel
 .DS_Store
+google-application-credentials.json
