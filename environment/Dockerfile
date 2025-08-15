@@ -64,7 +64,10 @@ ENV PATH="/opt/conda/bin:${PATH}"
 # Installs from here onward go into the conda base env; previous was installed to /usr/bin/python
 
 # Install stuff for the grading server: biomlbench and flask
-COPY . /biomlbench
+# Copy only necessary files for package installation (improves Docker layer caching)
+COPY pyproject.toml README.md /biomlbench/
+COPY biomlbench /biomlbench/biomlbench
+COPY scripts /biomlbench/scripts
 RUN /opt/conda/bin/conda create -n biomlb python=3.11 -y
 RUN /opt/conda/bin/conda run -n biomlb pip install flask && \
     /opt/conda/bin/conda run -n biomlb pip install -e /biomlbench
@@ -86,6 +89,8 @@ COPY environment/entrypoint.sh /entrypoint.sh
 # Create nonroot user; make entrypoint executable
 RUN useradd -m nonroot \
     && mkdir /home/submission \
+    && chown nonroot:nonroot /home/submission \
+    && chmod 755 /home/submission \
     && chmod +x /entrypoint.sh
 
 WORKDIR /home
