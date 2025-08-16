@@ -16,7 +16,7 @@ OPENPROBLEMS_S3_BASE = "s3://openproblems-data/resources/task_perturbation_predi
 def download_from_s3(s3_url: str, local_path: Path) -> None:
     """Download a file from S3 using AWS CLI."""
     try:
-        cmd = ["aws", "s3", "cp", s3_url, str(local_path)]
+        cmd = ["aws", "s3", "cp", s3_url, str(local_path), "--no-sign-request"]
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         logger.info(f"Successfully downloaded {s3_url} to {local_path}")
     except subprocess.CalledProcessError as e:
