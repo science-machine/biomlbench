@@ -55,10 +55,10 @@ gcloud compute instances create biomlbench --zone=us-central1-a --machine-type=g
 ```
 
 All of the ProteinGym, single-cell, and PolarisHub datasets have been downloaded and prepared, as well as the following four kaggle tasks:
-    - `histopathologic-cancer-detection`
-    - `osic-pulmonary-fibrosis-progression`
-    - `rsna-miccai-brain-tumor-radiogenomic-classification`
-    - `uw-madison-gi-tract-image-segmentation`
+- `histopathologic-cancer-detection`
+- `osic-pulmonary-fibrosis-progression`
+- `rsna-miccai-brain-tumor-radiogenomic-classification`
+- `uw-madison-gi-tract-image-segmentation`
 
 Where `--machine-type=g2-standard-8` specifies the machine type with an L4 GPU. For the tasks that require large-scale deep learning models you can specify `--machine-type=a2-highgpu-1g`, which gives an instance with a single 40Gb A100 GPU.
 
