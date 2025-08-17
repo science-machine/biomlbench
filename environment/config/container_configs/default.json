@@ -1,6 +1,6 @@
 {
     "mem_limit": null,
     "shm_size": "4G",
-    "nano_cpus": 4000000000,
-    "gpus": 1
-} 
+    "nano_cpus": 12000000000,
+    "gpus": "all"
+}

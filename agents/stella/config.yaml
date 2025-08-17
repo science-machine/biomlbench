@@ -1,6 +1,6 @@
 vars:
-  step_count: &step_count 50
-  time_limit: &time_limit 21600  # 6 hours
+  step_count: &step_count 200
+  time_limit: &time_limit 43200  # 12 hours
 
 stella:
   start: stella/start.sh
@@ -8,8 +8,8 @@ stella:
   kwargs_type: argparse
   kwargs:
     model: claude-sonnet-4
-    max_tools: 30
-    timeout_seconds: 21600
+    max_tools: 60
+    timeout_seconds: 3600
     # Note: use_templates and use_mem0 are action="store_true" flags
     # Only include them in kwargs if you want them to be True
     # For benchmarking (zero-shot), we want both False, so we omit them

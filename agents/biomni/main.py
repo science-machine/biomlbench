@@ -48,7 +48,7 @@ def main():
         task_description = f.read()
 
     # Initialize the agent with data path
-    agent = A1(path=agent_path, llm=args.llm)
+    agent = A1(path=agent_path, llm=args.llm, timeout_seconds=args.timeout_seconds)
 
     prompt = f"""
     Build a machine learning model to solve this biomedical task. Focus on understanding the dataset structure, 
