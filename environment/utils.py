@@ -25,9 +25,14 @@ def parse_container_config(raw_config: dict) -> dict:
     # handle GPU configuration
     if "gpus" in raw_config and raw_config["gpus"] != 0:
         gpu_count = raw_config["gpus"]
-        new_config["device_requests"] = [
-            docker.types.DeviceRequest(count=gpu_count, capabilities=[["gpu"]])
-        ]
+
+        try:
+            new_config["device_requests"] = [
+                docker.types.DeviceRequest(count=gpu_count, capabilities=[["gpu"]])
+            ]
+        # Fall back to CPU-only if GPU request fails
+        except Exception as e:
+            logger.warning(f"GPU request failed, falling back to CPU-only: {e}")
 
     # cast nano_cpus to int
     new_config["nano_cpus"] = int(new_config["nano_cpus"]) if "nano_cpus" in new_config else None
