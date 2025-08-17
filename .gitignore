@@ -12,6 +12,7 @@ baseline_submissions
 cache
 .env
 runs
+google-application-credentials.json
 site
 .vercel
 .DS_Store
