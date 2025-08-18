@@ -30,6 +30,10 @@ from biomlbench.utils import (
     get_runs_dir,
     get_timestamp,
 )
+from biomlbench.s3_utils import (
+    upload_run_group_artifacts,
+    upload_incremental_artifacts,
+)
 
 sys.path.append(str(Path(__file__).parent.parent / "agents"))
 from registry import Agent
@@ -168,6 +172,19 @@ async def worker(
                 run_logger.info(
                     f"[Worker {idx}] Finished running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
                 )
+                
+                # Upload individual run artifacts incrementally if enabled
+                if os.environ.get("BIOMLBENCH_S3_INCREMENTAL", "false").lower() == "true":
+                    try:
+                        run_group_id = agent_task.path_to_run_group.name
+                        run_id = agent_task.run_id
+                        upload_success = upload_incremental_artifacts(
+                            agent_task.path_to_run, run_group_id, agent_task.task.id, run_id
+                        )
+                        if upload_success:
+                            run_logger.info(f"📤 [Worker {idx}] Uploaded incremental artifacts to S3")
+                    except Exception as e:
+                        run_logger.warning(f"Incremental S3 upload failed but continuing: {e}")
             else:
                 run_logger.error(
                     f"[Worker {idx}] Agent completed without exception but failed internally for seed {agent_task.seed}, task {agent_task.task.id}, agent {agent_task.agent.name}"
@@ -389,6 +406,16 @@ async def run_agent_async(
         logger.warning(
             "⚠️  No successful runs to grade - submission file contains no valid results"
         )
+
+    # Upload run group artifacts to S3 if configured
+    try:
+        upload_success = upload_run_group_artifacts(run_group_dir, run_group)
+        if upload_success:
+            logger.info(f"📤 Successfully uploaded run group artifacts to S3")
+        else:
+            logger.debug("S3 upload skipped (not configured or disabled)")
+    except Exception as e:
+        logger.warning(f"S3 upload failed but continuing: {e}")
 
     return run_group, submission_path
 

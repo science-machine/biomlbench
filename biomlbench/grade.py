@@ -11,6 +11,7 @@ from biomlbench.grade_helpers import TaskReport
 from biomlbench.registry import Registry, Task
 from biomlbench.registry import registry as DEFAULT_REGISTRY
 from biomlbench.utils import get_logger, get_timestamp, load_answers, purple, read_csv, read_jsonl
+from biomlbench.s3_utils import upload_grading_artifacts
 
 logger = get_logger(__name__)
 
@@ -63,6 +64,16 @@ def grade_jsonl(
             json.dump(report.to_dict(), f, indent=2)
     
     logger.info(purple(f"Saved {len(task_reports)} individual task reports to {individual_reports_dir}"))
+    
+    # Upload grading artifacts to S3 if configured
+    try:
+        upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp)
+        if upload_success:
+            logger.info(f"📤 Successfully uploaded grading results to S3")
+        else:
+            logger.debug("S3 upload skipped (not configured or disabled)")
+    except Exception as e:
+        logger.warning(f"S3 upload failed but continuing: {e}")
     
     return save_path, individual_reports_dir
 

@@ -9,9 +9,11 @@ ref
 .venv
 baseline_submissions
 *.jsonl
+google-cloud-sdk
 cache
 .env
 runs
+google-application-credentials.json
 site
 .vercel
 .DS_Store

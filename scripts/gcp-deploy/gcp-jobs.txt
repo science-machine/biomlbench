@@ -1,0 +1,19 @@
+# BioML-bench GCP Jobs - Main Job List
+# Format: agent,task_id
+# Run from project root with: python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5
+
+# Test jobs
+dummy,polarishub/tdcommons-caco2-wang
+aide,polarishub/tdcommons-caco2-wang
+biomni,polarishub/tdcommons-caco2-wang
+
+# ProteinGym examples  
+aide,proteingym-dms/A0A1I9GEU1_NEIME_Kennouche_2019
+biomni,proteingym-dms/A0A1I9GEU1_NEIME_Kennouche_2019
+
+# Kaggle tasks (using pre-prepared tasks from the image)
+dummy,manual/histopathologic-cancer-detection
+aide,manual/histopathologic-cancer-detection
+
+# Add more jobs below as needed
+# agent,task_id 
