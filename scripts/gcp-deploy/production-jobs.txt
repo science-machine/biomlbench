@@ -1,0 +1,136 @@
+# BioML-bench Production Jobs - Complete Task List
+# Format: agent,task_id
+# Run from project root: python scripts/gcp-deploy/deploy.py --jobs production-jobs.txt --concurrent 15
+# Generated with 4 agents × 23 tasks = 92 total jobs
+
+# ==================================================
+# Drug Discovery and Development
+# ==================================================
+
+aide,polarishub/polaris-pkis2-egfr-wt-c-1
+biomni,polarishub/polaris-pkis2-egfr-wt-c-1
+mlagentbench,polarishub/polaris-pkis2-egfr-wt-c-1
+stella,polarishub/polaris-pkis2-egfr-wt-c-1
+
+aide,polarishub/polaris-adme-fang-hclint-1
+biomni,polarishub/polaris-adme-fang-hclint-1
+mlagentbench,polarishub/polaris-adme-fang-hclint-1
+stella,polarishub/polaris-adme-fang-hclint-1
+
+aide,polarishub/polaris-adme-fang-hppb-1
+biomni,polarishub/polaris-adme-fang-hppb-1
+mlagentbench,polarishub/polaris-adme-fang-hppb-1
+stella,polarishub/polaris-adme-fang-hppb-1
+
+aide,polarishub/polaris-adme-fang-solu-1
+biomni,polarishub/polaris-adme-fang-solu-1
+mlagentbench,polarishub/polaris-adme-fang-solu-1
+stella,polarishub/polaris-adme-fang-solu-1
+
+aide,polarishub/polaris-adme-fang-r-1
+biomni,polarishub/polaris-adme-fang-r-1
+mlagentbench,polarishub/polaris-adme-fang-r-1
+stella,polarishub/polaris-adme-fang-r-1
+
+aide,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
+biomni,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
+mlagentbench,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
+stella,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
+
+aide,polarishub/tdcommons-lipophilicity-astrazeneca
+biomni,polarishub/tdcommons-lipophilicity-astrazeneca
+mlagentbench,polarishub/tdcommons-lipophilicity-astrazeneca
+stella,polarishub/tdcommons-lipophilicity-astrazeneca
+
+aide,polarishub/tdcommons-herg
+biomni,polarishub/tdcommons-herg
+mlagentbench,polarishub/tdcommons-herg
+stella,polarishub/tdcommons-herg
+
+aide,polarishub/tdcommons-bbb-martins
+biomni,polarishub/tdcommons-bbb-martins
+mlagentbench,polarishub/tdcommons-bbb-martins
+stella,polarishub/tdcommons-bbb-martins
+
+# ==================================================
+# Biomedical Image Analysis
+# ==================================================
+
+aide,kaggle/osic-pulmonary-fibrosis-progression
+biomni,kaggle/osic-pulmonary-fibrosis-progression
+mlagentbench,kaggle/osic-pulmonary-fibrosis-progression
+stella,kaggle/osic-pulmonary-fibrosis-progression
+
+aide,kaggle/histopathologic-cancer-detection
+biomni,kaggle/histopathologic-cancer-detection
+mlagentbench,kaggle/histopathologic-cancer-detection
+stella,kaggle/histopathologic-cancer-detection
+
+aide,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+biomni,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+mlagentbench,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+stella,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+
+aide,kaggle/uw-madison-gi-tract-image-segmentation
+biomni,kaggle/uw-madison-gi-tract-image-segmentation
+mlagentbench,kaggle/uw-madison-gi-tract-image-segmentation
+stella,kaggle/uw-madison-gi-tract-image-segmentation
+
+# ==================================================
+# Protein Engineering
+# ==================================================
+
+aide,proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+biomni,proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+mlagentbench,proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+stella,proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+
+aide,proteingym-dms/SBI_STAAM_Tsuboyama_2023_2JVG
+biomni,proteingym-dms/SBI_STAAM_Tsuboyama_2023_2JVG
+mlagentbench,proteingym-dms/SBI_STAAM_Tsuboyama_2023_2JVG
+stella,proteingym-dms/SBI_STAAM_Tsuboyama_2023_2JVG
+
+aide,proteingym-dms/PSAE_PICP2_Tsuboyama_2023_1PSE
+biomni,proteingym-dms/PSAE_PICP2_Tsuboyama_2023_1PSE
+mlagentbench,proteingym-dms/PSAE_PICP2_Tsuboyama_2023_1PSE
+stella,proteingym-dms/PSAE_PICP2_Tsuboyama_2023_1PSE
+
+aide,proteingym-dms/CBX4_HUMAN_Tsuboyama_2023_2K28
+biomni,proteingym-dms/CBX4_HUMAN_Tsuboyama_2023_2K28
+mlagentbench,proteingym-dms/CBX4_HUMAN_Tsuboyama_2023_2K28
+stella,proteingym-dms/CBX4_HUMAN_Tsuboyama_2023_2K28
+
+aide,proteingym-dms/Q8EG35_SHEON_Campbell_2022_indels
+biomni,proteingym-dms/Q8EG35_SHEON_Campbell_2022_indels
+mlagentbench,proteingym-dms/Q8EG35_SHEON_Campbell_2022_indels
+stella,proteingym-dms/Q8EG35_SHEON_Campbell_2022_indels
+
+aide,proteingym-dms/CSN4_MOUSE_Tsuboyama_2023_1UFM_indels
+biomni,proteingym-dms/CSN4_MOUSE_Tsuboyama_2023_1UFM_indels
+mlagentbench,proteingym-dms/CSN4_MOUSE_Tsuboyama_2023_1UFM_indels
+stella,proteingym-dms/CSN4_MOUSE_Tsuboyama_2023_1UFM_indels
+
+# ==================================================
+# Single Cell Omics
+# ==================================================
+
+aide,manual/open-problems-predict-modality
+biomni,manual/open-problems-predict-modality
+mlagentbench,manual/open-problems-predict-modality
+stella,manual/open-problems-predict-modality
+
+aide,manual/open-problems-single-cell-perturbations
+biomni,manual/open-problems-single-cell-perturbations
+mlagentbench,manual/open-problems-single-cell-perturbations
+stella,manual/open-problems-single-cell-perturbations
+
+aide,manual/open-problems-cell-cell-communication-ligand-target
+biomni,manual/open-problems-cell-cell-communication-ligand-target
+mlagentbench,manual/open-problems-cell-cell-communication-ligand-target
+stella,manual/open-problems-cell-cell-communication-ligand-target
+
+aide,manual/open-problems-spatially-variable-genes
+biomni,manual/open-problems-spatially-variable-genes
+mlagentbench,manual/open-problems-spatially-variable-genes
+stella,manual/open-problems-spatially-variable-genes
+

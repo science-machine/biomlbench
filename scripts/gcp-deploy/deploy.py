@@ -238,8 +238,8 @@ Jobs file format (one per line):
     parser.add_argument(
         "--concurrent", 
         type=int, 
-        default=10, 
-        help="Maximum concurrent VMs (default: 10)"
+        default=15, 
+        help="Maximum concurrent VMs (default: 15, max recommended: 16 based on L4 GPU quota)"
     )
     parser.add_argument(
         "--zone", 

@@ -50,7 +50,7 @@ For each job, the script:
 ## Key Features
 
 - **Infinite Retry**: VM creation retries until success (handles quotas)
-- **Parallel Execution**: Configurable concurrent VMs (default: 10)
+- **Parallel Execution**: Configurable concurrent VMs (default: 15, max: 16 based on L4 quota)
 - **Auto-Cleanup**: VMs always deleted after job completion
 - **S3 Verification**: Ensures artifacts uploaded before success
 - **Path Resolution**: Job files resolved relative to current directory
@@ -98,4 +98,7 @@ aws s3 ls s3://biomlbench/runs/ --recursive
 - **Average Job**: 15-30 minutes
 - **Cost per Job**: ~$0.40-$0.80
 
-For 10 jobs with 5 concurrent VMs: ~$4-8 total 
+**Examples:**
+- 10 jobs with 15 concurrent VMs: ~$4-8 total
+- 100 jobs with 15 concurrent VMs: ~$40-80 total  
+- **Max throughput**: 16 concurrent VMs = ~32-64 jobs/hour 
