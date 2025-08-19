@@ -284,6 +284,18 @@ async def run_agent_async(
     for seed in range(n_seeds):
         for task_id in task_ids:
             task = task_registry.get_task(task_id)
+
+            # Get agent with task-specific overrides if task has time_limit
+            if task.time_limit is not None:
+                task_agent = agent_registry.get_agent_with_task_overrides(
+                    agent_id, task_time_limit=task.time_limit
+                )
+                logger.info(
+                    f"Using task-specific time limit of {task.time_limit}s for task {task.id}"
+                )
+            else:
+                task_agent = agent
+
             run_dir = create_run_dir(task.id, agent.id, run_group)
             # Store relative path from run group directory for proper reconstruction
             run_group_dir = get_runs_dir() / run_group
@@ -291,8 +303,8 @@ async def run_agent_async(
             agent_task = AgentTask(
                 run_id=run_id,
                 seed=seed,
-                image=agent.name,
-                agent=agent,
+                image=task_agent.name,
+                agent=task_agent,
                 task=task,
                 path_to_run_group=run_dir.parent,
                 path_to_run=run_dir,

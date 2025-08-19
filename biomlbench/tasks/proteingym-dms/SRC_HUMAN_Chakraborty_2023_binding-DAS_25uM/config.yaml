@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM/description.md
 preparer: biomlbench.tasks.proteingym-dms.SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

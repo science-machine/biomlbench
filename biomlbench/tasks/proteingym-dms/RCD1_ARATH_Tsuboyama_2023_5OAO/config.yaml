@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/RCD1_ARATH_Tsuboyama_2023_5OAO/description.md
 preparer: biomlbench.tasks.proteingym-dms.RCD1_ARATH_Tsuboyama_2023_5OAO.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

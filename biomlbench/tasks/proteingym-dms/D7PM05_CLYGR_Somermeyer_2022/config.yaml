@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/D7PM05_CLYGR_Somermeyer_2022/description.md
 preparer: biomlbench.tasks.proteingym-dms.D7PM05_CLYGR_Somermeyer_2022.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

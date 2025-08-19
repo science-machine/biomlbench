@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/SCIN_STAAR_Tsuboyama_2023_2QFF/description.md
 preparer: biomlbench.tasks.proteingym-dms.SCIN_STAAR_Tsuboyama_2023_2QFF.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

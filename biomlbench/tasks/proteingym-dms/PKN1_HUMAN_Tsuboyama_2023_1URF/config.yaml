@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/PKN1_HUMAN_Tsuboyama_2023_1URF/description.md
 preparer: biomlbench.tasks.proteingym-dms.PKN1_HUMAN_Tsuboyama_2023_1URF.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

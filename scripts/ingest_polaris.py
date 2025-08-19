@@ -78,6 +78,7 @@ difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/{task_name}/description.md
+time_limit: 14400  # 4 hours
 
 data_source:
   type: polaris

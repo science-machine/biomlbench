@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/ISDH_STAAW_Tsuboyama_2023_2LHR/description.md
 preparer: biomlbench.tasks.proteingym-dms.ISDH_STAAW_Tsuboyama_2023_2LHR.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/FECA_ECOLI_Tsuboyama_2023_2D1U/description.md
 preparer: biomlbench.tasks.proteingym-dms.FECA_ECOLI_Tsuboyama_2023_2D1U.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

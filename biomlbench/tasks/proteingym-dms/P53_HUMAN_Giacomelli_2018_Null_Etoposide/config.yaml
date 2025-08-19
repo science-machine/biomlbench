@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/P53_HUMAN_Giacomelli_2018_Null_Etoposide/description.md
 preparer: biomlbench.tasks.proteingym-dms.P53_HUMAN_Giacomelli_2018_Null_Etoposide.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

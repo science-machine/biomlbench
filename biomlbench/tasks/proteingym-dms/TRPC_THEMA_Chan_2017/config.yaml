@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/TRPC_THEMA_Chan_2017/description.md
 preparer: biomlbench.tasks.proteingym-dms.TRPC_THEMA_Chan_2017.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms
