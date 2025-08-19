@@ -42,14 +42,20 @@ def run_command(cmd: List[str], description: str = "", timeout: int = None) -> T
     except Exception as e:
         return 1, str(e)
 
-def create_vm_with_retry(vm_name: str, zone: str = "us-central1-a", max_retries: int = None) -> bool:
+def create_vm_with_retry(vm_name: str, machine_type: str, zone: str = "us-central1-a", max_retries: int = None) -> bool:
     """Create a VM, retrying until success."""
-    log(f"Creating VM: {vm_name}")
+    log(f"Creating VM: {vm_name} (machine type: {machine_type})")
+    
+    # Map machine type choice to GCP machine type
+    if machine_type == "cpu":
+        gcp_machine_type = "n2-standard-16"
+    else:  # gpu
+        gcp_machine_type = "g2-standard-16"
     
     cmd = [
         "gcloud", "compute", "instances", "create", vm_name,
         "--zone", zone,
-        "--machine-type", "g2-standard-12",
+        "--machine-type", gcp_machine_type,
         "--maintenance-policy", "TERMINATE", 
         "--image", "biomlbenchhm",
         "--boot-disk-size", "500G"
@@ -192,7 +198,7 @@ def delete_vm(vm_name: str, zone: str = "us-central1-a"):
     else:
         log(f"⚠️  Failed to delete VM {vm_name}: {output}")
 
-def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
+def process_job(job: Tuple[str, str], machine_type: str, zone: str = "us-central1-a") -> bool:
     """Process a single job (agent, task_id) on a dedicated VM."""
     agent, task_id = job
     
@@ -212,7 +218,7 @@ def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
     
     try:
         # Create VM (max 3 attempts)
-        if not create_vm_with_retry(vm_name, zone, max_retries=3):
+        if not create_vm_with_retry(vm_name, machine_type, zone, max_retries=3):
             return False
         
         # Wait for SSH
@@ -270,11 +276,14 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Example usage:
-  # From project root:
+  # From project root with GPU (default):
   python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5
   
+  # With CPU machines:
+  python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5 --machine-type cpu
+  
   # From scripts/gcp-deploy directory:
-  python deploy.py --jobs jobs.txt --concurrent 5
+  python deploy.py --jobs jobs.txt --concurrent 5 --machine-type gpu
   
 Jobs file format (one per line):
   agent,task_id
@@ -292,12 +301,18 @@ Jobs file format (one per line):
         "--concurrent", 
         type=int, 
         default=15, 
-        help="Maximum concurrent VMs (default: 15, max recommended: 16 based on L4 GPU quota)"
+        help="Maximum concurrent VMs (default: 15, GPU quota limit ~16, CPU limit higher)"
     )
     parser.add_argument(
         "--zone", 
         default="us-central1-a", 
         help="GCP zone (default: us-central1-a)"
+    )
+    parser.add_argument(
+        "--machine-type", 
+        choices=["cpu", "gpu"],
+        default="cpu", 
+        help="Machine type: cpu (n2-standard-16, default) or gpu (g2-standard-16)"
     )
     parser.add_argument(
         "--dry-run", 
@@ -322,6 +337,7 @@ Jobs file format (one per line):
     
     # Run jobs
     log(f"Starting deployment with {args.concurrent} concurrent VMs")
+    log(f"Machine type: {args.machine_type}")
     log(f"Jobs to process: {len(jobs)}")
     
     successful_jobs = 0
@@ -330,7 +346,7 @@ Jobs file format (one per line):
     with ThreadPoolExecutor(max_workers=args.concurrent) as executor:
         # Submit all jobs
         future_to_job = {
-            executor.submit(process_job, job, args.zone): job 
+            executor.submit(process_job, job, args.machine_type, args.zone): job 
             for job in jobs
         }
         
