@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/MAFG_MOUSE_Tsuboyama_2023_1K1V/description.md
 preparer: biomlbench.tasks.proteingym-dms.MAFG_MOUSE_Tsuboyama_2023_1K1V.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

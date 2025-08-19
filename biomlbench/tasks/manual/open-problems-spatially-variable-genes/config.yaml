@@ -1,6 +1,7 @@
 id: manual/open-problems-spatially-variable-genes
 name: "OpenProblems – Spatially Variable Genes"
 description: biomlbench/tasks/manual/open-problems-spatially-variable-genes/description.md
+time_limit: 14400  # 4 hours
 
 dataset:
   answers: manual/open-problems-spatially-variable-genes/prepared/private/answers.csv

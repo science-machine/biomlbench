@@ -4,6 +4,7 @@ competition_type: code
 awards_medals: false
 prizes: null
 description: biomlbench/tasks/kaggle/histopathologic-cancer-detection/description.md
+time_limit: 43200  # 12 hours
 
 data_source:
   type: kaggle

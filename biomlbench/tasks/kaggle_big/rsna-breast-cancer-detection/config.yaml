@@ -20,6 +20,7 @@ prizes:
   - position: 8
     value: 5000
 description: biomlbench/tasks/kaggle/rsna-breast-cancer-detection/description.md
+time_limit: 43200  # 12 hours
 
 dataset:
   answers: kaggle/rsna-breast-cancer-detection/prepared/private/answers.csv

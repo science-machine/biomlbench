@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/DN7A_SACS2_Tsuboyama_2023_1JIC/description.md
 preparer: biomlbench.tasks.proteingym-dms.DN7A_SACS2_Tsuboyama_2023_1JIC.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

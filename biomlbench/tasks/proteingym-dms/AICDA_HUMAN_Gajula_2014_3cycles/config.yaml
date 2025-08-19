@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/AICDA_HUMAN_Gajula_2014_3cycles/description.md
 preparer: biomlbench.tasks.proteingym-dms.AICDA_HUMAN_Gajula_2014_3cycles.prepare:prepare
+time_limit: 14400  # 4 hours
 
 data_source:
   type: proteingym-dms

@@ -20,6 +20,7 @@ prizes:
   - position: 8
     value: 3000
 description: biomlbench/tasks/kaggle/rsna-2022-cervical-spine-fracture-detection/description.md
+time_limit: 43200  # 12 hours
 
 dataset:
   answers: kaggle/rsna-2022-cervical-spine-fracture-detection/prepared/private/answers.csv
