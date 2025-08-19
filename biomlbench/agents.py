@@ -40,7 +40,7 @@ from registry import Agent
 from registry import registry as agent_registry
 from run import run_in_container
 
-from environment.defaults import DEFAULT_CONTAINER_CONFIG_PATH
+from environment.defaults import DEFAULT_CONTAINER_CONFIG_PATH, CPU_ONLY_CONTAINER_CONFIG_PATH
 
 logger = get_logger(__name__)
 
@@ -229,6 +229,7 @@ async def run_agent_async(
     container_config_path: str = None,
     retain_container: bool = False,
     data_dir: str = None,
+    cpu_only: bool = False,
 ) -> Tuple[str, Path]:
     """
     Run an agent on multiple tasks asynchronously.
@@ -273,7 +274,10 @@ async def run_agent_async(
 
     # Load container configuration
     if container_config_path is None:
-        container_config_path = DEFAULT_CONTAINER_CONFIG_PATH
+        if cpu_only:
+            container_config_path = CPU_ONLY_CONTAINER_CONFIG_PATH
+        else:
+            container_config_path = DEFAULT_CONTAINER_CONFIG_PATH
 
     with open(container_config_path, "r") as f:
         container_config = json.load(f)
@@ -466,6 +470,7 @@ def run_agent(args) -> str:
             container_config_path=args.container_config,
             retain_container=args.retain_container,
             data_dir=args.data_dir,
+            cpu_only=getattr(args, 'cpu_only', False),
         )
     )
 

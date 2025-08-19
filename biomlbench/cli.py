@@ -348,6 +348,11 @@ def main():
         help="Enable incremental S3 uploads during execution (useful for long benchmarks)",
         action="store_true",
     )
+    parser_run_agent.add_argument(
+        "--cpu-only",
+        help="Use CPU-only container configuration (no GPU requirements)",
+        action="store_true",
+    )
 
     args = parser.parse_args()
 

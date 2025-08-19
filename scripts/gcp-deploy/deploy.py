@@ -109,8 +109,8 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     cd biomlbench
     source .venv/bin/activate
     
-    # Run agent
-    biomlbench run-agent --agent {agent} --task-id {task_id}
+    # Run agent (CPU-only mode)
+    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only
     
     # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
