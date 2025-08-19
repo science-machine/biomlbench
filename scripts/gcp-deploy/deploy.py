@@ -193,8 +193,8 @@ def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
     """Process a single job (agent, task_id) on a dedicated VM."""
     agent, task_id = job
     
-    # Generate unique VM name (GCP max 63 chars)
-    safe_task = task_id.replace('/', '-')
+    # Generate unique VM name (GCP max 63 chars, lowercase only)
+    safe_task = task_id.replace('/', '-').lower()
     uuid_suffix = uuid.uuid4().hex[:8]
     
     # Calculate max length for task part: 63 - "bioml-" - agent - "-" - "-" - uuid = 63 - 6 - len(agent) - 2 - 8
@@ -208,8 +208,8 @@ def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
     vm_name = f"bioml-{agent}-{safe_task}-{uuid_suffix}"
     
     try:
-        # Create VM
-        if not create_vm_with_retry(vm_name, zone):
+        # Create VM (max 3 attempts)
+        if not create_vm_with_retry(vm_name, zone, max_retries=3):
             return False
         
         # Wait for SSH
