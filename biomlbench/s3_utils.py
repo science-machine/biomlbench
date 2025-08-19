@@ -171,6 +171,9 @@ class S3Uploader:
             return False
         
         try:
+            # Debug logging
+            logger.info(f"Upload run group - agent_id: {agent_id}, task_ids: {task_ids}")
+            
             # Determine S3 path structure based on agent and task information
             if agent_id and task_ids:
                 if len(task_ids) == 1:
@@ -241,6 +244,9 @@ class S3Uploader:
             return False
         
         try:
+            # Debug logging
+            logger.info(f"Upload grading results - agent_id: {agent_id}, task_id: {task_id}")
+            
             # Determine S3 path structure based on agent and task information
             if agent_id and task_id:
                 task_id_safe = task_id.replace('/', '-').replace('_', '-')
