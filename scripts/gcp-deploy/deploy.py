@@ -113,8 +113,8 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     
     # Verify S3 uploads exist (look in the correct path after prefix fix)
     echo "Verifying S3 uploads..."
-    aws s3 ls s3://biomlbench/runs/ | grep -q "{agent}" || (echo "Run artifacts not found in S3!" && exit 1)
-    aws s3 ls s3://biomlbench/grades/ | grep -q "$(date +%Y-%m-%d)" || (echo "Grade artifacts not found in S3!" && exit 1)
+    aws s3 ls s3://biomlbench/v1/artifacts/runs/ | grep -q "{agent}" || (echo "Run artifacts not found in S3!" && exit 1)
+    aws s3 ls s3://biomlbench/v1/artifacts/grades/ | grep -q "$(date +%Y-%m-%d)" || (echo "Grade artifacts not found in S3!" && exit 1)
     
     echo "✅ Job completed successfully"
     """
@@ -125,7 +125,7 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
         "--command", remote_cmd,
         "--quiet"
     ])
-    
+     
     if exit_code == 0:
         log(f"✅ Job completed on {vm_name}: {agent} -> {task_id}")
         return True
