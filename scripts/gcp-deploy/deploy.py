@@ -119,30 +119,33 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     GRADING_TIMESTAMP=$(basename "$GRADING_REPORT" | cut -d'_' -f1)
     echo "📊 Grading timestamp: $GRADING_TIMESTAMP"
     
+    # Convert task_id to S3-safe format for the organized structure
+    TASK_ID_SAFE=$(echo "$task_id" | sed 's/\//-/g' | sed 's/_/-/g')
+    
     # Show the exact S3 paths for this specific run
     echo "📤 S3 artifacts for this run:"
     echo "  Run artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz (if failed)"
+    echo "    s3://biomlbench/v1/artifacts/runs/$agent/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
+    echo "    OR s3://biomlbench/v1/artifacts/failed_runs/$agent/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
     echo "  Grading artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
-    echo "    s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_grades/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
+    echo "    s3://biomlbench/v1/artifacts/grades/$agent/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
+    echo "    s3://biomlbench/v1/artifacts/grades/$agent/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
+    echo "    OR s3://biomlbench/v1/artifacts/failed_grades/$agent/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
     
     # Verify these specific paths exist
     echo "🔍 Verifying uploads..."
-    if aws s3 ls s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://biomlbench/v1/artifacts/runs/$agent/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Run artifacts uploaded successfully"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/$agent/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Failed run artifacts uploaded successfully"
     else
         echo "❌ No run artifacts found in S3!"
         exit 1
     fi
     
-    if aws s3 ls s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://biomlbench/v1/artifacts/grades/$agent/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP"; then
+    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/$agent/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully"
     else
         echo "❌ No grading artifacts found in S3!"
@@ -193,8 +196,8 @@ def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
     """Process a single job (agent, task_id) on a dedicated VM."""
     agent, task_id = job
     
-    # Generate unique VM name (GCP max 63 chars, lowercase only)
-    safe_task = task_id.replace('/', '-').lower()
+    # Generate unique VM name (GCP max 63 chars, lowercase, no underscores)
+    safe_task = task_id.replace('/', '-').replace('_', '-').lower()
     uuid_suffix = uuid.uuid4().hex[:8]
     
     # Calculate max length for task part: 63 - "bioml-" - agent - "-" - "-" - uuid = 63 - 6 - len(agent) - 2 - 8
@@ -358,8 +361,8 @@ Jobs file format (one per line):
     log(f"Success rate: {successful_jobs/total_jobs*100:.1f}%" if total_jobs > 0 else "N/A")
     
     if successful_jobs > 0:
-        log("Check S3 for results: aws s3 ls s3://biomlbench/runs/ --recursive")
-        log("Check S3 for grades: aws s3 ls s3://biomlbench/grades/ --recursive")
+        log("Check S3 for results: aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive")
+        log("Check S3 for grades: aws s3 ls s3://biomlbench/v1/artifacts/grades/ --recursive")
     
     return 0 if failed_jobs == 0 else 1
 

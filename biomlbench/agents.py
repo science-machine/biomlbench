@@ -418,7 +418,7 @@ async def run_agent_async(
 
     # Upload run group artifacts to S3 if configured
     try:
-        upload_success = upload_run_group_artifacts(run_group_dir, run_group)
+        upload_success = upload_run_group_artifacts(run_group_dir, run_group, agent_id, task_ids)
         if upload_success:
             logger.info(f"📤 Successfully uploaded run group artifacts to S3")
         else:

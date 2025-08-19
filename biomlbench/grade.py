@@ -16,6 +16,20 @@ from biomlbench.s3_utils import upload_grading_artifacts
 logger = get_logger(__name__)
 
 
+def extract_agent_from_submission_path(submission_path: str) -> str:
+    """Extract agent ID from submission path by parsing the run group directory structure."""
+    try:
+        # Submission paths are like: "run_id/submission/submission.csv"
+        # Run group directories are like: "2025-08-19T11-06-44-GMT_run-group_dummy"
+        path_parts = Path(submission_path).parts
+        for part in path_parts:
+            if "_run-group_" in part:
+                return part.split("_run-group_")[-1]
+        return "unknown"
+    except:
+        return "unknown"
+
+
 def grade_jsonl(
     path_to_submissions: Path,
     output_dir: Path,
@@ -32,6 +46,14 @@ def grade_jsonl(
     timestamp = get_timestamp()
     save_path = output_dir / f"{timestamp}_grading_report.json"
     individual_reports_dir = output_dir / f"{timestamp}_individual_reports"
+    
+    # Extract agent and task information for S3 organization
+    agents = set()
+    tasks = set()
+    for submission in submissions:
+        agent = extract_agent_from_submission_path(submission["submission_path"])
+        agents.add(agent)
+        tasks.add(submission["task_id"])
 
     try:
         for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
@@ -68,7 +90,15 @@ def grade_jsonl(
         
         # Upload grading artifacts to S3 if configured
         try:
-            upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp)
+            # Use organized S3 structure if single agent/task, otherwise use general structure
+            if len(agents) == 1 and len(tasks) == 1:
+                agent_id = list(agents)[0]
+                task_id = list(tasks)[0]
+                upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp, agent_id, task_id)
+            else:
+                # Multiple agents/tasks - use general structure
+                upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp)
+                
             if upload_success:
                 logger.info(f"📤 Successfully uploaded grading results to S3")
             else:
@@ -79,7 +109,12 @@ def grade_jsonl(
     except Exception:
         # Upload failed grading artifacts before re-raising
         from biomlbench.s3_utils import upload_failed_grading_artifacts
-        upload_failed_grading_artifacts(save_path, individual_reports_dir, timestamp)
+        if len(agents) == 1 and len(tasks) == 1:
+            agent_id = list(agents)[0]
+            task_id = list(tasks)[0]
+            upload_failed_grading_artifacts(save_path, individual_reports_dir, timestamp, agent_id, task_id)
+        else:
+            upload_failed_grading_artifacts(save_path, individual_reports_dir, timestamp)
         raise
     
     return save_path, individual_reports_dir
