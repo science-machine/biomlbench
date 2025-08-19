@@ -110,6 +110,7 @@ def ingest_substitutions_task(
     prizes: null
     description: biomlbench/tasks/proteingym-dms/$dataset_name/description.md
     preparer: biomlbench.tasks.proteingym-dms.$dataset_name.prepare:prepare
+    time_limit: 14400  # 4 hours
 
     data_source:
       type: proteingym-dms

@@ -101,5 +101,42 @@ class Registry:
 
         raise ValueError(f"Agent with id {agent_id} not found")
 
+    def get_agent_with_task_overrides(
+        self, agent_id: str, task_time_limit: Optional[int] = None
+    ) -> Agent:
+        """
+        Fetch the agent from the registry with task-specific overrides.
+
+        Args:
+            agent_id: The agent ID to fetch
+            task_time_limit: Optional task-specific time limit to override agent's default
+
+        Returns:
+            Agent with task-specific overrides applied
+        """
+        agent = self.get_agent(agent_id)
+
+        # If no task-specific overrides, return the original agent
+        if task_time_limit is None:
+            return agent
+
+        # Create a new agent with overridden time_limit
+        # All agents use TIME_LIMIT_SECS in env_vars, so we just override that
+        new_env_vars = agent.env_vars.copy()
+        new_env_vars["TIME_LIMIT_SECS"] = task_time_limit
+
+        # Create new agent with overridden values
+        return Agent(
+            id=agent.id,
+            name=agent.name,
+            agents_dir=agent.agents_dir,
+            start=agent.start,
+            dockerfile=agent.dockerfile,
+            kwargs=agent.kwargs,  # Keep original kwargs
+            env_vars=new_env_vars,
+            privileged=agent.privileged,
+            kwargs_type=agent.kwargs_type,
+        )
+
 
 registry = Registry()
