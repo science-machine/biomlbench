@@ -49,9 +49,9 @@ def create_vm_with_retry(vm_name: str, zone: str = "us-central1-a", max_retries:
     cmd = [
         "gcloud", "compute", "instances", "create", vm_name,
         "--zone", zone,
-        "--machine-type", "g2-standard-8",
+        "--machine-type", "g2-standard-12",
         "--maintenance-policy", "TERMINATE", 
-        "--image", "biomlbench",
+        "--image", "biomlbenchhm",
         "--boot-disk-size", "500G"
     ]
     
@@ -106,18 +106,51 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     # Run agent
     biomlbench run-agent --agent {agent} --task-id {task_id}
     
-    # Grade results
+    # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
+    RUN_GROUP_ID=$(basename "$LATEST_RUN")
+    echo "📁 Run group: $RUN_GROUP_ID"
+    
+    # Grade results
     biomlbench grade --submission "$LATEST_RUN/submission.jsonl" --output-dir results/
     
-    # Verify S3 uploads exist (look in the correct path after prefix fix)
-    echo "Verifying S3 uploads..."
-    aws s3 ls s3://biomlbench/v1/artifacts/runs/ | grep -q "{agent}" || (echo "Run artifacts not found in S3!" && exit 1)
-    aws s3 ls s3://biomlbench/v1/artifacts/grades/ | grep -q "$(date +%Y-%m-%d)" || (echo "Grade artifacts not found in S3!" && exit 1)
+    # Get the grading timestamp from the most recent grading report
+    GRADING_REPORT=$(find results/ -name "*_grading_report.json" | sort | tail -1)
+    GRADING_TIMESTAMP=$(basename "$GRADING_REPORT" | cut -d'_' -f1)
+    echo "📊 Grading timestamp: $GRADING_TIMESTAMP"
+    
+    # Show the exact S3 paths for this specific run
+    echo "📤 S3 artifacts for this run:"
+    echo "  Run artifacts:"
+    echo "    s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz"
+    echo "    OR s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz (if failed)"
+    echo "  Grading artifacts:"
+    echo "    s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
+    echo "    s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
+    echo "    OR s3://biomlbench/v1/artifacts/failed_grades/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
+    
+    # Verify these specific paths exist
+    echo "🔍 Verifying uploads..."
+    if aws s3 ls s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+        echo "✅ Run artifacts uploaded successfully"
+    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+        echo "✅ Failed run artifacts uploaded successfully"
+    else
+        echo "❌ No run artifacts found in S3!"
+        exit 1
+    fi
+    
+    if aws s3 ls s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+        echo "✅ Grading artifacts uploaded successfully"
+    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP"; then
+        echo "✅ Failed grading artifacts uploaded successfully"
+    else
+        echo "❌ No grading artifacts found in S3!"
+        exit 1
+    fi
     
     echo "✅ Job completed successfully"
     """
-    breakpoint()
     
     exit_code, output = run_command([
         "gcloud", "compute", "ssh", f"runner@{vm_name}",
@@ -128,6 +161,13 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     
     if exit_code == 0:
         log(f"✅ Job completed on {vm_name}: {agent} -> {task_id}")
+        # Show the output so we can see S3 paths
+        if output.strip():
+            print("\n" + "="*60)
+            print("JOB OUTPUT:")
+            print("="*60)
+            print(output.strip())
+            print("="*60 + "\n")
         return True
     else:
         log(f"❌ Job failed on {vm_name}: {agent} -> {task_id}")
