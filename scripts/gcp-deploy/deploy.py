@@ -193,9 +193,19 @@ def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
     """Process a single job (agent, task_id) on a dedicated VM."""
     agent, task_id = job
     
-    # Generate unique VM name
+    # Generate unique VM name (GCP max 63 chars)
     safe_task = task_id.replace('/', '-')
-    vm_name = f"bioml-{agent}-{safe_task}-{uuid.uuid4().hex[:8]}"
+    uuid_suffix = uuid.uuid4().hex[:8]
+    
+    # Calculate max length for task part: 63 - "bioml-" - agent - "-" - "-" - uuid = 63 - 6 - len(agent) - 2 - 8
+    max_task_len = 63 - 6 - len(agent) - 2 - 8
+    if len(safe_task) > max_task_len:
+        # Truncate and add hash for uniqueness
+        import hashlib
+        task_hash = hashlib.md5(safe_task.encode()).hexdigest()[:4]
+        safe_task = safe_task[:max_task_len-5] + '-' + task_hash
+    
+    vm_name = f"bioml-{agent}-{safe_task}-{uuid_suffix}"
     
     try:
         # Create VM
