@@ -52,8 +52,7 @@ def create_vm_with_retry(vm_name: str, zone: str = "us-central1-a", max_retries:
         "--machine-type", "g2-standard-8",
         "--maintenance-policy", "TERMINATE", 
         "--image", "biomlbench",
-        "--boot-disk-size", "500G",
-        "--quiet"
+        "--boot-disk-size", "500G"
     ]
     
     attempt = 0
@@ -118,6 +117,7 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     
     echo "✅ Job completed successfully"
     """
+    breakpoint()
     
     exit_code, output = run_command([
         "gcloud", "compute", "ssh", f"runner@{vm_name}",

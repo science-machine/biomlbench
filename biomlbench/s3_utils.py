@@ -19,13 +19,8 @@ from biomlbench.utils import get_logger
 
 logger = get_logger(__name__)
 
-try:
-    import boto3
-    from botocore.exceptions import BotoCoreError, ClientError
-    BOTO3_AVAILABLE = True
-except ImportError:
-    BOTO3_AVAILABLE = False
-    logger.warning("boto3 not installed. S3 upload functionality will be disabled.")
+import boto3
+from botocore.exceptions import BotoCoreError, ClientError
 
 
 class S3Config:
@@ -71,7 +66,7 @@ class S3Config:
     def is_valid(self) -> bool:
         """Check if S3 configuration is valid."""
         return (
-            BOTO3_AVAILABLE
+            True
             and self.enabled
             and self.bucket_name is not None
             and len(self.bucket_name.strip()) > 0
@@ -336,6 +331,50 @@ class S3Uploader:
             logger.error(f"Failed to upload incremental run {run_id}: {e}")
             return False
 
+    def upload_failed_run_group(self, run_group_dir: Path, run_group_id: str) -> bool:
+        """Upload failed run group to failed_runs folder."""
+        if not self.is_enabled():
+            return False
+        
+        if self.config.prefix:
+            s3_key_base = f"{self.config.prefix}/failed_runs/{run_group_id}"
+        else:
+            s3_key_base = f"failed_runs/{run_group_id}"
+        
+        if self.config.compress:
+            compressed_path = self._compress_directory(run_group_dir)
+            s3_key = f"{s3_key_base}.tar.gz"
+            metadata = {'biomlbench_type': 'failed_run_group', 'run_group_id': run_group_id}
+            success = self._upload_file(compressed_path, s3_key, metadata)
+            compressed_path.unlink()
+            return success
+        return False
+
+    def upload_failed_grading_results(self, summary_report_path: Path, individual_reports_dir: Path, timestamp: str) -> bool:
+        """Upload failed grading results to failed_grades folder."""
+        if not self.is_enabled():
+            return False
+        
+        if self.config.prefix:
+            s3_key_base = f"{self.config.prefix}/failed_grades/{timestamp}"
+        else:
+            s3_key_base = f"failed_grades/{timestamp}"
+        
+        success = True
+        if summary_report_path and summary_report_path.exists() and self.config.compress:
+            compressed_summary = self._compress_file(summary_report_path)
+            s3_key = f"{s3_key_base}_grading_report.json.gz"
+            success &= self._upload_file(compressed_summary, s3_key, {'biomlbench_type': 'failed_grading_summary'})
+            compressed_summary.unlink()
+        
+        if individual_reports_dir and individual_reports_dir.exists() and self.config.compress:
+            compressed_individual = self._compress_directory(individual_reports_dir)
+            s3_key = f"{s3_key_base}_individual_reports.tar.gz"
+            success &= self._upload_file(compressed_individual, s3_key, {'biomlbench_type': 'failed_individual_reports'})
+            compressed_individual.unlink()
+        
+        return success
+
 
 # Global S3 uploader instance
 _s3_uploader: Optional[S3Uploader] = None
@@ -401,4 +440,20 @@ def upload_incremental_artifacts(run_dir: Path, run_group_id: str, task_id: str,
     uploader = get_s3_uploader()
     if uploader and uploader.is_enabled():
         return uploader.upload_incremental_run(run_dir, run_group_id, task_id, run_id)
-    return True  # Return True if S3 is disabled (not an error condition) 
+    return True  # Return True if S3 is disabled (not an error condition)
+
+
+def upload_failed_run_group_artifacts(run_group_dir: Path, run_group_id: str) -> bool:
+    """Upload failed run group artifacts to failed_runs folder."""
+    uploader = get_s3_uploader()
+    if uploader and uploader.is_enabled():
+        return uploader.upload_failed_run_group(run_group_dir, run_group_id)
+    return True
+
+
+def upload_failed_grading_artifacts(summary_report_path: Path, individual_reports_dir: Path, timestamp: str) -> bool:
+    """Upload failed grading artifacts to failed_grades folder."""
+    uploader = get_s3_uploader()
+    if uploader and uploader.is_enabled():
+        return uploader.upload_failed_grading_results(summary_report_path, individual_reports_dir, timestamp)
+    return True 

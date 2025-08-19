@@ -29,51 +29,58 @@ def grade_jsonl(
 
     submissions = read_jsonl(str(path_to_submissions), skip_commented_out_lines=True)
     task_reports = []
-
-    for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
-        # Resolve submission path relative to the JSONL file directory
-        submission_path = path_to_submissions.parent / submission["submission_path"]
-        task_id = submission["task_id"]
-        task = registry.get_task(task_id)
-        single_report = grade_submission(submission_path, task)
-        task_reports.append(single_report)
-
-    aggregated_report = aggregate_reports(task_reports)
     timestamp = get_timestamp()
-    
-    # Save aggregated report
     save_path = output_dir / f"{timestamp}_grading_report.json"
-    logger.info(
-        json.dumps({k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4)
-    )
-
-    output_dir.mkdir(exist_ok=True)
-    with open(save_path, "w") as f:
-        json.dump(aggregated_report, f, indent=2)
-    logger.info(purple(f"Saved summary report to {save_path}"))
-    
-    # Save individual task reports for easier access
     individual_reports_dir = output_dir / f"{timestamp}_individual_reports"
-    individual_reports_dir.mkdir(exist_ok=True)
-    
-    for report in task_reports:
-        # Sanitize task ID for use as filename (replace slashes with underscores)
-        safe_task_id = report.task_id.replace("/", "_").replace("\\", "_")
-        individual_path = individual_reports_dir / f"{safe_task_id}.json"
-        with open(individual_path, "w") as f:
-            json.dump(report.to_dict(), f, indent=2)
-    
-    logger.info(purple(f"Saved {len(task_reports)} individual task reports to {individual_reports_dir}"))
-    
-    # Upload grading artifacts to S3 if configured
+
     try:
-        upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp)
-        if upload_success:
-            logger.info(f"📤 Successfully uploaded grading results to S3")
-        else:
-            logger.debug("S3 upload skipped (not configured or disabled)")
-    except Exception as e:
-        logger.warning(f"S3 upload failed but continuing: {e}")
+        for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
+            # Resolve submission path relative to the JSONL file directory
+            submission_path = path_to_submissions.parent / submission["submission_path"]
+            task_id = submission["task_id"]
+            task = registry.get_task(task_id)
+            single_report = grade_submission(submission_path, task)
+            task_reports.append(single_report)
+
+        aggregated_report = aggregate_reports(task_reports)
+        
+        # Save aggregated report
+        logger.info(
+            json.dumps({k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4)
+        )
+
+        output_dir.mkdir(exist_ok=True)
+        with open(save_path, "w") as f:
+            json.dump(aggregated_report, f, indent=2)
+        logger.info(purple(f"Saved summary report to {save_path}"))
+        
+        # Save individual task reports for easier access
+        individual_reports_dir.mkdir(exist_ok=True)
+        
+        for report in task_reports:
+            # Sanitize task ID for use as filename (replace slashes with underscores)
+            safe_task_id = report.task_id.replace("/", "_").replace("\\", "_")
+            individual_path = individual_reports_dir / f"{safe_task_id}.json"
+            with open(individual_path, "w") as f:
+                json.dump(report.to_dict(), f, indent=2)
+        
+        logger.info(purple(f"Saved {len(task_reports)} individual task reports to {individual_reports_dir}"))
+        
+        # Upload grading artifacts to S3 if configured
+        try:
+            upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp)
+            if upload_success:
+                logger.info(f"📤 Successfully uploaded grading results to S3")
+            else:
+                logger.debug("S3 upload skipped (not configured or disabled)")
+        except Exception as e:
+            logger.warning(f"S3 upload failed but continuing: {e}")
+    
+    except Exception:
+        # Upload failed grading artifacts before re-raising
+        from biomlbench.s3_utils import upload_failed_grading_artifacts
+        upload_failed_grading_artifacts(save_path, individual_reports_dir, timestamp)
+        raise
     
     return save_path, individual_reports_dir
 
