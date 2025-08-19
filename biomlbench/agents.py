@@ -357,6 +357,15 @@ async def run_agent_async(
         logger.error(f"❌ {len(failed_runs)}/{total_runs} runs FAILED!")
         logger.error(f"✅ {successful_runs}/{total_runs} runs succeeded")
 
+        # Upload failed run group before potentially raising error
+        try:
+            from biomlbench.s3_utils import upload_failed_run_group_artifacts
+            failed_upload_success = upload_failed_run_group_artifacts(run_group_dir, run_group)
+            if failed_upload_success:
+                logger.info(f"📤 Successfully uploaded failed run group artifacts to S3 failed_runs folder")
+        except Exception as e:
+            logger.warning(f"Failed run group S3 upload failed but continuing: {e}")
+
         # Check for common failure patterns and provide specific guidance
         first_failed_run = failed_runs[0]
         first_run_log = run_group_dir / first_failed_run / "run.log"
