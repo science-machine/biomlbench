@@ -30,8 +30,8 @@ RUN conda run -n ${CONDA_ENV_NAME} pip install --upgrade pip && \
     conda clean -afy
 
 # copy local MLAgentBench directory for debugging
-# COPY ./ref/MLAgentBench ${AGENT_DIR}/MLAgentBench
-# COPY ./benchmark_dir ${AGENT_DIR}/MLAgentBench/MLAgentBench/benchmarks/biomlbench
+COPY ./ref/MLAgentBench ${AGENT_DIR}/MLAgentBench
+COPY ./benchmark_dir ${AGENT_DIR}/MLAgentBench/MLAgentBench/benchmarks/biomlbench
 
 # put remaining necessary agent files in the expected location
 COPY additional_notes.txt /home/additional_notes.txt
