@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 *.pyo
 *.db
+analysis_results
+figures
+*.log
 figures
 results/
 ref
