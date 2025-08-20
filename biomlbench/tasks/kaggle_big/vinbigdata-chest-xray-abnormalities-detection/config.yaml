@@ -12,7 +12,7 @@ prizes:
   - position: Special Prize
     value: 8000
 description: biomlbench/tasks/kaggle/vinbigdata-chest-xray-abnormalities-detection/description.md
-time_limit: 43200  # 12 hours
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/vinbigdata-chest-xray-abnormalities-detection/prepared/private/answers.csv

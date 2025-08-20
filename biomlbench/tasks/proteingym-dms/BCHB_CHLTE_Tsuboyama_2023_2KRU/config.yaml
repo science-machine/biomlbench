@@ -8,7 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/BCHB_CHLTE_Tsuboyama_2023_2KRU/description.md
 preparer: biomlbench.tasks.proteingym-dms.BCHB_CHLTE_Tsuboyama_2023_2KRU.prepare:prepare
-time_limit: 14400  # 4 hours
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

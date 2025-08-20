@@ -8,7 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/SPG2_STRSG_Tsuboyama_2023_5UBS/description.md
 preparer: biomlbench.tasks.proteingym-dms.SPG2_STRSG_Tsuboyama_2023_5UBS.prepare:prepare
-time_limit: 14400  # 4 hours
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

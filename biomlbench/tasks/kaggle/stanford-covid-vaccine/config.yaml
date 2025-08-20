@@ -10,7 +10,7 @@ prizes:
   - position: 3
     value: 5000
 description: biomlbench/tasks/kaggle/stanford-covid-vaccine/description.md
-time_limit: 43200  # 12 hours
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/stanford-covid-vaccine/prepared/private/answers.csv
