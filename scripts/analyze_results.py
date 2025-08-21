@@ -282,12 +282,97 @@ def download_and_extract_artifacts(artifacts: Dict[str, List[str]], output_dir: 
     if failed_downloads > 0:
         log(f"⚠️  {failed_downloads} downloads failed")
 
-def analyze_grading_results(grades_dir: Path) -> List[Dict[str, Any]]:
-    """Extract ALL individual results - no aggregation."""
+def count_total_run_attempts(runs_dir: Path, failed_runs_dir: Path, task_filter: List[str] = None) -> Dict[str, Dict[str, int]]:
+    """Count total run attempts per agent-task from both successful and failed runs."""
+    log("Counting total run attempts from runs and failed_runs directories...")
+    
+    run_counts = {}  # {agent_task_key: {'total': int, 'successful': int, 'failed': int}}
+    
+    # Process successful runs
+    if runs_dir.exists():
+        for metadata_file in runs_dir.rglob('metadata.json'):
+            try:
+                with open(metadata_file, 'r') as f:
+                    metadata = json.load(f)
+                
+                if 'runs' not in metadata:
+                    continue
+                
+                for run_id, run_data in metadata['runs'].items():
+                    if 'task_id' not in run_data or 'agent_id' not in run_data:
+                        continue
+                    
+                    task_id = run_data['task_id']
+                    agent_id = run_data['agent_id']
+                    
+                    # Apply task filter if specified
+                    if task_filter:
+                        task_matches = any(pattern in task_id for pattern in task_filter)
+                        if not task_matches:
+                            continue
+                    
+                    agent_task_key = f"{agent_id}::{task_id}"
+                    if agent_task_key not in run_counts:
+                        run_counts[agent_task_key] = {'total': 0, 'successful': 0, 'failed': 0, 'agent': agent_id, 'task_id': task_id}
+                    
+                    run_counts[agent_task_key]['total'] += 1
+                    run_counts[agent_task_key]['successful'] += 1
+                    
+            except Exception as e:
+                log(f"⚠️  Error processing successful run metadata {metadata_file}: {e}")
+                continue
+    
+    # Process failed runs
+    if failed_runs_dir.exists():
+        for metadata_file in failed_runs_dir.rglob('metadata.json'):
+            try:
+                with open(metadata_file, 'r') as f:
+                    metadata = json.load(f)
+                
+                if 'runs' not in metadata:
+                    continue
+                
+                for run_id, run_data in metadata['runs'].items():
+                    if 'task_id' not in run_data or 'agent_id' not in run_data:
+                        continue
+                    
+                    task_id = run_data['task_id']
+                    agent_id = run_data['agent_id']
+                    
+                    # Apply task filter if specified
+                    if task_filter:
+                        task_matches = any(pattern in task_id for pattern in task_filter)
+                        if not task_matches:
+                            continue
+                    
+                    agent_task_key = f"{agent_id}::{task_id}"
+                    if agent_task_key not in run_counts:
+                        run_counts[agent_task_key] = {'total': 0, 'successful': 0, 'failed': 0, 'agent': agent_id, 'task_id': task_id}
+                    
+                    run_counts[agent_task_key]['total'] += 1
+                    run_counts[agent_task_key]['failed'] += 1
+                    
+            except Exception as e:
+                log(f"⚠️  Error processing failed run metadata {metadata_file}: {e}")
+                continue
+    
+    log(f"Found run attempts for {len(run_counts)} agent-task combinations")
+    return run_counts
+
+def analyze_grading_results(grades_dir: Path, runs_dir: Path, failed_runs_dir: Path, task_filter: List[str] = None) -> Dict[str, Any]:
+    """Extract ALL individual results and compute completion rates."""
     log("Extracting individual grading results...")
+    
+    if task_filter:
+        log(f"Applying task filter: {task_filter}")
+    
+    # First, count total run attempts from both successful and failed runs
+    run_counts = count_total_run_attempts(runs_dir, failed_runs_dir, task_filter)
     
     # Store ALL individual results (replicates) - NO AGGREGATION
     all_results = []
+    # Track successful completions with valid scores by agent-task combination
+    successful_completions = {}
     
     # Find all individual report JSON files (extracted from individual_reports directories)
     report_files = []
@@ -323,9 +408,6 @@ def analyze_grading_results(grades_dir: Path) -> List[Dict[str, Any]]:
             task_id = report['task_id']
             score = report['score']
             
-            if score is None:
-                raise ValueError(f"Score is null in {report_file}")
-            
             # Extract agent from file path structure: .../grades/agent/task-safe/...
             path_parts = report_file.parts
             agent = None
@@ -338,12 +420,36 @@ def analyze_grading_results(grades_dir: Path) -> List[Dict[str, Any]]:
             if agent is None:
                 raise ValueError(f"Could not extract agent from file path in {report_file}")
             
-            # Convert types explicitly
-            percentile = float(report['leaderboard_percentile'])
-            gold_medal = bool(report['gold_medal'])
-            silver_medal = bool(report['silver_medal'])
-            bronze_medal = bool(report['bronze_medal'])
-            above_median = bool(report['above_median'])
+            # Apply task filter if specified
+            if task_filter:
+                task_matches = any(pattern in task_id for pattern in task_filter)
+                if not task_matches:
+                    continue  # Skip this task if it doesn't match filter
+            
+            # Track successful completions with valid scores
+            agent_task_key = f"{agent}::{task_id}"
+            if agent_task_key not in successful_completions:
+                successful_completions[agent_task_key] = 0
+            
+            if score is None:
+                log(f"⚠️  Score is null in {report_file} - treating as 0")
+                score = 0.0
+                # For null scores, set metrics appropriately
+                percentile = 0.0  # Null score gets 0 percentile
+                gold_medal = False
+                silver_medal = False
+                bronze_medal = False
+                above_median = False
+            else:
+                # Count as successful completion (only if score is not null)
+                successful_completions[agent_task_key] += 1
+                
+                # Convert types explicitly for non-null scores
+                percentile = float(report['leaderboard_percentile'])
+                gold_medal = bool(report['gold_medal'])
+                silver_medal = bool(report['silver_medal'])
+                bronze_medal = bool(report['bronze_medal'])
+                above_median = bool(report['above_median'])
             
             # Store this individual result - each JSON file is one replicate
             result = {
@@ -366,10 +472,60 @@ def analyze_grading_results(grades_dir: Path) -> List[Dict[str, Any]]:
     
     log(f"Extracted {len(all_results)} individual results")
     
-    if len(all_results) == 0:
-        raise ValueError("No individual results found!")
+    # Calculate completion rates using total run attempts and successful completions
+    completion_rates = []
+    for agent_task_key, counts in run_counts.items():
+        successful_count = successful_completions.get(agent_task_key, 0)
+        total_attempts = counts['total']
+        completion_rate = successful_count / total_attempts if total_attempts > 0 else 0.0
+        
+        completion_rates.append({
+            'agent': counts['agent'],
+            'task_id': counts['task_id'],
+            'total_attempts': total_attempts,
+            'successful_completions': successful_count,
+            'completion_rate': completion_rate
+        })
     
-    return all_results
+    log(f"Calculated completion rates for {len(completion_rates)} agent-task combinations")
+    
+    # Add zero-score entries for all failed attempts without grading reports
+    log("Adding zero-score entries for failed attempts without grading reports...")
+    added_zeros = 0
+    for agent_task_key, counts in run_counts.items():
+        successful_count = successful_completions.get(agent_task_key, 0)
+        failed_count = counts['total'] - successful_count
+        
+        if failed_count > 0:
+            # Add zero-score entries for each failed attempt
+            for _ in range(failed_count):
+                all_results.append({
+                    'agent': counts['agent'],
+                    'task_id': counts['task_id'],
+                    'score': 0.0,
+                    'leaderboard_percentile': 0.0,
+                    'above_median': False,
+                    'gold_medal': False,
+                    'silver_medal': False,
+                    'bronze_medal': False,
+                    'any_medal': False,
+                    'report_file': 'failed_run_no_report'
+                })
+                added_zeros += 1
+    
+    log(f"Added {added_zeros} zero-score entries for failed runs")
+    
+    # Show completion summary
+    if completion_rates:
+        total_attempts = sum(cr['total_attempts'] for cr in completion_rates)
+        total_successes = sum(cr['successful_completions'] for cr in completion_rates)
+        overall_completion_rate = total_successes / total_attempts if total_attempts > 0 else 0.0
+        log(f"Overall completion rate: {total_successes}/{total_attempts} ({overall_completion_rate:.1%})")
+    
+    return {
+        'all_results': all_results,
+        'completion_rates': completion_rates
+    }
 
 def analyze_run_metadata(runs_dir: Path) -> Dict[str, Any]:
     """Analyze run metadata for execution times and resource usage."""
@@ -431,22 +587,30 @@ def analyze_run_metadata(runs_dir: Path) -> Dict[str, Any]:
 
 # Removed generate_summary_report - only raw CSV output needed
 
-def generate_csv_reports(all_results: List[Dict], output_dir: Path):
-    """Generate CSV from raw results - each result is one replicate."""
+def generate_csv_reports(all_results: List[Dict], completion_rates: List[Dict], output_dir: Path):
+    """Generate CSV from raw results and completion rates."""
     log("Generating CSV reports...")
     
-    if len(all_results) == 0:
-        raise ValueError("No results to generate CSV from!")
-    
     # Replicate-level results CSV - this is the PRIMARY output
-    replicate_df = pd.DataFrame(all_results)
+    if len(all_results) > 0:
+        replicate_df = pd.DataFrame(all_results)
+        
+        # Remove internal fields before saving
+        if 'report_file' in replicate_df.columns:
+            replicate_df = replicate_df.drop('report_file', axis=1)
+        
+        replicate_df.to_csv(output_dir / 'all_replicates.csv', index=False)
+        log(f"Saved {len(all_results)} individual results to all_replicates.csv")
+    else:
+        log("⚠️  No successful results to save to all_replicates.csv")
     
-    # Remove internal fields before saving
-    if 'report_file' in replicate_df.columns:
-        replicate_df = replicate_df.drop('report_file', axis=1)
-    
-    replicate_df.to_csv(output_dir / 'all_replicates.csv', index=False)
-    log(f"Saved {len(all_results)} individual results to all_replicates.csv")
+    # Completion rates CSV - NEW output
+    if len(completion_rates) > 0:
+        completion_df = pd.DataFrame(completion_rates)
+        completion_df.to_csv(output_dir / 'completion_rates.csv', index=False)
+        log(f"Saved completion rates for {len(completion_rates)} agent-task combinations to completion_rates.csv")
+    else:
+        log("⚠️  No completion rate data to save")
 
 def main():
     parser = argparse.ArgumentParser(
@@ -522,15 +686,19 @@ def main():
     # Analyze results
     grades_dir = output_dir / 'grades'
     runs_dir = output_dir / 'runs'
+    failed_runs_dir = output_dir / 'failed_runs'
     
     if grades_dir.exists():
-        all_results = analyze_grading_results(grades_dir)
+        results_data = analyze_grading_results(grades_dir, runs_dir, failed_runs_dir, args.tasks)
+        all_results = results_data['all_results']
+        completion_rates = results_data['completion_rates']
         
-        # Generate CSV with ALL individual results
-        generate_csv_reports(all_results, output_dir)
+        # Generate CSV with ALL individual results AND completion rates
+        generate_csv_reports(all_results, completion_rates, output_dir)
         
         log("Analysis complete!")
-        log(f"📈 All results CSV: {output_dir / 'all_replicates.csv'}")
+        log(f"📈 Individual results CSV: {output_dir / 'all_replicates.csv'}")
+        log(f"📊 Completion rates CSV: {output_dir / 'completion_rates.csv'}")
         
         # Quick terminal summary
         print("\n" + "="*60)

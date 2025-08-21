@@ -11,8 +11,8 @@ dummy,polarishub/polaris-pkis2-egfr-wt-c-1
 dummy,polarishub/polaris-adme-fang-hclint-1
 dummy,polarishub/polaris-adme-fang-hppb-1
 dummy,polarishub/polaris-adme-fang-solu-1
-dummy,polarishub/polaris-adme-fang-r-1
 dummy,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
+dummy,polarishub/tdcommons-caco2-wang
 dummy,polarishub/tdcommons-lipophilicity-astrazeneca
 dummy,polarishub/tdcommons-herg
 dummy,polarishub/tdcommons-bbb-martins

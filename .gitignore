@@ -9,6 +9,7 @@ figures
 figures
 results/
 ref
+latex_tables
 .venv
 baseline_submissions
 *.jsonl
