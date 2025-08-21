@@ -1,7 +1,7 @@
 id: manual/open-problems-label-projection
 name: "OpenProblems – Label Projection"
 description: biomlbench/tasks/manual/open-problems-label-projection/description.md
-time_limit: 14400  # 4 hours
+time_limit: 28800  # 8 hours
 
 dataset:
   answers: manual/open-problems-label-projection/prepared/private/answers.csv

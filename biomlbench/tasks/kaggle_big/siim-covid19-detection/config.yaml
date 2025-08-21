@@ -24,7 +24,7 @@ prizes:
   - position: 10
     value: 5000
 description: biomlbench/tasks/kaggle/siim-covid19-detection/description.md
-time_limit: 43200  # 12 hours
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/siim-covid19-detection/prepared/private/answers.csv

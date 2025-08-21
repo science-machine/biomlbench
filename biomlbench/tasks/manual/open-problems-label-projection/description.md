@@ -106,8 +106,3 @@ The task includes control methods for comparison:
 3. **Deterministic results**: Methods should produce consistent results across runs
 4. **Resource constraints**: Methods should complete within reasonable time/memory limits
 
-## Data Access
-Data is hosted on the OpenProblems S3 bucket:
-```
-s3://openproblems-data/resources/task_label_projection/datasets/cellxgene_census/dkd/log_cp10k/
-``` 

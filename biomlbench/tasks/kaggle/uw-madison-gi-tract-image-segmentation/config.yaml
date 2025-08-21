@@ -10,7 +10,7 @@ prizes:
   - position: 3
     value: 5000
 description: biomlbench/tasks/kaggle/uw-madison-gi-tract-image-segmentation/description.md
-time_limit: 43200  # 12 hours
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/uw-madison-gi-tract-image-segmentation/prepared/private/answers.csv

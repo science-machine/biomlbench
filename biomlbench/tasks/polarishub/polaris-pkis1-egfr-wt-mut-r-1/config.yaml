@@ -6,7 +6,7 @@ difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/polaris-pkis1-egfr-wt-mut-r-1/description.md
-time_limit: 14400  # 4 hours
+time_limit: 28800  # 8 hours
 
 data_source:
   type: polaris

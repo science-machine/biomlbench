@@ -2,5 +2,5 @@
     "mem_limit": null,
     "shm_size": "4G",
     "nano_cpus": 12000000000,
-    "gpus": 1
+    "gpus": 0
 }

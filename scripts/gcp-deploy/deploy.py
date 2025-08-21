@@ -42,14 +42,20 @@ def run_command(cmd: List[str], description: str = "", timeout: int = None) -> T
     except Exception as e:
         return 1, str(e)
 
-def create_vm_with_retry(vm_name: str, zone: str = "us-central1-a", max_retries: int = None) -> bool:
+def create_vm_with_retry(vm_name: str, machine_type: str, zone: str = "us-central1-a", max_retries: int = None) -> bool:
     """Create a VM, retrying until success."""
-    log(f"Creating VM: {vm_name}")
+    log(f"Creating VM: {vm_name} (machine type: {machine_type})")
+    
+    # Map machine type choice to GCP machine type
+    if machine_type == "cpu":
+        gcp_machine_type = "n2-standard-16"
+    else:  # gpu
+        gcp_machine_type = "g2-standard-16"
     
     cmd = [
         "gcloud", "compute", "instances", "create", vm_name,
         "--zone", zone,
-        "--machine-type", "g2-standard-12",
+        "--machine-type", gcp_machine_type,
         "--maintenance-policy", "TERMINATE", 
         "--image", "biomlbenchhm",
         "--boot-disk-size", "500G"
@@ -103,8 +109,8 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     cd biomlbench
     source .venv/bin/activate
     
-    # Run agent
-    biomlbench run-agent --agent {agent} --task-id {task_id}
+    # Run agent (CPU-only mode)
+    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only
     
     # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
@@ -119,31 +125,42 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     GRADING_TIMESTAMP=$(basename "$GRADING_REPORT" | cut -d'_' -f1)
     echo "📊 Grading timestamp: $GRADING_TIMESTAMP"
     
+    # Convert task_id to S3-safe format for the organized structure
+    TASK_ID_SAFE=$(echo "{task_id}" | sed 's/\//-/g' | sed 's/_/-/g')
+    
     # Show the exact S3 paths for this specific run
     echo "📤 S3 artifacts for this run:"
     echo "  Run artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz (if failed)"
+    echo "    s3://biomlbench/v1/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
+    echo "    OR s3://biomlbench/v1/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
     echo "  Grading artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
-    echo "    s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_grades/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
+    echo "    s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
+    echo "    s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
+    echo "    OR s3://biomlbench/v1/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
     
-    # Verify these specific paths exist
+    # Verify these specific paths exist (try both new organized structure and old flat structure)
     echo "🔍 Verifying uploads..."
-    if aws s3 ls s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
-        echo "✅ Run artifacts uploaded successfully"
+    if aws s3 ls s3://biomlbench/v1/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+        echo "✅ Run artifacts uploaded successfully (organized structure)"
+    elif aws s3 ls s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+        echo "✅ Run artifacts uploaded successfully (flat structure)"
+    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+        echo "✅ Failed run artifacts uploaded successfully (organized structure)"
     elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
-        echo "✅ Failed run artifacts uploaded successfully"
+        echo "✅ Failed run artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No run artifacts found in S3!"
         exit 1
     fi
     
-    if aws s3 ls s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
-        echo "✅ Grading artifacts uploaded successfully"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP"; then
-        echo "✅ Failed grading artifacts uploaded successfully"
+    if aws s3 ls s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+        echo "✅ Grading artifacts uploaded successfully (organized structure)"
+    elif aws s3 ls s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+        echo "✅ Grading artifacts uploaded successfully (flat structure)"
+    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+        echo "✅ Failed grading artifacts uploaded successfully (organized structure)"
+    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+        echo "✅ Failed grading artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No grading artifacts found in S3!"
         exit 1
@@ -189,12 +206,12 @@ def delete_vm(vm_name: str, zone: str = "us-central1-a"):
     else:
         log(f"⚠️  Failed to delete VM {vm_name}: {output}")
 
-def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
+def process_job(job: Tuple[str, str], machine_type: str, zone: str = "us-central1-a") -> bool:
     """Process a single job (agent, task_id) on a dedicated VM."""
     agent, task_id = job
     
-    # Generate unique VM name (GCP max 63 chars, lowercase only)
-    safe_task = task_id.replace('/', '-').lower()
+    # Generate unique VM name (GCP max 63 chars, lowercase, no underscores)
+    safe_task = task_id.replace('/', '-').replace('_', '-').lower()
     uuid_suffix = uuid.uuid4().hex[:8]
     
     # Calculate max length for task part: 63 - "bioml-" - agent - "-" - "-" - uuid = 63 - 6 - len(agent) - 2 - 8
@@ -209,7 +226,7 @@ def process_job(job: Tuple[str, str], zone: str = "us-central1-a") -> bool:
     
     try:
         # Create VM (max 3 attempts)
-        if not create_vm_with_retry(vm_name, zone, max_retries=3):
+        if not create_vm_with_retry(vm_name, machine_type, zone, max_retries=3):
             return False
         
         # Wait for SSH
@@ -267,11 +284,14 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Example usage:
-  # From project root:
+  # From project root with GPU (default):
   python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5
   
+  # With CPU machines:
+  python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5 --machine-type cpu
+  
   # From scripts/gcp-deploy directory:
-  python deploy.py --jobs jobs.txt --concurrent 5
+  python deploy.py --jobs jobs.txt --concurrent 5 --machine-type gpu
   
 Jobs file format (one per line):
   agent,task_id
@@ -289,12 +309,18 @@ Jobs file format (one per line):
         "--concurrent", 
         type=int, 
         default=15, 
-        help="Maximum concurrent VMs (default: 15, max recommended: 16 based on L4 GPU quota)"
+        help="Maximum concurrent VMs (default: 15, GPU quota limit ~16, CPU limit higher)"
     )
     parser.add_argument(
         "--zone", 
         default="us-central1-a", 
         help="GCP zone (default: us-central1-a)"
+    )
+    parser.add_argument(
+        "--machine-type", 
+        choices=["cpu", "gpu"],
+        default="cpu", 
+        help="Machine type: cpu (n2-standard-16, default) or gpu (g2-standard-16)"
     )
     parser.add_argument(
         "--dry-run", 
@@ -319,6 +345,7 @@ Jobs file format (one per line):
     
     # Run jobs
     log(f"Starting deployment with {args.concurrent} concurrent VMs")
+    log(f"Machine type: {args.machine_type}")
     log(f"Jobs to process: {len(jobs)}")
     
     successful_jobs = 0
@@ -327,7 +354,7 @@ Jobs file format (one per line):
     with ThreadPoolExecutor(max_workers=args.concurrent) as executor:
         # Submit all jobs
         future_to_job = {
-            executor.submit(process_job, job, args.zone): job 
+            executor.submit(process_job, job, args.machine_type, args.zone): job 
             for job in jobs
         }
         
@@ -358,8 +385,8 @@ Jobs file format (one per line):
     log(f"Success rate: {successful_jobs/total_jobs*100:.1f}%" if total_jobs > 0 else "N/A")
     
     if successful_jobs > 0:
-        log("Check S3 for results: aws s3 ls s3://biomlbench/runs/ --recursive")
-        log("Check S3 for grades: aws s3 ls s3://biomlbench/grades/ --recursive")
+        log("Check S3 for results: aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive")
+        log("Check S3 for grades: aws s3 ls s3://biomlbench/v1/artifacts/grades/ --recursive")
     
     return 0 if failed_jobs == 0 else 1
 

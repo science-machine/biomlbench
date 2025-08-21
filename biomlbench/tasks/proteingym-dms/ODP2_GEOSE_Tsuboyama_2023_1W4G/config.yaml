@@ -8,7 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/ODP2_GEOSE_Tsuboyama_2023_1W4G/description.md
 preparer: biomlbench.tasks.proteingym-dms.ODP2_GEOSE_Tsuboyama_2023_1W4G.prepare:prepare
-time_limit: 14400  # 4 hours
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

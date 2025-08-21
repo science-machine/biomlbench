@@ -149,13 +149,15 @@ class S3Uploader:
             logger.error(f"❌ Unexpected error uploading {s3_key}: {e}")
             return False
     
-    def upload_run_group(self, run_group_dir: Path, run_group_id: str) -> bool:
+    def upload_run_group(self, run_group_dir: Path, run_group_id: str, agent_id: str = None, task_ids: list = None) -> bool:
         """
         Upload a complete run group directory to S3.
         
         Args:
             run_group_dir: Path to the run group directory
             run_group_id: Identifier for the run group
+            agent_id: Agent identifier for organizing uploads
+            task_ids: List of task IDs in this run group
             
         Returns:
             True if upload succeeded, False otherwise
@@ -169,10 +171,30 @@ class S3Uploader:
             return False
         
         try:
-            if self.config.prefix:
-                s3_key_base = f"{self.config.prefix}/runs/{run_group_id}"
+            # Debug logging
+            logger.info(f"Upload run group - agent_id: {agent_id}, task_ids: {task_ids}")
+            
+            # Determine S3 path structure based on agent and task information
+            if agent_id and task_ids:
+                if len(task_ids) == 1:
+                    # Single task: organize by agent/task_id/
+                    task_id_safe = task_ids[0].replace('/', '-').replace('_', '-')
+                    if self.config.prefix:
+                        s3_key_base = f"{self.config.prefix}/runs/{agent_id}/{task_id_safe}/{run_group_id}"
+                    else:
+                        s3_key_base = f"runs/{agent_id}/{task_id_safe}/{run_group_id}"
+                else:
+                    # Multiple tasks: organize by agent/multi-task/
+                    if self.config.prefix:
+                        s3_key_base = f"{self.config.prefix}/runs/{agent_id}/multi-task/{run_group_id}"
+                    else:
+                        s3_key_base = f"runs/{agent_id}/multi-task/{run_group_id}"
             else:
-                s3_key_base = f"runs/{run_group_id}"
+                # Fallback to original structure if agent/task info not available
+                if self.config.prefix:
+                    s3_key_base = f"{self.config.prefix}/runs/{run_group_id}"
+                else:
+                    s3_key_base = f"runs/{run_group_id}"
             
             if self.config.compress:
                 # Compress the entire directory
@@ -182,6 +204,8 @@ class S3Uploader:
                 metadata = {
                     'biomlbench_type': 'run_group',
                     'run_group_id': run_group_id,
+                    'agent_id': agent_id or 'unknown',
+                    'task_ids': ','.join(task_ids) if task_ids else 'unknown',
                     'compressed': 'true',
                     'upload_timestamp': str(int(time.time()))
                 }
@@ -201,7 +225,7 @@ class S3Uploader:
             logger.error(f"Failed to upload run group {run_group_id}: {e}")
             return False
     
-    def upload_grading_results(self, summary_report_path: Path, individual_reports_dir: Path, timestamp: str) -> bool:
+    def upload_grading_results(self, summary_report_path: Path, individual_reports_dir: Path, timestamp: str, agent_id: str = None, task_id: str = None) -> bool:
         """
         Upload grading results to S3.
         
@@ -209,6 +233,8 @@ class S3Uploader:
             summary_report_path: Path to the summary grading report JSON
             individual_reports_dir: Path to the directory with individual task reports
             timestamp: Timestamp identifier for the grading run
+            agent_id: Agent identifier for organizing uploads
+            task_id: Task identifier for organizing uploads
             
         Returns:
             True if upload succeeded, False otherwise
@@ -218,10 +244,22 @@ class S3Uploader:
             return False
         
         try:
-            if self.config.prefix:
-                s3_key_base = f"{self.config.prefix}/grades/{timestamp}"
+            # Debug logging
+            logger.info(f"Upload grading results - agent_id: {agent_id}, task_id: {task_id}")
+            
+            # Determine S3 path structure based on agent and task information
+            if agent_id and task_id:
+                task_id_safe = task_id.replace('/', '-').replace('_', '-')
+                if self.config.prefix:
+                    s3_key_base = f"{self.config.prefix}/grades/{agent_id}/{task_id_safe}/{timestamp}"
+                else:
+                    s3_key_base = f"grades/{agent_id}/{task_id_safe}/{timestamp}"
             else:
-                s3_key_base = f"grades/{timestamp}"
+                # Fallback to original structure if agent/task info not available
+                if self.config.prefix:
+                    s3_key_base = f"{self.config.prefix}/grades/{timestamp}"
+                else:
+                    s3_key_base = f"grades/{timestamp}"
             success = True
             
             # Upload summary report
@@ -232,6 +270,8 @@ class S3Uploader:
                     metadata = {
                         'biomlbench_type': 'grading_summary',
                         'timestamp': timestamp,
+                        'agent_id': agent_id or 'unknown',
+                        'task_id': task_id or 'unknown',
                         'compressed': 'true'
                     }
                     success &= self._upload_file(compressed_summary, s3_key, metadata)
@@ -241,6 +281,8 @@ class S3Uploader:
                     metadata = {
                         'biomlbench_type': 'grading_summary',
                         'timestamp': timestamp,
+                        'agent_id': agent_id or 'unknown',
+                        'task_id': task_id or 'unknown',
                         'compressed': 'false'
                     }
                     success &= self._upload_file(summary_report_path, s3_key, metadata)
@@ -253,6 +295,8 @@ class S3Uploader:
                     metadata = {
                         'biomlbench_type': 'individual_reports',
                         'timestamp': timestamp,
+                        'agent_id': agent_id or 'unknown',
+                        'task_id': task_id or 'unknown',
                         'compressed': 'true'
                     }
                     success &= self._upload_file(compressed_individual, s3_key, metadata)
@@ -264,6 +308,7 @@ class S3Uploader:
                         metadata = {
                             'biomlbench_type': 'individual_report',
                             'timestamp': timestamp,
+                            'agent_id': agent_id or 'unknown',
                             'task_id': report_file.stem.replace('_', '/'),
                             'compressed': 'false'
                         }
@@ -350,15 +395,24 @@ class S3Uploader:
             return success
         return False
 
-    def upload_failed_grading_results(self, summary_report_path: Path, individual_reports_dir: Path, timestamp: str) -> bool:
+    def upload_failed_grading_results(self, summary_report_path: Path, individual_reports_dir: Path, timestamp: str, agent_id: str = None, task_id: str = None) -> bool:
         """Upload failed grading results to failed_grades folder."""
         if not self.is_enabled():
             return False
         
-        if self.config.prefix:
-            s3_key_base = f"{self.config.prefix}/failed_grades/{timestamp}"
+        # Determine S3 path structure based on agent and task information
+        if agent_id and task_id:
+            task_id_safe = task_id.replace('/', '-').replace('_', '-')
+            if self.config.prefix:
+                s3_key_base = f"{self.config.prefix}/failed_grades/{agent_id}/{task_id_safe}/{timestamp}"
+            else:
+                s3_key_base = f"failed_grades/{agent_id}/{task_id_safe}/{timestamp}"
         else:
-            s3_key_base = f"failed_grades/{timestamp}"
+            # Fallback to original structure if agent/task info not available
+            if self.config.prefix:
+                s3_key_base = f"{self.config.prefix}/failed_grades/{timestamp}"
+            else:
+                s3_key_base = f"failed_grades/{timestamp}"
         
         success = True
         if summary_report_path and summary_report_path.exists() and self.config.compress:
@@ -389,24 +443,26 @@ def get_s3_uploader() -> Optional[S3Uploader]:
     return _s3_uploader
 
 
-def upload_run_group_artifacts(run_group_dir: Path, run_group_id: str) -> bool:
+def upload_run_group_artifacts(run_group_dir: Path, run_group_id: str, agent_id: str = None, task_ids: list = None) -> bool:
     """
     Convenience function to upload run group artifacts.
     
     Args:
         run_group_dir: Path to the run group directory  
         run_group_id: Run group identifier
+        agent_id: Agent identifier for organizing uploads
+        task_ids: List of task IDs in this run group
         
     Returns:
         True if upload succeeded or S3 is disabled, False on error
     """
     uploader = get_s3_uploader()
     if uploader and uploader.is_enabled():
-        return uploader.upload_run_group(run_group_dir, run_group_id)
+        return uploader.upload_run_group(run_group_dir, run_group_id, agent_id, task_ids)
     return True  # Return True if S3 is disabled (not an error condition)
 
 
-def upload_grading_artifacts(summary_report_path: Path, individual_reports_dir: Path, timestamp: str) -> bool:
+def upload_grading_artifacts(summary_report_path: Path, individual_reports_dir: Path, timestamp: str, agent_id: str = None, task_id: str = None) -> bool:
     """
     Convenience function to upload grading artifacts.
     
@@ -414,13 +470,15 @@ def upload_grading_artifacts(summary_report_path: Path, individual_reports_dir: 
         summary_report_path: Path to the summary report
         individual_reports_dir: Path to individual reports directory
         timestamp: Grading timestamp
+        agent_id: Agent identifier for organizing uploads
+        task_id: Task identifier for organizing uploads
         
     Returns:
         True if upload succeeded or S3 is disabled, False on error
     """
     uploader = get_s3_uploader()
     if uploader and uploader.is_enabled():
-        return uploader.upload_grading_results(summary_report_path, individual_reports_dir, timestamp)
+        return uploader.upload_grading_results(summary_report_path, individual_reports_dir, timestamp, agent_id, task_id)
     return True  # Return True if S3 is disabled (not an error condition)
 
 
@@ -451,9 +509,9 @@ def upload_failed_run_group_artifacts(run_group_dir: Path, run_group_id: str) ->
     return True
 
 
-def upload_failed_grading_artifacts(summary_report_path: Path, individual_reports_dir: Path, timestamp: str) -> bool:
+def upload_failed_grading_artifacts(summary_report_path: Path, individual_reports_dir: Path, timestamp: str, agent_id: str = None, task_id: str = None) -> bool:
     """Upload failed grading artifacts to failed_grades folder."""
     uploader = get_s3_uploader()
     if uploader and uploader.is_enabled():
-        return uploader.upload_failed_grading_results(summary_report_path, individual_reports_dir, timestamp)
+        return uploader.upload_failed_grading_results(summary_report_path, individual_reports_dir, timestamp, agent_id, task_id)
     return True 

@@ -10,7 +10,7 @@ prizes:
   - position: 3
     value: 10000
 description: biomlbench/tasks/kaggle/osic-pulmonary-fibrosis-progression/description.md
-time_limit: 43200  # 12 hours
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/osic-pulmonary-fibrosis-progression/prepared/private/answers.csv

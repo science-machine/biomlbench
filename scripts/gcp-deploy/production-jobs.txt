@@ -27,11 +27,6 @@ biomni,polarishub/polaris-adme-fang-solu-1
 mlagentbench,polarishub/polaris-adme-fang-solu-1
 stella,polarishub/polaris-adme-fang-solu-1
 
-aide,polarishub/polaris-adme-fang-r-1
-biomni,polarishub/polaris-adme-fang-r-1
-mlagentbench,polarishub/polaris-adme-fang-r-1
-stella,polarishub/polaris-adme-fang-r-1
-
 aide,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
 biomni,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
 mlagentbench,polarishub/tdcommons-cyp2d6-substrate-carbonmangels

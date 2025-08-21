@@ -14,7 +14,7 @@ prizes:
   - position: 5
     value: 5000
 description: biomlbench/tasks/kaggle/hms-harmful-brain-activity-classification/description.md
-time_limit: 43200  # 12 hours
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/hms-harmful-brain-activity-classification/prepared/private/answers.csv
