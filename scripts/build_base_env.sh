@@ -47,7 +47,7 @@ echo "This may take several minutes as it installs biomedical dependencies."
 echo ""
 
 # Build the Docker image (from root directory with environment/Dockerfile)
-if docker build -t biomlbench-env -f environment/Dockerfile .; then
+if docker build --platform=linux/amd64 -t biomlbench-env -f environment/Dockerfile .; then
     echo ""
     echo -e "${GREEN}✅ Successfully built biomlbench-env image${NC}"
 else
