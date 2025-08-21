@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/SOX30_HUMAN_Tsuboyama_2023_7JJK/description.md
 preparer: biomlbench.tasks.proteingym-dms.SOX30_HUMAN_Tsuboyama_2023_7JJK.prepare:prepare
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

@@ -15,7 +15,7 @@ from biomlbench.data import (
 from biomlbench.grade import grade_jsonl, grade_submission
 from biomlbench.registry import registry
 from biomlbench.utils import get_logger, get_repo_dir
-
+import os
 logger = get_logger(__name__)
 
 
@@ -132,6 +132,28 @@ def main():
         help="Path to the directory where the data used for grading is stored.",
         required=False,
         default=registry.get_data_dir(),
+    )
+    parser_grade_eval.add_argument(
+        "--s3-bucket",
+        help="S3 bucket name for uploading grading results (can also set BIOMLBENCH_S3_BUCKET env var)",
+        type=str,
+        required=False,
+    )
+    parser_grade_eval.add_argument(
+        "--s3-prefix",
+        help="S3 key prefix for uploaded artifacts (default: empty)",
+        type=str,
+        default=None,
+    )
+    parser_grade_eval.add_argument(
+        "--s3-no-compress",
+        help="Disable compression when uploading to S3",
+        action="store_true",
+    )
+    parser_grade_eval.add_argument(
+        "--disable-s3",
+        help="Disable S3 uploads even if bucket is configured",
+        action="store_true",
     )
 
     # Grade sample sub-parser
@@ -299,6 +321,38 @@ def main():
         type=str,
         default="runs",
     )
+    parser_run_agent.add_argument(
+        "--s3-bucket",
+        help="S3 bucket name for uploading run artifacts (can also set BIOMLBENCH_S3_BUCKET env var)",
+        type=str,
+        required=False,
+    )
+    parser_run_agent.add_argument(
+        "--s3-prefix",
+        help="S3 key prefix for uploaded artifacts (default: empty)",
+        type=str,
+        default=None,
+    )
+    parser_run_agent.add_argument(
+        "--s3-no-compress",
+        help="Disable compression when uploading to S3",
+        action="store_true",
+    )
+    parser_run_agent.add_argument(
+        "--disable-s3",
+        help="Disable S3 uploads even if bucket is configured",
+        action="store_true",
+    )
+    parser_run_agent.add_argument(
+        "--incremental-s3",
+        help="Enable incremental S3 uploads during execution (useful for long benchmarks)",
+        action="store_true",
+    )
+    parser_run_agent.add_argument(
+        "--cpu-only",
+        help="Use CPU-only container configuration (no GPU requirements)",
+        action="store_true",
+    )
 
     args = parser.parse_args()
 
@@ -330,6 +384,16 @@ def main():
             )
 
     if args.command == "grade":
+        # Set up S3 configuration from CLI arguments if provided
+        if hasattr(args, 's3_bucket') and args.s3_bucket:
+            os.environ['BIOMLBENCH_S3_BUCKET'] = args.s3_bucket
+        if hasattr(args, 's3_prefix') and args.s3_prefix is not None:
+            os.environ['BIOMLBENCH_S3_PREFIX'] = args.s3_prefix
+        if hasattr(args, 's3_no_compress') and args.s3_no_compress:
+            os.environ['BIOMLBENCH_S3_COMPRESS'] = 'false'
+        if hasattr(args, 'disable_s3') and args.disable_s3:
+            os.environ['BIOMLBENCH_S3_ENABLED'] = 'false'
+
         new_registry = registry.set_data_dir(Path(args.data_dir))
         submission = Path(args.submission)
         output_dir = Path(args.output_dir)
@@ -380,6 +444,18 @@ def main():
             parser_run_agent.error("Either --task-id or --task-list must be specified.")
         if args.task_id and args.task_list:
             parser_run_agent.error("Cannot specify both --task-id and --task-list.")
+
+        # Set up S3 configuration from CLI arguments if provided
+        if hasattr(args, 's3_bucket') and args.s3_bucket:
+            os.environ['BIOMLBENCH_S3_BUCKET'] = args.s3_bucket
+        if hasattr(args, 's3_prefix') and args.s3_prefix is not None:
+            os.environ['BIOMLBENCH_S3_PREFIX'] = args.s3_prefix
+        if hasattr(args, 's3_no_compress') and args.s3_no_compress:
+            os.environ['BIOMLBENCH_S3_COMPRESS'] = 'false'
+        if hasattr(args, 'disable_s3') and args.disable_s3:
+            os.environ['BIOMLBENCH_S3_ENABLED'] = 'false'
+        if hasattr(args, 'incremental_s3'):
+            os.environ['BIOMLBENCH_S3_INCREMENTAL'] = str(args.incremental_s3).lower()
 
         run_agent(args)
 

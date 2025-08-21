@@ -14,6 +14,7 @@ prizes:
   - position: Without Context Special Prize
     value: 5000
 description: biomlbench/tasks/kaggle/siim-isic-melanoma-classification/description.md
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/siim-isic-melanoma-classification/prepared/private/answers.csv

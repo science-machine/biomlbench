@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/CASP3_HUMAN_Roychowdhury_2020/description.md
 preparer: biomlbench.tasks.proteingym-dms.CASP3_HUMAN_Roychowdhury_2020.prepare:prepare
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

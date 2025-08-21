@@ -5,6 +5,17 @@
 See the docs here: [docs/index.md](docs/index.md)
 
 
+## Final TODOs for workshop
+
+- [ ] Finalize tasks (pick another reasonably-sized imaging task for the kaggle task database)
+- [x] Ensure that GPUs are exposed to agents in docker containers
+- [ ] Have a way of overriding agent timeout from the main CLI
+- [ ] Have a function for uploading artifacts to s3 on run completion
+- [x] Change step timeout for biomni/AIDE to total runtime / 10
+- [ ] Write wrapper script for configuring all VMs on GCP, running tasks in a parallelized way, and then tearing down the VMs on completion.
+- [ ] Ensure that AIDE prints conversation to stdout.
+
+
 ## biomlbench core TODOs (unordered)
 
 - [ ] Decide whether to enable multi-target problems in Polaris in the future (currently we just take the first target if more than one). 

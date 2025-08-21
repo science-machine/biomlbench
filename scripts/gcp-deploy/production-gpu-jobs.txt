@@ -1,0 +1,28 @@
+# BioML-bench Production GPU Jobs - Image Analysis Tasks
+# Format: agent,task_id
+# Run from project root: python scripts/gcp-deploy/deploy.py --jobs scripts/gcp-deploy/production-gpu-jobs.txt --concurrent 8
+# Generated with 4 agents × 4 tasks = 16 total jobs
+
+# ==================================================
+# Biomedical Image Analysis (GPU Required)
+# ==================================================
+
+aide,kaggle/osic-pulmonary-fibrosis-progression
+biomni,kaggle/osic-pulmonary-fibrosis-progression
+mlagentbench,kaggle/osic-pulmonary-fibrosis-progression
+stella,kaggle/osic-pulmonary-fibrosis-progression
+
+aide,kaggle/histopathologic-cancer-detection
+biomni,kaggle/histopathologic-cancer-detection
+mlagentbench,kaggle/histopathologic-cancer-detection
+stella,kaggle/histopathologic-cancer-detection
+
+aide,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+biomni,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+mlagentbench,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+stella,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+
+aide,kaggle/uw-madison-gi-tract-image-segmentation
+biomni,kaggle/uw-madison-gi-tract-image-segmentation
+mlagentbench,kaggle/uw-madison-gi-tract-image-segmentation
+stella,kaggle/uw-madison-gi-tract-image-segmentation 

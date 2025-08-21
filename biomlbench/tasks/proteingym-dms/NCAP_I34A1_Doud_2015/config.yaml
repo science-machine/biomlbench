@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/NCAP_I34A1_Doud_2015/description.md
 preparer: biomlbench.tasks.proteingym-dms.NCAP_I34A1_Doud_2015.prepare:prepare
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

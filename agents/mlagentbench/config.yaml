@@ -1,15 +1,15 @@
 vars:
-  time_limit: &time_limit 86400 # 3600 * 24 hours
-  step_count: &step_count 2000 # empirically, we find that the agent does 500 steps in ~6 hours, so 2000 steps should be about right for 24 hours
+  time_limit: &time_limit 43200 
+  step_count: &step_count 2000
 
 mlagentbench:
   start: mlagentbench/start.sh
   dockerfile: mlagentbench/Dockerfile
   kwargs_type: argparse
   kwargs: # Args for MLAgentBench.runner
-    llm-name: gpt-5-2025-08-07
-    edit-script-llm-name: gpt-5-2025-08-07
-    fast-llm-name: gpt-5-2025-08-07
+    llm-name: gpt-4.1-2025-04-14
+    edit-script-llm-name: gpt-4.1-2025-04-14
+    fast-llm-name: gpt-4.1-2025-04-14
     max-steps: *step_count
     agent-max-steps: *step_count # Some MLAB agents have their own max-steps which is separate from the env max-steps; for ResearchAgent, these should be the same
     max-time: *time_limit

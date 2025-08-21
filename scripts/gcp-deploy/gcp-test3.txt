@@ -1,0 +1,48 @@
+# BioML-bench Test Jobs - All Tasks with Dummy Agent
+# Format: agent,task_id
+# Run from project root: python scripts/gcp-deploy/deploy.py --jobs scripts/gcp-deploy/gcp-test3.txt --concurrent 15
+# Generated with 1 agent × 24 tasks = 24 total jobs
+
+# ==================================================
+# Drug Discovery and Development
+# ==================================================
+
+dummy,polarishub/polaris-pkis2-egfr-wt-c-1
+dummy,polarishub/polaris-adme-fang-hclint-1
+dummy,polarishub/polaris-adme-fang-hppb-1
+dummy,polarishub/polaris-adme-fang-solu-1
+dummy,polarishub/tdcommons-cyp2d6-substrate-carbonmangels
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-lipophilicity-astrazeneca
+dummy,polarishub/tdcommons-herg
+dummy,polarishub/tdcommons-bbb-martins
+
+# ==================================================
+# Biomedical Image Analysis
+# ==================================================
+
+dummy,kaggle/osic-pulmonary-fibrosis-progression
+dummy,kaggle/histopathologic-cancer-detection
+dummy,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+dummy,kaggle/uw-madison-gi-tract-image-segmentation
+
+# ==================================================
+# Protein Engineering
+# ==================================================
+
+dummy,proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+dummy,proteingym-dms/SBI_STAAM_Tsuboyama_2023_2JVG
+dummy,proteingym-dms/PSAE_PICP2_Tsuboyama_2023_1PSE
+dummy,proteingym-dms/CBX4_HUMAN_Tsuboyama_2023_2K28
+dummy,proteingym-dms/Q8EG35_SHEON_Campbell_2022_indels
+dummy,proteingym-dms/CSN4_MOUSE_Tsuboyama_2023_1UFM_indels
+
+# ==================================================
+# Single Cell Omics
+# ==================================================
+
+dummy,manual/open-problems-predict-modality
+dummy,manual/open-problems-single-cell-perturbations
+dummy,manual/open-problems-cell-cell-communication-ligand-target
+dummy,manual/open-problems-spatially-variable-genes
+dummy,manual/open-problems-label-projection 

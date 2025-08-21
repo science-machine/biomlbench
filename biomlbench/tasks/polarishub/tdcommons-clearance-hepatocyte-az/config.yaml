@@ -6,6 +6,7 @@ difficulty: medium
 awards_medals: true
 prizes: null
 description: biomlbench/tasks/polarishub/tdcommons-clearance-hepatocyte-az/description.md
+time_limit: 28800  # 8 hours
 
 data_source:
   type: polaris

@@ -1,6 +1,7 @@
 id: manual/open-problems-single-cell-perturbations
 name: "OpenProblems – Single-Cell Perturbation Prediction"
 description: biomlbench/tasks/manual/open-problems-single-cell-perturbations/description.md
+time_limit: 28800  # 8 hours
 
 dataset:
   answers: manual/open-problems-single-cell-perturbations/prepared/private/answers.csv

@@ -45,6 +45,7 @@ class Task:
     task_type: Optional[str] = None  # e.g., 'medical_imaging', 'protein_engineering'
     domain: Optional[str] = None  # e.g., 'oncology', 'drug_discovery'
     difficulty: Optional[str] = None  # e.g., 'easy', 'medium', 'hard'
+    time_limit: Optional[int] = None  # task-specific time limit in seconds
 
     def __post_init__(self):
         assert isinstance(self.id, str), "Task id must be a string."
@@ -84,6 +85,7 @@ class Task:
                 task_type=data.get("task_type"),
                 domain=data.get("domain"),
                 difficulty=data.get("difficulty"),
+                time_limit=data.get("time_limit"),
             )
         except KeyError as e:
             raise ValueError(f"Missing key {e} in task config!")

@@ -21,6 +21,7 @@ prizes:
     value: 4000
     
 description: biomlbench/tasks/kaggle/ranzcr-clip-catheter-line-classification/description.md
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/ranzcr-clip-catheter-line-classification/prepared/private/answers.csv

@@ -27,7 +27,7 @@ def count_non_empty_lines(file_path):
 
 def find_populated_leaderboards():
     """Find all polarishub tasks with leaderboards having at least 5 lines."""
-    polarishub_dir = Path("/home/paperspace/biomlbench/biomlbench/tasks/polarishub")
+    polarishub_dir = Path("biomlbench/tasks/polarishub")
     
     if not polarishub_dir.exists():
         print(f"Error: Directory {polarishub_dir} does not exist")

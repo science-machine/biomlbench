@@ -1,6 +1,7 @@
 id: manual/open-problems-predict-modality
 name: "OpenProblems – Predict Modality"
 description: biomlbench/tasks/manual/open-problems-predict-modality/description.md
+time_limit: 28800  # 8 hours
 
 dataset:
   answers: manual/open-problems-predict-modality/prepared/private/answers.csv

@@ -30,13 +30,17 @@ from biomlbench.utils import (
     get_runs_dir,
     get_timestamp,
 )
+from biomlbench.s3_utils import (
+    upload_run_group_artifacts,
+    upload_incremental_artifacts,
+)
 
 sys.path.append(str(Path(__file__).parent.parent / "agents"))
 from registry import Agent
 from registry import registry as agent_registry
 from run import run_in_container
 
-from environment.defaults import DEFAULT_CONTAINER_CONFIG_PATH
+from environment.defaults import DEFAULT_CONTAINER_CONFIG_PATH, CPU_ONLY_CONTAINER_CONFIG_PATH
 
 logger = get_logger(__name__)
 
@@ -168,6 +172,19 @@ async def worker(
                 run_logger.info(
                     f"[Worker {idx}] Finished running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
                 )
+                
+                # Upload individual run artifacts incrementally if enabled
+                if os.environ.get("BIOMLBENCH_S3_INCREMENTAL", "false").lower() == "true":
+                    try:
+                        run_group_id = agent_task.path_to_run_group.name
+                        run_id = agent_task.run_id
+                        upload_success = upload_incremental_artifacts(
+                            agent_task.path_to_run, run_group_id, agent_task.task.id, run_id
+                        )
+                        if upload_success:
+                            run_logger.info(f"📤 [Worker {idx}] Uploaded incremental artifacts to S3")
+                    except Exception as e:
+                        run_logger.warning(f"Incremental S3 upload failed but continuing: {e}")
             else:
                 run_logger.error(
                     f"[Worker {idx}] Agent completed without exception but failed internally for seed {agent_task.seed}, task {agent_task.task.id}, agent {agent_task.agent.name}"
@@ -212,6 +229,7 @@ async def run_agent_async(
     container_config_path: str = None,
     retain_container: bool = False,
     data_dir: str = None,
+    cpu_only: bool = False,
 ) -> Tuple[str, Path]:
     """
     Run an agent on multiple tasks asynchronously.
@@ -256,7 +274,10 @@ async def run_agent_async(
 
     # Load container configuration
     if container_config_path is None:
-        container_config_path = DEFAULT_CONTAINER_CONFIG_PATH
+        if cpu_only:
+            container_config_path = CPU_ONLY_CONTAINER_CONFIG_PATH
+        else:
+            container_config_path = DEFAULT_CONTAINER_CONFIG_PATH
 
     with open(container_config_path, "r") as f:
         container_config = json.load(f)
@@ -267,6 +288,18 @@ async def run_agent_async(
     for seed in range(n_seeds):
         for task_id in task_ids:
             task = task_registry.get_task(task_id)
+
+            # Get agent with task-specific overrides if task has time_limit
+            if task.time_limit is not None:
+                task_agent = agent_registry.get_agent_with_task_overrides(
+                    agent_id, task_time_limit=task.time_limit
+                )
+                logger.info(
+                    f"Using task-specific time limit of {task.time_limit}s for task {task.id}"
+                )
+            else:
+                task_agent = agent
+
             run_dir = create_run_dir(task.id, agent.id, run_group)
             # Store relative path from run group directory for proper reconstruction
             run_group_dir = get_runs_dir() / run_group
@@ -274,8 +307,8 @@ async def run_agent_async(
             agent_task = AgentTask(
                 run_id=run_id,
                 seed=seed,
-                image=agent.name,
-                agent=agent,
+                image=task_agent.name,
+                agent=task_agent,
                 task=task,
                 path_to_run_group=run_dir.parent,
                 path_to_run=run_dir,
@@ -340,6 +373,15 @@ async def run_agent_async(
         logger.error(f"❌ {len(failed_runs)}/{total_runs} runs FAILED!")
         logger.error(f"✅ {successful_runs}/{total_runs} runs succeeded")
 
+        # Upload failed run group before potentially raising error
+        try:
+            from biomlbench.s3_utils import upload_failed_run_group_artifacts
+            failed_upload_success = upload_failed_run_group_artifacts(run_group_dir, run_group)
+            if failed_upload_success:
+                logger.info(f"📤 Successfully uploaded failed run group artifacts to S3 failed_runs folder")
+        except Exception as e:
+            logger.warning(f"Failed run group S3 upload failed but continuing: {e}")
+
         # Check for common failure patterns and provide specific guidance
         first_failed_run = failed_runs[0]
         first_run_log = run_group_dir / first_failed_run / "run.log"
@@ -390,6 +432,16 @@ async def run_agent_async(
             "⚠️  No successful runs to grade - submission file contains no valid results"
         )
 
+    # Upload run group artifacts to S3 if configured
+    try:
+        upload_success = upload_run_group_artifacts(run_group_dir, run_group, agent_id, task_ids)
+        if upload_success:
+            logger.info(f"📤 Successfully uploaded run group artifacts to S3")
+        else:
+            logger.debug("S3 upload skipped (not configured or disabled)")
+    except Exception as e:
+        logger.warning(f"S3 upload failed but continuing: {e}")
+
     return run_group, submission_path
 
 
@@ -418,6 +470,7 @@ def run_agent(args) -> str:
             container_config_path=args.container_config,
             retain_container=args.retain_container,
             data_dir=args.data_dir,
+            cpu_only=getattr(args, 'cpu_only', False),
         )
     )
 

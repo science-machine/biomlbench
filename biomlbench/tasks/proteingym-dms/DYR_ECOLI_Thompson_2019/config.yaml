@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/DYR_ECOLI_Thompson_2019/description.md
 preparer: biomlbench.tasks.proteingym-dms.DYR_ECOLI_Thompson_2019.prepare:prepare
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

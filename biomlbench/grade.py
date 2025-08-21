@@ -11,8 +11,23 @@ from biomlbench.grade_helpers import TaskReport
 from biomlbench.registry import Registry, Task
 from biomlbench.registry import registry as DEFAULT_REGISTRY
 from biomlbench.utils import get_logger, get_timestamp, load_answers, purple, read_csv, read_jsonl
+from biomlbench.s3_utils import upload_grading_artifacts
 
 logger = get_logger(__name__)
+
+
+def extract_agent_from_submission_path(submission_path: str) -> str:
+    """Extract agent ID from submission path by parsing the run group directory structure."""
+    try:
+        # Submission paths are like: "run_id/submission/submission.csv"
+        # Run group directories are like: "2025-08-19T11-06-44-GMT_run-group_dummy"
+        path_parts = Path(submission_path).parts
+        for part in path_parts:
+            if "_run-group_" in part:
+                return part.split("_run-group_")[-1]
+        return "unknown"
+    except:
+        return "unknown"
 
 
 def grade_jsonl(
@@ -28,41 +43,79 @@ def grade_jsonl(
 
     submissions = read_jsonl(str(path_to_submissions), skip_commented_out_lines=True)
     task_reports = []
-
-    for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
-        # Resolve submission path relative to the JSONL file directory
-        submission_path = path_to_submissions.parent / submission["submission_path"]
-        task_id = submission["task_id"]
-        task = registry.get_task(task_id)
-        single_report = grade_submission(submission_path, task)
-        task_reports.append(single_report)
-
-    aggregated_report = aggregate_reports(task_reports)
     timestamp = get_timestamp()
-    
-    # Save aggregated report
     save_path = output_dir / f"{timestamp}_grading_report.json"
-    logger.info(
-        json.dumps({k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4)
-    )
-
-    output_dir.mkdir(exist_ok=True)
-    with open(save_path, "w") as f:
-        json.dump(aggregated_report, f, indent=2)
-    logger.info(purple(f"Saved summary report to {save_path}"))
-    
-    # Save individual task reports for easier access
     individual_reports_dir = output_dir / f"{timestamp}_individual_reports"
-    individual_reports_dir.mkdir(exist_ok=True)
     
-    for report in task_reports:
-        # Sanitize task ID for use as filename (replace slashes with underscores)
-        safe_task_id = report.task_id.replace("/", "_").replace("\\", "_")
-        individual_path = individual_reports_dir / f"{safe_task_id}.json"
-        with open(individual_path, "w") as f:
-            json.dump(report.to_dict(), f, indent=2)
+    # Extract agent and task information for S3 organization
+    agents = set()
+    tasks = set()
+    for submission in submissions:
+        agent = extract_agent_from_submission_path(submission["submission_path"])
+        agents.add(agent)
+        tasks.add(submission["task_id"])
+
+    try:
+        for submission in tqdm(submissions, desc="Grading submissions", unit="submission"):
+            # Resolve submission path relative to the JSONL file directory
+            submission_path = path_to_submissions.parent / submission["submission_path"]
+            task_id = submission["task_id"]
+            task = registry.get_task(task_id)
+            single_report = grade_submission(submission_path, task)
+            task_reports.append(single_report)
+
+        aggregated_report = aggregate_reports(task_reports)
+        
+        # Save aggregated report
+        logger.info(
+            json.dumps({k: v for k, v in aggregated_report.items() if k != "task_reports"}, indent=4)
+        )
+
+        output_dir.mkdir(exist_ok=True)
+        with open(save_path, "w") as f:
+            json.dump(aggregated_report, f, indent=2)
+        logger.info(purple(f"Saved summary report to {save_path}"))
+        
+        # Save individual task reports for easier access
+        individual_reports_dir.mkdir(exist_ok=True)
+        
+        for report in task_reports:
+            # Sanitize task ID for use as filename (replace slashes with underscores)
+            safe_task_id = report.task_id.replace("/", "_").replace("\\", "_")
+            individual_path = individual_reports_dir / f"{safe_task_id}.json"
+            with open(individual_path, "w") as f:
+                json.dump(report.to_dict(), f, indent=2)
+        
+        logger.info(purple(f"Saved {len(task_reports)} individual task reports to {individual_reports_dir}"))
+        
+        # Upload grading artifacts to S3 if configured
+        try:
+            # Use organized S3 structure if single agent/task, otherwise use general structure
+            if len(agents) == 1 and len(tasks) == 1:
+                agent_id = list(agents)[0]
+                task_id = list(tasks)[0]
+                upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp, agent_id, task_id)
+            else:
+                # Multiple agents/tasks - use general structure
+                upload_success = upload_grading_artifacts(save_path, individual_reports_dir, timestamp)
+                
+            if upload_success:
+                logger.info(f"📤 Successfully uploaded grading results to S3")
+            else:
+                logger.debug("S3 upload skipped (not configured or disabled)")
+        except Exception as e:
+            logger.warning(f"S3 upload failed but continuing: {e}")
     
-    logger.info(purple(f"Saved {len(task_reports)} individual task reports to {individual_reports_dir}"))
+    except Exception:
+        # Upload failed grading artifacts before re-raising
+        from biomlbench.s3_utils import upload_failed_grading_artifacts
+        if len(agents) == 1 and len(tasks) == 1:
+            agent_id = list(agents)[0]
+            task_id = list(tasks)[0]
+            upload_failed_grading_artifacts(save_path, individual_reports_dir, timestamp, agent_id, task_id)
+        else:
+            upload_failed_grading_artifacts(save_path, individual_reports_dir, timestamp)
+        raise
     
     return save_path, individual_reports_dir
 

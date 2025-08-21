@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/SC6A4_HUMAN_Young_2021/description.md
 preparer: biomlbench.tasks.proteingym-dms.SC6A4_HUMAN_Young_2021.prepare:prepare
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

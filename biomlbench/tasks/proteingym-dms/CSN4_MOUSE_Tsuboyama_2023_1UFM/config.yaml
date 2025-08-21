@@ -8,6 +8,7 @@ awards_medals: false
 prizes: null
 description: biomlbench/tasks/proteingym-dms/CSN4_MOUSE_Tsuboyama_2023_1UFM/description.md
 preparer: biomlbench.tasks.proteingym-dms.CSN4_MOUSE_Tsuboyama_2023_1UFM.prepare:prepare
+time_limit: 28800  # 8 hours
 
 data_source:
   type: proteingym-dms

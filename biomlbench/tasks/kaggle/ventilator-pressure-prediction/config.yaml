@@ -10,6 +10,7 @@ prizes:
   - position: 3
     value: 2500
 description: biomlbench/tasks/kaggle/ventilator-pressure-prediction/description.md
+time_limit: 57600  # 16 hours
 
 dataset:
   answers: kaggle/ventilator-pressure-prediction/prepared/private/answers.csv
