@@ -1,6 +1,6 @@
-private-kaggle/uw-madison-gi-tract-image-segmentation-0:
+private:
   answers.csv: ab8cd8e48b4c72df3e4933c04dc08740
-public-kaggle/uw-madison-gi-tract-image-segmentation-0:
+public:
   human_baselines.csv: 7b0a885647040f299f821bbbff779b6b
   sample_submission.csv: 96d669ecf7556353b7203a31f54edd1e
   test.csv: fe823b73f539d27fd2e5c16f2775940f

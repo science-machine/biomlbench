@@ -1,6 +1,6 @@
-private-kaggle/osic-pulmonary-fibrosis-progression-0:
+private:
   answers.csv: 0487bd97c387b5e6c28d5060026462d9
-public-kaggle/osic-pulmonary-fibrosis-progression-0:
+public:
   human_baselines.csv: 3e7ce0f3e23ea406e0fc9d11e146dfd4
   sample_submission.csv: 6204ba4dd60cbf2629cd43c60144b9a7
   test.csv: 4d8bf1fd3b55feae1a1e3b5088a2f268

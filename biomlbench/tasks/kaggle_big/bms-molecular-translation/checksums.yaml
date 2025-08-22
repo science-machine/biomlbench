@@ -1,8 +1,0 @@
-private-kaggle/bms-molecular-translation-0:
-  answers.csv: 9d0cf13e5b604a31bb4dd77faaead8ae
-public-kaggle/bms-molecular-translation-0:
-  extra_approved_InChIs.csv: 24301ba135996bd369cc83740e01f8c8
-  human_baselines.csv: 9e5edd1eaf710da6e70ed408a209b3dd
-  sample_submission.csv: fb64d50adadf358d780b001dc14daa47
-  train_labels.csv: 35513e9a1d7f42bfa97f93b0476abc4c
-zip: b8268fc1e7d4be3b172fb7d90a86bdf6
