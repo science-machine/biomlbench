@@ -42,7 +42,6 @@ ARG CONDA_ENV_NAME=agent
 ARG PYTHON_VERSION=3.11
 ARG REQUIREMENTS=/tmp/requirements.txt
 
-COPY environment/requirements.txt ${REQUIREMENTS}
 
 # create conda environment and optionally install the requirements to it
 ENV CONDA_PLUGINS_AUTO_ACCEPT_TOS=true
@@ -51,13 +50,27 @@ ARG INSTALL_HEAVY_DEPENDENCIES=true
 ENV INSTALL_HEAVY_DEPENDENCIES=${INSTALL_HEAVY_DEPENDENCIES}
 
 # Install biomedical dependencies with correct GCC version for RDKit
-RUN if [ "$INSTALL_HEAVY_DEPENDENCIES" = "true" ]; then \
-    /opt/conda/bin/conda install -n ${CONDA_ENV_NAME} -c conda-forge gcc=12.1.0 -y && \
-    /opt/conda/bin/conda install -n ${CONDA_ENV_NAME} -c conda-forge rdkit biopython scikit-learn pandas numpy matplotlib seaborn -y && \
-    /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install -r /tmp/requirements.txt && \
-    /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install tensorflow[and-cuda]==2.17 && \
-    /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install torch==2.2.0 torchaudio==2.2.0 torchtext==0.17.0 torchvision==0.17.0 && \
-    /opt/conda/bin/conda clean -afy ; fi
+RUN /opt/conda/bin/conda install -n ${CONDA_ENV_NAME} -c conda-forge scikit-learn pandas numpy matplotlib seaborn -y
+RUN /opt/conda/bin/conda install -n ${CONDA_ENV_NAME} -c conda-forge rdkit -y
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install scanpy pyarrow
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install squidpy
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install biopython
+
+# Test RDKit installation
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} python -c "import rdkit; print(rdkit.__version__)"
+# Test scanpy installation
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} python -c "import scanpy; print(scanpy.__version__)"
+# Test squidpy installation
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} python -c "import squidpy; print(squidpy.__version__)"
+# Test biopython installation
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} python -c "import Bio; print(Bio.__version__)"
+# Test scikit-learn installation`
+COPY environment/requirements.txt ${REQUIREMENTS}
+
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install -r /tmp/requirements.txt
+RUN /opt/conda/bin/conda run -n ${CONDA_ENV_NAME} pip install transformers
+
+RUN /opt/conda/bin/conda clean -afy
 
 ENV PATH="/opt/conda/bin:${PATH}"
 

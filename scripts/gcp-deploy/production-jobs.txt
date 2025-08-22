@@ -1,11 +1,4 @@
-# BioML-bench Production Jobs - Complete Task List
-# Format: agent,task_id
-# Run from project root: python scripts/gcp-deploy/deploy.py --jobs production-jobs.txt --concurrent 15
-# Generated with 4 agents × 23 tasks = 92 total jobs
 
-# ==================================================
-# Drug Discovery and Development
-# ==================================================
 
 aide,polarishub/polaris-pkis2-egfr-wt-c-1
 biomni,polarishub/polaris-pkis2-egfr-wt-c-1
@@ -24,6 +17,7 @@ stella,polarishub/polaris-adme-fang-hppb-1
 
 aide,polarishub/polaris-adme-fang-solu-1
 biomni,polarishub/polaris-adme-fang-solu-1
+biomni,polarishub/polaris-adme-fang-solu-1
 mlagentbench,polarishub/polaris-adme-fang-solu-1
 stella,polarishub/polaris-adme-fang-solu-1
 
@@ -37,6 +31,11 @@ biomni,polarishub/tdcommons-lipophilicity-astrazeneca
 mlagentbench,polarishub/tdcommons-lipophilicity-astrazeneca
 stella,polarishub/tdcommons-lipophilicity-astrazeneca
 
+aide,polarishub/tdcommons-caco2-wang
+biomni,polarishub/tdcommons-caco2-wang
+mlagentbench,polarishub/tdcommons-caco2-wang
+stella,polarishub/tdcommons-caco2-wang
+
 aide,polarishub/tdcommons-herg
 biomni,polarishub/tdcommons-herg
 mlagentbench,polarishub/tdcommons-herg
@@ -46,30 +45,6 @@ aide,polarishub/tdcommons-bbb-martins
 biomni,polarishub/tdcommons-bbb-martins
 mlagentbench,polarishub/tdcommons-bbb-martins
 stella,polarishub/tdcommons-bbb-martins
-
-# ==================================================
-# Biomedical Image Analysis
-# ==================================================
-
-aide,kaggle/osic-pulmonary-fibrosis-progression
-biomni,kaggle/osic-pulmonary-fibrosis-progression
-mlagentbench,kaggle/osic-pulmonary-fibrosis-progression
-stella,kaggle/osic-pulmonary-fibrosis-progression
-
-aide,kaggle/histopathologic-cancer-detection
-biomni,kaggle/histopathologic-cancer-detection
-mlagentbench,kaggle/histopathologic-cancer-detection
-stella,kaggle/histopathologic-cancer-detection
-
-aide,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
-biomni,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
-mlagentbench,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
-stella,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
-
-aide,kaggle/uw-madison-gi-tract-image-segmentation
-biomni,kaggle/uw-madison-gi-tract-image-segmentation
-mlagentbench,kaggle/uw-madison-gi-tract-image-segmentation
-stella,kaggle/uw-madison-gi-tract-image-segmentation
 
 # ==================================================
 # Protein Engineering
@@ -132,5 +107,25 @@ stella,manual/open-problems-spatially-variable-genes
 aide,manual/open-problems-label-projection
 biomni,manual/open-problems-label-projection
 mlagentbench,manual/open-problems-label-projection
-stella,manual/open-problems-label-projection
+stella,manual/open-problems-label-projection 
 
+
+aide,kaggle/osic-pulmonary-fibrosis-progression
+biomni,kaggle/osic-pulmonary-fibrosis-progression
+mlagentbench,kaggle/osic-pulmonary-fibrosis-progression
+stella,kaggle/osic-pulmonary-fibrosis-progression
+
+aide,kaggle/histopathologic-cancer-detection
+biomni,kaggle/histopathologic-cancer-detection
+mlagentbench,kaggle/histopathologic-cancer-detection
+stella,kaggle/histopathologic-cancer-detection
+
+aide,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+biomni,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+mlagentbench,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+stella,kaggle/rsna-miccai-brain-tumor-radiogenomic-classification
+
+aide,kaggle/uw-madison-gi-tract-image-segmentation
+biomni,kaggle/uw-madison-gi-tract-image-segmentation
+mlagentbench,kaggle/uw-madison-gi-tract-image-segmentation
+stella,kaggle/uw-madison-gi-tract-image-segmentation 
