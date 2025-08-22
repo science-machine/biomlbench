@@ -402,10 +402,13 @@ def prewarm_instances(instance_ids: List[str]):
         for task_dir in /home/runner/biomlbench/biomlbench/tasks/manual/*/; do
             if [ -d "$task_dir" ]; then
                 task_name=$(basename "$task_dir")
-                mkdir -p "/home/runner/.cache/bioml-bench/data/manual/$task_name/"
+                mkdir -p "/home/runner/.cache/bioml-bench/data/manual/$task_name/prepared/public/"
                 if [ -f "$task_dir/description.md" ]; then
                     cp "$task_dir/description.md" "/home/runner/.cache/bioml-bench/data/manual/$task_name/prepared/public/description.md"
                     echo "Copied description for $task_name"
+                else
+                    echo "ERROR: Missing description.md for task $task_name"
+                    exit 1
                 fi
             fi
         done
@@ -416,7 +419,8 @@ def prewarm_instances(instance_ids: List[str]):
             cp "/home/runner/biomlbench/scripts/aws-deploy/LLM.py" "/home/runner/biomlbench/agents/mlagentbench/ref/MLAgentBench/MLAgentBench/LLM.py"
             echo "Replaced LLM.py with custom version"
         else
-            echo "Warning: Custom LLM.py not found at /home/runner/biomlbench/scripts/aws-deploy/LLM.py"
+            echo "ERROR: Custom LLM.py not found at /home/runner/biomlbench/scripts/aws-deploy/LLM.py"
+            exit 1
         fi
         
         # Rebuild MLAgentBench

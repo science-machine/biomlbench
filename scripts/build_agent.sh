@@ -116,7 +116,7 @@ done
 
 # Check if the agent is properly configured
 echo "Validating agent configuration..."
-if uv run python -c "from agents.registry import registry; agent = registry.get_agent('$AGENT_ID'); print(f'Agent {agent.id} loaded successfully')"; then
+if python -c "from agents.registry import registry; agent = registry.get_agent('$AGENT_ID'); print(f'Agent {agent.id} loaded successfully')"; then
     echo -e "${GREEN}✅ Agent configuration is valid${NC}"
 else
     echo -e "${RED}❌ Agent configuration validation failed${NC}"
@@ -161,7 +161,7 @@ fi
 
 # Test agent registry loading
 echo "Testing agent registry integration..."
-if uv run python -c "from agents.registry import registry; agent = registry.get_agent('$AGENT_ID'); print(f'Agent image: {agent.name}')"; then
+if python -c "from agents.registry import registry; agent = registry.get_agent('$AGENT_ID'); print(f'Agent image: {agent.name}')"; then
     echo -e "${GREEN}✅ Agent registry integration works${NC}"
 else
     echo -e "${RED}❌ Agent registry integration failed${NC}"
