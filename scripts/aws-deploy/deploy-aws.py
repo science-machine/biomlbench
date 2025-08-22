@@ -391,6 +391,39 @@ def prewarm_instances(instance_ids: List[str]):
         rm -f environment/config/container_configs/fast.json || true
         git pull origin main || git pull origin master || echo "Git pull failed, continuing with existing code"
         echo "Updated to commit: $(git rev-parse --short HEAD)"
+        
+        # Rebuild AIDE image
+        echo "Rebuilding AIDE agent..."
+        bash scripts/build_agent.sh aide
+        
+        # Copy task descriptions to cache locations
+        echo "Copying task descriptions to cache..."
+        mkdir -p /home/runner/.cache/bioml-bench/data/manual/
+        for task_dir in /home/runner/biomlbench/biomlbench/tasks/manual/*/; do
+            if [ -d "$task_dir" ]; then
+                task_name=$(basename "$task_dir")
+                mkdir -p "/home/runner/.cache/bioml-bench/data/manual/$task_name/"
+                if [ -f "$task_dir/description.md" ]; then
+                    cp "$task_dir/description.md" "/home/runner/.cache/bioml-bench/data/manual/$task_name/prepared/public/description.md"
+                    echo "Copied description for $task_name"
+                fi
+            fi
+        done
+        
+        # Replace MLAgentBench LLM.py with custom version
+        echo "Updating MLAgentBench LLM.py..."
+        if [ -f "/home/runner/biomlbench/scripts/aws-deploy/LLM.py" ]; then
+            cp "/home/runner/biomlbench/scripts/aws-deploy/LLM.py" "/home/runner/biomlbench/agents/mlagentbench/ref/MLAgentBench/MLAgentBench/LLM.py"
+            echo "Replaced LLM.py with custom version"
+        else
+            echo "Warning: Custom LLM.py not found at /home/runner/biomlbench/scripts/aws-deploy/LLM.py"
+        fi
+        
+        # Rebuild MLAgentBench
+        echo "Rebuilding MLAgentBench agent..."
+        bash scripts/build_agent.sh mlagentbench
+        
+        echo "All updates completed successfully"
         """
         
         ssh_update_cmd = [
