@@ -1,7 +1,7 @@
 {
     "mem_limit": null,
     "shm_size": "4G",
-    "nano_cpus": 12000000000,
+    "nano_cpus": 16000000000,
     "gpus": 0,
-    "fast_entrypoint": "/home/paperspace/biomlbench/scripts/aws-deploy/fast-entrypoint.sh"
+    "fast_entrypoint": "/home/runner/fast-entrypoint.sh"
 } 

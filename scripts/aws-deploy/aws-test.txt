@@ -1,7 +1,14 @@
-# BioML-bench AWS Test Jobs
-# Format: agent,task_id
-# Run from project root: python scripts/aws-deploy/deploy-aws.py --jobs scripts/aws-deploy/aws-test.txt --concurrent 2 --ami ami-xxxxx
-
-# Simple test with 2 jobs
 dummy,polarishub/tdcommons-caco2-wang
 biomni,polarishub/tdcommons-caco2-wang
+aide,polarishub/tdcommons-caco2-wang
+stella,polarishub/tdcommons-caco2-wang
+mlagentbench,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang
+dummy,polarishub/tdcommons-caco2-wang

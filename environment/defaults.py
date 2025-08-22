@@ -7,3 +7,7 @@ DEFAULT_CONTAINER_CONFIG_PATH = (
 CPU_ONLY_CONTAINER_CONFIG_PATH = (
     Path(__file__).parent / "config" / "container_configs" / "cpu-only.json"
 )
+
+FAST_CONTAINER_CONFIG_PATH = (
+    Path(__file__).parent / "config" / "container_configs" / "fast.json"
+)
