@@ -4,3 +4,4 @@
 
 # Simple test with 2 jobs
 dummy,polarishub/tdcommons-caco2-wang
+biomni,polarishub/tdcommons-caco2-wang
