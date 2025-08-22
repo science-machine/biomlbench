@@ -45,7 +45,6 @@ ls /home/data  # Expect to see the data files
 # --------- Check that we can use the GPU in PyTorch and TensorFlow
 
 python -c "import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'WARNING: No GPU')"
-python -c "import tensorflow as tf; print('GPUs Available: ', tf.config.list_physical_devices('GPU'))"
 
 # --------- Construct instructions for agent (this is the MLAB "research problem")
 

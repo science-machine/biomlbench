@@ -1,2 +1,1 @@
-git+https://github.com/AIxBio/aideml.git
-openai>=1.30.0
+git+https://github.com/AIxBio/aideml_bmlb.git
