@@ -353,6 +353,11 @@ def main():
         help="Use CPU-only container configuration (no GPU requirements)",
         action="store_true",
     )
+    parser_run_agent.add_argument(
+        "--fast",
+        help="Use fast container configuration (optimized entrypoint for faster startup)",
+        action="store_true",
+    )
 
     args = parser.parse_args()
 

@@ -191,7 +191,7 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     source .venv/bin/activate
     
     # Run agent with fast container config
-    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
+    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only --fast
     
     # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
@@ -381,7 +381,24 @@ def prewarm_instances(instance_ids: List[str]):
         
         log(f"Pre-warming {instance_id} ({public_ip})...")
         
-        # First, create fast entrypoint and config files on remote instance
+        # First, update biomlbench codebase to get latest changes
+        log(f"Updating biomlbench codebase on {instance_id}...")
+        
+        update_cmd = """
+        cd /home/runner/biomlbench
+        git stash push -m "Stashing local changes before update" || true
+        git pull origin main || git pull origin master || echo "Git pull failed, continuing with existing code"
+        echo "Updated to commit: $(git rev-parse --short HEAD)"
+        """
+        
+        ssh_update_cmd = [
+            "ssh", "-o", "StrictHostKeyChecking=no",
+            f"runner@{public_ip}",
+            update_cmd
+        ]
+        subprocess.run(ssh_update_cmd, check=False)  # Don't fail if git pull fails
+        
+        # Create fast entrypoint and config files on remote instance
         log(f"Creating fast configuration files on {instance_id}...")
         
         setup_cmd = """
