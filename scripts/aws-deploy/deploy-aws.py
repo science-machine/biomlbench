@@ -394,7 +394,7 @@ def prewarm_instances(instance_ids: List[str]):
         
         # Rebuild AIDE image
         echo "Rebuilding AIDE agent..."
-        bash scripts/build_agent.sh aide
+        source .venv/bin/activate && bash scripts/build_agent.sh aide
         
         # Copy task descriptions to cache locations
         echo "Copying task descriptions to cache..."
@@ -425,7 +425,7 @@ def prewarm_instances(instance_ids: List[str]):
         
         # Rebuild MLAgentBench
         echo "Rebuilding MLAgentBench agent..."
-        bash scripts/build_agent.sh mlagentbench
+        source .venv/bin/activate && bash scripts/build_agent.sh mlagentbench
         
         echo "All updates completed successfully"
         """

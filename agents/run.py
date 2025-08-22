@@ -146,8 +146,9 @@ def run_in_container(
         
         # Add more verbose health check with actual output
         logger.info("Running health check...")
+        TIMEOUT_TIME = 2400
         exit_code, output = container.exec_run(
-            'timeout 600s sh -c "while ! curl -s http://localhost:5000/health > /dev/null; do sleep 1; done"'
+            f'timeout {TIMEOUT_TIME}s sh -c "while ! curl -s http://localhost:5000/health > /dev/null; do sleep 1; done"'
         )
         
         if exit_code != 0:
@@ -194,7 +195,7 @@ def run_in_container(
                 logger.error(f"Could not check entrypoint log: {entrypoint_error}")
             
             raise RuntimeError(
-                "The grading server failed to start within 240 seconds. This is likely due to an error in `entrypoint.sh`; check the logs above for details."
+                f"The grading server failed to start within {TIMEOUT_TIME} seconds. This is likely due to an error in `entrypoint.sh`; check the logs above for details."
             )
             
         execute_agent(container, agent, logger)
