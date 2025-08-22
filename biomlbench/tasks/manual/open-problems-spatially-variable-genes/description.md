@@ -32,9 +32,6 @@ All data is provided in H5AD (AnnData) format:
   - Spatial coordinates in `.obsm['spatial']`
   - Gene information in `.var` (with anonymized gene identifiers GENE1, GENE2, etc.)
   
-- `solution.h5ad`: Ground truth labels
-  - True spatial variability scores in `.var['true_spatial_var_score']`
-  - Continuous scores: ranging from 0.0 to 1.0, where higher values indicate stronger spatial variability
 
 ## Evaluation Metric
 The task uses **Kendall's tau correlation coefficient** to evaluate the performance of spatially variable gene detection methods. This non-parametric correlation metric measures the ordinal association between predicted and true spatial variability scores, making it robust to outliers and appropriate for ranking-based evaluations.
@@ -71,7 +68,6 @@ GENE3,0.789
 
 Available files:
 - `dataset.h5ad`: Training data
-- `solution.h5ad`: Ground truth labels
 - `simulated_dataset.h5ad`: (Not used - combination of dataset and labels)
 - `state.yaml`: Dataset metadata
 

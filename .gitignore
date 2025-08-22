@@ -15,10 +15,14 @@ baseline_submissions
 *.jsonl
 google-cloud-sdk
 cache
+*.pem
 .env
+aws-deploy-config.txt
 runs
 google-application-credentials.json
 site
 .vercel
 .DS_Store
 google-application-credentials.json
+failed_runs
+aide_journals
