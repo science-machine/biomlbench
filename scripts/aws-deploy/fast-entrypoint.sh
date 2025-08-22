@@ -23,12 +23,22 @@ set -x
     chown -R nonroot:nonroot /home/runner 2>/dev/null || true
   fi
   
+  if [ -d "/home/agent" ]; then
+    chown -R nonroot:nonroot /home/agent 2>/dev/null || true
+    chmod -R u+rw /home/agent 2>/dev/null || true
+  fi
+  
   if [ -d "/home/logs" ]; then
     chown nonroot:nonroot /home/logs 2>/dev/null || true
   fi
   
   if [ -d "/home/submission" ]; then
     chown nonroot:nonroot /home/submission 2>/dev/null || true
+  fi
+  
+  if [ -d "/home/code" ]; then
+    chown -R nonroot:nonroot /home/code 2>/dev/null || true
+    chmod -R u+rw /home/code 2>/dev/null || true
   fi
   
   # Make sure nonroot can work in /home

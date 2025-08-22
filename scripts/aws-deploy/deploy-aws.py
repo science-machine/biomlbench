@@ -191,7 +191,7 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     source .venv/bin/activate
     
     # Run agent with fast container config
-    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only --fast
+    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
     
     # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
@@ -387,6 +387,8 @@ def prewarm_instances(instance_ids: List[str]):
         update_cmd = """
         cd /home/runner/biomlbench
         git stash push -m "Stashing local changes before update" || true
+        # Remove any conflicting files that might prevent git pull
+        rm -f environment/config/container_configs/fast.json || true
         git pull origin main || git pull origin master || echo "Git pull failed, continuing with existing code"
         echo "Updated to commit: $(git rev-parse --short HEAD)"
         """
@@ -429,12 +431,22 @@ set -x
     chown -R nonroot:nonroot /home/runner 2>/dev/null || true
   fi
   
+  if [ -d "/home/agent" ]; then
+    chown -R nonroot:nonroot /home/agent 2>/dev/null || true
+    chmod -R u+rw /home/agent 2>/dev/null || true
+  fi
+  
   if [ -d "/home/logs" ]; then
     chown nonroot:nonroot /home/logs 2>/dev/null || true
   fi
   
   if [ -d "/home/submission" ]; then
     chown nonroot:nonroot /home/submission 2>/dev/null || true
+  fi
+  
+  if [ -d "/home/code" ]; then
+    chown -R nonroot:nonroot /home/code 2>/dev/null || true
+    chmod -R u+rw /home/code 2>/dev/null || true
   fi
   
   # Make sure nonroot can work in /home
@@ -476,16 +488,22 @@ EOF
         prewarm_cmd = """
         echo "Starting optimized pre-warming at $(date)"
         
+        # Install GNU parallel if not available (much faster than xargs)
+        if ! command -v parallel >/dev/null 2>&1; then
+            echo "Installing GNU parallel for faster warming..."
+            sudo apt-get update -qq && sudo apt-get install -y -qq parallel >/dev/null 2>&1 || echo "Failed to install parallel, using xargs"
+        fi
+        
         # Use GNU parallel if available for much faster warming
         if command -v parallel >/dev/null 2>&1; then
             echo "Using GNU parallel for faster warming"
             PARALLEL_CMD="parallel -j16 --pipe -N1000 'xargs -0 cat > /dev/null 2>&1'"
         else
-            echo "GNU parallel not found, using xargs"
+            echo "GNU parallel not found, using xargs (still parallel with -P16)"
             PARALLEL_CMD="xargs -0 -P16 -n500 cat > /dev/null 2>&1"
         fi
         
-        # Function for fast single-pass warming
+        # Function for fast single-pass warming with progress
         warm_files_fast() {
             local name=$1
             local path=$2
@@ -494,11 +512,13 @@ EOF
             
             echo "Pre-warming $name..."
             
-            # Single find that streams to parallel processes and counts
+            # Single find that streams to parallel processes and shows progress
             find "$path" $find_args -type f -print0 2>/dev/null | \
                 tee >(eval $PARALLEL_CMD) | \
                 tr '\\0' '\\n' | \
-                awk 'BEGIN {count=0} {count++} END {print "  Found and warmed", count, "files"}'
+                awk 'BEGIN {count=0} 
+                     {count++; if (count % 500 == 0) print "  Progress:", count, "files..."} 
+                     END {print "  Found and warmed", count, "files"}'
         }
         
         # 1. Pre-warm Python source files
@@ -585,7 +605,21 @@ EOF
             return False
     
     with ThreadPoolExecutor(max_workers=len(instance_ids)) as executor:
-        list(executor.map(warm_instance, instance_ids))
+        futures = [executor.submit(warm_instance, instance_id) for instance_id in instance_ids]
+        
+        # Wait for all futures to complete
+        completed = 0
+        for future in as_completed(futures):
+            try:
+                result = future.result()
+                completed += 1
+                if completed % 5 == 0:  # Progress every 5 instances
+                    log(f"Prewarming progress: {completed}/{len(instance_ids)} instances completed")
+            except Exception as e:
+                log(f"❌ Prewarming failed for one instance: {e}")
+                completed += 1
+        
+        log(f"All {len(instance_ids)} instances processed")
 
 def run_pool_mode(jobs: List[Tuple[str, str]], instance_ids: List[str]):
     """Run jobs using a pool of persistent instances."""
@@ -602,7 +636,7 @@ def run_pool_mode(jobs: List[Tuple[str, str]], instance_ids: List[str]):
         
         while True:
             try:
-                job = job_queue.get(timeout=1)
+                job = job_queue.get(timeout=5)  # Longer timeout for better stability
                 agent, task_id = job
                 
                 log(f"Instance {instance_id} processing: {agent} -> {task_id}")
@@ -619,6 +653,8 @@ def run_pool_mode(jobs: List[Tuple[str, str]], instance_ids: List[str]):
                 job_queue.task_done()
                 
             except queue.Empty:
+                # No more jobs available
+                log(f"Instance {instance_id} finished - no more jobs")
                 break
     
     # Start worker threads
