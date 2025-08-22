@@ -29,7 +29,9 @@ All data is provided in H5AD (AnnData) format with the following structure:
 - **obs**:
   - `label`: Cell type annotations
 - **var**: Gene metadata
-- **X**: Raw count matrix
+- **layers**:
+  - `counts`: Raw count matrix
+  - `normalized`: Log-transformed count matrix
 - **uns**:
   - `ccc_train`: Training set DataFrame with columns:
     - `ligand`: Gene symbol of the ligand

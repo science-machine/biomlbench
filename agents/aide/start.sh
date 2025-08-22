@@ -21,8 +21,6 @@ fi
 export HARDWARE
 # check that we can use the GPU in PyTorch
 python -c "import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'WARNING: No GPU')"
-# check that we can use the GPU in TensorFlow
-python -c "import tensorflow as tf; print('GPUs Available: ', tf.config.list_physical_devices('GPU'))"
 
 # convert $TIME_LIMIT_SECS to more readable format for prompt
 format_time() {
