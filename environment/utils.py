@@ -20,7 +20,7 @@ def parse_container_config(raw_config: dict) -> dict:
     Parses raw configuration for container.
     Mostly necessary for handling GPU configuration.
     """
-    new_config = {k: v for k, v in raw_config.items() if k != "gpus"}
+    new_config = {k: v for k, v in raw_config.items() if k not in ["gpus", "fast_entrypoint"]}
 
     # handle GPU configuration
     if "gpus" in raw_config and raw_config["gpus"] != 0:
@@ -145,6 +145,13 @@ def create_task_container(
     """
     unique_id = str(uuid.uuid4().hex)
     timestamp = get_timestamp()
+
+    # Handle fast entrypoint if specified
+    if "fast_entrypoint" in container_config and os.path.exists(container_config["fast_entrypoint"]):
+        logger.info(f"Using fast entrypoint: {container_config['fast_entrypoint']}")
+        # Add the fast entrypoint to volumes
+        volumes_config = volumes_config.copy()
+        volumes_config[container_config["fast_entrypoint"]] = {"bind": "/entrypoint.sh", "mode": "ro"}
 
     container = client.containers.create(
         image=container_image,

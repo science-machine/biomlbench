@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-AWS Deployment Script for BioML-bench
+AWS Pool-Based Deployment Script for BioML-bench
 
-AWS equivalent of the GCP deployment system that:
-1. Reads jobs from a text file (can be run from project root)
-2. Creates EC2 instances with biomlbench AMI
-3. Runs biomlbench pipeline on each instance
+Manages a persistent pool of EC2 instances to run biomlbench jobs:
+1. Creates/uses a pool of EC2 instances with biomlbench AMI
+2. Pre-warms instances for optimal performance
+3. Runs biomlbench pipeline using dynamic job queue
 4. Verifies S3 uploads
-5. Cleans up instances
-6. Manages parallel execution
+5. Keeps instances running for reuse (manual cleanup required)
 """
 
 import argparse
@@ -17,13 +16,14 @@ import time
 import uuid
 import json
 import boto3
+import queue
+import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import List, Tuple, Optional
 
 # AWS clients
 ec2 = boto3.client('ec2')
-ssm = boto3.client('ssm')
 
 # Default configuration
 DEFAULT_REGION = "us-east-1"
@@ -76,15 +76,12 @@ def create_instance_with_retry(instance_name: str, machine_type: str, ami_id: st
     
     # User data script to set up the instance
     user_data = """#!/bin/bash
-# Set up SSH for the runner user
-mkdir -p /home/runner/.ssh
-echo 'ssh-rsa YOUR_PUBLIC_KEY_HERE' >> /home/runner/.ssh/authorized_keys
-chown -R runner:runner /home/runner/.ssh
-chmod 700 /home/runner/.ssh
-chmod 600 /home/runner/.ssh/authorized_keys
+# Start Docker daemon if not running
+systemctl start docker || true
 
-# Ensure AWS CLI is configured (if not already in AMI)
-aws configure set region us-east-1
+# Ensure runner user can access docker
+usermod -aG docker runner || true
+chmod 666 /var/run/docker.sock || true
 """
     
     attempt = 0
@@ -137,43 +134,64 @@ aws configure set region us-east-1
             log(f"⚠️  Instance creation failed (attempt {attempt}): {str(e)}")
             time.sleep(5)  # Wait before retry
 
-def wait_for_ssm(instance_id: str, timeout: int = 300) -> bool:
-    """Wait for SSM agent to become available on the instance."""
-    log(f"Waiting for SSM on instance {instance_id}...")
+def get_instance_ip(instance_id: str) -> Optional[str]:
+    """Get the public IP of an instance."""
+    try:
+        response = ec2.describe_instances(InstanceIds=[instance_id])
+        public_ip = response['Reservations'][0]['Instances'][0].get('PublicIpAddress')
+        return public_ip
+    except Exception as e:
+        log(f"❌ Failed to get IP for {instance_id}: {str(e)}")
+        return None
+
+def wait_for_ssh(instance_id: str, timeout: int = 300) -> bool:
+    """Wait for SSH to become available on the instance."""
+    log(f"Waiting for SSH on instance {instance_id}...")
+    
+    public_ip = get_instance_ip(instance_id)
+    if not public_ip:
+        return False
+    
+    log(f"Instance IP: {public_ip}")
     
     start_time = time.time()
     while time.time() - start_time < timeout:
-        try:
-            response = ssm.describe_instance_information(
-                Filters=[
-                    {'Key': 'InstanceIds', 'Values': [instance_id]}
-                ]
-            )
-            
-            if response['InstanceInformationList']:
-                if response['InstanceInformationList'][0]['PingStatus'] == 'Online':
-                    log(f"✅ SSM ready on instance {instance_id}")
-                    return True
-        except Exception:
-            pass
+        exit_code, output = run_command([
+            "ssh",
+            "-o", "StrictHostKeyChecking=no",
+            "-o", "ConnectTimeout=10",
+            "-o", "BatchMode=yes",
+            f"runner@{public_ip}",
+            "echo 'SSH ready'"
+        ], timeout=15)
+        
+        if exit_code == 0:
+            log(f"✅ SSH ready on {public_ip}")
+            return True
+        else:
+            log(f"SSH attempt failed: {output.strip()}")
         
         time.sleep(10)
     
-    log(f"❌ SSM timeout on instance {instance_id}")
+    log(f"❌ SSH timeout on instance {instance_id}")
     return False
 
 def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
-    """Run the biomlbench pipeline on an instance using SSM."""
+    """Run the biomlbench pipeline on an instance using SSH."""
     log(f"Running job on {instance_id}: {agent} -> {task_id}")
     
+    public_ip = get_instance_ip(instance_id)
+    if not public_ip:
+        return False
+    
     # Build the command to run on the instance
-    remote_cmd = f"""#!/bin/bash
+    remote_cmd = f"""
     set -e
     cd /home/runner/biomlbench
     source .venv/bin/activate
     
-    # Run agent (CPU-only mode)
-    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only
+    # Run agent with fast container config
+    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
     
     # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
@@ -189,7 +207,7 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     echo "📊 Grading timestamp: $GRADING_TIMESTAMP"
     
     # Convert task_id to S3-safe format for the organized structure
-    TASK_ID_SAFE=$(echo "{task_id}" | sed 's/\//-/g' | sed 's/_/-/g')
+    TASK_ID_SAFE=$(echo "{task_id}" | sed 's/\\//-/g' | sed 's/_/-/g')
     
     # Show the exact S3 paths for this specific run
     echo "📤 S3 artifacts for this run:"
@@ -232,111 +250,31 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     echo "✅ Job completed successfully"
     """
     
-    try:
-        # Send command via SSM
-        response = ssm.send_command(
-            InstanceIds=[instance_id],
-            DocumentName="AWS-RunShellScript",
-            Parameters={
-                'commands': [remote_cmd],
-                'workingDirectory': ['/home/runner'],
-                'executionTimeout': ['3600']  # 1 hour timeout
-            }
-        )
-        
-        command_id = response['Command']['CommandId']
-        
-        # Wait for command to complete
-        time.sleep(5)  # Give it a moment to start
-        
-        while True:
-            try:
-                output = ssm.get_command_invocation(
-                    CommandId=command_id,
-                    InstanceId=instance_id
-                )
-                
-                if output['Status'] in ['Success', 'Failed', 'Cancelled', 'TimedOut']:
-                    if output['Status'] == 'Success':
-                        log(f"✅ Job completed on {instance_id}: {agent} -> {task_id}")
-                        # Show the output
-                        if output['StandardOutputContent']:
-                            print("\n" + "="*60)
-                            print("JOB OUTPUT:")
-                            print("="*60)
-                            print(output['StandardOutputContent'])
-                            print("="*60 + "\n")
-                        return True
-                    else:
-                        log(f"❌ Job failed on {instance_id}: {agent} -> {task_id}")
-                        log(f"Status: {output['Status']}")
-                        if output['StandardErrorContent']:
-                            log(f"Error: {output['StandardErrorContent']}")
-                        return False
-                
-                time.sleep(10)
-                
-            except ssm.exceptions.InvocationDoesNotExist:
-                time.sleep(10)
-                
-    except Exception as e:
-        log(f"❌ Failed to run job on {instance_id}: {str(e)}")
+    exit_code, output = run_command([
+        "ssh",
+        "-o", "StrictHostKeyChecking=no",
+        f"runner@{public_ip}",
+        remote_cmd
+    ])
+    
+    if exit_code == 0:
+        log(f"✅ Job completed on {instance_id}: {agent} -> {task_id}")
+        # Show the output
+        if output.strip():
+            print("\n" + "="*60)
+            print("JOB OUTPUT:")
+            print("="*60)
+            print(output.strip())
+            print("="*60 + "\n")
+        return True
+    else:
+        log(f"❌ Job failed on {instance_id}: {agent} -> {task_id}")
+        log(f"Error output: {output}")
         return False
 
-def delete_instance(instance_id: str):
-    """Delete an EC2 instance."""
-    log(f"Deleting instance: {instance_id}")
-    
-    try:
-        ec2.terminate_instances(InstanceIds=[instance_id])
-        log(f"✅ Deleted instance: {instance_id}")
-    except Exception as e:
-        log(f"⚠️  Failed to delete instance {instance_id}: {str(e)}")
 
-def process_job(job: Tuple[str, str], machine_type: str, ami_id: str,
-                key_name: str = DEFAULT_KEY_NAME,
-                security_group: str = DEFAULT_SECURITY_GROUP) -> bool:
-    """Process a single job (agent, task_id) on a dedicated instance."""
-    agent, task_id = job
-    
-    # Generate unique instance name (EC2 max 255 chars for tags)
-    safe_task = task_id.replace('/', '-').replace('_', '-').lower()
-    uuid_suffix = uuid.uuid4().hex[:8]
-    
-    # Calculate max length for task part
-    max_task_len = 255 - 7 - len(agent) - 2 - 8  # "bioml-" + agent + "-" + "-" + uuid
-    if len(safe_task) > max_task_len:
-        # Truncate and add hash for uniqueness
-        import hashlib
-        task_hash = hashlib.md5(safe_task.encode()).hexdigest()[:4]
-        safe_task = safe_task[:max_task_len-5] + '-' + task_hash
-    
-    instance_name = f"bioml-{agent}-{safe_task}-{uuid_suffix}"
-    instance_id = None
-    
-    try:
-        # Create instance (max 3 attempts)
-        instance_id = create_instance_with_retry(
-            instance_name, machine_type, ami_id,
-            key_name, security_group,
-            max_retries=3
-        )
-        if not instance_id:
-            return False
-        
-        # Wait for SSM
-        if not wait_for_ssm(instance_id):
-            return False
-        
-        # Run job
-        success = run_biomlbench_job(instance_id, agent, task_id)
-        
-        return success
-        
-    finally:
-        # Always clean up instance
-        if instance_id:
-            delete_instance(instance_id)
+
+
 
 def load_jobs(jobs_file: str) -> List[Tuple[str, str]]:
     """Load jobs from a text file. Handles paths relative to current working directory."""
@@ -403,25 +341,304 @@ def verify_aws_setup(ami_id: str, key_name: str, security_group: str) -> bool:
         log(f"❌ Error verifying AWS setup: {str(e)}")
         return False
 
+def create_instance_pool(count: int, machine_type: str, ami_id: str,
+                        key_name: str, security_group: str) -> List[str]:
+    """Create a pool of instances and return their IDs."""
+    log(f"Creating pool of {count} instances...")
+    instance_ids = []
+    
+    with ThreadPoolExecutor(max_workers=count) as executor:
+        futures = []
+        for i in range(count):
+            instance_name = f"bioml-pool-{i+1}-{uuid.uuid4().hex[:8]}"
+            future = executor.submit(
+                create_instance_with_retry,
+                instance_name, machine_type, ami_id,
+                key_name, security_group, max_retries=3
+            )
+            futures.append(future)
+        
+        for future in as_completed(futures):
+            instance_id = future.result()
+            if instance_id:
+                instance_ids.append(instance_id)
+    
+    log(f"Created {len(instance_ids)} instances successfully")
+    return instance_ids
+
+def prewarm_instances(instance_ids: List[str]):
+    """Pre-warm critical paths on all instances using smart batching."""
+    log(f"Pre-warming {len(instance_ids)} instances...")
+    
+    def warm_instance(instance_id):
+        public_ip = get_instance_ip(instance_id)
+        if not public_ip:
+            return False
+        
+        # Wait for SSH first
+        if not wait_for_ssh(instance_id):
+            return False
+        
+        log(f"Pre-warming {instance_id} ({public_ip})...")
+        
+        # First, create fast entrypoint and config files on remote instance
+        log(f"Creating fast configuration files on {instance_id}...")
+        
+        setup_cmd = """
+        # Create fast entrypoint script
+        cat > /home/runner/fast-entrypoint.sh << 'EOF'
+#!/bin/bash
+
+# Print commands and their arguments as they are executed
+set -x
+
+{
+  # log into /home/logs
+  LOGS_DIR=/home/logs
+  mkdir -p $LOGS_DIR
+
+  echo "Starting FAST entrypoint.sh at $(date)"
+  echo "Directory contents before setup:"
+  ls -la /home/
+
+  # FAST permission setup - only what's absolutely necessary
+  echo "Starting minimal permission setup at $(date)"
+  
+  # Make /home accessible
+  chmod 755 /home 2>/dev/null || true
+  
+  # Only set up directories that actually exist and are needed
+  if [ -d "/home/runner" ]; then
+    chown -R nonroot:nonroot /home/runner 2>/dev/null || true
+  fi
+  
+  if [ -d "/home/logs" ]; then
+    chown nonroot:nonroot /home/logs 2>/dev/null || true
+  fi
+  
+  if [ -d "/home/submission" ]; then
+    chown nonroot:nonroot /home/submission 2>/dev/null || true
+  fi
+  
+  # Make sure nonroot can work in /home
+  chmod g+w /home 2>/dev/null || true
+  
+  echo "Minimal permission setup completed at $(date)"
+  
+  ls -l /home
+
+  echo "Starting grading server at $(date)"
+  # Launch grading server, stays alive throughout container lifetime to service agent requests.
+  /opt/conda/bin/conda run -n biomlb python /private/grading_server.py
+} 2>&1 | tee $LOGS_DIR/entrypoint.log
+EOF
+        
+        chmod +x /home/runner/fast-entrypoint.sh
+        
+        # Create fast container config with volume mount for fast entrypoint
+        mkdir -p /home/runner/biomlbench/environment/config/container_configs/
+        cat > /home/runner/biomlbench/environment/config/container_configs/fast.json << 'EOF'
+{
+    "mem_limit": null,
+    "shm_size": "4G",
+    "nano_cpus": 12000000000,
+    "gpus": 0,
+    "fast_entrypoint": "/home/runner/fast-entrypoint.sh"
+}
+EOF
+        """
+        
+        ssh_setup_cmd = [
+            "ssh", "-o", "StrictHostKeyChecking=no",
+            f"runner@{public_ip}",
+            setup_cmd
+        ]
+        subprocess.run(ssh_setup_cmd, check=True)
+        
+        # Optimized prewarming with single finds and better Docker warming
+        prewarm_cmd = """
+        echo "Starting optimized pre-warming at $(date)"
+        
+        # Use GNU parallel if available for much faster warming
+        if command -v parallel >/dev/null 2>&1; then
+            echo "Using GNU parallel for faster warming"
+            PARALLEL_CMD="parallel -j16 --pipe -N1000 'xargs -0 cat > /dev/null 2>&1'"
+        else
+            echo "GNU parallel not found, using xargs"
+            PARALLEL_CMD="xargs -0 -P16 -n500 cat > /dev/null 2>&1"
+        fi
+        
+        # Function for fast single-pass warming
+        warm_files_fast() {
+            local name=$1
+            local path=$2
+            shift 2
+            local find_args="$@"
+            
+            echo "Pre-warming $name..."
+            
+            # Single find that streams to parallel processes and counts
+            find "$path" $find_args -type f -print0 2>/dev/null | \
+                tee >(eval $PARALLEL_CMD) | \
+                tr '\\0' '\\n' | \
+                awk 'BEGIN {count=0} {count++} END {print "  Found and warmed", count, "files"}'
+        }
+        
+        # 1. Pre-warm Python source files
+        warm_files_fast "Python source" "/home/runner/biomlbench/biomlbench/" -name "*.py"
+        
+        # 2. Pre-warm data cache directories (most critical)
+        for dataset in polarishub manual proteingym-dms; do
+            if [ -d "/home/runner/.cache/bioml-bench/data/$dataset" ]; then
+                warm_files_fast "data cache ($dataset)" "/home/runner/.cache/bioml-bench/data/$dataset"
+            fi
+        done
+        
+        # 3. Pre-warm Docker images more efficiently
+        echo "Pre-warming Docker images..."
+        if [ -d "/var/lib/docker" ]; then
+            # Warm only critical Docker metadata and small layers
+            {
+                # JSON metadata files (instant startup info)
+                sudo find /var/lib/docker -name "*.json" -size -1M -print0 2>/dev/null | \
+                    xargs -0 -P16 -n100 cat > /dev/null 2>&1
+                
+                # Small layer files that affect startup
+                sudo find /var/lib/docker/overlay2 -path "*/diff/*" -type f -size -5M -print0 2>/dev/null | \
+                    head -z -n 1000 | \
+                    xargs -0 -P16 -n50 head -c 1M > /dev/null 2>&1
+            } &
+            DOCKER_PID=$!
+        fi
+        
+        # 4. Pre-warm Python bytecode cache
+        warm_files_fast "bytecode cache" "/home/runner/biomlbench" -name "*.pyc"
+        
+        # 5. Pre-warm key system libraries used by biomlbench
+        echo "Pre-warming system libraries..."
+        {
+            # Python libraries
+            find /home/runner/.venv/lib -name "*.so" -size -10M -print0 2>/dev/null | \
+                xargs -0 -P16 -n100 head -c 1M > /dev/null 2>&1
+        } &
+        
+        # Wait for background jobs
+        wait
+        
+        echo "Optimized pre-warming completed at $(date)"
+        """
+        
+        # Run SSH with real-time output streaming
+        ssh_cmd = [
+            "ssh",
+            "-o", "StrictHostKeyChecking=no",
+            f"runner@{public_ip}",
+            prewarm_cmd
+        ]
+        
+        try:
+            # Use subprocess.Popen for real-time output
+            process = subprocess.Popen(
+                ssh_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                bufsize=1  # Line buffered
+            )
+            
+            # Stream output in real-time
+            while True:
+                line = process.stdout.readline()
+                if not line:
+                    break
+                # Prefix each line with instance ID for clarity
+                print(f"[{instance_id}] {line.strip()}")
+            
+            exit_code = process.wait()
+            
+            if exit_code == 0:
+                log(f"✅ Pre-warmed {instance_id}")
+                return True
+            else:
+                log(f"❌ Failed to pre-warm {instance_id}")
+                return False
+                
+        except Exception as e:
+            log(f"❌ Error pre-warming {instance_id}: {str(e)}")
+            return False
+    
+    with ThreadPoolExecutor(max_workers=len(instance_ids)) as executor:
+        list(executor.map(warm_instance, instance_ids))
+
+def run_pool_mode(jobs: List[Tuple[str, str]], instance_ids: List[str]):
+    """Run jobs using a pool of persistent instances."""
+    job_queue = queue.Queue()
+    for job in jobs:
+        job_queue.put(job)
+    
+    successful_jobs = 0
+    failed_jobs = 0
+    lock = threading.Lock()
+    
+    def worker(instance_id: str):
+        nonlocal successful_jobs, failed_jobs
+        
+        while True:
+            try:
+                job = job_queue.get(timeout=1)
+                agent, task_id = job
+                
+                log(f"Instance {instance_id} processing: {agent} -> {task_id}")
+                success = run_biomlbench_job(instance_id, agent, task_id)
+                
+                with lock:
+                    if success:
+                        successful_jobs += 1
+                        log(f"🎉 SUCCESS: {agent} -> {task_id}")
+                    else:
+                        failed_jobs += 1
+                        log(f"💥 FAILED: {agent} -> {task_id}")
+                
+                job_queue.task_done()
+                
+            except queue.Empty:
+                break
+    
+    # Start worker threads
+    threads = []
+    for instance_id in instance_ids:
+        t = threading.Thread(target=worker, args=(instance_id,))
+        t.start()
+        threads.append(t)
+    
+    # Wait for all jobs to complete
+    for t in threads:
+        t.join()
+    
+    return successful_jobs, failed_jobs
+
 def main():
     parser = argparse.ArgumentParser(
         description="Deploy BioML-bench jobs on AWS EC2 instances",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Example usage:
-  # From project root with CPU (default):
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --concurrent 5 --ami ami-xxxxxxxxx
+  # Create new instance pool and run jobs:
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --concurrent 16 --ami ami-xxxxxxxxx
   
-  # With GPU machines:
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --concurrent 5 --machine-type gpu --ami ami-xxxxxxxxx
+  # Use existing instances:
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --existing-instances i-123 i-456 i-789
   
-  # From scripts/aws-deploy directory:
-  python deploy-aws.py --jobs jobs.txt --concurrent 5 --ami ami-xxxxxxxxx
+  # GPU instances:
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --concurrent 8 --machine-type gpu --ami ami-xxxxxxxxx
   
 Jobs file format (one per line):
   agent,task_id
   aide,polarishub/tdcommons-caco2-wang
   biomni,proteingym-dms/A0A1I9GEU1_NEIME
+
+This script uses persistent instances that are pre-warmed for optimal performance.
+Instances are NOT automatically terminated - clean them up manually when done.
         """
     )
     
@@ -468,14 +685,23 @@ Jobs file format (one per line):
         action="store_true", 
         help="Show jobs that would be run without executing"
     )
+    parser.add_argument(
+        "--existing-instances",
+        nargs="+",
+        help="Instance IDs to use (if not provided, will create new pool)"
+    )
+    parser.add_argument(
+        "--skip-prewarm",
+        action="store_true",
+        help="Skip pre-warming (useful for already-warmed instances)"
+    )
     
     args = parser.parse_args()
     
     # Set AWS region
     boto3.setup_default_session(region_name=args.region)
-    global ec2, ssm
+    global ec2
     ec2 = boto3.client('ec2', region_name=args.region)
-    ssm = boto3.client('ssm', region_name=args.region)
     
     # Verify AWS setup
     if not args.dry_run:
@@ -497,40 +723,28 @@ Jobs file format (one per line):
         log(f"Instance type: {get_instance_type(args.machine_type)}")
         return 0
     
-    # Run jobs
-    log(f"Starting deployment with {args.concurrent} concurrent instances")
+    # Run jobs using persistent instance pool
     log(f"Machine type: {args.machine_type} ({get_instance_type(args.machine_type)})")
     log(f"Jobs to process: {len(jobs)}")
     
-    successful_jobs = 0
-    failed_jobs = 0
+    # Get or create instance pool
+    if args.existing_instances:
+        instance_ids = args.existing_instances
+        log(f"Using existing instances: {instance_ids}")
+    else:
+        instance_ids = create_instance_pool(
+            args.concurrent, args.machine_type, args.ami,
+            args.key_name, args.security_group
+        )
     
-    with ThreadPoolExecutor(max_workers=args.concurrent) as executor:
-        # Submit all jobs
-        future_to_job = {
-            executor.submit(
-                process_job, job, args.machine_type, args.ami,
-                args.key_name, args.security_group
-            ): job 
-            for job in jobs
-        }
-        
-        # Process completed jobs
-        for future in as_completed(future_to_job):
-            job = future_to_job[future]
-            agent, task_id = job
-            
-            try:
-                success = future.result()
-                if success:
-                    successful_jobs += 1
-                    log(f"🎉 SUCCESS: {agent} -> {task_id}")
-                else:
-                    failed_jobs += 1
-                    log(f"💥 FAILED: {agent} -> {task_id}")
-            except Exception as e:
-                failed_jobs += 1
-                log(f"💥 EXCEPTION: {agent} -> {task_id}: {e}")
+    # Pre-warm instances (unless skipped)
+    if args.skip_prewarm:
+        log("Skipping pre-warming (--skip-prewarm specified)")
+    else:
+        prewarm_instances(instance_ids)
+    
+    # Run jobs using pool
+    successful_jobs, failed_jobs = run_pool_mode(jobs, instance_ids)
     
     # Summary
     total_jobs = successful_jobs + failed_jobs
