@@ -1,0 +1,35 @@
+\begin{table}[htbp]
+\centering
+\caption{BioML-bench Results by Domain}
+\label{tab:bioml_results_by_domain}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+Domain & Agent & Leaderboard Percentile & Above Median (\%) & Any Medal (\%) & Tasks/Replicates \\
+\midrule
+Biomedical Imaging & Dummy & 0.83 ± 0.63 & 0.0 ± 0.0 & 0.0 ± 0.0 & 4/16 \\
+ & MLAgentBench & \textbf{21.73 ± 11.41} & \textbf{12.5 ± 12.5} & 0.0 ± 0.0 & 4/16 \\
+ & AIDE & 16.15 ± 12.05 & 8.3 ± 8.3 & 0.0 ± 0.0 & 3/12 \\
+ & STELLA & 11.81 ± 8.89 & \textbf{12.5 ± 12.5} & 0.0 ± 0.0 & 2/8 \\
+ & Biomni & 19.04 ± 10.83 & \textbf{12.5 ± 12.5} & \textbf{12.5 ± 12.5} & 4/16 \\
+\midrule
+Drug Discovery & Dummy & 0.42 ± 0.42 & 0.0 ± 0.0 & 0.0 ± 0.0 & 6/24 \\
+ & MLAgentBench & 22.45 ± 5.93 & 16.7 ± 9.3 & 5.6 ± 3.7 & 9/36 \\
+ & AIDE & 24.75 ± 7.23 & 25.0 ± 11.0 & 5.6 ± 5.6 & 9/36 \\
+ & STELLA & 12.62 ± 6.60 & 11.1 ± 11.1 & 2.8 ± 2.8 & 9/36 \\
+ & Biomni & \textbf{30.54 ± 7.39} & \textbf{27.8 ± 11.4} & \textbf{8.3 ± 4.2} & 9/36 \\
+\midrule
+Protein Engineering & MLAgentBench & 13.52 ± 9.18 & 12.5 ± 12.5 & 0.0 ± 0.0 & 6/24 \\
+ & AIDE & 24.50 ± 6.90 & \textbf{25.0 ± 9.1} & 12.5 ± 8.5 & 6/24 \\
+ & STELLA & 14.78 ± 6.84 & 8.3 ± 5.3 & 4.2 ± 4.2 & 6/24 \\
+ & Biomni & \textbf{29.93 ± 11.04} & \textbf{25.0 ± 17.1} & \textbf{25.0 ± 17.1} & 6/24 \\
+\midrule
+Single Cell Omics & Dummy & 1.84 ± 1.13 & 0.0 ± 0.0 & 0.0 ± 0.0 & 5/20 \\
+ & MLAgentBench & 36.04 ± 14.03 & 31.2 ± 15.7 & 25.0 ± 17.7 & 4/16 \\
+ & AIDE & 53.17 ± 14.86 & 55.0 ± 16.6 & 35.0 ± 18.7 & 5/20 \\
+ & STELLA & \textbf{63.79 ± 12.98} & \textbf{68.8 ± 12.0} & \textbf{50.0 ± 22.8} & 4/16 \\
+ & Biomni & 60.01 ± 12.72 & 60.0 ± 17.0 & 40.0 ± 20.3 & 5/20 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

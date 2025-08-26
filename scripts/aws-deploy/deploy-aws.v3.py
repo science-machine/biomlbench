@@ -193,7 +193,7 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     source .venv/bin/activate
     
     # Run agent with fast container config
-    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
+    biomlbench run-agent --s3-bucket biomlbench --s3-prefix v3/artifacts --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
     
     # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
@@ -201,7 +201,7 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     echo "📁 Run group: $RUN_GROUP_ID"
     
     # Grade results
-    biomlbench grade --submission "$LATEST_RUN/submission.jsonl" --output-dir results/
+    biomlbench grade --s3-bucket biomlbench --s3-prefix v3/artifacts --submission "$LATEST_RUN/submission.jsonl" --output-dir results/
     
     # Get the grading timestamp from the most recent grading report
     GRADING_REPORT=$(find results/ -name "*_grading_report.json" | sort | tail -1)
@@ -214,35 +214,31 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     # Show the exact S3 paths for this specific run
     echo "📤 S3 artifacts for this run:"
     echo "  Run artifacts:"
-    echo "    s3://biomlbench/v2/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
-    echo "    OR s3://biomlbench/v2/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
+    echo "    s3://biomlbench/v3/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
+    echo "    OR s3://biomlbench/v3/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
     echo "  Grading artifacts:"
-    echo "    s3://biomlbench/v2/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
-    echo "    s3://biomlbench/v2/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
-    echo "    OR s3://biomlbench/v2/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
+    echo "    s3://biomlbench/v3/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
+    echo "    s3://biomlbench/v3/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
+    echo "    OR s3://biomlbench/v3/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
     
     # Verify these specific paths exist
     echo "🔍 Verifying uploads..."
-    if aws s3 ls s3://biomlbench/v2/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://biomlbench/v3/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Run artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v2/artifacts/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
-        echo "✅ Run artifacts uploaded successfully (flat structure)"
-    elif aws s3 ls s3://biomlbench/v2/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/v3/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Failed run artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v2/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
-        echo "✅ Failed run artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No run artifacts found in S3!"
         exit 1
     fi
     
-    if aws s3 ls s3://biomlbench/v2/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://biomlbench/v3/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v2/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/v3/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (flat structure)"
-    elif aws s3 ls s3://biomlbench/v2/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/v3/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v2/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/v3/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No grading artifacts found in S3!"
@@ -879,8 +875,8 @@ Instances are NOT automatically terminated - clean them up manually when done.
     log(f"Success rate: {successful_jobs/total_jobs*100:.1f}%" if total_jobs > 0 else "N/A")
     
     if successful_jobs > 0:
-        log("Check S3 for results: aws s3 ls s3://biomlbench/v2/artifacts/runs/ --recursive")
-        log("Check S3 for grades: aws s3 ls s3://biomlbench/v2/artifacts/grades/ --recursive")
+        log("Check S3 for results: aws s3 ls s3://biomlbench/v3/artifacts/runs/ --recursive")
+        log("Check S3 for grades: aws s3 ls s3://biomlbench/v3/artifacts/grades/ --recursive")
     
     return 0 if failed_jobs == 0 else 1
 

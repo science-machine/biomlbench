@@ -15,10 +15,19 @@ baseline_submissions
 *.jsonl
 google-cloud-sdk
 cache
+single_cell_package_impact_figures2
 *.pem
 .env
 aws-deploy-config.txt
+latex_tables_v1v2_combined
+scripts/analysis_output
 runs
+figuresv1
+analysis_resultsv1
+analysis_results_v2_only
+figures_v1v2_combined
+analysis_results_v1_only
+analysis_results_v1v2_combined
 google-application-credentials.json
 site
 .vercel
@@ -26,3 +35,6 @@ site
 google-application-credentials.json
 failed_runs
 aide_journals
+figuresv2
+analysis_resultsv2
+*.log.*

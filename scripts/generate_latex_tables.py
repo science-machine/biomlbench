@@ -97,11 +97,17 @@ def calculate_subdomain_statistics(df: pd.DataFrame, completion_df: pd.DataFrame
                 continue
             
             # Calculate task-level means first
-            task_means = agent_data.groupby('task_id').agg({
+            agg_dict = {
                 'leaderboard_percentile': 'mean',
                 'above_median': 'mean',
                 'any_medal': 'mean'
-            }).reset_index()
+            }
+            
+            # Add rank if available
+            if 'rank' in agent_data.columns:
+                agg_dict['rank'] = 'mean'
+            
+            task_means = agent_data.groupby('task_id').agg(agg_dict).reset_index()
             
             # Calculate statistics across tasks
             lb_mean = task_means['leaderboard_percentile'].mean()
@@ -112,6 +118,13 @@ def calculate_subdomain_statistics(df: pd.DataFrame, completion_df: pd.DataFrame
             
             any_medal_mean = task_means['any_medal'].mean() * 100  # Convert to percentage
             any_medal_sem = calculate_sem(task_means['any_medal'] * 100)
+            
+            # Calculate rank statistics if available
+            rank_mean = None
+            rank_sem = None
+            if 'rank' in task_means.columns:
+                rank_mean = task_means['rank'].mean()
+                rank_sem = calculate_sem(task_means['rank'])
             
             # Get completion rate if available
             completion_rate = None
@@ -136,6 +149,8 @@ def calculate_subdomain_statistics(df: pd.DataFrame, completion_df: pd.DataFrame
                 'above_median_sem': above_median_sem,
                 'any_medal_mean': any_medal_mean,
                 'any_medal_sem': any_medal_sem,
+                'rank_mean': rank_mean,
+                'rank_sem': rank_sem,
                 'completion_rate': completion_rate
             })
     
@@ -153,11 +168,17 @@ def calculate_overall_statistics(df: pd.DataFrame, completion_df: pd.DataFrame =
         agent_data = df[df['agent'] == agent]
         
         # Calculate task-level means first
-        task_means = agent_data.groupby('task_id').agg({
+        agg_dict = {
             'leaderboard_percentile': 'mean',
             'above_median': 'mean',
             'any_medal': 'mean'
-        }).reset_index()
+        }
+        
+        # Add rank if available
+        if 'rank' in agent_data.columns:
+            agg_dict['rank'] = 'mean'
+        
+        task_means = agent_data.groupby('task_id').agg(agg_dict).reset_index()
         
         # Calculate statistics across all tasks
         lb_mean = task_means['leaderboard_percentile'].mean()
@@ -168,6 +189,13 @@ def calculate_overall_statistics(df: pd.DataFrame, completion_df: pd.DataFrame =
         
         any_medal_mean = task_means['any_medal'].mean() * 100
         any_medal_sem = calculate_sem(task_means['any_medal'] * 100)
+        
+        # Calculate rank statistics if available
+        rank_mean = None
+        rank_sem = None
+        if 'rank' in task_means.columns:
+            rank_mean = task_means['rank'].mean()
+            rank_sem = calculate_sem(task_means['rank'])
         
         # Get overall completion rate
         completion_rate = None
@@ -188,6 +216,8 @@ def calculate_overall_statistics(df: pd.DataFrame, completion_df: pd.DataFrame =
             'above_median_sem': above_median_sem,
             'any_medal_mean': any_medal_mean,
             'any_medal_sem': any_medal_sem,
+            'rank_mean': rank_mean,
+            'rank_sem': rank_sem,
             'completion_rate': completion_rate
         })
     
@@ -202,9 +232,17 @@ def generate_subdomain_latex_table(stats_df: pd.DataFrame) -> str:
     latex.append("\\caption{BioML-bench Results by Domain}")
     latex.append("\\label{tab:bioml_results_by_domain}")
     latex.append("\\resizebox{\\textwidth}{!}{%")
-    latex.append("\\begin{tabular}{llcccc}")
-    latex.append("\\toprule")
-    latex.append("Domain & Agent & Leaderboard Percentile & Above Median (\\%) & Any Medal (\\%) & Completion Rate (\\%) \\\\")
+    # Check if rank data is available
+    has_rank = 'rank_mean' in stats_df.columns and stats_df['rank_mean'].notna().any()
+    
+    if has_rank:
+        latex.append("\\begin{tabular}{llccccc}")
+        latex.append("\\toprule")
+        latex.append("Domain & Agent & Leaderboard Percentile & Mean Rank & Above Median (\\%) & Any Medal (\\%) & Completion Rate (\\%) \\\\")
+    else:
+        latex.append("\\begin{tabular}{llcccc}")
+        latex.append("\\toprule")
+        latex.append("Domain & Agent & Leaderboard Percentile & Above Median (\\%) & Any Medal (\\%) & Completion Rate (\\%) \\\\")
     latex.append("\\midrule")
     
     # Process each task group
@@ -218,6 +256,13 @@ def generate_subdomain_latex_table(stats_df: pd.DataFrame) -> str:
         best_lb = group_data['leaderboard_mean'].max()
         best_above_median = group_data['above_median_mean'].max()
         best_medal = group_data['any_medal_mean'].max()
+        
+        # For rank, lower is better
+        best_rank = None
+        if has_rank and 'rank_mean' in group_data.columns:
+            rank_values = group_data['rank_mean'].dropna()
+            if len(rank_values) > 0:
+                best_rank = rank_values.min()
         
         # For completion rate, exclude dummy agent when finding best
         non_dummy_data = group_data[group_data['agent'].str.lower() != 'dummy']
@@ -250,7 +295,14 @@ def generate_subdomain_latex_table(stats_df: pd.DataFrame) -> str:
             # Format agent name
             agent_display = format_agent_name(row['agent'])
             
-            latex.append(f"{domain_str} & {agent_display} & {lb_str} & {above_median_str} & {any_medal_str} & {comp_str} \\\\")
+            # Format rank if available
+            if has_rank and row.get('rank_mean') is not None and row.get('rank_sem') is not None:
+                rank_str = format_value_with_sem(row['rank_mean'], row['rank_sem'])
+                if best_rank is not None:
+                    rank_str = bold_if_best(rank_str, abs(row['rank_mean'] - best_rank) < 0.01)
+                latex.append(f"{domain_str} & {agent_display} & {lb_str} & {rank_str} & {above_median_str} & {any_medal_str} & {comp_str} \\\\")
+            else:
+                latex.append(f"{domain_str} & {agent_display} & {lb_str} & {above_median_str} & {any_medal_str} & {comp_str} \\\\")
     
     latex.append("\\bottomrule")
     latex.append("\\end{tabular}%")
@@ -267,15 +319,32 @@ def generate_overall_latex_table(stats_df: pd.DataFrame) -> str:
     latex.append("\\centering")
     latex.append("\\caption{BioML-bench Overall Results}")
     latex.append("\\label{tab:bioml_results_overall}")
-    latex.append("\\begin{tabular}{lcccc}")
-    latex.append("\\toprule")
-    latex.append("Agent & Leaderboard Percentile & Above Median (\\%) & Any Medal (\\%) & Completion Rate (\\%) \\\\")
+    latex.append("\\resizebox{\\textwidth}{!}{%")
+    
+    # Check if rank data is available
+    has_rank = 'rank_mean' in stats_df.columns and stats_df['rank_mean'].notna().any()
+    
+    if has_rank:
+        latex.append("\\begin{tabular}{lccccc}")
+        latex.append("\\toprule")
+        latex.append("Agent & Leaderboard Percentile & Mean Rank & Above Median (\\%) & Any Medal (\\%) & Completion Rate (\\%) \\\\")
+    else:
+        latex.append("\\begin{tabular}{lcccc}")
+        latex.append("\\toprule")
+        latex.append("Agent & Leaderboard Percentile & Above Median (\\%) & Any Medal (\\%) & Completion Rate (\\%) \\\\")
     latex.append("\\midrule")
     
     # Find best values for bolding
     best_lb = stats_df['leaderboard_mean'].max()
     best_above_median = stats_df['above_median_mean'].max()
     best_medal = stats_df['any_medal_mean'].max()
+    
+    # For rank, lower is better
+    best_rank = None
+    if has_rank and 'rank_mean' in stats_df.columns:
+        rank_values = stats_df['rank_mean'].dropna()
+        if len(rank_values) > 0:
+            best_rank = rank_values.min()
     
     # For completion rate, exclude dummy agent when finding best
     non_dummy_data = stats_df[stats_df['agent'].str.lower() != 'dummy']
@@ -305,10 +374,18 @@ def generate_overall_latex_table(stats_df: pd.DataFrame) -> str:
         # Format agent name
         agent_display = format_agent_name(row['agent'])
         
-        latex.append(f"{agent_display} & {lb_str} & {above_median_str} & {any_medal_str} & {comp_str} \\\\")
+        # Format with rank if available
+        if has_rank and row.get('rank_mean') is not None and row.get('rank_sem') is not None:
+            rank_str = format_value_with_sem(row['rank_mean'], row['rank_sem'])
+            if best_rank is not None:
+                rank_str = bold_if_best(rank_str, abs(row['rank_mean'] - best_rank) < 0.01)
+            latex.append(f"{agent_display} & {lb_str} & {rank_str} & {above_median_str} & {any_medal_str} & {comp_str} \\\\")
+        else:
+            latex.append(f"{agent_display} & {lb_str} & {above_median_str} & {any_medal_str} & {comp_str} \\\\")
     
     latex.append("\\bottomrule")
-    latex.append("\\end{tabular}")
+    latex.append("\\end{tabular}%")
+    latex.append("}")
     latex.append("\\end{table}")
     
     return '\n'.join(latex)

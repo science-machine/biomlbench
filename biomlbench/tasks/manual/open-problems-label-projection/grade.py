@@ -21,9 +21,15 @@ def validate_submission_format(submission: pd.DataFrame, answers: pd.DataFrame) 
     Raises:
         InvalidSubmissionError: If submission format is invalid
     """
+    if "cell" in submission.columns:
+        submission['cell_id'] = submission['cell']
+
     # Check required columns
     if 'cell_id' not in submission.columns:
         raise InvalidSubmissionError("Submission must contain 'cell_id' column")
+    
+    if 'predicted_label' in submission.columns:
+        submission['label'] = submission['predicted_label']
     
     if 'label' not in submission.columns:
         raise InvalidSubmissionError("Submission must contain 'label' column")

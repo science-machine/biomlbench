@@ -415,17 +415,9 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
     agents = sorted(df['agent'].unique(), key=get_agent_order)
     agent_names = [format_agent_name(a) for a in agents]
     
-    # Read pre-calculated statistics if available
-    latex_stats_file = output_dir.parent / 'latex_tables' / 'subdomain_statistics.csv'
-    if latex_stats_file.exists():
-        log(f"Using pre-calculated statistics from {latex_stats_file}")
-        subdomain_stats = pd.read_csv(latex_stats_file)
-        # Sort by agent order
-        subdomain_stats['agent_order'] = subdomain_stats['agent'].apply(get_agent_order)
-        subdomain_stats = subdomain_stats.sort_values(['task_group', 'agent_order'])
-    else:
-        log("Warning: Pre-calculated statistics not found, will use group_agg")
-        subdomain_stats = None
+    # Skip pre-calculated statistics - always use actual data
+    log("Using actual data from group_agg (not pre-calculated statistics)")
+    subdomain_stats = None
     
     # Main figure: Task group performance overview
     fig, axes = plt.subplots(2, 2, figsize=(16, 12))
@@ -455,25 +447,34 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
         }).reset_index()
         bar_data.columns = ['agent', 'task_group', 'mean', 'sem']
     
-    # Create grouped bar plot using seaborn
+    # Create grouped bar plot using seaborn with consistent styling
     sns.barplot(data=bar_data, x='task_group', y='mean', hue='agent', 
                 ax=ax1, alpha=0.8, hue_order=agents, order=x_labels,
-                capsize=0.1, errwidth=2, ci=None)
+                edgecolor='black', linewidth=2, ci=None)
     
-    # Add error bars manually
+    # Add error bars manually with consistent styling
     bars = ax1.patches
     n_groups = len(x_labels)
     n_agents = len(agents)
-    for i, (_, row) in enumerate(bar_data.iterrows()):
-        bar_idx = (i % n_agents) * n_groups + (i // n_agents)
-        if bar_idx < len(bars):
-            bar = bars[bar_idx]
-            ax1.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
-                        yerr=row['sem'], fmt='none', c='black', capsize=5)
     
-    # Overlay strip plot - this will now align correctly
+    # Create a mapping to ensure correct error bar assignment
+    for agent_idx, agent in enumerate(agents):
+        for group_idx, group in enumerate(x_labels):
+            # Find the matching row in bar_data
+            matching_rows = bar_data[(bar_data['agent'] == agent) & (bar_data['task_group'] == group)]
+            if len(matching_rows) > 0:
+                row = matching_rows.iloc[0]
+                # Calculate the correct bar index
+                bar_idx = agent_idx * n_groups + group_idx
+                if bar_idx < len(bars):
+                    bar = bars[bar_idx]
+                    ax1.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
+                                yerr=row['sem'], fmt='none', c='black', capsize=5, linewidth=2)
+    
+    # Overlay strip plot with consistent styling - smaller black points
     sns.stripplot(data=task_means, x='task_group', y='leaderboard_percentile', hue='agent',
-                  ax=ax1, dodge=True, size=5, alpha=0.7, edgecolor='black', linewidth=0.5, 
+                  ax=ax1, dodge=True, size=5, alpha=0.7, color='black', 
+                  edgecolor='white', linewidth=1, 
                   hue_order=agents, order=x_labels, legend=False)
     
     ax1.set_xlabel('Task Domain', fontsize=16)
@@ -495,19 +496,24 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
     
     sns.barplot(data=bar_data, x='task_group', y='mean', hue='agent', 
                 ax=ax_individual, alpha=0.8, hue_order=agents, order=x_labels,
-                capsize=0.1, errwidth=2, ci=None)
+                edgecolor='black', linewidth=2, ci=None)
     
     # Add error bars to individual panel
     bars = ax_individual.patches
-    for i, (_, row) in enumerate(bar_data.iterrows()):
-        bar_idx = (i % n_agents) * n_groups + (i // n_agents)
-        if bar_idx < len(bars):
-            bar = bars[bar_idx]
-            ax_individual.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
-                                  yerr=row['sem'], fmt='none', c='black', capsize=5)
+    for agent_idx, agent in enumerate(agents):
+        for group_idx, group in enumerate(x_labels):
+            matching_rows = bar_data[(bar_data['agent'] == agent) & (bar_data['task_group'] == group)]
+            if len(matching_rows) > 0:
+                row = matching_rows.iloc[0]
+                bar_idx = agent_idx * n_groups + group_idx
+                if bar_idx < len(bars):
+                    bar = bars[bar_idx]
+                    ax_individual.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
+                                          yerr=row['sem'], fmt='none', c='black', capsize=5, linewidth=2)
     
     sns.stripplot(data=task_means, x='task_group', y='leaderboard_percentile', hue='agent',
-                  ax=ax_individual, dodge=True, size=5, alpha=0.7, edgecolor='black', linewidth=0.5, 
+                  ax=ax_individual, dodge=True, size=5, alpha=0.7, color='black',
+                  edgecolor='white', linewidth=1, 
                   hue_order=agents, order=x_labels, legend=False)
     
     ax_individual.set_xlabel('Task Domain', fontsize=15)
@@ -543,20 +549,25 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
     # Create grouped bar plot
     sns.barplot(data=bar_data, x='task_group', y='mean', hue='agent',
                 ax=ax2, alpha=0.8, hue_order=agents, order=x_labels,
-                capsize=0.1, errwidth=2, ci=None)
+                edgecolor='black', linewidth=2, ci=None)
     
     # Add error bars manually
     bars = ax2.patches
-    for i, (_, row) in enumerate(bar_data.iterrows()):
-        bar_idx = (i % n_agents) * n_groups + (i // n_agents)
-        if bar_idx < len(bars):
-            bar = bars[bar_idx]
-            ax2.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
-                        yerr=row['sem'], fmt='none', c='black', capsize=5)
+    for agent_idx, agent in enumerate(agents):
+        for group_idx, group in enumerate(x_labels):
+            matching_rows = bar_data[(bar_data['agent'] == agent) & (bar_data['task_group'] == group)]
+            if len(matching_rows) > 0:
+                row = matching_rows.iloc[0]
+                bar_idx = agent_idx * n_groups + group_idx
+                if bar_idx < len(bars):
+                    bar = bars[bar_idx]
+                    ax2.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
+                                yerr=row['sem'], fmt='none', c='black', capsize=5, linewidth=2)
     
     # Overlay strip plot
     sns.stripplot(data=task_medal_rates, x='task_group', y='any_medal_pct', hue='agent',
-                  ax=ax2, dodge=True, size=5, alpha=0.7, edgecolor='black', linewidth=0.5, 
+                  ax=ax2, dodge=True, size=5, alpha=0.7, color='black',
+                  edgecolor='white', linewidth=1, 
                   hue_order=agents, order=x_labels, legend=False)
     
     ax2.set_xlabel('Task Group')
@@ -574,18 +585,23 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
     
     sns.barplot(data=bar_data, x='task_group', y='mean', hue='agent',
                 ax=ax_individual, alpha=0.8, hue_order=agents, order=x_labels,
-                capsize=0.1, errwidth=2, ci=None)
+                edgecolor='black', linewidth=2, ci=None)
     
     bars = ax_individual.patches
-    for i, (_, row) in enumerate(bar_data.iterrows()):
-        bar_idx = (i % n_agents) * n_groups + (i // n_agents)
-        if bar_idx < len(bars):
-            bar = bars[bar_idx]
-            ax_individual.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
-                                  yerr=row['sem'], fmt='none', c='black', capsize=5)
+    for agent_idx, agent in enumerate(agents):
+        for group_idx, group in enumerate(x_labels):
+            matching_rows = bar_data[(bar_data['agent'] == agent) & (bar_data['task_group'] == group)]
+            if len(matching_rows) > 0:
+                row = matching_rows.iloc[0]
+                bar_idx = agent_idx * n_groups + group_idx
+                if bar_idx < len(bars):
+                    bar = bars[bar_idx]
+                    ax_individual.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
+                                          yerr=row['sem'], fmt='none', c='black', capsize=5, linewidth=2)
     
     sns.stripplot(data=task_medal_rates, x='task_group', y='any_medal_pct', hue='agent',
-                  ax=ax_individual, dodge=True, size=5, alpha=0.7, edgecolor='black', linewidth=0.5, 
+                  ax=ax_individual, dodge=True, size=5, alpha=0.7, color='black',
+                  edgecolor='white', linewidth=1, 
                   hue_order=agents, order=x_labels, legend=False)
     
     ax_individual.set_xlabel('Task Group')
@@ -608,7 +624,8 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
         comp_data['completion_rate'] = comp_data['completion_rate'] / 100.0  # Convert to fraction
         
         sns.barplot(data=comp_data, x='task_group', y='completion_rate', hue='agent',
-                    ax=ax3, alpha=0.8, hue_order=agents, order=x_labels)
+                    ax=ax3, alpha=0.8, hue_order=agents, order=x_labels,
+                    edgecolor='black', linewidth=2)
         
         ax3.set_title('Task Completion Rate by Domain')
         ax3.set_ylabel('Completion Rate')
@@ -618,7 +635,8 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
         fig_individual = plt.figure(figsize=(8, 6))
         ax_individual = fig_individual.add_subplot(111)
         sns.barplot(data=comp_data, x='task_group', y='completion_rate', hue='agent',
-                    ax=ax_individual, alpha=0.8, hue_order=agents, order=x_labels)
+                    ax=ax_individual, alpha=0.8, hue_order=agents, order=x_labels,
+                    edgecolor='black', linewidth=2)
         ax_individual.set_title('Task Completion Rate by Domain')
         ax_individual.set_ylabel('Completion Rate')
         ax_individual.set_ylim(0, 1.05)
@@ -635,7 +653,8 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
         if 'completion_rate_overall' in group_agg.columns:
             comp_data = group_agg[['agent', 'task_group', 'completion_rate_overall']].copy()
             sns.barplot(data=comp_data, x='task_group', y='completion_rate_overall', hue='agent',
-                        ax=ax3, alpha=0.8, hue_order=agents, order=x_labels)
+                        ax=ax3, alpha=0.8, hue_order=agents, order=x_labels,
+                        edgecolor='black', linewidth=2)
         
         ax3.set_title('Task Completion Rate by Domain')
         ax3.set_ylabel('Completion Rate')
@@ -667,20 +686,25 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
     # Create grouped bar plot
     sns.barplot(data=bar_data, x='task_group', y='mean', hue='agent',
                 ax=ax4, alpha=0.8, hue_order=agents, order=x_labels,
-                capsize=0.1, errwidth=2, ci=None)
+                edgecolor='black', linewidth=2, ci=None)
     
     # Add error bars manually
     bars = ax4.patches
-    for i, (_, row) in enumerate(bar_data.iterrows()):
-        bar_idx = (i % n_agents) * n_groups + (i // n_agents)
-        if bar_idx < len(bars):
-            bar = bars[bar_idx]
-            ax4.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
-                        yerr=row['sem'], fmt='none', c='black', capsize=5)
+    for agent_idx, agent in enumerate(agents):
+        for group_idx, group in enumerate(x_labels):
+            matching_rows = bar_data[(bar_data['agent'] == agent) & (bar_data['task_group'] == group)]
+            if len(matching_rows) > 0:
+                row = matching_rows.iloc[0]
+                bar_idx = agent_idx * n_groups + group_idx
+                if bar_idx < len(bars):
+                    bar = bars[bar_idx]
+                    ax4.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
+                                yerr=row['sem'], fmt='none', c='black', capsize=5, linewidth=2)
     
     # Overlay strip plot
     sns.stripplot(data=task_above_median, x='task_group', y='above_median_pct', hue='agent',
-                  ax=ax4, dodge=True, size=5, alpha=0.7, edgecolor='black', linewidth=0.5, 
+                  ax=ax4, dodge=True, size=5, alpha=0.7, color='black',
+                  edgecolor='white', linewidth=1, 
                   hue_order=agents, order=x_labels, legend=False)
     
     ax4.set_xlabel('Task Group')
@@ -698,18 +722,23 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
     
     sns.barplot(data=bar_data, x='task_group', y='mean', hue='agent',
                 ax=ax_individual, alpha=0.8, hue_order=agents, order=x_labels,
-                capsize=0.1, errwidth=2, ci=None)
+                edgecolor='black', linewidth=2, ci=None)
     
     bars = ax_individual.patches
-    for i, (_, row) in enumerate(bar_data.iterrows()):
-        bar_idx = (i % n_agents) * n_groups + (i // n_agents)
-        if bar_idx < len(bars):
-            bar = bars[bar_idx]
-            ax_individual.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
-                                  yerr=row['sem'], fmt='none', c='black', capsize=5)
+    for agent_idx, agent in enumerate(agents):
+        for group_idx, group in enumerate(x_labels):
+            matching_rows = bar_data[(bar_data['agent'] == agent) & (bar_data['task_group'] == group)]
+            if len(matching_rows) > 0:
+                row = matching_rows.iloc[0]
+                bar_idx = agent_idx * n_groups + group_idx
+                if bar_idx < len(bars):
+                    bar = bars[bar_idx]
+                    ax_individual.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
+                                          yerr=row['sem'], fmt='none', c='black', capsize=5, linewidth=2)
     
     sns.stripplot(data=task_above_median, x='task_group', y='above_median_pct', hue='agent',
-                  ax=ax_individual, dodge=True, size=5, alpha=0.7, edgecolor='black', linewidth=0.5, 
+                  ax=ax_individual, dodge=True, size=5, alpha=0.7, color='black',
+                  edgecolor='white', linewidth=1, 
                   hue_order=agents, order=x_labels, legend=False)
     
     ax_individual.set_xlabel('Task Group')
@@ -730,6 +759,92 @@ def create_publication_plots(df: pd.DataFrame, task_agg: pd.DataFrame, group_agg
     
     # Individual task group plots
     plot_per_task_group_comparison(df, group_agg, output_dir)
+
+def create_rank_based_performance_plot(df: pd.DataFrame, output_dir: Path):
+    """Create rank-based performance plot (same as performance by domain but with ranks)."""
+    
+    log("Creating rank-based performance plot...")
+    
+    # Helper function for SEM calculation
+    def calculate_sem(x):
+        return np.std(x) / np.sqrt(len(x)) if len(x) > 0 else 0
+    
+    # Check if rank column exists
+    if 'rank' not in df.columns:
+        log("Warning: 'rank' column not found in data. Skipping rank-based plot.")
+        return
+    
+    # Get sorted agent list
+    agents = sorted(df['agent'].unique(), key=get_agent_order)
+    agent_names = [format_agent_name(a) for a in agents]
+    
+    # Setup for bar plots
+    x_labels = sorted(df['task_group'].unique())
+    
+    # Calculate task-level means for scatter points
+    task_means = df.groupby(['agent', 'task_id', 'task_group'])['rank'].mean().reset_index()
+    
+    # Prepare data for bar plot - aggregate across tasks within each domain
+    bar_data = task_means.groupby(['agent', 'task_group']).agg({
+        'rank': ['mean', calculate_sem]
+    }).reset_index()
+    bar_data.columns = ['agent', 'task_group', 'mean', 'sem']
+    
+    # Create figure
+    fig = plt.figure(figsize=(8, 6))
+    ax = fig.add_subplot(111)
+    
+    # Create grouped bar plot
+    sns.barplot(data=bar_data, x='task_group', y='mean', hue='agent', 
+                ax=ax, alpha=0.8, hue_order=agents, order=x_labels,
+                edgecolor='black', linewidth=2, ci=None)
+    
+    # Add error bars manually
+    bars = ax.patches
+    n_groups = len(x_labels)
+    n_agents = len(agents)
+    for agent_idx, agent in enumerate(agents):
+        for group_idx, group in enumerate(x_labels):
+            matching_rows = bar_data[(bar_data['agent'] == agent) & (bar_data['task_group'] == group)]
+            if len(matching_rows) > 0:
+                row = matching_rows.iloc[0]
+                bar_idx = agent_idx * n_groups + group_idx
+                if bar_idx < len(bars):
+                    bar = bars[bar_idx]
+                    ax.errorbar(bar.get_x() + bar.get_width()/2, bar.get_height(), 
+                               yerr=row['sem'], fmt='none', c='black', capsize=5, linewidth=2)
+    
+    # Overlay strip plot with task-level points
+    sns.stripplot(data=task_means, x='task_group', y='rank', hue='agent',
+                  ax=ax, dodge=True, size=5, alpha=0.7, color='black',
+                  edgecolor='white', linewidth=1, 
+                  hue_order=agents, order=x_labels, legend=False)
+    
+    # Styling
+    ax.set_xlabel('Task Domain', fontsize=15)
+    ax.set_ylabel('Average Rank', fontsize=15)
+    ax.set_title('Agent Rank Distribution by Domain', fontsize=20)
+    ax.tick_params(axis='x', rotation=45, labelsize=13)
+    ax.tick_params(axis='y', labelsize=13)
+    
+    # Fix legend
+    handles, labels = ax.get_legend_handles_labels()
+    ax.legend(handles[:len(agents)], agent_names, title='Agent', loc='upper right', fontsize=12, title_fontsize=13)
+    
+    ax.grid(True, alpha=0.3, axis='y')
+    
+    # Invert y-axis so that rank 1 (best) is at the top
+    ax.invert_yaxis()
+    
+    # Set y-axis limits to show ranks nicely
+    max_agents = len(agents)
+    ax.set_ylim(max_agents + 0.5, 0.5)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / 'rank_performance_by_domain.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    log("Rank-based performance plot saved to rank_performance_by_domain.png")
 
 def plot_per_task_group_comparison(df: pd.DataFrame, group_agg: pd.DataFrame, output_dir: Path):
     """Create detailed plots for each task group."""
@@ -999,6 +1114,9 @@ def main():
 
     # Create capability vs reliability plot
     create_capability_reliability_plot(df, completion_rates_df, output_dir)
+    
+    # Create rank-based performance plot
+    create_rank_based_performance_plot(df, output_dir)
     
     log("Analysis complete!")
     log(f"📊 Tables saved to: {output_dir}")
