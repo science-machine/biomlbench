@@ -17,12 +17,13 @@ import time
 import traceback
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, List, Tuple
+from typing import Any, List, Optional, Tuple
 
 import docker
 
 from biomlbench.data import is_dataset_prepared
 from biomlbench.registry import Task, registry
+from biomlbench.s3_utils import upload_incremental_artifacts, upload_run_group_artifacts
 from biomlbench.utils import (
     create_run_dir,
     generate_submission_from_metadata,
@@ -30,17 +31,17 @@ from biomlbench.utils import (
     get_runs_dir,
     get_timestamp,
 )
-from biomlbench.s3_utils import (
-    upload_run_group_artifacts,
-    upload_incremental_artifacts,
-)
 
 sys.path.append(str(Path(__file__).parent.parent / "agents"))
 from registry import Agent
 from registry import registry as agent_registry
 from run import run_in_container
 
-from environment.defaults import DEFAULT_CONTAINER_CONFIG_PATH, CPU_ONLY_CONTAINER_CONFIG_PATH, FAST_CONTAINER_CONFIG_PATH
+from environment.defaults import (
+    CPU_ONLY_CONTAINER_CONFIG_PATH,
+    DEFAULT_CONTAINER_CONFIG_PATH,
+    FAST_CONTAINER_CONFIG_PATH,
+)
 
 logger = get_logger(__name__)
 
@@ -172,7 +173,7 @@ async def worker(
                 run_logger.info(
                     f"[Worker {idx}] Finished running seed {agent_task.seed} for {agent_task.task.id} and agent {agent_task.agent.name}"
                 )
-                
+
                 # Upload individual run artifacts incrementally if enabled
                 if os.environ.get("BIOMLBENCH_S3_INCREMENTAL", "false").lower() == "true":
                     try:
@@ -182,7 +183,9 @@ async def worker(
                             agent_task.path_to_run, run_group_id, agent_task.task.id, run_id
                         )
                         if upload_success:
-                            run_logger.info(f"📤 [Worker {idx}] Uploaded incremental artifacts to S3")
+                            run_logger.info(
+                                f"📤 [Worker {idx}] Uploaded incremental artifacts to S3"
+                            )
                     except Exception as e:
                         run_logger.warning(f"Incremental S3 upload failed but continuing: {e}")
             else:
@@ -231,6 +234,7 @@ async def run_agent_async(
     data_dir: str = None,
     cpu_only: bool = False,
     fast: bool = False,
+    time_limit_override: Optional[int] = None,
 ) -> Tuple[str, Path]:
     """
     Run an agent on multiple tasks asynchronously.
@@ -293,7 +297,16 @@ async def run_agent_async(
             task = task_registry.get_task(task_id)
 
             # Get agent with task-specific overrides if task has time_limit
-            if task.time_limit is not None:
+            if time_limit_override is not None:
+                # CLI override takes precedence
+                task_agent = agent_registry.get_agent_with_task_overrides(
+                    agent_id, task_time_limit=time_limit_override
+                )
+                logger.info(
+                    f"Using CLI-overridden time limit of {time_limit_override}s for task {task.id}"
+                )
+            elif task.time_limit is not None:
+                # Use task config time limit
                 task_agent = agent_registry.get_agent_with_task_overrides(
                     agent_id, task_time_limit=task.time_limit
                 )
@@ -301,6 +314,7 @@ async def run_agent_async(
                     f"Using task-specific time limit of {task.time_limit}s for task {task.id}"
                 )
             else:
+                # Use agent default
                 task_agent = agent
 
             run_dir = create_run_dir(task.id, agent.id, run_group)
@@ -379,9 +393,12 @@ async def run_agent_async(
         # Upload failed run group before potentially raising error
         try:
             from biomlbench.s3_utils import upload_failed_run_group_artifacts
+
             failed_upload_success = upload_failed_run_group_artifacts(run_group_dir, run_group)
             if failed_upload_success:
-                logger.info(f"📤 Successfully uploaded failed run group artifacts to S3 failed_runs folder")
+                logger.info(
+                    f"📤 Successfully uploaded failed run group artifacts to S3 failed_runs folder"
+                )
         except Exception as e:
             logger.warning(f"Failed run group S3 upload failed but continuing: {e}")
 
@@ -473,8 +490,9 @@ def run_agent(args) -> str:
             container_config_path=args.container_config,
             retain_container=args.retain_container,
             data_dir=args.data_dir,
-            cpu_only=getattr(args, 'cpu_only', False),
-            fast=getattr(args, 'fast', False),
+            cpu_only=getattr(args, "cpu_only", False),
+            fast=getattr(args, "fast", False),
+            time_limit_override=getattr(args, "time_limit", None),
         )
     )
 

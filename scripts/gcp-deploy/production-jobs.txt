@@ -17,7 +17,6 @@ stella,polarishub/polaris-adme-fang-hppb-1
 
 aide,polarishub/polaris-adme-fang-solu-1
 biomni,polarishub/polaris-adme-fang-solu-1
-biomni,polarishub/polaris-adme-fang-solu-1
 mlagentbench,polarishub/polaris-adme-fang-solu-1
 stella,polarishub/polaris-adme-fang-solu-1
 
