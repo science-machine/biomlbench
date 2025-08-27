@@ -13,8 +13,8 @@ of more mRNA. Understanding these regulatory processes would be transformative f
 Any method that can predict a modality from another must have accounted for these regulatory processes, but the demand for 
 multi-modal data shows that this is not trivial.
 
-## Dataset: BMMC CITE-seq (NeurIPS 2021)
-This task uses the Bone Marrow Mononuclear Cells (BMMC) CITE-seq dataset from the NeurIPS 2021 competition. CITE-seq (Cellular Indexing of Transcriptomes and Epitopes by Sequencing) is a method that simultaneously measures:
+## Dataset: BMMC CITE-seq
+This task uses a Bone Marrow Mononuclear Cells (BMMC) CITE-seq dataset. CITE-seq (Cellular Indexing of Transcriptomes and Epitopes by Sequencing) is a method that simultaneously measures:
 - **Modality 1 (RNA)**: Gene expression profiles (mRNA abundance)
 - **Modality 2 (Protein)**: Surface protein abundance measured using oligonucleotide-labeled antibodies
 

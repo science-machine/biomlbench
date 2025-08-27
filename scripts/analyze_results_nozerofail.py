@@ -1469,6 +1469,7 @@ def normalize_replicates_to_four(df, target_replicates=4):
 # Normalize replicates before analysis
 print("\n🔄 Normalizing replicates...")
 combined_df_normalized = normalize_replicates_to_four(combined_df_fixed_grades)
+combined_df_normalized = combined_df_fixed_grades
 
 # Figure out which combined_df_normalized do not have exactly 4 replicates
 print("\n🔍 Checking replicate counts...")
@@ -1486,7 +1487,7 @@ else:
 combined_df_normalized = add_agent_ranks(combined_df_normalized)
 
 # Create output directory
-output_dir = "analysis_outputs"
+output_dir = "analysis_outputs_nozerofail"
 os.makedirs(output_dir, exist_ok=True)
 
 # Generate the performance by domain plot

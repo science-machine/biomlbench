@@ -22,12 +22,15 @@ aws-deploy-config.txt
 latex_tables_v1v2_combined
 scripts/analysis_output
 runs
+scripts/analysis_outputs/*.csv
 figuresv1
 analysis_resultsv1
+analysis_output
 analysis_results_v2_only
 figures_v1v2_combined
 analysis_results_v1_only
 analysis_results_v1v2_combined
+analysis_outputs/*.csv
 google-application-credentials.json
 site
 .vercel
