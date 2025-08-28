@@ -1,8 +1,0 @@
-teamName,score,submissionDate
-1B_MPNN_MolGPS-ens_LargeMix-and-Phenomics,0.392,2024-01-01
-1B_MPNN_LargeMix-and-Phenomics,0.411,2024-01-01
-3B_e50_MPNN_LargeMix-and-Phenomics,0.424,2024-01-01
-TabPFNv2-rdkit,0.499,2024-01-01
-TabPFNv2-rdkit,0.502,2024-01-01
-TabPFNv2-maplight_gnn,0.502,2024-01-01
-TabPFNv2-rdkit-3D,0.524,2024-01-01

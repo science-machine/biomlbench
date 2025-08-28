@@ -9,12 +9,15 @@ figures
 figures
 results/
 ref
+*.png
 latex_tables
 .venv
 baseline_submissions
 *.jsonl
 google-cloud-sdk
+*.csv
 cache
+*.tex
 single_cell_package_impact_figures2
 *.pem
 .env

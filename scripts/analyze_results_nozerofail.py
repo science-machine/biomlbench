@@ -98,14 +98,14 @@ def download_artifacts_parallel(s3_path, local_path, max_workers=10):
 #     shutil.rmtree(download_location_v1)
 # if os.path.exists(download_location_v2):
 #     shutil.rmtree(download_location_v2)
-if os.path.exists(download_location_v3):
-    shutil.rmtree(download_location_v3)
+# if os.path.exists(download_location_v3):
+#     shutil.rmtree(download_location_v3)
 
 # %%
 
 # download_artifacts_parallel(v1_path, download_location_v1)
 # download_artifacts_parallel(v2_path, download_location_v2)
-download_artifacts_parallel(v3_path, download_location_v3)
+# download_artifacts_parallel(v3_path, download_location_v3)
 # %%
 
 # Build manifest of runs
@@ -975,7 +975,7 @@ def create_performance_by_domain_plot(df, output_path="performance_by_domain.png
     # Styling with larger, more readable fonts
     ax.set_xlabel('Task Domain', fontsize=22, fontweight='bold')
     ax.set_ylabel('Leaderboard Percentile (↑)', fontsize=22, fontweight='bold')
-    ax.set_title('Performance Distribution by Domain', fontsize=28, fontweight='bold', pad=20)
+    ax.set_title('Performance by Domain (Non-Penalized)', fontsize=28, fontweight='bold', pad=20)
     ax.tick_params(axis='x', rotation=45, labelsize=16)
     ax.tick_params(axis='y', labelsize=16)
     

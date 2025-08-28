@@ -77,7 +77,7 @@ def clean_model_data(df):
         
         # Check for ensemble/stacked models (multiple models separated by commas)
         if ',' in model_str:
-            return 'Ensemble'
+            return 'Stacked Models'
         
         # Standardize common model names
         model_lower = model_str.lower()
@@ -126,7 +126,7 @@ def clean_model_data(df):
     
     return df_clean
 
-def create_strategy_heatmap(proportions_df, output_path="strategy_heatmap.png"):
+def create_strategy_heatmap(proportions_df, runs_per_agent, output_path="strategy_heatmap.png"):
     """Create a heatmap showing strategy usage proportions by agent."""
     
     # Create shorter labels for better readability
@@ -138,7 +138,7 @@ def create_strategy_heatmap(proportions_df, output_path="strategy_heatmap.png"):
         'CV': 'Cross Validation',
         'Adversarial training': 'Adversarial Training',
         'Data augmentation': 'Data Augmentation',
-        'Stacked': 'Stacking/Ensembling',
+        'Stacked': 'Model Stacking',
         'FeatureSelection': 'Feature Selection',
         'FeatureEngineering': 'Feature Engineering',
         'Model select': 'Model Selection'
@@ -163,8 +163,9 @@ def create_strategy_heatmap(proportions_df, output_path="strategy_heatmap.png"):
     fig, ax = plt.subplots(figsize=(14, 8))
     
     # Create heatmap with better color contrast
-    sns.heatmap(plot_df, annot=True, fmt='.0f', cmap='viridis', 
+    sns.heatmap(plot_df, annot=True, fmt='.1f', cmap='viridis', 
                 cbar_kws={'label': 'Usage Percentage (%)'}, 
+                annot_kws={'fontsize': 14, 'fontweight': 'bold'},
                 ax=ax, linewidths=0.5, linecolor='white')
     
     # Customize the plot
@@ -174,10 +175,10 @@ def create_strategy_heatmap(proportions_df, output_path="strategy_heatmap.png"):
     ax.set_xlabel('Strategy', fontsize=18, fontweight='bold')
     ax.set_ylabel('Agent', fontsize=18, fontweight='bold')
     
-    # Format agent names
-    y_labels = [agent.upper() for agent in plot_df.index]
+    # Format agent names with run counts
+    y_labels = [f"{agent.upper()}\n(n={runs_per_agent[agent]})" for agent in plot_df.index]
     ax.set_yticklabels(y_labels, rotation=0, fontsize=16, fontweight='bold')
-    ax.set_xticklabels(plot_df.columns, rotation=45, ha='right', fontsize=14)
+    ax.set_xticklabels(plot_df.columns, rotation=45, ha='right', fontsize=17)
     
     # Color bar formatting
     cbar = ax.collections[0].colorbar
@@ -384,7 +385,7 @@ def main():
     
     # Create visualizations
     print("\nCreating strategy heatmap...")
-    create_strategy_heatmap(proportions_df, output_dir / "strategy_heatmap.png")
+    create_strategy_heatmap(proportions_df, runs_per_agent, output_dir / "strategy_heatmap.png")
     
     print("\nCreating model architecture chart...")
     model_proportions = create_model_stacked_bar_chart(df_clean, output_dir / "model_stacked_bar.png")

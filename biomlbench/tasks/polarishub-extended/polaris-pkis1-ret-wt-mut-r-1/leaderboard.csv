@@ -1,8 +1,0 @@
-teamName,score,submissionDate
-nepare,15.658,2024-01-01
-pkis1-ret-wt-mut-r-1_DGLGraphTransformer_MPNNModel,20.518,2024-01-01
-pkis1-ret-wt-mut-r-1_DGLGraphTransformer_AttentiveFPModel,20.84,2024-01-01
-pkis1-ret-wt-mut-r-1_DGLGraphTransformer_GCNModel,17.626,2024-01-01
-pkis1-ret-wt-mut-r-1_DGLGraphTransformer_PNAModel,25.118,2024-01-01
-pkis1-ret-wt-mut-r-1_avalon_FCModel,19.366,2024-01-01
-pkis1-ret-wt-mut-r-1_DGLGraphTransformer_GATModel,20.562,2024-01-01
