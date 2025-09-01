@@ -366,8 +366,8 @@ def main():
         required=False,
     )
     parser_run_agent.add_argument(
-        "--vm-uuid",
-        help="VM UUID to include in run group ID for tracking (used by deployment scripts)",
+        "--uuid",
+        help="UUID to include in run group ID for tracking (used by deployment scripts)",
         type=str,
         required=False,
     )
