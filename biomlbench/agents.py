@@ -235,6 +235,7 @@ async def run_agent_async(
     cpu_only: bool = False,
     fast: bool = False,
     time_limit_override: Optional[int] = None,
+    vm_uuid: Optional[str] = None,
 ) -> Tuple[str, Path]:
     """
     Run an agent on multiple tasks asynchronously.
@@ -266,7 +267,10 @@ async def run_agent_async(
         )
 
     # Create run group
-    run_group = f"{get_timestamp()}_run-group_{agent.name}"
+    if vm_uuid:
+        run_group = f"{get_timestamp()}_run-group_{agent.name}_vm-{vm_uuid}"
+    else:
+        run_group = f"{get_timestamp()}_run-group_{agent.name}"
 
     # Validate all tasks are prepared
     for task_id in task_ids:
@@ -493,6 +497,7 @@ def run_agent(args) -> str:
             cpu_only=getattr(args, "cpu_only", False),
             fast=getattr(args, "fast", False),
             time_limit_override=getattr(args, "time_limit", None),
+            vm_uuid=getattr(args, "vm_uuid", None),
         )
     )
 

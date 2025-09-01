@@ -65,7 +65,7 @@ def create_vm_with_retry(
         "--maintenance-policy",
         "TERMINATE",
         "--image",
-        "biomlbenchhm",
+        "biomlbench",
         "--boot-disk-size",
         "500G",
     ]
@@ -147,28 +147,25 @@ def run_biomlbench_job(
     agent: str,
     task_id: str,
     time_limit: int | None = None,
+    s3_bucket: str | None = None,
+    s3_prefix: str | None = None,
     zone: str = "us-central1-a",
-    fire_and_forget: bool = False,
 ) -> bool:
     """Run the biomlbench pipeline on a VM."""
-    if fire_and_forget:
-        log(f"Starting job in background on {vm_name}: {agent} -> {task_id}")
-    else:
-        log(f"Running job on {vm_name}: {agent} -> {task_id}")
+    log(f"Running job on {vm_name}: {agent} -> {task_id}")
+
+    # Extract VM UUID from VM name (last 8 characters after the last dash)
+    vm_uuid = vm_name.split("-")[-1]
 
     # Build the command to run on the VM
-    run_agent_cmd = f"biomlbench run-agent --agent {agent} --task-id {task_id}"
+    run_agent_cmd = f"biomlbench run-agent --agent {agent} --task-id {task_id} --vm-uuid {vm_uuid}"
     if time_limit is not None:
         run_agent_cmd += f" --time-limit {time_limit}"
+    if s3_bucket is not None:
+        run_agent_cmd += f" --s3-bucket {s3_bucket}"
+    if s3_prefix is not None:
+        run_agent_cmd += f" --s3-prefix {s3_prefix}"
     run_agent_cmd += " --cpu-only"
-
-    # Add self-destruct command for fire-and-forget mode
-    self_destruct_cmd = ""
-    if fire_and_forget:
-        self_destruct_cmd = """
-    # Self-destruct VM after completion
-    gcloud compute instances delete $(hostname) --zone=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d/ -f4) --quiet
-    """
 
     remote_cmd = f"""
     set -e
@@ -180,14 +177,14 @@ def run_biomlbench_job(
     echo "  Agent: {agent}"
     echo "  Task ID: {task_id}"
     echo "  Time limit: {time_limit if time_limit is not None else 'Task default'}"
-    echo "  Fire and forget: {fire_and_forget}"
+    echo "  S3 prefix: {s3_prefix}"
     echo ""
     
     # Run agent (CPU-only mode)
     {run_agent_cmd}
     
-    # Get the specific run group ID that was just created
-    LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
+    # Get the specific run group ID that was just created (now includes VM UUID)
+    LATEST_RUN=$(find runs/ -name "*run-group_{agent}*" -type d | sort | tail -1)
     RUN_GROUP_ID=$(basename "$LATEST_RUN")
     echo "📁 Run group: $RUN_GROUP_ID"
     
@@ -200,56 +197,48 @@ def run_biomlbench_job(
     echo "📊 Grading timestamp: $GRADING_TIMESTAMP"
     
     # Convert task_id to S3-safe format for the organized structure
-    TASK_ID_SAFE=$(echo "{task_id}" | sed 's/\//-/g' | sed 's/_/-/g')
+    TASK_ID_SAFE=$(echo "{task_id}" | sed 's|/|-|g' | sed 's|_|-|g')
     
     # Show the exact S3 paths for this specific run
     echo "📤 S3 artifacts for this run:"
     echo "  Run artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
+    echo "    s3://biomlbench/{s3_prefix}/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
+    echo "    OR s3://biomlbench/{s3_prefix}/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
     echo "  Grading artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
-    echo "    s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
+    echo "    s3://biomlbench/{s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
+    echo "    s3://biomlbench/{s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
+    echo "    OR s3://biomlbench/{s3_prefix}/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
     
     # Verify these specific paths exist (try both new organized structure and old flat structure)
     echo "🔍 Verifying uploads..."
-    if aws s3 ls s3://biomlbench/v1/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://biomlbench/{s3_prefix}/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Run artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/{s3_prefix}/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Run artifacts uploaded successfully (flat structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/{s3_prefix}/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Failed run artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/{s3_prefix}/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Failed run artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No run artifacts found in S3!"
         exit 1
     fi
     
-    if aws s3 ls s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://biomlbench/{s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/{s3_prefix}/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (flat structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/{s3_prefix}/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls s3://biomlbench/{s3_prefix}/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No grading artifacts found in S3!"
         exit 1
     fi
     
-    echo "✅ Job completed successfully"{self_destruct_cmd}
+    echo "✅ Job completed successfully" 
     """
-
-    # Modify the command based on fire_and_forget mode
-    if fire_and_forget:
-        # Run in background with nohup
-        ssh_command = f"nohup bash -c '{remote_cmd}' > /tmp/job.log 2>&1 &"
-    else:
-        # Run normally (wait for completion)
-        ssh_command = remote_cmd
 
     exit_code, output = run_command(
         [
@@ -260,30 +249,23 @@ def run_biomlbench_job(
             "--zone",
             zone,
             "--command",
-            ssh_command,
+            remote_cmd,
             "--quiet",
         ]
     )
 
     if exit_code == 0:
-        if fire_and_forget:
-            log(f"✅ Job started in background on {vm_name}: {agent} -> {task_id}")
-        else:
-            log(f"✅ Job completed on {vm_name}: {agent} -> {task_id}")
-            # Show the output so we can see S3 paths
-            if output.strip():
-                print("\n" + "=" * 60)
-                print("JOB OUTPUT:")
-                print("=" * 60)
-                print(output.strip())
-                print("=" * 60 + "\n")
+        log(f"✅ Job completed on {vm_name}: {agent} -> {task_id}")
+        # Show the output so we can see S3 paths
+        if output.strip():
+            print("\n" + "=" * 60)
+            print("JOB OUTPUT:")
+            print("=" * 60)
+            print(output.strip())
+            print("=" * 60 + "\n")
         return True
     else:
-        if fire_and_forget:
-            log(f"❌ Failed to start job on {vm_name}: {agent} -> {task_id}")
-        else:
-            log(f"❌ Job failed on {vm_name}: {agent} -> {task_id}")
-        log(f"Error output: {output}")
+        log(f"❌ Job failed on {vm_name}: {agent} -> {task_id}")
         return False
 
 
@@ -304,8 +286,9 @@ def delete_vm(vm_name: str, zone: str = "us-central1-a"):
 def process_job(
     job: Tuple[str, str, int | None],
     machine_type: str,
+    s3_bucket: str | None = None,
+    s3_prefix: str | None = None,
     zone: str = "us-central1-a",
-    fire_and_forget: bool = False,
 ) -> bool:
     """Process a single job (agent, task_id, time_limit) on a dedicated VM."""
     agent, task_id, time_limit = job
@@ -352,15 +335,19 @@ def process_job(
 
         # Run job
         success = run_biomlbench_job(
-            vm_name, agent, task_id, time_limit, zone=zone, fire_and_forget=fire_and_forget
+            vm_name,
+            agent,
+            task_id,
+            time_limit,
+            s3_bucket=s3_bucket,
+            s3_prefix=s3_prefix,
+            zone=zone,
         )
 
         return success
 
     finally:
-        # Only clean up VM if not in fire-and-forget mode
-        if not fire_and_forget:
-            delete_vm(vm_name, zone)
+        delete_vm(vm_name, zone)
 
 
 def load_jobs(jobs_file: str) -> List[Tuple[str, str, int | None]]:
@@ -423,7 +410,11 @@ Jobs file format (one per line):
         """,
     )
 
-    parser.add_argument("--jobs", required=True, help="Path to jobs file (agent,task_id per line)")
+    parser.add_argument(
+        "--jobs",
+        required=True,
+        help="Path to jobs file (agent,task_id,time_limit per line - time_limit can be omitted)",
+    )
     parser.add_argument(
         "--concurrent",
         type=int,
@@ -441,9 +432,14 @@ Jobs file format (one per line):
         "--dry-run", action="store_true", help="Show jobs that would be run without executing"
     )
     parser.add_argument(
-        "--fire-and-forget",
-        action="store_true",
-        help="Start jobs and exit immediately after VM setup (don't wait for completion)",
+        "--s3-bucket",
+        default="biomlbench",
+        help="S3 bucket for the run group (default: None)",
+    )
+    parser.add_argument(
+        "--s3-prefix",
+        default=None,
+        help="S3 prefix for the run group (default: None)",
     )
 
     args = parser.parse_args()
@@ -473,7 +469,12 @@ Jobs file format (one per line):
         # Submit all jobs
         future_to_job = {
             executor.submit(
-                process_job, job, args.machine_type, args.zone, args.fire_and_forget
+                process_job,
+                job,
+                args.machine_type,
+                args.s3_bucket,
+                args.s3_prefix,
+                args.zone,
             ): job
             for job in jobs
         }
@@ -486,51 +487,27 @@ Jobs file format (one per line):
             try:
                 success = future.result()
                 if success:
-                    if args.fire_and_forget:
-                        log(f"🚀 STARTED: {agent} -> {task_id}")
-                    else:
-                        log(f"🎉 SUCCESS: {agent} -> {task_id}")
+                    log(f"🎉 SUCCESS: {agent} -> {task_id}")
                     successful_jobs += 1
                 else:
                     failed_jobs += 1
-                    if args.fire_and_forget:
-                        log(f"❌ FAILED TO START: {agent} -> {task_id}")
-                    else:
-                        log(f"💥 FAILED: {agent} -> {task_id}")
+                    log(f"💥 FAILED: {agent} -> {task_id}")
             except Exception as e:
                 failed_jobs += 1
                 log(f"💥 EXCEPTION: {agent} -> {task_id}: {e}")
 
     # Summary
     total_jobs = successful_jobs + failed_jobs
-    if args.fire_and_forget:
-        log("=" * 50)
-        log("JOB STARTUP COMPLETE")
-        log(f"Total jobs: {total_jobs}")
-        log(f"Successfully started: {successful_jobs}")
-        log(f"Failed to start: {failed_jobs}")
-        log(
-            f"Startup success rate: {successful_jobs/total_jobs*100:.1f}%"
-            if total_jobs > 0
-            else "N/A"
-        )
+    log("=" * 50)
+    log("DEPLOYMENT COMPLETE")
+    log(f"Total jobs: {total_jobs}")
+    log(f"Successful: {successful_jobs}")
+    log(f"Failed: {failed_jobs}")
+    log(f"Success rate: {successful_jobs/total_jobs*100:.1f}%" if total_jobs > 0 else "N/A")
 
-        if successful_jobs > 0:
-            log("✅ Jobs are running on VMs. Check S3 for results:")
-            log("  aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive")
-            log("  aws s3 ls s3://biomlbench/v1/artifacts/grades/ --recursive")
-            log("VMs will self-destruct when jobs complete.")
-    else:
-        log("=" * 50)
-        log("DEPLOYMENT COMPLETE")
-        log(f"Total jobs: {total_jobs}")
-        log(f"Successful: {successful_jobs}")
-        log(f"Failed: {failed_jobs}")
-        log(f"Success rate: {successful_jobs/total_jobs*100:.1f}%" if total_jobs > 0 else "N/A")
-
-        if successful_jobs > 0:
-            log("Check S3 for results: aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive")
-            log("Check S3 for grades: aws s3 ls s3://biomlbench/v1/artifacts/grades/ --recursive")
+    if successful_jobs > 0:
+        log(f"Check S3 for results: aws s3 ls s3://biomlbench/{args.s3_prefix}/runs/ --recursive")
+        log(f"Check S3 for grades: aws s3 ls s3://biomlbench/{args.s3_prefix}/grades/ --recursive")
 
     return 0 if failed_jobs == 0 else 1
 
