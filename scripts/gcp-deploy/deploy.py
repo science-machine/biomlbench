@@ -155,10 +155,10 @@ def run_biomlbench_job(
     log(f"Running job on {vm_name}: {agent} -> {task_id}")
 
     # Extract VM UUID from VM name (last 8 characters after the last dash)
-    vm_uuid = vm_name.split("-")[-1]
+    uuid = vm_name.split("-")[-1]
 
     # Build the command to run on the VM
-    run_agent_cmd = f"biomlbench run-agent --agent {agent} --task-id {task_id} --vm-uuid {vm_uuid}"
+    run_agent_cmd = f"biomlbench run-agent --agent {agent} --task-id {task_id} --uuid {uuid}"
     if time_limit is not None:
         run_agent_cmd += f" --time-limit {time_limit}"
     if s3_bucket is not None:

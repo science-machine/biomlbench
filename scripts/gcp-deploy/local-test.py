@@ -57,8 +57,8 @@ def run_biomlbench_job(agent: str, task_id: str, project_root: str) -> bool:
             echo "📋 Running agent: {agent} on task: {task_id}"
             biomlbench run-agent --agent {agent} --task-id {task_id}
             
-            # Get the specific run group ID that was just created (now includes VM UUID if provided)
-            LATEST_RUN=$(find runs/ -name "*run-group_{agent}*" -type d | sort | tail -1)
+            # Get the specific run group ID that was just created
+            LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
             if [ -z "$LATEST_RUN" ]; then
                 echo "❌ No run directory found for agent {agent}"
                 exit 1

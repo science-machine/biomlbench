@@ -206,11 +206,11 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     cd /home/runner/biomlbench
     source .venv/bin/activate
     
-    # Run agent with fast container config and VM UUID
-    biomlbench run-agent --agent {agent} --task-id {task_id} --vm-uuid {instance_id} --cpu-only --container-config environment/config/container_configs/fast.json
+    # Run agent with fast container config
+    biomlbench run-agent --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
     
-    # Get the specific run group ID that was just created (now includes VM UUID)
-    LATEST_RUN=$(find runs/ -name "*run-group_{agent}*" -type d | sort | tail -1)
+    # Get the specific run group ID that was just created
+    LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
     RUN_GROUP_ID=$(basename "$LATEST_RUN")
     echo "📁 Run group: $RUN_GROUP_ID"
     
