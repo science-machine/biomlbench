@@ -70,9 +70,7 @@ biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir resu
 
 ### Drug Discovery  
 - **polarishub/tdcommons-caco2-wang**: Molecular property prediction (intestinal permeability)
-- **polarishub/*** : 80+ drug discovery and molecular property prediction tasks from Polaris
 
-*For a complete list of available tasks, see our [documentation](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/)*
 
 ## 📚 Documentation
 
@@ -101,15 +99,8 @@ If you use BioML-bench in your research, please cite our paper:
   author={[Authors]},
   journal={bioRxiv},
   year={2025},
-  doi={10.1101/2025.09.01.673319v2},
+  doi={10.1101/2025.09.01.673319},
   url={https://www.biorxiv.org/content/10.1101/2025.09.01.673319v2}
 }
 ```
 
-## 📄 License
-
-[License information - please specify your license]
-
----
-
-**🚀 Ready to benchmark your biomedical ML agent?** Start with our [Quick Start Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/installation/)!
