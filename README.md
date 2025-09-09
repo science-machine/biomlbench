@@ -17,9 +17,8 @@ Agents autonomously read task descriptions, analyze biomedical data, design appr
 - **🔬 Diverse Biomedical Tasks**: Protein engineering, drug discovery, single cell omics, medical imaging, clinical biomarkers
 - **🤖 Agent-Agnostic Evaluation**: Any LLM agent that can read task descriptions and produce file/folder submissions can be evaluated
 - **👨‍⚕️ Human Baselines**: Built-in human performance benchmarks for comparison  
-- **🔒 Secure Evaluation**: Containerized execution with no data leakage
 - **🔧 Extensible Framework**: Easy to add new biomedical tasks
-- **📚 Biomedical Libraries**: Pre-installed RDKit, BioPython, and other domain-specific tools
+- **📚 Biomedical Libraries**: Pre-installed RDKit, BioPython, and other domain-specific tools for use by agents
 
 ## 🚀 Quick Start
 
@@ -57,23 +56,6 @@ biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir results/
 ```
 
-## 🤖 Available Agents
-
-- **dummy** - Testing agent that returns null predictions
-- **aide** - Advanced agent using OpenAI's API (requires API key)  
-- **biomni** - Biomedical multi-modal agent
-- **stella** - Specialized biomedical reasoning agent
-- **mlagentbench** - MLE-bench compatibility agent
-
-## 📊 Example Tasks
-
-### Medical Imaging
-- **manual/histopathologic-cancer-detection**: Cancer detection in histopathology patches
-
-### Drug Discovery  
-- **polarishub/tdcommons-caco2-wang**: Molecular property prediction (intestinal permeability)
-
-
 ## 📚 Documentation
 
 - **[📖 Full Documentation](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/)** - Complete guides and API reference
@@ -87,9 +69,10 @@ biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir resu
 We welcome contributions! See our [Contributing Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/developer/contributing/) for details on:
 
 - Adding new biomedical tasks
-- Creating custom agents  
+- Adding new agents
 - Extending data sources
 - Improving documentation
+- Adding new analyses (e.g., analysis of LLM impact on agent performance)
 
 ## 📄 Citation
 

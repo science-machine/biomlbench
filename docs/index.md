@@ -15,9 +15,8 @@ Agents autonomously read task descriptions, analyze biomedical data, design appr
 - **Diverse Biomedical Tasks**: Protein engineering, drug discovery, single cell omics, medical imaging, clinical biomarkers
 - **Agent-Agnostic Evaluation**: Any LLM agent that can read task descriptions and produce file/folder submissions can be evaluated
 - **Human Baselines**: Built-in human performance benchmarks for comparison
-- **Secure Evaluation**: Containerized execution with no data leakage
 - **Extensible Framework**: Easy to add new biomedical tasks
-- **Biomedical Libraries**: Pre-installed RDKit, BioPython, and other domain-specific tools
+- **Biomedical Libraries**: Pre-installed RDKit, BioPython, and other domain-specific tools for use by agents
 
 ## 🚀 Quick Start
 
