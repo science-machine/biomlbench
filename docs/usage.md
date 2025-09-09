@@ -44,41 +44,6 @@ biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 biomlbench run-agent --agent aide --task-id polarishub/tdcommons-caco2-wang
 ```
 
-### Single Task Execution
-
-```bash
-# Run agent on one task
-biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
-
-# With custom settings
-biomlbench run-agent \
-    --agent dummy \
-    --task-id polarishub/tdcommons-caco2-wang \
-    --n-seeds 3 \
-    --retain-container
-```
-
-### Multi-Task Execution (NOT TESTED)
-
-```bash
-# Run on multiple tasks from a list (example with available split)
-biomlbench run-agent --agent dummy --task-list experiments/splits/caco2-wang.txt
-
-# Parallel execution (future: when more split files are available)
-# biomlbench run-agent \
-#     --agent dummy \
-#     --task-list experiments/splits/medical-imaging.txt \
-#     --n-workers 4 \
-#     --n-seeds 2
-```
-
-### Agent Execution Options
-
-- **`--n-workers`**: Number of parallel workers (default: 1)
-- **`--n-seeds`**: Random seeds per task (default: 1)  
-- **`--retain-container`**: Keep containers for debugging
-- **`--container-config`**: Custom Docker configuration
-- **`--data-dir`**: Custom data directory
 
 ## Understanding Agent Outputs
 
@@ -131,22 +96,7 @@ biomlbench grade-sample submission.h5ad openproblems/cell_cell_communication
 
 ```
 
-### Baseline Comparisons
 
-**These baselines don't really work yet.**
-
-Run baselines to establish performance benchmarks:
-
-```bash
-# Run specific baseline
-biomlbench run-baseline polarishub/tdcommons-caco2-wang --baseline linear
-
-# Run all available baselines
-biomlbench run-baseline polarishub/tdcommons-caco2-wang --baseline all
-
-# Grade baseline results
-biomlbench grade --submission baseline_submissions/submission.jsonl --output-dir results/
-```
 
 ## Working with Results
 

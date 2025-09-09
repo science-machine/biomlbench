@@ -58,7 +58,7 @@ uv sync
 # Activate the virtual environment
 source .venv/bin/activate  # Linux/macOS
 # or
-.venv\Scripts\activate     # Windows
+# .venv\Scripts\activate     # Windows
 
 # Verify installation
 biomlbench --help
@@ -138,8 +138,8 @@ biomlbench --help
 biomlbench prepare --help
 
 # Test with dummy agent (requires Docker)
-biomlbench prepare -t caco2-wang
-biomlbench run-agent --agent dummy --task-id caco2-wang
+biomlbench prepare -t polarishub/tdcommons-caco2-wang
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 ```
 
 
