@@ -9,7 +9,6 @@ figures
 figures
 results/
 ref
-*.png
 latex_tables
 .venv
 baseline_submissions
