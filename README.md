@@ -4,7 +4,7 @@
 
 A benchmark suite for evaluating LLM agents on biomedical machine learning tasks.
 
-![BioML-bench Overview](misc/biombench_ga.png)
+![BioML-bench Overview](docs/images/biombench_ga.png)
 
 **📄 Paper**: [BioML-bench: Evaluation of AI Agents for End-to-End Biomedical ML](https://www.biorxiv.org/content/10.1101/2025.09.01.673319v2)
 
@@ -54,6 +54,15 @@ biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # 3. Grade the results
 biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir results/
+```
+
+**NOTE**: To run any real LLM agents, you will need to create a `.env` file at the root of the repository with the relevant API keys listed:
+
+```bash
+OPENAI_API_KEY=sk-proj-1234567890
+ANTHROPIC_API_KEY=sk-proj-1234567890
+OPENROUTER_API_KEY=sk-proj-1234567890
+...
 ```
 
 ## 📚 Documentation
