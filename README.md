@@ -1,54 +1,115 @@
-# BioML-bench
+# BioML-bench (v0.1)
 
-**THIS WAS GENERATED IN COLLABORATION WITH CLAUDE. EXPECT BUGS.**
+A benchmark suite for evaluating LLM agents on biomedical machine learning tasks.
 
-See the docs here: [docs/index.md](docs/index.md)
+![BioML-bench Overview](misc/biombench_ga.png)
 
+**📄 Paper**: [BioML-bench: Evaluation of AI Agents for End-to-End Biomedical ML](https://www.biorxiv.org/content/10.1101/2025.09.01.673319v2)
 
-## Final TODOs for workshop
+BioML-bench is built on top of [MLE-bench](https://github.com/openai/mle-bench) and provides a comprehensive framework for benchmarking LLM agents on biomedical machine learning tasks including protein engineering, drug discovery, single cell omics, medical imaging, and clinical biomarkers.
 
-- [ ] Finalize tasks (pick another reasonably-sized imaging task for the kaggle task database)
-- [x] Ensure that GPUs are exposed to agents in docker containers
-- [ ] Have a way of overriding agent timeout from the main CLI
-- [ ] Have a function for uploading artifacts to s3 on run completion
-- [x] Change step timeout for biomni/AIDE to total runtime / 10
-- [ ] Write wrapper script for configuring all VMs on GCP, running tasks in a parallelized way, and then tearing down the VMs on completion.
-- [ ] Ensure that AIDE prints conversation to stdout.
+Agents autonomously read task descriptions, analyze biomedical data, design appropriate ML approaches, and implement complete solutions from scratch.
 
+## 🧬 Key Features
 
-## biomlbench core TODOs (unordered)
+- **🔬 Diverse Biomedical Tasks**: Protein engineering, drug discovery, single cell omics, medical imaging, clinical biomarkers
+- **🤖 Agent-Agnostic Evaluation**: Any LLM agent that can read task descriptions and produce file/folder submissions can be evaluated
+- **👨‍⚕️ Human Baselines**: Built-in human performance benchmarks for comparison  
+- **🔒 Secure Evaluation**: Containerized execution with no data leakage
+- **🔧 Extensible Framework**: Easy to add new biomedical tasks
+- **📚 Biomedical Libraries**: Pre-installed RDKit, BioPython, and other domain-specific tools
 
-- [ ] Decide whether to enable multi-target problems in Polaris in the future (currently we just take the first target if more than one). 
-- [ ] Add `experiments/splits` which will contain files like `medical-imaging.txt` that contain a list of task ids for only a given domain, or type of benchmarking run (e.g., lite, all).
-- [ ] Decide if we want to have `experiments/familiarity` like the original MLE-bench. This would involve measuring the relationship between model performance and the "familiarity" of the model for the task description. This tries to assess if the model is "cheating" by already understanding the task.
-- [ ] Need to decide if we can add human baselines in for Polaris. We would probably have to manually scrape the leaderboard (possibly with playwright) and then we would need to add a `supports_human_baselines` method to the `PolarisDataSource` class which returns `True`. And we would need to add a `get_human_baselines` method to the `PolarisDataSource` class which returns a pandas dataframe with the human baselines.
-- [ ] Need an automated pipeline for scraping all the polaris and kaggle tasks and creating tasks/ directories for them.
-- [ ] Revisit the `generate_submission` method. It currently assumes that the targets in train.csv are the last column. It also requires data in CSV format...
-- [ ] Update the models used by the AIDE agent.
-- [ ] Find a way to provide task-specific Docker containers for agents. Additionally, need to figure out whether we can enable more flexible base environment container (not hardcoding pytorch version, etc.)
-- [ ] Figure out what they did in [the MLE-bench version of aideml](https://github.com/WecoAI/aideml/compare/main...thesofakillers:aideml:main) and see if we should implemnt that.
-- [ ] Need to figure out what to do when no human baselines are available. How would scoring work? Also can we realistically combine scores across databases of benchmarks?
-- [ ] Need to decide whether we want to incude obfuscated instructions/descriptions for tasks. This would probably take a lot of work but would be useful for benchmarking.
-- [ ] Need to implement filtering for tasks by domain, type, complexity (e.g., only ADMET tasks, only imaging tasks, only lite tasks)
-- [ ] Improve documentation of built-in agents.
-- [ ] Decide if we're going to add in unit tests.
-- [ ] Decide if we want to bother scraping subsequent polarihub leaderboard pages (not a lot of examples with more than one page).
-- [ ] Decide if we want to have the option to let models see the public leaderboard (would be a more fair comparison to human performance).
-- [ ] Need a permenant task cache on s3 that we maintain in case of link rot.
+## 🚀 Quick Start
 
-## Polarishub tasks:
+### Prerequisites
 
-- [ ] For `adaptyv-bio-egfr-binders-binary-cls-v0` we need to get the actual leaderboard from [this page](https://www.adaptyv.com/leaderboard/adaptyv-bio-egfr-binders-binary-cls-v0).
-- [ ] For `graphium-*` tasks, the baseline model performance is [here](https://graphium-docs.datamol.io/main/baseline.html).
+- **Python 3.11+**
+- **Docker** - For containerized agent execution
+- **uv** - Python package manager ([installation guide](https://docs.astral.sh/uv/))
 
+### Installation
 
-## How to wrap a new benchmark database
+```bash
+# Clone the repository
+git clone https://github.com/science-machine/biomlbench.git
+cd biomlbench
 
-Example: Polaris.
+# Install with uv (recommended)
+uv sync
 
-To wrap polaris, we needed to:
+# Activate the environment
+source .venv/bin/activate  # Linux/macOS
+# or .venv\Scripts\activate  # Windows
+```
 
-1. Understand the data source. In this case, Polaris has a high-level API that can be used to automatically download and split data.
-2. Create a new data source module in `biomlbench/data_sources/`. In the case of Polaris, we created `biomlbench/data_sources/polaris.py`.
-3. Implement the `XYZDataSource` class. This class must implement the `download` and `get_leaderboard` methods.
+### Basic Usage
 
+```bash
+# 1. Prepare a task dataset
+biomlbench prepare -t polarishub/tdcommons-caco2-wang
+
+# 2. Run an agent (example with dummy agent)
+biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
+
+# 3. Grade the results
+biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir results/
+```
+
+## 🤖 Available Agents
+
+- **dummy** - Testing agent that returns null predictions
+- **aide** - Advanced agent using OpenAI's API (requires API key)  
+- **biomni** - Biomedical multi-modal agent
+- **stella** - Specialized biomedical reasoning agent
+- **mlagentbench** - MLE-bench compatibility agent
+
+## 📊 Example Tasks
+
+### Medical Imaging
+- **manual/histopathologic-cancer-detection**: Cancer detection in histopathology patches
+
+### Drug Discovery  
+- **polarishub/tdcommons-caco2-wang**: Molecular property prediction (intestinal permeability)
+- **polarishub/*** : 80+ drug discovery and molecular property prediction tasks from Polaris
+
+*For a complete list of available tasks, see our [documentation](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/)*
+
+## 📚 Documentation
+
+- **[📖 Full Documentation](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/)** - Complete guides and API reference
+- **[⚙️ Installation Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/installation/)** - Detailed setup instructions
+- **[📝 Usage Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/usage/)** - Comprehensive usage examples
+- **[🏗️ API Reference](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/api/)** - Complete API documentation  
+- **[🛠️ Developer Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/developer/)** - Extending and contributing
+
+## 🤝 Contributing
+
+We welcome contributions! See our [Contributing Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/developer/contributing/) for details on:
+
+- Adding new biomedical tasks
+- Creating custom agents  
+- Extending data sources
+- Improving documentation
+
+## 📄 Citation
+
+If you use BioML-bench in your research, please cite our paper:
+
+```bibtex
+@article{biomlbench2025,
+  title={BioML-bench: Evaluation of AI Agents for End-to-End Biomedical ML},
+  author={[Authors]},
+  journal={bioRxiv},
+  year={2025},
+  doi={10.1101/2025.09.01.673319v2},
+  url={https://www.biorxiv.org/content/10.1101/2025.09.01.673319v2}
+}
+```
+
+## 📄 License
+
+[License information - please specify your license]
+
+---
+
+**🚀 Ready to benchmark your biomedical ML agent?** Start with our [Quick Start Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/installation/)!

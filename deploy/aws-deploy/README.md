@@ -15,6 +15,8 @@ Automated deployment system for running BioML-bench experiments on Amazon Web Se
 
 ## Prerequisites
 
+**Important**: You must run `setup-aws-resources.sh` first to create required AWS resources (security group, key pair). The script saves resource IDs to `aws-deploy-config.txt` for use in deployment commands.
+
 ### 1. AWS CLI Setup
 ```bash
 # Install AWS CLI
@@ -27,93 +29,47 @@ aws configure
 
 ### 2. Create Required AWS Resources
 
-#### a. Create AMI (Amazon Machine Image)
-First, create an EC2 instance with the biomlbench environment:
+**Use the provided setup script to create all necessary resources automatically:**
+
 ```bash
-# Launch a base instance (Ubuntu 22.04)
+# Run the setup script (creates security group, key pair, IAM role)
+./deploy/aws-deploy/setup-aws-resources.sh
+
+# This will create:
+# - Security group: biomlbench-sg  
+# - Key pair: biomlbench-key (saves .pem file)
+# - IAM role and instance profile for S3/SSM access
+# - Config file: aws-deploy-config.txt with resource IDs
+```
+
+### 3. Create AMI (Amazon Machine Image)
+
+After running the setup script, create an AMI with biomlbench installed:
+
+```bash
+# Source the config file to get resource IDs
+source aws-deploy-config.txt
+
+# Launch a base instance using the created resources
 aws ec2 run-instances \
   --image-id ami-0c02fb55956c7d316 \
   --instance-type m5.4xlarge \
-  --key-name your-key \
-  --security-group-ids sg-xxxxxx \
+  --key-name $AWS_DEPLOY_KEY_NAME \
+  --security-group-ids $AWS_DEPLOY_SECURITY_GROUP \
+  --iam-instance-profile Name=biomlbench-instance-profile \
   --block-device-mappings '[{"DeviceName":"/dev/sda1","Ebs":{"VolumeSize":500,"VolumeType":"gp3"}}]'
 
 # SSH into instance and set up biomlbench
-ssh ubuntu@<instance-ip>
+ssh -i ${AWS_DEPLOY_KEY_NAME}.pem ubuntu@<instance-ip>
 
 # Install biomlbench and dependencies
-# ... (your setup commands)
+# ... (follow biomlbench installation guide)
 
-# Create AMI from the configured instance
+# Create AMI from the configured instance  
 aws ec2 create-image \
   --instance-id i-xxxxx \
   --name "biomlbench-ami-v1" \
   --description "BioML-bench environment with all dependencies"
-```
-
-#### b. Create EC2 Key Pair
-```bash
-aws ec2 create-key-pair \
-  --key-name biomlbench-key \
-  --query 'KeyMaterial' \
-  --output text > biomlbench-key.pem
-
-chmod 400 biomlbench-key.pem
-```
-
-#### c. Create Security Group
-```bash
-# Create security group
-aws ec2 create-security-group \
-  --group-name biomlbench-sg \
-  --description "Security group for BioML-bench instances"
-
-# Add rules (SSH and SSM)
-aws ec2 authorize-security-group-ingress \
-  --group-id sg-xxxxx \
-  --protocol tcp \
-  --port 22 \
-  --cidr 0.0.0.0/0
-
-# For SSM, outbound HTTPS is needed (usually allowed by default)
-```
-
-#### d. Create IAM Role and Instance Profile
-```bash
-# Create the setup script
-cat > setup-aws-resources.sh << 'EOF'
-#!/bin/bash
-
-# Create IAM role for EC2 instances
-aws iam create-role --role-name biomlbench-role --assume-role-policy-document '{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Effect": "Allow",
-    "Principal": {"Service": "ec2.amazonaws.com"},
-    "Action": "sts:AssumeRole"
-  }]
-}'
-
-# Attach policies for S3 and SSM access
-aws iam attach-role-policy \
-  --role-name biomlbench-role \
-  --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
-
-aws iam attach-role-policy \
-  --role-name biomlbench-role \
-  --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
-
-# Create instance profile
-aws iam create-instance-profile --instance-profile-name biomlbench-instance-profile
-
-# Add role to instance profile
-aws iam add-role-to-instance-profile \
-  --instance-profile-name biomlbench-instance-profile \
-  --role-name biomlbench-role
-EOF
-
-chmod +x setup-aws-resources.sh
-./setup-aws-resources.sh
 ```
 
 ## Usage from Project Root
@@ -121,31 +77,37 @@ chmod +x setup-aws-resources.sh
 The deployment system works identically to the GCP version:
 
 ```bash
-# Test the deployment (dry run)
-python scripts/aws-deploy/deploy-aws.py --jobs aws-test.txt --ami ami-xxxxx --dry-run
+# Test the deployment (dry run) - replace sg-xxxxx with your security group
+python scripts/aws-deploy/deploy-aws.py --jobs aws-test.txt --s3-prefix s3://biomlbench/v3/artifacts --ami ami-xxxxx --security-group sg-xxxxx --dry-run
 
 # Run with 5 concurrent instances
-python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --concurrent 5 --ami ami-xxxxx
+python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://biomlbench/v3/artifacts --ami ami-xxxxx --security-group sg-xxxxx --concurrent 5
 
 # Run CPU jobs
 python scripts/aws-deploy/deploy-aws.py \
   --jobs scripts/aws-deploy/production-cpu-jobs.txt \
+  --s3-prefix s3://biomlbench/v3/artifacts \
+  --ami ami-xxxxx \
+  --security-group sg-xxxxx \
   --concurrent 15 \
-  --machine-type cpu \
-  --ami ami-xxxxx
+  --machine-type cpu
 
 # Run GPU jobs
 python scripts/aws-deploy/deploy-aws.py \
   --jobs scripts/aws-deploy/production-gpu-jobs.txt \
+  --s3-prefix s3://my-bucket/experiments/v2 \
+  --ami ami-xxxxx \
+  --security-group sg-xxxxx \
   --concurrent 8 \
-  --machine-type gpu \
-  --ami ami-xxxxx
+  --machine-type gpu
 
 # Use different region
 python scripts/aws-deploy/deploy-aws.py \
   --jobs aws-jobs.txt \
-  --concurrent 5 \
+  --s3-prefix s3://my-bucket/data \
   --ami ami-xxxxx \
+  --security-group sg-xxxxx \
+  --concurrent 5 \
   --region us-west-2
 ```
 
@@ -164,6 +126,26 @@ Format remains `agent,task_id`:
 aide,polarishub/tdcommons-caco2-wang
 biomni,proteingym-dms/A0A1I9GEU1_NEIME_Kennouche_2019
 ```
+
+## S3 Configuration
+
+The deployment script uploads results to S3. You should specify the full S3 path prefix using the `--s3-prefix` option:
+
+```bash
+# Example with standard biomlbench path
+python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://biomlbench/v3/artifacts --ami ami-xxxxx
+
+# Custom S3 prefix
+python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://my-bucket/experiments/v2 --ami ami-xxxxx
+
+# Different organization structure  
+python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://company-data/bioml/production --ami ami-xxxxx
+```
+
+The script will upload artifacts to these paths under your prefix:
+- `{prefix}/runs/{agent}/{task-id}/{run-group-id}.tar.gz`
+- `{prefix}/grades/{agent}/{task-id}/{timestamp}_grading_report.json.gz`
+- `{prefix}/failed_runs/...` and `{prefix}/failed_grades/...` for failed jobs
 
 ## What It Does
 
@@ -194,9 +176,9 @@ watch 'aws ec2 describe-instances --filters "Name=tag:Project,Values=biomlbench"
 # Check SSM command status
 aws ssm list-commands --filter key=Status,value=InProgress
 
-# Check S3 artifacts (same as GCP)
-aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive
-aws s3 ls s3://biomlbench/v1/artifacts/grades/ --recursive
+# Check S3 artifacts (use your specified --s3-prefix)
+aws s3 ls s3://biomlbench/v3/artifacts/runs/ --recursive
+aws s3 ls s3://biomlbench/v3/artifacts/grades/ --recursive
 ```
 
 ## Cost Comparison
@@ -251,32 +233,40 @@ aws iam list-instance-profiles  # Instance profiles
 
 ```bash
 # 1. Set up AWS resources (one-time)
-./setup-aws-resources.sh
+./deploy/aws-deploy/setup-aws-resources.sh
+# This creates security group and saves IDs to aws-deploy-config.txt
 
-# 2. Create your AMI (one-time)
-# ... follow AMI creation steps above ...
+# 2. Create your AMI (one-time)  
+# ... follow "Create AMI" section above ...
 
 # 3. Copy job files
 cp scripts/gcp-deploy/production-*.txt scripts/aws-deploy/
 
-# 4. Test without executing
+# 4. Get resource IDs from setup script output
+source aws-deploy-config.txt
+
+# 5. Test without executing
 python scripts/aws-deploy/deploy-aws.py \
   --jobs scripts/aws-deploy/production-cpu-jobs.txt \
+  --s3-prefix s3://biomlbench/v3/artifacts \
   --ami ami-xxxxx \
+  --security-group $AWS_DEPLOY_SECURITY_GROUP \
   --dry-run
 
-# 5. Run CPU jobs
+# 6. Run CPU jobs
 python scripts/aws-deploy/deploy-aws.py \
   --jobs scripts/aws-deploy/production-cpu-jobs.txt \
+  --s3-prefix s3://biomlbench/v3/artifacts \
   --concurrent 15 \
   --machine-type cpu \
-  --ami ami-xxxxx
+  --ami ami-xxxxx \
+  --security-group $AWS_DEPLOY_SECURITY_GROUP
 
-# 6. Monitor progress
+# 7. Monitor progress
 watch 'aws ec2 describe-instances --filters "Name=tag:Project,Values=biomlbench" --output table'
 
-# 7. Check results in S3
-aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive | tail -20
+# 8. Check results in S3 (use your specified --s3-prefix)
+aws s3 ls s3://biomlbench/v3/artifacts/runs/ --recursive | tail -20
 ```
 
 ## Security Considerations

@@ -8,13 +8,16 @@ The recommended way to use this deployment system is from the **project root dir
 
 ```bash
 # Test the deployment (dry run)
-python scripts/gcp-deploy/deploy.py --jobs gcp-test.txt --dry-run
+python scripts/gcp-deploy/deploy.py --jobs gcp-test.txt --s3-prefix s3://biomlbench/v1/artifacts --dry-run
 
 # Run with 5 concurrent VMs  
-python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://biomlbench/v1/artifacts --concurrent 5
+
+# Run with custom S3 prefix
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://my-bucket/experiments/v2 --concurrent 5
 
 # Run in different zone
-python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --zone us-west1-b --concurrent 3
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://my-bucket/data --zone us-west1-b --concurrent 3
 ```
 
 ## Job Files
@@ -55,6 +58,26 @@ For each job, the script:
 - **S3 Verification**: Ensures artifacts uploaded before success
 - **Path Resolution**: Job files resolved relative to current directory
 
+## S3 Configuration
+
+The deployment script uploads results to S3. You **MUST** specify the full S3 path prefix using the `--s3-prefix` option:
+
+```bash
+# Example with standard biomlbench path
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://biomlbench/v1/artifacts
+
+# Custom S3 prefix
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://my-bucket/experiments/v2
+
+# Different organization structure
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://company-data/bioml/production
+```
+
+The script will upload artifacts to these paths under your prefix:
+- `{prefix}/runs/{agent}/{task-id}/{run-group-id}.tar.gz`
+- `{prefix}/grades/{agent}/{task-id}/{timestamp}_grading_report.json.gz`
+- `{prefix}/failed_runs/...` and `{prefix}/failed_grades/...` for failed jobs
+
 ## Prerequisites
 
 1. **GCP CLI configured** with biomlbench project
@@ -67,9 +90,9 @@ For each job, the script:
 # Watch active VMs
 watch 'gcloud compute instances list | grep bioml'
 
-# Check S3 artifacts  
-aws s3 ls s3://biomlbench/runs/ --recursive
-aws s3 ls s3://biomlbench/grades/ --recursive
+# Check S3 artifacts (use your specified --s3-prefix)
+aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive
+aws s3 ls s3://biomlbench/v1/artifacts/grades/ --recursive
 ```
 
 ## Example Full Workflow
@@ -79,16 +102,16 @@ aws s3 ls s3://biomlbench/grades/ --recursive
 vim gcp-jobs.txt
 
 # 2. Test without executing
-python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --dry-run
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://biomlbench/v1/artifacts --dry-run
 
 # 3. Run with 5 concurrent VMs
-python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5
+python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://biomlbench/v1/artifacts --concurrent 5
 
 # 4. Monitor progress
 watch 'gcloud compute instances list | grep bioml'
 
-# 5. Check results in S3
-aws s3 ls s3://biomlbench/runs/ --recursive
+# 5. Check results in S3 (use your specified --s3-prefix)
+aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive
 ```
 
 ## Cost Estimation

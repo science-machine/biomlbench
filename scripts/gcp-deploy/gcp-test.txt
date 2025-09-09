@@ -1,3 +1,0 @@
-# Minimal test job for GCP deployment
-# Run from project root: python scripts/gcp-deploy/deploy.py --jobs gcp-test.txt --dry-run
-dummy,polarishub/polaris-adme-fang-r-1

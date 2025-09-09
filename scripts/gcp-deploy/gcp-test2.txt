@@ -1,7 +1,0 @@
-# Minimal test job for GCP deployment
-# Run from project root: python scripts/gcp-deploy/deploy.py --jobs gcp-test.txt --dry-run
-dummy,polarishub/tdcommons-caco2-wang 
-biomni,polarishub/tdcommons-caco2-wang 
-stella,polarishub/tdcommons-caco2-wang 
-aide,polarishub/tdcommons-caco2-wang 
-mlagentbench,polarishub/tdcommons-caco2-wang 

@@ -99,7 +99,7 @@ def wait_for_ssh(vm_name: str, zone: str = "us-central1-a", timeout: int = 300) 
     log(f"❌ SSH timeout on {vm_name}")
     return False
 
-def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-central1-a") -> bool:
+def run_biomlbench_job(vm_name: str, agent: str, task_id: str, s3_prefix: str, zone: str = "us-central1-a") -> bool:
     """Run the biomlbench pipeline on a VM."""
     log(f"Running job on {vm_name}: {agent} -> {task_id}")
     
@@ -131,35 +131,35 @@ def run_biomlbench_job(vm_name: str, agent: str, task_id: str, zone: str = "us-c
     # Show the exact S3 paths for this specific run
     echo "📤 S3 artifacts for this run:"
     echo "  Run artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
+    echo "    {s3_prefix}/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
+    echo "    OR {s3_prefix}/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
     echo "  Grading artifacts:"
-    echo "    s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
-    echo "    s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
-    echo "    OR s3://biomlbench/v1/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
+    echo "    {s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
+    echo "    {s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
+    echo "    OR {s3_prefix}/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
     
     # Verify these specific paths exist (try both new organized structure and old flat structure)
     echo "🔍 Verifying uploads..."
-    if aws s3 ls s3://biomlbench/v1/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    if aws s3 ls {s3_prefix}/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Run artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls {s3_prefix}/runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Run artifacts uploaded successfully (flat structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls {s3_prefix}/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Failed run artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls {s3_prefix}/failed_runs/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Failed run artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No run artifacts found in S3!"
         exit 1
     fi
     
-    if aws s3 ls s3://biomlbench/v1/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    if aws s3 ls {s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    elif aws s3 ls {s3_prefix}/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (flat structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls {s3_prefix}/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v1/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls {s3_prefix}/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No grading artifacts found in S3!"
@@ -206,7 +206,7 @@ def delete_vm(vm_name: str, zone: str = "us-central1-a"):
     else:
         log(f"⚠️  Failed to delete VM {vm_name}: {output}")
 
-def process_job(job: Tuple[str, str], machine_type: str, zone: str = "us-central1-a") -> bool:
+def process_job(job: Tuple[str, str], machine_type: str, s3_prefix: str, zone: str = "us-central1-a") -> bool:
     """Process a single job (agent, task_id) on a dedicated VM."""
     agent, task_id = job
     
@@ -235,7 +235,7 @@ def process_job(job: Tuple[str, str], machine_type: str, zone: str = "us-central
             return False
         
         # Run job
-        success = run_biomlbench_job(vm_name, agent, task_id, zone)
+        success = run_biomlbench_job(vm_name, agent, task_id, s3_prefix, zone)
         
         return success
         
@@ -284,19 +284,23 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Example usage:
-  # From project root with GPU (default):
-  python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5
+  # From project root:
+  python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://biomlbench/v1/artifacts --concurrent 5
   
   # With CPU machines:
-  python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --concurrent 5 --machine-type cpu
+  python scripts/gcp-deploy/deploy.py --jobs gcp-jobs.txt --s3-prefix s3://my-bucket/experiments/v1 --machine-type cpu
   
   # From scripts/gcp-deploy directory:
-  python deploy.py --jobs jobs.txt --concurrent 5 --machine-type gpu
+  python deploy.py --jobs jobs.txt --s3-prefix s3://my-bucket/data --concurrent 5
   
 Jobs file format (one per line):
   agent,task_id
   aide,polarishub/tdcommons-caco2-wang
   biomni,proteingym-dms/A0A1I9GEU1_NEIME
+
+S3 Configuration:
+  --s3-prefix (REQUIRED) controls the FULL S3 path prefix
+  Results will be uploaded to: {prefix}/runs/, {prefix}/grades/, etc.
         """
     )
     
@@ -321,6 +325,11 @@ Jobs file format (one per line):
         choices=["cpu", "gpu"],
         default="cpu", 
         help="Machine type: cpu (n2-standard-16, default) or gpu (g2-standard-16)"
+    )
+    parser.add_argument(
+        "--s3-prefix", 
+        required=True, 
+        help="S3 prefix path for artifacts (e.g., s3://my-bucket/experiments/v1)"
     )
     parser.add_argument(
         "--dry-run", 
@@ -354,7 +363,7 @@ Jobs file format (one per line):
     with ThreadPoolExecutor(max_workers=args.concurrent) as executor:
         # Submit all jobs
         future_to_job = {
-            executor.submit(process_job, job, args.machine_type, args.zone): job 
+            executor.submit(process_job, job, args.machine_type, args.s3_prefix, args.zone): job 
             for job in jobs
         }
         
@@ -385,8 +394,8 @@ Jobs file format (one per line):
     log(f"Success rate: {successful_jobs/total_jobs*100:.1f}%" if total_jobs > 0 else "N/A")
     
     if successful_jobs > 0:
-        log("Check S3 for results: aws s3 ls s3://biomlbench/v1/artifacts/runs/ --recursive")
-        log("Check S3 for grades: aws s3 ls s3://biomlbench/v1/artifacts/grades/ --recursive")
+        log(f"Check S3 for results: aws s3 ls {args.s3_prefix}/runs/ --recursive")
+        log(f"Check S3 for grades: aws s3 ls {args.s3_prefix}/grades/ --recursive")
     
     return 0 if failed_jobs == 0 else 1
 

@@ -28,9 +28,7 @@ ec2 = boto3.client('ec2')
 
 # Default configuration
 DEFAULT_REGION = "us-east-1"
-DEFAULT_AMI = 'ami-0cbfb39216f82ad5f'  # Will be set from environment or argument
-DEFAULT_KEY_NAME = "biomlbench-key"
-DEFAULT_SECURITY_GROUP = "sg-050d87e9eef71d1ce"
+DEFAULT_KEY_NAME = "biomlbench-key"  # Matches setup-aws-resources.sh
 
 def log(message: str):
     """Simple logging with timestamp."""
@@ -725,19 +723,24 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Example usage:
-  # Create new instance pool and run jobs:
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --concurrent 16 --ami ami-xxxxxxxxx
+  # Create new instance pool and run jobs (get AMI/SG from setup-aws-resources.sh):
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://biomlbench/v3/artifacts --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --concurrent 16
   
   # Use existing instances:
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --existing-instances i-123 i-456 i-789
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://my-bucket/experiments/v1 --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --existing-instances i-123 i-456 i-789
   
   # GPU instances:
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --concurrent 8 --machine-type gpu --ami ami-xxxxxxxxx
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://my-bucket/data --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --concurrent 8 --machine-type gpu
   
 Jobs file format (one per line):
   agent,task_id
   aide,polarishub/tdcommons-caco2-wang
   biomni,proteingym-dms/A0A1I9GEU1_NEIME
+
+AWS Resources:
+  --ami and --security-group are REQUIRED (no defaults)
+  Run setup-aws-resources.sh first to create required resources
+  Resource IDs are saved to aws-deploy-config.txt for convenience
 
 This script uses persistent instances that are pre-warmed for optimal performance.
 Instances are NOT automatically terminated - clean them up manually when done.
@@ -763,8 +766,8 @@ Instances are NOT automatically terminated - clean them up manually when done.
     )
     parser.add_argument(
         "--ami",
-        default=DEFAULT_AMI,
-        help="AMI ID for biomlbench image (required)"
+        required=True,
+        help="AMI ID for biomlbench image (create with setup-aws-resources.sh first)"
     )
     parser.add_argument(
         "--key-name",
@@ -773,8 +776,8 @@ Instances are NOT automatically terminated - clean them up manually when done.
     )
     parser.add_argument(
         "--security-group",
-        default=DEFAULT_SECURITY_GROUP,
-        help=f"Security group ID (default: {DEFAULT_SECURITY_GROUP})"
+        required=True,
+        help="Security group ID (get from setup-aws-resources.sh output or aws-deploy-config.txt)"
     )
 
     parser.add_argument(
