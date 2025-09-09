@@ -1,4 +1,6 @@
-# BioML-bench (v0.1)
+# BioML-bench (v0.1-alpha)
+
+**Note: This is a pre-release version of BioML-bench. Expect bugs and incomplete features.**
 
 A benchmark suite for evaluating LLM agents on biomedical machine learning tasks.
 
