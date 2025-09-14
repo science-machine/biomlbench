@@ -1,77 +1,82 @@
-# Google cloud deployment with biomlbench
+# Cloud Deployment
 
-We provide scripts for deploying agents on GCP. You must have a `google-application-credentials.json` file.
+BioML-bench provides automated deployment scripts for running large-scale experiments on AWS and GCP.
 
-Add the following 3 fields to your `.env` file:
+## Google Cloud Platform (GCP)
 
-```bash
-GOOGLE_APPLICATION_CREDENTIALS=/path/to/google-application-credentials.json
-GCP_PROJECT_ID=...  # can be found in google-application-credentials.json
-GCP_ZONE=...  # up to you!
-```
+### Prerequisites
+- GCP CLI configured: `gcloud auth login`
+- Biomlbench VM image available in your project
+- S3 credentials for artifact uploads
 
-## Google cloud CLI installation
-
-Follow the instructions below to install the google cloud CLI, which is needed to run deployment.
-
-### MacOS (Homebrew)
+### Usage
 
 ```bash
-brew install --cask google-cloud-sdk
+# Create job file with agent,task_id format
+cat > my-jobs.txt << EOF
+dummy,polarishub/tdcommons-caco2-wang
+aide,proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+EOF
+
+# Run deployment (automatically creates/manages VMs)
+python deploy/gcp-deploy/deploy.py \
+  --jobs my-jobs.txt \
+  --s3-prefix s3://your-bucket/artifacts \
+  --concurrent 5
 ```
 
-### Linux
+Features:
+- **Automated**: Creates VMs, runs jobs, uploads to S3, cleans up
+- **Parallel**: Configurable concurrent VMs (max 16 for L4 GPU quota)
+- **Resilient**: Infinite retry for VM creation, auto-cleanup on failure
+
+Cost: ~$0.40-0.80 per job (g2-standard-8 with L4 GPU)
+
+## Amazon Web Services (AWS)
+
+### Prerequisites
 
 ```bash
-curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-468.0.0-linux-x86_64.tar.gz
-tar -xf google-cloud-cli-468.0.0-linux-x86_64.tar.gz
+# Set up AWS resources (one-time)
+./deploy/aws-deploy/setup-aws-resources.sh
 
-# Run the installer
-./google-cloud-sdk/install.sh
-
-# Restart your shell or source the updated profile
-source ~/.bashrc   # or ~/.zshrc
+# This creates security groups, key pairs, and saves config
+source aws-deploy-config.txt
 ```
 
-### Windows
-
-Easiest way is to download the [installer](https://cloud.google.com/sdk/docs/install#windows) directly from the google cloud SDK website.
-
-## Setting up google cloud
+### Usage
 
 ```bash
-gcloud auth activate-service-account --key-file=/path/to/google-application-credentials.json
-gcloud config set project <PROJECT_ID>
+# Run deployment (replace ami-xxxxx with your AMI)
+python deploy/aws-deploy/deploy-aws.py \
+  --jobs my-jobs.txt \
+  --s3-prefix s3://your-bucket/artifacts \
+  --ami ami-xxxxx \
+  --security-group $AWS_DEPLOY_SECURITY_GROUP \
+  --concurrent 5
 ```
 
-Again the `PROJECT_ID` can be grabbed from the JSON file.
+Features:
+- **Equivalent to GCP**: Same job format and workflow
+- **SSM-based**: Secure remote execution without SSH
+- **Cost-effective**: ~10-15% cheaper than GCP
 
-## Deploying biomlbench on a google cloud VM
+Cost: ~$0.35-0.70 per job (m5.4xlarge CPU / g4dn.4xlarge GPU)
 
-For running biomlbench on google cloud you should use the pre-baked OS image that contains all the prebuilt agent docker images and datasets. To create an image with a standard L4 GPU:
+## Job Files
 
-```bash
-gcloud compute instances create biomlbench --zone=us-central1-a --machine-type=g2-standard-8 --maintenance-policy=TERMINATE --image=biomlbench --boot-disk-size=500G
+Both platforms use identical job file format:
+
+```
+# Comments allowed
+agent,task_id
+aide,polarishub/tdcommons-caco2-wang
+biomni,proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+dummy,kaggle/histopathologic-cancer-detection
 ```
 
-All of the ProteinGym, single-cell, and PolarisHub datasets have been downloaded and prepared, as well as the following four kaggle tasks:
-- `histopathologic-cancer-detection`
-- `osic-pulmonary-fibrosis-progression`
-- `rsna-miccai-brain-tumor-radiogenomic-classification`
-- `uw-madison-gi-tract-image-segmentation`
+Pre-made job files:
+- `deploy/gcp-deploy/production-cpu-jobs.txt` - Non-image tasks (80 jobs)
+- `deploy/gcp-deploy/production-gpu-jobs.txt` - Image analysis tasks (16 jobs)
 
-Where `--machine-type=g2-standard-8` specifies the machine type with an L4 GPU. For the tasks that require large-scale deep learning models you can specify `--machine-type=a2-highgpu-1g`, which gives an instance with a single 40Gb A100 GPU.
-
-Then you can `ssh` into the VM as follos:
-
-```bash
-gcloud compute ssh runner@biomlbench
-```
-
-You can also run a specific command:
-
-```bash
-gcloud compute ssh runner@biomlbench --command="cd biomlbench && source .venv/bin/activate && biomlbench run-agent --agent aide --task-id proteingym-dms/A0A1I9GEU1_NEIME_Kennouche_2019"
-```
-
-All tasks from ProteinGym and Polaris have been prepared, as have the four kaggle tasks in the google doc.
+See respective deployment folder READMEs for detailed setup and usage instructions.

@@ -71,12 +71,7 @@ agents/<agent-name>/
 └── src/                # Agent source code
 ```
 
-**Additional Features:**
-- Multi-stage builds for smaller images
-- Build caching optimization
-- Security scanning integration
-- Performance benchmarking
-- Automated testing of built images
+
 
 ## Testing Scripts
 

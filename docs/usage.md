@@ -112,6 +112,57 @@ biomlbench grade \
     --output-dir results/
 ```
 
+## S3 Upload Integration
+
+BioML-bench can automatically upload run artifacts and grading results to S3 for backup and sharing.
+
+### Configure S3 Credentials
+
+Run aws cli to configure your aws credentials.
+
+```bash
+aws configure
+```
+
+
+### Running with S3 Upload
+
+```bash
+# Run agent with automatic S3 upload
+biomlbench run-agent \
+    --agent aide \
+    --task-id polarishub/tdcommons-caco2-wang \
+    --s3-bucket your-bucket-name \
+    --s3-prefix experiments/v1
+
+# Grade with S3 upload
+biomlbench grade \
+    --submission runs/*/submission.jsonl \
+    --output-dir results/ \
+    --s3-bucket your-bucket-name \
+    --s3-prefix experiments/v1
+```
+
+### S3 Upload Options
+
+- `--s3-bucket` - S3 bucket name (or set `BIOMLBENCH_S3_BUCKET`)
+- `--s3-prefix` - Path prefix for uploads (or set `BIOMLBENCH_S3_PREFIX`)
+- `--s3-no-compress` - Disable compression (uploads are gzipped by default)
+- `--disable-s3` - Skip S3 uploads even if configured
+- `--incremental-s3` - Upload artifacts during execution (useful for long runs)
+
+### What Gets Uploaded
+
+**Run Artifacts:**
+- `s3://bucket/prefix/runs/{agent}/{task-id}/{run-group-id}.tar.gz`
+
+**Grading Results:**
+- `s3://bucket/prefix/grades/{agent}/{task-id}/{timestamp}_grading_report.json.gz`
+
+**Failed Jobs:**
+- `s3://bucket/prefix/failed_runs/...`
+- `s3://bucket/prefix/failed_grades/...`
+
 ### Grade Individual Submissions
 
 For testing or external submissions:

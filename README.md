@@ -62,6 +62,8 @@ biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir resu
 OPENAI_API_KEY=sk-proj-1234567890
 ANTHROPIC_API_KEY=sk-proj-1234567890
 OPENROUTER_API_KEY=sk-proj-1234567890
+GEMINI_API_KEY=sk-proj-1234567890
+MEM0_API_KEY=sk-proj-1234567890
 ...
 ```
 

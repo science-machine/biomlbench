@@ -145,6 +145,8 @@ For agents that require API access (e.g., AIDE):
 echo "OPENAI_API_KEY=your-key-here" >> .env
 echo "ANTHROPIC_API_KEY=your-key-here" >> .env
 echo "GEMINI_API_KEY=your-key-here" >> .env
+echo "MEM0_API_KEY=your-key-here" >> .env
+echo "OPENROUTER_API_KEY=your-key-here" >> .env
 ```
 
 ## Verification

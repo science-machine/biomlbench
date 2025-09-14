@@ -66,7 +66,7 @@ def get_instance_type(machine_type: str) -> str:
 
 def create_instance_with_retry(instance_name: str, machine_type: str, ami_id: str, 
                               key_name: str = DEFAULT_KEY_NAME,
-                              security_group: str = DEFAULT_SECURITY_GROUP,
+                              security_group: str = None,
                               max_retries: int = None,
                               custom_tag: str = None) -> Optional[str]:
     """Create an EC2 instance, retrying until success. Returns instance ID if successful."""
@@ -176,7 +176,7 @@ def wait_for_ssh(instance_id: str, timeout: int = 300) -> bool:
     log(f"❌ SSH timeout on instance {instance_id}")
     return False
 
-def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
+def run_biomlbench_job(instance_id: str, agent: str, task_id: str, s3_bucket: str, s3_prefix: str) -> bool:
     """Run the biomlbench pipeline on an instance using SSH."""
     log(f"Running job on {instance_id}: {agent} -> {task_id}")
     
@@ -191,7 +191,7 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     source .venv/bin/activate
     
     # Run agent with fast container config
-    biomlbench run-agent --s3-bucket biomlbench --s3-prefix v3/artifacts --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
+    biomlbench run-agent --s3-bucket {s3_bucket} --s3-prefix {s3_prefix} --agent {agent} --task-id {task_id} --cpu-only --container-config environment/config/container_configs/fast.json
     
     # Get the specific run group ID that was just created
     LATEST_RUN=$(find runs/ -name "*run-group_{agent}" -type d | sort | tail -1)
@@ -199,7 +199,7 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     echo "📁 Run group: $RUN_GROUP_ID"
     
     # Grade results
-    biomlbench grade --s3-bucket biomlbench --s3-prefix v3/artifacts --submission "$LATEST_RUN/submission.jsonl" --output-dir results/
+    biomlbench grade --s3-bucket {s3_bucket} --s3-prefix {s3_prefix} --submission "$LATEST_RUN/submission.jsonl" --output-dir results/
     
     # Get the grading timestamp from the most recent grading report
     GRADING_REPORT=$(find results/ -name "*_grading_report.json" | sort | tail -1)
@@ -212,31 +212,31 @@ def run_biomlbench_job(instance_id: str, agent: str, task_id: str) -> bool:
     # Show the exact S3 paths for this specific run
     echo "📤 S3 artifacts for this run:"
     echo "  Run artifacts:"
-    echo "    s3://biomlbench/v3/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
-    echo "    OR s3://biomlbench/v3/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
+    echo "    s3://{s3_bucket}/{s3_prefix}/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz"
+    echo "    OR s3://{s3_bucket}/{s3_prefix}/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz (if failed)"
     echo "  Grading artifacts:"
-    echo "    s3://biomlbench/v3/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
-    echo "    s3://biomlbench/v3/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
-    echo "    OR s3://biomlbench/v3/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
+    echo "    s3://{s3_bucket}/{s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz"
+    echo "    s3://{s3_bucket}/{s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_individual_reports.tar.gz"
+    echo "    OR s3://{s3_bucket}/{s3_prefix}/failed_grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_*.gz (if failed)"
     
     # Verify these specific paths exist
     echo "🔍 Verifying uploads..."
-    if aws s3 ls s3://biomlbench/v3/artifacts/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://{s3_bucket}/{s3_prefix}/runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Run artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v3/artifacts/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://{s3_bucket}/{s3_prefix}/failed_runs/{agent}/$TASK_ID_SAFE/$RUN_GROUP_ID.tar.gz > /dev/null 2>&1; then
         echo "✅ Failed run artifacts uploaded successfully (organized structure)"
     else
         echo "❌ No run artifacts found in S3!"
         exit 1
     fi
     
-    if aws s3 ls s3://biomlbench/v3/artifacts/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    if aws s3 ls s3://{s3_bucket}/{s3_prefix}/grades/{agent}/$TASK_ID_SAFE/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v3/artifacts/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
+    elif aws s3 ls s3://{s3_bucket}/{s3_prefix}/grades/${{GRADING_TIMESTAMP}}_grading_report.json.gz > /dev/null 2>&1; then
         echo "✅ Grading artifacts uploaded successfully (flat structure)"
-    elif aws s3 ls s3://biomlbench/v3/artifacts/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls s3://{s3_bucket}/{s3_prefix}/failed_grades/{agent}/$TASK_ID_SAFE/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (organized structure)"
-    elif aws s3 ls s3://biomlbench/v3/artifacts/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
+    elif aws s3 ls s3://{s3_bucket}/{s3_prefix}/failed_grades/ | grep -q "$GRADING_TIMESTAMP" > /dev/null 2>&1; then
         echo "✅ Failed grading artifacts uploaded successfully (flat structure)"
     else
         echo "❌ No grading artifacts found in S3!"
@@ -668,7 +668,7 @@ EOF
         
         log(f"All {len(instance_ids)} instances processed")
 
-def run_pool_mode(jobs: List[Tuple[str, str]], instance_ids: List[str]):
+def run_pool_mode(jobs: List[Tuple[str, str]], instance_ids: List[str], s3_bucket: str, s3_prefix: str):
     """Run jobs using a pool of persistent instances."""
     job_queue = queue.Queue()
     for job in jobs:
@@ -687,7 +687,7 @@ def run_pool_mode(jobs: List[Tuple[str, str]], instance_ids: List[str]):
                 agent, task_id = job
                 
                 log(f"Instance {instance_id} processing: {agent} -> {task_id}")
-                success = run_biomlbench_job(instance_id, agent, task_id)
+                success = run_biomlbench_job(instance_id, agent, task_id, s3_bucket, s3_prefix)
                 
                 with lock:
                     if success:
@@ -724,13 +724,13 @@ def main():
         epilog="""
 Example usage:
   # Create new instance pool and run jobs (get AMI/SG from setup-aws-resources.sh):
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://biomlbench/v3/artifacts --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --concurrent 16
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-bucket biomlbench --s3-prefix v3/artifacts --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --concurrent 16
   
   # Use existing instances:
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://my-bucket/experiments/v1 --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --existing-instances i-123 i-456 i-789
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-bucket my-bucket --s3-prefix experiments/v1 --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --existing-instances i-123 i-456 i-789
   
   # GPU instances:
-  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-prefix s3://my-bucket/data --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --concurrent 8 --machine-type gpu
+  python scripts/aws-deploy/deploy-aws.py --jobs aws-jobs.txt --s3-bucket my-bucket --s3-prefix data --ami ami-xxxxxxxxx --security-group sg-xxxxxxxxx --concurrent 8 --machine-type gpu
   
 Jobs file format (one per line):
   agent,task_id
@@ -810,6 +810,16 @@ Instances are NOT automatically terminated - clean them up manually when done.
         type=str,
         help="Custom tag to add to instances (e.g., 'run2', 'experiment1')"
     )
+    parser.add_argument(
+        "--s3-bucket",
+        required=True,
+        help="S3 bucket name for uploading artifacts"
+    )
+    parser.add_argument(
+        "--s3-prefix", 
+        required=True,
+        help="S3 key prefix for uploaded artifacts (e.g., 'v3/artifacts')"
+    )
     
     args = parser.parse_args()
     
@@ -866,7 +876,7 @@ Instances are NOT automatically terminated - clean them up manually when done.
         prewarm_instances(instance_ids)
     
     # Run jobs using pool
-    successful_jobs, failed_jobs = run_pool_mode(jobs, instance_ids)
+    successful_jobs, failed_jobs = run_pool_mode(jobs, instance_ids, args.s3_bucket, args.s3_prefix)
     
     # Summary
     total_jobs = successful_jobs + failed_jobs
@@ -878,8 +888,8 @@ Instances are NOT automatically terminated - clean them up manually when done.
     log(f"Success rate: {successful_jobs/total_jobs*100:.1f}%" if total_jobs > 0 else "N/A")
     
     if successful_jobs > 0:
-        log("Check S3 for results: aws s3 ls s3://biomlbench/v3/artifacts/runs/ --recursive")
-        log("Check S3 for grades: aws s3 ls s3://biomlbench/v3/artifacts/grades/ --recursive")
+        log(f"Check S3 for results: aws s3 ls s3://{args.s3_bucket}/{args.s3_prefix}/runs/ --recursive")
+        log(f"Check S3 for grades: aws s3 ls s3://{args.s3_bucket}/{args.s3_prefix}/grades/ --recursive")
     
     return 0 if failed_jobs == 0 else 1
 
