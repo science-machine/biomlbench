@@ -46,6 +46,9 @@ source .venv/bin/activate  # Linux/macOS
 ### Basic Usage
 
 ```bash
+# Pull prebuilt agent images (recommended - saves build time)
+./scripts/pull_prebuilt_images.sh
+
 # 1. Prepare a task dataset
 biomlbench prepare -t polarishub/tdcommons-caco2-wang
 
