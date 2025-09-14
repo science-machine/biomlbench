@@ -75,8 +75,8 @@ MEM0_API_KEY=sk-proj-1234567890
 - **[📖 Full Documentation](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/)** - Complete guides and API reference
 - **[⚙️ Installation Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/installation/)** - Detailed setup instructions
 - **[📝 Usage Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/usage/)** - Comprehensive usage examples
-- **[🏗️ API Reference](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/api/)** - Complete API documentation  
-- **[🛠️ Developer Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/developer/)** - Extending and contributing
+- **[🏗️ API Reference](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/api/overview)** - Complete API documentation  
+- **[🛠️ Developer Guide](http://biomlbench-docs.s3-website-us-west-2.amazonaws.com/developer/contributing/)** - Extending and contributing
 
 ## 🤝 Contributing
 
