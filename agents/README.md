@@ -19,9 +19,37 @@ If you want to run these agents locally:
 - Install [Sysbox](https://github.com/nestybox/sysbox). See [Security](#Security) below for more information
 - (Optional) Install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) to run agents with GPUs
 
+## Getting Agent Images
+
+### Option 1: Use Prebuilt Images (Recommended)
+
+Pull prebuilt images and tag them for local use:
+
+```bash
+# Pull all prebuilt images and tag them locally
+./scripts/pull_prebuilt_images.sh
+```
+
+This is much faster than building locally and pulls the following:
+- `millerh1/biomlbench-env:v0.1a` → tagged as `biomlbench-env`
+- `millerh1/aide:v0.1a` → tagged as `aide`
+- `millerh1/biomni:v0.1a` → tagged as `biomni`
+- `millerh1/mlagentbench:v0.1a` → tagged as `mlagentbench`
+- `millerh1/stella:v0.1a` → tagged as `stella`
+- `millerh1/dummy:v0.1a` → tagged as `dummy`
+
+### Option 2: Build Images Locally
+
 To build an image for an agent with ID `<agent>`, run:
 
 ```bash
+# Build base environment first
+./scripts/build_base_env.sh
+
+# Then build specific agent
+./scripts/build_agent.sh <agent>
+
+# Or use the manual build command:
 export SUBMISSION_DIR=/home/submission
 export LOGS_DIR=/home/logs
 export CODE_DIR=/home/code

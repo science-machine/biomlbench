@@ -25,9 +25,29 @@ biomlbench prepare -t polarishub/tdcommons-caco2-wang
 biomlbench prepare -t manual/histopathologic-cancer-detection --keep-raw
 ```
 
-### Prepare Multiple Tasks / filtered tasks
+### Prepare Multiple Tasks from File
 
-**Not implemented yet.**
+You can prepare multiple tasks at once using a text file containing task IDs:
+
+```bash
+# Prepare all tasks from the v0.1a benchmark
+./scripts/prepare_tasks_from_file.sh experiments/biomlbench_v0.1a.txt
+
+# Or prepare tasks from a custom file
+./scripts/prepare_tasks_from_file.sh my_tasks.txt
+```
+
+The task file should contain one task ID per line:
+```
+polarishub/tdcommons-caco2-wang
+kaggle/histopathologic-cancer-detection
+manual/open-problems-predict-modality
+# Comments are ignored
+proteingym-dms/SPIKE_SARS2_Starr_2020_binding
+```
+
+**Pre-defined Task Lists:**
+- `experiments/biomlbench_v0.1a.txt` - Complete v0.1a benchmark (24 tasks) from our preprint
 
 
 ## Running Agents
@@ -42,6 +62,15 @@ biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # AIDE agent (requires OpenAI API key)
 biomlbench run-agent --agent aide --task-id polarishub/tdcommons-caco2-wang
+
+# Biomni agent (requires Anthropic API key)
+biomlbench run-agent --agent biomni --task-id polarishub/tdcommons-caco2-wang
+
+# MLAgentBench (requires OpenAI API key)
+biomlbench run-agent --agent mlagentbench --task-id polarishub/tdcommons-caco2-wang
+
+# Stella agent (requires API keys)
+biomlbench run-agent --agent stella --task-id polarishub/tdcommons-caco2-wang
 ```
 
 
@@ -199,6 +228,11 @@ biomlbench grade-sample runs/dummy/my-source/my-new-task/submission.h5ad my-sour
 - **`grade-sample`**: Test individual submissions
 - **`run-baseline`**: Generate baseline comparisons
 
+### Convenience Scripts
+
+- **`./scripts/pull_prebuilt_images.sh`**: Pull and tag prebuilt Docker images
+- **`./scripts/prepare_tasks_from_file.sh`**: Prepare multiple tasks from a text file
+
 ### Getting Help
 
 ```bash
@@ -216,22 +250,34 @@ biomlbench grade --help
 ### Quick Testing
 
 ```bash
-# Fast workflow for testing
+# Fast workflow for testing with prebuilt images
+./scripts/pull_prebuilt_images.sh  # Pull prebuilt Docker images (recommended)
 biomlbench prepare -t polarishub/tdcommons-caco2-wang
 biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 ```
 
+### Preparing the Full v0.1a Benchmark
+
+To prepare all 24 tasks from our preprint:
+
+```bash
+# Prepare all tasks from the v0.1a benchmark (this will take time and download several GB)
+./scripts/prepare_tasks_from_file.sh experiments/biomlbench_v0.1a.txt
+
+# Then run agents on the full benchmark
+biomlbench run-agent --agent aide --task-list experiments/biomlbench_v0.1a.txt
+```
+
 ### Full Evaluation
 
 ```bash
-# Comprehensive evaluation (when more tasks are available)
-# biomlbench prepare --all
-# biomlbench run-agent --agent my-agent --task-list experiments/splits/all.txt --n-workers 4
-# biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
+# Prepare all tasks from the v0.1a benchmark
+./scripts/prepare_tasks_from_file.sh experiments/biomlbench_v0.1a.txt
 
-# Current example with available tasks
-biomlbench prepare -t polarishub/tdcommons-caco2-wang -t manual/histopathologic-cancer-detection
-biomlbench run-agent --agent my-agent --task-id polarishub/tdcommons-caco2-wang
+# Run comprehensive evaluation on all v0.1a tasks
+biomlbench run-agent --agent aide --task-list experiments/biomlbench_v0.1a.txt --n-workers 2
+
+# Grade all results
 biomlbench grade --submission runs/*/submission.jsonl --output-dir results/
 ```

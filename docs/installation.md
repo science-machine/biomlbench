@@ -82,13 +82,34 @@ pre-commit install
 
 ## Environment Setup
 
-### Build Base Docker Environment
+### Option 1: Use Prebuilt Images (Recommended)
 
-Before running agents, build the base Docker environment with biomedical libraries:
+The fastest way to get started is to pull our prebuilt Docker images:
 
 ```bash
-# Build the biomlbench-env image
+# Pull and tag all prebuilt images
+./scripts/pull_prebuilt_images.sh
+```
+
+This script pulls the following images and tags them for local use:
+- `millerh1/biomlbench-env:v0.1a` → `biomlbench-env`
+- `millerh1/aide:v0.1a` → `aide`
+- `millerh1/biomni:v0.1a` → `biomni`  
+- `millerh1/mlagentbench:v0.1a` → `mlagentbench`
+- `millerh1/stella:v0.1a` → `stella`
+- `millerh1/dummy:v0.1a` → `dummy`
+
+### Option 2: Build Images Locally
+
+If you prefer to build images locally or need to modify agents:
+
+```bash
+# Build the biomlbench-env base image
 ./scripts/build_base_env.sh
+
+# Build specific agent images
+./scripts/build_agent.sh aide
+./scripts/build_agent.sh biomni
 
 # Verify the environment
 ./scripts/test_environment.sh

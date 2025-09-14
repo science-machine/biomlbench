@@ -29,9 +29,12 @@ cd biomlbench
 uv sync
 ```
 
-Build and run a benchmark with an agent:
+Pull prebuilt Docker images and run a benchmark:
 
 ```bash
+# Pull prebuilt images (recommended - saves build time)
+./scripts/pull_prebuilt_images.sh
+
 # Prepare a task
 biomlbench prepare -t polarishub/tdcommons-caco2-wang
 
@@ -40,6 +43,18 @@ biomlbench run-agent --agent dummy --task-id polarishub/tdcommons-caco2-wang
 
 # Grade results (submission.jsonl is auto-generated)
 biomlbench grade --submission <run-group-dir>/submission.jsonl --output-dir results/
+```
+
+### Full v0.1a Benchmark
+
+To evaluate on our complete 24-task benchmark from the preprint:
+
+```bash
+# Prepare all v0.1a tasks (downloads several GB of data)
+./scripts/prepare_tasks_from_file.sh experiments/biomlbench_v0.1a.txt
+
+# Run agents on the full benchmark
+biomlbench run-agent --agent aide --task-list experiments/biomlbench_v0.1a.txt
 ```
 
 ## 📊 Available Tasks
